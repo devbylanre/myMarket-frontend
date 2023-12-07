@@ -1,24 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+
+// layout imports
+import { RootLayout } from './layouts/RootLayout';
+import { ThemeLayout } from './layouts/ThemeLayout';
+
+// theme imports
+import { ThemeTypography } from './pages/theme/typography/ThemeTypography';
+import { ThemeButton } from './pages/theme/button/ThemeButton';
+import { ThemeBadge } from './pages/theme/badge/ThemeBadge';
+import { ThemeInput } from './pages/theme/input/ThemeInput';
+import { ThemeTextarea } from './pages/theme/textarea/ThemeTextarea';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <RootLayout />,
+    children: [
+      {
+        path: 'theme',
+        element: <ThemeLayout />,
+        children: [
+          {
+            path: 'typography',
+            element: <ThemeTypography />,
+          },
+          {
+            path: 'button',
+            element: <ThemeButton />,
+          },
+          {
+            path: 'badge',
+            element: <ThemeBadge />,
+          },
+          { path: 'input', element: <ThemeInput /> },
+          { path: 'textarea', element: <ThemeTextarea /> },
+        ],
+      },
+    ],
+  },
+]);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App font-inter'>
+      <RouterProvider router={router} />
     </div>
   );
 }
