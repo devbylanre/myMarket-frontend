@@ -72,8 +72,8 @@ const menuItems: MenuItem[] = [
     icon: <LuPictureInPicture2 />,
   },
   {
-    name: 'Toggle',
-    url: 'toggle',
+    name: 'Switch',
+    url: 'switch',
     icon: <LuToggleLeft />,
   },
   {

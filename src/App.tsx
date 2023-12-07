@@ -10,6 +10,7 @@ import { ThemeButton } from './pages/theme/button/ThemeButton';
 import { ThemeBadge } from './pages/theme/badge/ThemeBadge';
 import { ThemeInput } from './pages/theme/input/ThemeInput';
 import { ThemeTextarea } from './pages/theme/textarea/ThemeTextarea';
+import { ThemeSelect } from './pages/theme/select/ThemeSelect';
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,7 @@ const router = createBrowserRouter([
           },
           { path: 'input', element: <ThemeInput /> },
           { path: 'textarea', element: <ThemeTextarea /> },
+          { path: 'select', element: <ThemeSelect /> },
         ],
       },
     ],

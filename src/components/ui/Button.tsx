@@ -15,7 +15,7 @@ const ButtonVariants = {
     primary: 'text-secondary bg-primary hover:bg-primary/70',
     secondary: 'text-secondary bg-primary/30 hover:bg-primary/50',
     dark: 'bg-secondary text-primary hover:bg-secondary/90',
-    outline: 'border border-zinc-200 hover:bg-secondary/5',
+    outline: 'border border-zinc-200 text-zinc-500 hover:bg-zinc-50',
     soft: 'bg-secondary/5 hover:bg-secondary/10',
     success: 'bg-green-300 text-secondary hover:bg-green-400',
     warning: 'bg-amber-300 text-secondary hover:bg-amber-400',
