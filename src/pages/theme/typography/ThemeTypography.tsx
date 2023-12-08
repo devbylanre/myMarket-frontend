@@ -22,7 +22,7 @@ export const ThemeTypography = () => {
 };
 
 const HeadingOne = () => {
-  const [tab, setTab] = useState('preview');
+  const [tab, setTab] = useState<'preview' | 'code'>('preview');
   return (
     <div className='flex flex-col gap-y-8'>
       <div className='flex flex-col gap-y-1'>

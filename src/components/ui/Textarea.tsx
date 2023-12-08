@@ -2,13 +2,18 @@ import React from 'react';
 import { Field, useField } from 'formik';
 import { twMerge } from 'tailwind-merge';
 
-type TextareaProps = {
+interface TextareaProps extends React.HtmlHTMLAttributes<HTMLTextAreaElement> {
   name: string;
   className?: string;
   disabled?: boolean;
-};
+}
 
-export const Textarea = ({ name, disabled, className }: TextareaProps) => {
+export const Textarea = ({
+  name,
+  disabled,
+  className,
+  ...rest
+}: TextareaProps) => {
   const [, meta, helper] = useField(name);
 
   return (
@@ -24,6 +29,7 @@ export const Textarea = ({ name, disabled, className }: TextareaProps) => {
       onFocus={() => helper.setTouched(true)}
       onBlur={() => helper.setTouched(false)}
       disabled={disabled}
+      {...rest}
     />
   );
 };

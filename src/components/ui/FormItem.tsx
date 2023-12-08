@@ -1,18 +1,19 @@
-import React from 'react';
+import React, { HTMLAttributes, forwardRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-type FormItemProps = {
+interface FormItemProps extends HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   className?: string;
-} & React.ComponentPropsWithRef<'div'>;
+}
 
-export const FormItem = ({ children, className, ...rest }: FormItemProps) => {
-  return (
-    <div
-      className={twMerge('flex flex-col space-y-1.5 text-xs', className)}
-      {...rest}
-    >
-      {children}
-    </div>
-  );
-};
+export const FormItem = forwardRef<HTMLDivElement, FormItemProps>(
+  ({ className, ...rest }: FormItemProps, ref) => {
+    return (
+      <div
+        ref={ref}
+        className={twMerge('flex flex-col space-y-1.5', className)}
+        {...rest}
+      />
+    );
+  }
+);

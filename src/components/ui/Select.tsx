@@ -1,29 +1,29 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import { useField } from 'formik';
 import { twMerge } from 'tailwind-merge';
 import { LuChevronDown } from 'react-icons/lu';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, MotionProps } from 'framer-motion';
 import { Text } from './Text';
 
-type SelectProps = {
+interface SelectProps extends HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   className?: string;
-} & React.ComponentPropsWithRef<'div'>;
+}
 
 export const Select = (props: SelectProps) => {
-  const { className, children, ...rest } = props;
+  const { className, ...rest } = props;
 
   return (
     <div
       className={twMerge('relative w-full', className)}
       {...rest}
-    >
-      {children}
-    </div>
+    />
   );
 };
 
-type SelectTriggerProps = SelectProps & { name: string };
+interface SelectTriggerProps extends SelectProps {
+  name: string;
+}
 
 export const SelectTrigger = (props: SelectTriggerProps) => {
   const { className, children, name, ...rest } = props;
@@ -53,11 +53,11 @@ export const SelectTrigger = (props: SelectTriggerProps) => {
   );
 };
 
-type SelectValueProps = {
+interface SelectValueProps extends HTMLAttributes<HTMLDivElement> {
   placeholder: string;
   className?: string;
   children?: React.ReactNode;
-} & React.ComponentPropsWithRef<'p'>;
+}
 
 export const SelectValue = (props: SelectValueProps) => {
   const { placeholder, className, children, ...rest } = props;
@@ -74,7 +74,7 @@ export const SelectValue = (props: SelectValueProps) => {
         <Text
           as='p'
           size='sm'
-          className='text-inherit px-2'
+          className='px-2 text-inherit'
         >
           {placeholder}
         </Text>
@@ -83,10 +83,13 @@ export const SelectValue = (props: SelectValueProps) => {
   );
 };
 
-type SelectGroupProps = SelectProps & { name: string };
+interface SelectGroupProps extends MotionProps {
+  name: string;
+  className?: string;
+}
 
 export const SelectGroup = (props: SelectGroupProps) => {
-  const { className, children, name, ...rest } = props;
+  const { className, name, ...rest } = props;
   const [, meta] = useField(name);
 
   return (
@@ -100,15 +103,15 @@ export const SelectGroup = (props: SelectGroupProps) => {
             className
           )}
           {...rest}
-        >
-          {children}
-        </motion.div>
+        />
       )}
     </AnimatePresence>
   );
 };
 
-type SelectItemProps = SelectProps & { onSelect: (v: number | string) => void };
+interface SelectItemProps extends SelectProps {
+  onSelect: React.MouseEventHandler<HTMLDivElement>;
+}
 
 export const SelectIem = (props: SelectItemProps) => {
   const { className, children, onSelect, ...rest } = props;

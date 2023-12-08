@@ -2,11 +2,11 @@ import React from 'react';
 import { Text } from './Text';
 import { twMerge } from 'tailwind-merge';
 
-type LabelProps = {
+interface LabelProps {
   children: React.ReactNode;
   className?: string;
   name: string;
-};
+}
 
 export const Label = ({ children, className, name }: LabelProps) => {
   return (

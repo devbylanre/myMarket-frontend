@@ -32,7 +32,7 @@ const badgeVariants: string[] = [
 ];
 
 const BadgeVariants = () => {
-  const [tab, setTab] = useState('preview');
+  const [tab, setTab] = useState<'preview' | 'code'>('preview');
 
   return (
     <div className='flex flex-col gap-y-8'>

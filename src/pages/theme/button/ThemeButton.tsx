@@ -21,18 +21,18 @@ export const ThemeButton = () => {
 };
 
 const buttonVariants = [
-  'primary',
-  'secondary',
-  'dark',
-  'outline',
-  'soft',
-  'warning',
-  'danger',
-  'success',
+  'default' as 'default',
+  'secondary' as 'secondary',
+  'dark' as 'dark',
+  'outline' as 'outline',
+  'soft' as 'soft',
+  'warning' as 'warning',
+  'danger' as 'danger',
+  'success' as 'success',
 ];
 
 const ButtonVariants = () => {
-  const [tab, setTab] = useState<string>('preview');
+  const [tab, setTab] = useState<'preview' | 'code'>('preview');
   return (
     <div className='flex flex-col gap-y-8'>
       <div className='flex flex-col gap-y-1'>
@@ -65,7 +65,7 @@ const ButtonVariants = () => {
             {buttonVariants.map((variant) => (
               <Button
                 key={variant}
-                variant={variant as 'primary'}
+                variant={variant}
                 className='capitalize'
               >
                 {variant}
@@ -83,7 +83,7 @@ const ButtonVariants = () => {
 const buttonSizes = ['xs', 'sm', 'md', 'lg', 'xl'];
 
 const ButtonSizes = () => {
-  const [tab, setTab] = useState<string>('preview');
+  const [tab, setTab] = useState<'preview' | 'code'>('preview');
   return (
     <div className='flex flex-col gap-y-8'>
       <div className='flex flex-col gap-y-1'>

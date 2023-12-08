@@ -1,11 +1,12 @@
 import { useField, Field } from 'formik';
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-type InputProps = {
+interface InputProps extends HTMLAttributes<HTMLInputElement> {
   className?: string;
   name: string;
-} & React.ComponentPropsWithRef<'input'>;
+  disabled?: boolean;
+}
 
 export const Input = (props: InputProps) => {
   const { className, name, disabled, ...rest } = props;

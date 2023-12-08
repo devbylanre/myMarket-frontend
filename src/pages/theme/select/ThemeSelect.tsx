@@ -45,7 +45,7 @@ const teams: string[] = [
 ];
 
 const FormSelect = () => {
-  const [tab, setTab] = useState('preview');
+  const [tab, setTab] = useState<'preview' | 'code'>('preview');
   const [selectTeam, checkTeam, team] = useSelect('team');
 
   return (
@@ -129,7 +129,7 @@ const options: string[] = [
 ];
 
 const FormMultipleSelect = () => {
-  const [tab, setTab] = useState('preview');
+  const [tab, setTab] = useState<'preview' | 'code'>('preview');
   const [selectSport, checkSport, sports] = useSelect('sport', true);
 
   return (
@@ -170,7 +170,7 @@ const FormMultipleSelect = () => {
                       key={sport}
                       variant='outline'
                       type='button'
-                      className='h-7 m-1 font-normal rounded px-2 border border-zinc-200 capitalize text-zinc-800'
+                      className='px-2 m-1 font-normal capitalize border rounded h-7 border-zinc-200 text-zinc-800'
                     >
                       {sport}
                     </Button>

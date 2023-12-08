@@ -2,10 +2,10 @@ import React from 'react';
 import { Text } from './Text';
 import { twMerge } from 'tailwind-merge';
 
-type FormDescriptionProps = {
+interface FormDescriptionProps {
   children: React.ReactNode;
   className?: string;
-};
+}
 
 export const FormDescription = ({
   children,

@@ -11,6 +11,9 @@ import { ThemeBadge } from './pages/theme/badge/ThemeBadge';
 import { ThemeInput } from './pages/theme/input/ThemeInput';
 import { ThemeTextarea } from './pages/theme/textarea/ThemeTextarea';
 import { ThemeSelect } from './pages/theme/select/ThemeSelect';
+import { ThemeSwitch } from './pages/theme/switch/ThemeSwitch';
+import { ThemeCheckbox } from './pages/theme/checkbox/ThemeCheckbox';
+import { ThemeToast } from './pages/theme/toast/ThemeToast';
 
 const router = createBrowserRouter([
   {
@@ -36,6 +39,9 @@ const router = createBrowserRouter([
           { path: 'input', element: <ThemeInput /> },
           { path: 'textarea', element: <ThemeTextarea /> },
           { path: 'select', element: <ThemeSelect /> },
+          { path: 'switch', element: <ThemeSwitch /> },
+          { path: 'checkbox', element: <ThemeCheckbox /> },
+          { path: 'toast', element: <ThemeToast /> },
         ],
       },
     ],

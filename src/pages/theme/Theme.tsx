@@ -48,13 +48,13 @@ export const ThemeHeader = (props: ThemeHeaderProps) => {
 };
 
 type ThemeTabProps = {
-  tab: string;
+  tab: 'preview' | 'code';
   setTab: any;
 };
 
 export const ThemeTab = ({ tab, setTab }: ThemeTabProps) => {
   return (
-    <div className='inline-flex border-b border-b-zinc-200 items-end'>
+    <div className='inline-flex items-end border-b border-b-zinc-200'>
       {Array.from(['preview', 'code']).map((demoTab) => (
         <Text
           as='h6'
