@@ -14,6 +14,9 @@ import { ThemeSelect } from './pages/theme/select/ThemeSelect';
 import { ThemeSwitch } from './pages/theme/switch/ThemeSwitch';
 import { ThemeCheckbox } from './pages/theme/checkbox/ThemeCheckbox';
 import { ThemeToast } from './pages/theme/toast/ThemeToast';
+import { ThemeAvatar } from './pages/theme/avatar/ThemeAvatar';
+import { ThemeAccordion } from './pages/theme/accordion/ThemeAccordion';
+import { ThemeSeparator } from './pages/theme/separator/ThemeSeparator';
 
 const router = createBrowserRouter([
   {
@@ -42,6 +45,9 @@ const router = createBrowserRouter([
           { path: 'switch', element: <ThemeSwitch /> },
           { path: 'checkbox', element: <ThemeCheckbox /> },
           { path: 'toast', element: <ThemeToast /> },
+          { path: 'avatar', element: <ThemeAvatar /> },
+          { path: 'accordion', element: <ThemeAccordion /> },
+          { path: 'separator', element: <ThemeSeparator /> },
         ],
       },
     ],

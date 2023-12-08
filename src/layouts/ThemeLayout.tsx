@@ -13,13 +13,16 @@ import {
   LuToggleLeft,
   LuCheckSquare,
   LuUngroup,
+  LuAlignVerticalJustifyCenter,
+  LuUser,
+  LuChevronsDownUp,
 } from 'react-icons/lu';
 
 export const ThemeLayout = () => {
   return (
     <div className='flex flex-row min-h-screen'>
       {/* sidebar */}
-      <div className='bg-zinc-100 md:min-h-screen bottom-0 md:top-0 fixed w-full md:w-2/6 xl:w-1/6'>
+      <div className='fixed bottom-0 w-full bg-zinc-100 md:min-h-screen md:top-0 md:w-2/6 xl:w-1/6'>
         <Sidebar />
       </div>
       {/* content */}
@@ -57,6 +60,16 @@ const menuItems: MenuItem[] = [
     icon: <LuLassoSelect />,
   },
   {
+    name: 'Avatar',
+    url: 'avatar',
+    icon: <LuUser />,
+  },
+  {
+    name: 'Accordion',
+    url: 'accordion',
+    icon: <LuChevronsDownUp />,
+  },
+  {
     name: 'Input',
     url: 'input',
     icon: <LuTextCursorInput />,
@@ -77,6 +90,11 @@ const menuItems: MenuItem[] = [
     icon: <LuToggleLeft />,
   },
   {
+    name: 'Separator',
+    url: 'separator',
+    icon: <LuAlignVerticalJustifyCenter />,
+  },
+  {
     name: 'Checkbox',
     url: 'checkbox',
     icon: <LuCheckSquare />,
@@ -95,7 +113,7 @@ const menuItems: MenuItem[] = [
 
 const Sidebar = () => {
   return (
-    <div className='flex flex-col gap-y-1 p-5'>
+    <div className='flex flex-col p-5 gap-y-1'>
       {menuItems.map((item) => (
         <NavLink
           key={item.name}
@@ -109,7 +127,7 @@ const Sidebar = () => {
         >
           <span>{item.icon}</span>
           <Text
-            as='label'
+            as='p'
             size='sm'
           >
             {item.name}
@@ -122,7 +140,7 @@ const Sidebar = () => {
 
 const Header = () => {
   return (
-    <div className='inline-flex justify-between items-center h-12 px-12 border-b border-b-zinc-200 w-full'>
+    <div className='inline-flex items-center justify-between w-full h-12 px-12 border-b border-b-zinc-200'>
       <div>
         <Text
           as='h5'

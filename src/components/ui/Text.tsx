@@ -2,7 +2,7 @@ import React from 'react';
 import { cn } from '../../utils/util';
 import { cva, VariantProps } from 'class-variance-authority';
 
-const textVariants = cva('', {
+const textVariants = cva('text-secondary', {
   variants: {
     size: {
       xs: 'text-xs',
