@@ -48,20 +48,22 @@ const HeadingOne = () => {
         setTab={setTab}
       />
       <ThemeCard tab={tab}>
-        {tab === 'preview' ? (
-          <Text
-            as='h1'
-            size='5xl'
-            weight={500}
-          >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel odio in
-            totam! Officia expedita impedit quibusdam, asperiores quaerat
-            debitis enim rerum, nam nostrum eveniet beatae aliquid alias.
-            Dolorum, temporibus dolor.
-          </Text>
-        ) : (
-          <Text as='p'>Coming soon</Text>
-        )}
+        <div className='w-3/5'>
+          {tab === 'preview' ? (
+            <Text
+              as='h3'
+              size='xl'
+              weight={500}
+            >
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel odio
+              in totam! Officia expedita impedit quibusdam, asperiores quaerat
+              debitis enim rerum, nam nostrum eveniet beatae aliquid alias.
+              Dolorum, temporibus dolor.
+            </Text>
+          ) : (
+            <Text as='p'>Coming soon</Text>
+          )}
+        </div>
       </ThemeCard>
     </div>
   );

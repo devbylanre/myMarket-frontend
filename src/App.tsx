@@ -17,6 +17,10 @@ import { ThemeToast } from './pages/theme/toast/ThemeToast';
 import { ThemeAvatar } from './pages/theme/avatar/ThemeAvatar';
 import { ThemeAccordion } from './pages/theme/accordion/ThemeAccordion';
 import { ThemeSeparator } from './pages/theme/separator/ThemeSeparator';
+import { ThemeAlert } from './pages/theme/alert/ThemeAlert';
+import { ThemeCardPage } from './pages/theme/card/ThemeCard';
+
+// pages
 
 const router = createBrowserRouter([
   {
@@ -30,6 +34,10 @@ const router = createBrowserRouter([
           {
             path: 'typography',
             element: <ThemeTypography />,
+          },
+          {
+            path: 'alert',
+            element: <ThemeAlert />,
           },
           {
             path: 'button',
@@ -48,6 +56,7 @@ const router = createBrowserRouter([
           { path: 'avatar', element: <ThemeAvatar /> },
           { path: 'accordion', element: <ThemeAccordion /> },
           { path: 'separator', element: <ThemeSeparator /> },
+          { path: 'card', element: <ThemeCardPage /> },
         ],
       },
     ],

@@ -13,7 +13,7 @@ export const ThemeCard = ({ tab, className, children }: ThemeCardProps) => {
   return (
     <div
       className={twMerge(
-        'border rounded-lg border-zinc-200 shadow-sm p-3 h-80 flex flex-col items-center justify-center',
+        'border rounded-lg border-zinc-200 shadow-sm p-3  min-h-[320px] h-fit flex flex-col items-center justify-center',
         className,
         tab === 'code' && 'bg-zinc-100 border-0'
       )}

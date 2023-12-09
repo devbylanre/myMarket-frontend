@@ -16,6 +16,7 @@ import {
   LuAlignVerticalJustifyCenter,
   LuUser,
   LuChevronsDownUp,
+  LuActivitySquare,
 } from 'react-icons/lu';
 
 export const ThemeLayout = () => {
@@ -43,71 +44,78 @@ type MenuItem = {
   icon: React.ReactNode;
 };
 
+const iconClassName = 'stroke-inherit';
+
 const menuItems: MenuItem[] = [
   {
     name: 'Typography',
     url: 'typography',
-    icon: <LuTextCursor />,
+    icon: <LuTextCursor className={iconClassName} />,
   },
   {
     name: 'Button',
     url: 'button',
-    icon: <LuMousePointerClick />,
+    icon: <LuMousePointerClick className={iconClassName} />,
   },
   {
     name: 'Badge',
     url: 'badge',
-    icon: <LuLassoSelect />,
+    icon: <LuLassoSelect className={iconClassName} />,
   },
   {
     name: 'Avatar',
     url: 'avatar',
-    icon: <LuUser />,
+    icon: <LuUser className={iconClassName} />,
   },
   {
     name: 'Accordion',
     url: 'accordion',
-    icon: <LuChevronsDownUp />,
+    icon: <LuChevronsDownUp className={iconClassName} />,
+  },
+  {
+    name: 'Card',
+    url: 'card',
+    icon: <LuActivitySquare className={iconClassName} />,
   },
   {
     name: 'Input',
     url: 'input',
-    icon: <LuTextCursorInput />,
+    icon: <LuTextCursorInput className={iconClassName} />,
   },
   {
     name: 'Textarea',
     url: 'textarea',
-    icon: <LuTextQuote />,
+    icon: <LuTextQuote className={iconClassName} />,
   },
   {
     name: 'Select',
     url: 'select',
-    icon: <LuPictureInPicture2 />,
+    icon: <LuPictureInPicture2 className={iconClassName} />,
   },
   {
     name: 'Switch',
     url: 'switch',
-    icon: <LuToggleLeft />,
+    icon: <LuToggleLeft className={iconClassName} />,
   },
   {
     name: 'Separator',
     url: 'separator',
-    icon: <LuAlignVerticalJustifyCenter />,
+    icon: <LuAlignVerticalJustifyCenter className={iconClassName} />,
   },
   {
     name: 'Checkbox',
     url: 'checkbox',
-    icon: <LuCheckSquare />,
+    icon: <LuCheckSquare className={iconClassName} />,
   },
   {
     name: 'Toast',
     url: 'toast',
-    icon: <LuPictureInPicture />,
+    icon: <LuPictureInPicture className={iconClassName} />,
   },
   {
     name: 'Alert',
     url: 'alert',
-    icon: <LuUngroup />,
+    icon: <LuUngroup className={iconClassName} />,
   },
 ];
 
@@ -120,8 +128,9 @@ const Sidebar = () => {
           to={item.url}
           className={({ isActive }) =>
             twMerge(
-              'inline-flex px-2 h-8 gap-x-3 items-center cursor-pointer hover:bg-white transition-all duration-200 ease-in-out rounded-lg',
-              isActive && 'bg-white shadow-sm'
+              'inline-flex px-2 h-8 gap-x-3 items-center cursor-pointer hover:bg-white transition-all duration-200 ease-in-out rounded-lg stroke-zinc-400 text-zinc-500',
+              isActive &&
+                'bg-white shadow-sm stroke-zinc-800 text-zinc-800 border border-zinc-200'
             )
           }
         >
@@ -129,6 +138,7 @@ const Sidebar = () => {
           <Text
             as='p'
             size='sm'
+            className='text-inherit'
           >
             {item.name}
           </Text>

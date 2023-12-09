@@ -19,7 +19,10 @@ export const Avatar = ({
 
   return (
     <div
-      className={twMerge('w-8 h-8 rounded-full overflow-clip', className)}
+      className={twMerge(
+        'w-8 h-8 rounded-full overflow-clip border border-zinc-200 shadow-sm',
+        className
+      )}
       {...rest}
     >
       {hasError ? (

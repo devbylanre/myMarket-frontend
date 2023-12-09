@@ -1,6 +1,7 @@
-import React, { forwardRef } from 'react';
+import React, { HTMLAttributes, forwardRef } from 'react';
 import { Field, useField } from 'formik';
 import { twMerge } from 'tailwind-merge';
+import { Text } from './Text';
 
 interface TextareaProps extends React.HtmlHTMLAttributes<HTMLTextAreaElement> {
   name: string;
@@ -32,3 +33,32 @@ export const Textarea = forwardRef<HTMLDivElement, TextareaProps>(
     );
   }
 );
+
+interface TextareaLimitProps extends HTMLAttributes<HTMLParagraphElement> {
+  name: string;
+  limit?: number;
+}
+
+export const TextareaLimit = ({
+  name,
+  className,
+  limit,
+  ...rest
+}: TextareaLimitProps) => {
+  const [, meta] = useField(name);
+
+  return (
+    <Text
+      as='p'
+      size='xs'
+      className={twMerge('', className)}
+      {...rest}
+    >
+      {limit &&
+        limit &&
+        limit >= meta.value?.length &&
+        limit - meta.value?.length}{' '}
+      remaining
+    </Text>
+  );
+};

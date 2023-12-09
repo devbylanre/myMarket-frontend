@@ -7,15 +7,15 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: 'text-secondary bg-primary hover:bg-primary/70',
+        default: 'text-secondary bg-primary hover:bg-primary/80',
         secondary: 'text-secondary bg-primary/30 hover:bg-primary/50',
-        dark: 'bg-secondary text-primary hover:bg-secondary/90',
+        dark: 'bg-secondary text-white hover:bg-secondary/80',
         outline:
-          'border border-zinc-200 text-zinc-600 hover:text-zinc-800 hover:bg-zinc-50',
+          'border bg-white border-zinc-200 text-zinc-600 hover:text-zinc-800 hover:bg-zinc-50',
         soft: 'bg-secondary/5 hover:bg-secondary/10',
-        success: 'bg-green-300 text-secondary hover:bg-green-400',
-        warning: 'bg-amber-300 text-secondary hover:bg-amber-400',
-        danger: 'bg-red-300 text-secondary hover:bg-red-400',
+        success: 'bg-green-500 text-white hover:bg-green-600',
+        warning: 'bg-amber-500 text-white hover:bg-amber-600',
+        danger: 'bg-red-500 text-white hover:bg-red-600',
       },
       size: {
         xs: 'h-7 text-xs',

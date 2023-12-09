@@ -4,7 +4,7 @@ import { Text } from '../../../components/ui/Text';
 import { Formik, Form } from 'formik';
 import { FormItem } from '../../../components/ui/FormItem';
 import { Label } from '../../../components/ui/Label';
-import { Textarea } from '../../../components/ui/Textarea';
+import { Textarea, TextareaLimit } from '../../../components/ui/Textarea';
 import { FormDescription } from '../../../components/ui/FormDescription';
 
 export const ThemeTextarea = () => {
@@ -47,9 +47,15 @@ const FormTextarea = () => {
             <FormItem className='w-96'>
               <Label name='bio'>Bio</Label>
               <Textarea name='bio' />
-              <FormDescription>
-                Displayed all across your profile
-              </FormDescription>
+              <div className='inline-flex justify-between'>
+                <FormDescription>
+                  Displayed all across your profile
+                </FormDescription>
+                <TextareaLimit
+                  limit={250}
+                  name='bio'
+                />
+              </div>
             </FormItem>
           </Form>
         </Formik>

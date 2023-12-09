@@ -50,9 +50,19 @@ const Card = () => {
           </div>
           <Separator />
           <div className='inline-flex'>
-            <Button variant='outline'>First name</Button>
+            <Button
+              variant='outline'
+              type='button'
+            >
+              First name
+            </Button>
             <Separator orientation='vertical' />
-            <Button variant='outline'>Last name</Button>
+            <Button
+              variant='outline'
+              type='button'
+            >
+              Last name
+            </Button>
           </div>
         </div>
       </ThemeCard>

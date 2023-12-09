@@ -8,14 +8,13 @@ interface LabelProps {
   name: string;
 }
 
-export const Label = ({ children, className, name }: LabelProps) => {
+export const Label = ({ className, name, ...rest }: LabelProps) => {
   return (
     <Text
       as='label'
       className={twMerge('text-sm font-medium', className)}
       htmlFor={name}
-    >
-      {children}
-    </Text>
+      {...rest}
+    />
   );
 };

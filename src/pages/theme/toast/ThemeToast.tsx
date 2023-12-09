@@ -46,6 +46,7 @@ const Context = () => {
         >
           <Text
             as='h6'
+            size='sm'
             weight={500}
           >
             Name updated successfully

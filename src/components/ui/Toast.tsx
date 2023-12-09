@@ -6,7 +6,7 @@ type VerticalPosition = 'top' | 'bottom';
 type HorizontalPosition = 'left' | 'center' | 'right';
 
 const toastVariants = cva(
-  'absolute flex flex-col p-3 m-4 bg-white border rounded-md space-y-0.5 shadow w-96',
+  'absolute flex flex-col p-3 m-3 bg-white border rounded-md space-y-0.5 shadow w-96',
   {
     variants: {
       variant: {

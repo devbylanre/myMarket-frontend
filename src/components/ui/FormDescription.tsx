@@ -14,7 +14,8 @@ export const FormDescription = ({
   return (
     <Text
       as='p'
-      className={twMerge('text-sm text-zinc-500', className)}
+      size='xs'
+      className={twMerge('text-zinc-500', className)}
     >
       {children}
     </Text>
