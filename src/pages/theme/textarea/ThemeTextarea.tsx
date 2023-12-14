@@ -5,7 +5,7 @@ import { Formik, Form } from 'formik';
 import { FormItem } from '../../../components/ui/FormItem';
 import { Label } from '../../../components/ui/Label';
 import { Textarea, TextareaLimit } from '../../../components/ui/Textarea';
-import { FormDescription } from '../../../components/ui/FormDescription';
+import { FormMessage } from '../../../components/ui/FormMessage';
 
 export const ThemeTextarea = () => {
   return (
@@ -48,9 +48,9 @@ const FormTextarea = () => {
               <Label name='bio'>Bio</Label>
               <Textarea name='bio' />
               <div className='inline-flex justify-between'>
-                <FormDescription>
+                <FormMessage name='bio'>
                   Displayed all across your profile
-                </FormDescription>
+                </FormMessage>
                 <TextareaLimit
                   limit={250}
                   name='bio'

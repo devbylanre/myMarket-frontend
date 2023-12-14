@@ -3,6 +3,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 // layout imports
 import { RootLayout } from './layouts/RootLayout';
 import { ThemeLayout } from './layouts/ThemeLayout';
+import { SettingsLayout } from './layouts/SettingsLayout';
 
 // theme imports
 import { ThemeTypography } from './pages/theme/typography/ThemeTypography';
@@ -15,18 +16,68 @@ import { ThemeSwitch } from './pages/theme/switch/ThemeSwitch';
 import { ThemeCheckbox } from './pages/theme/checkbox/ThemeCheckbox';
 import { ThemeToast } from './pages/theme/toast/ThemeToast';
 import { ThemeAvatar } from './pages/theme/avatar/ThemeAvatar';
-import { ThemeAccordion } from './pages/theme/accordion/ThemeAccordion';
 import { ThemeSeparator } from './pages/theme/separator/ThemeSeparator';
 import { ThemeAlert } from './pages/theme/alert/ThemeAlert';
 import { ThemeCardPage } from './pages/theme/card/ThemeCard';
+import { ThemeDropdown } from './pages/theme/dropdown/ThemeDropdown';
 
 // pages
+import { SignUpPage } from './pages/SignUpPage';
+import { SignInPage } from './pages/SignInPage';
+import { DashboardLayout } from './layouts/DashboardLayout';
+import { HomePage } from './pages/HomePage';
+import { Sell } from './pages/SellPage';
+import { SavedPage } from './pages/SavedPage';
+import { ProfilePage } from './pages/ProfilePage';
+
+// settings pages
+import { PersonalPage } from './pages/settings/PersonalPage';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
     children: [
+      {
+        path: 'sign-up',
+        element: <SignUpPage />,
+      },
+      {
+        path: 'sign-in',
+        element: <SignInPage />,
+      },
+      {
+        path: 'app',
+        element: <DashboardLayout />,
+        children: [
+          {
+            index: true,
+            element: <HomePage />,
+          },
+          {
+            path: 'saved',
+            element: <SavedPage />,
+          },
+          {
+            path: 'sell',
+            element: <Sell />,
+          },
+          {
+            path: 'profile',
+            element: <ProfilePage />,
+          },
+        ],
+      },
+      {
+        path: 'app/settings',
+        element: <SettingsLayout />,
+        children: [
+          {
+            index: true,
+            element: <PersonalPage />,
+          },
+        ],
+      },
       {
         path: 'theme',
         element: <ThemeLayout />,
@@ -54,9 +105,9 @@ const router = createBrowserRouter([
           { path: 'checkbox', element: <ThemeCheckbox /> },
           { path: 'toast', element: <ThemeToast /> },
           { path: 'avatar', element: <ThemeAvatar /> },
-          { path: 'accordion', element: <ThemeAccordion /> },
           { path: 'separator', element: <ThemeSeparator /> },
           { path: 'card', element: <ThemeCardPage /> },
+          { path: 'dropdown', element: <ThemeDropdown /> },
         ],
       },
     ],

@@ -1,65 +1,114 @@
-import { AnimatePresence, MotionProps, motion } from 'framer-motion';
-import React, { HTMLAttributes } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  HTMLAttributes,
+} from 'react';
 import { twMerge } from 'tailwind-merge';
 
-interface AccordionProps extends HTMLAttributes<HTMLDivElement> {}
+interface AccordionContextProps {
+  type: 'single' | 'multiple';
+  openItems: string[];
+  handleToggle: (value: string) => void;
+}
 
-export const Accordion = ({ className, ...rest }: AccordionProps) => {
+const AccordionContext = createContext<AccordionContextProps | undefined>(
+  undefined
+);
+
+interface AccordionProps extends HTMLAttributes<HTMLDivElement> {
+  type: 'single' | 'multiple';
+  collapsible: boolean;
+}
+
+export const Accordion = ({
+  type,
+  collapsible = true,
+  className,
+  ...rest
+}: AccordionProps) => {
+  const [openItems, setOpenItems] = useState<any[]>([]);
+
+  const handleToggle = (value: string) => {
+    if (collapsible) {
+      setOpenItems((prevItems) =>
+        prevItems.includes(value)
+          ? prevItems.filter((item) => item !== value)
+          : [...prevItems, value]
+      );
+    }
+  };
+
+  return (
+    <AccordionContext.Provider value={{ type, openItems, handleToggle }}>
+      <div
+        className={twMerge('w-full', className)}
+        {...rest}
+      />
+    </AccordionContext.Provider>
+  );
+};
+
+interface AccordionItemProps extends HTMLAttributes<HTMLDivElement> {
+  value: string;
+}
+
+export const AccordionItem = ({
+  value,
+  className,
+  ...rest
+}: AccordionItemProps) => {
   return (
     <div
-      className={twMerge('flex flex-col space-y-2 pb-2', className)}
+      className={twMerge('space-y-2', className)}
+      data-value={value}
       {...rest}
     />
   );
 };
 
-interface AccordionTriggerProps extends AccordionProps {
-  onToggle: () => void;
+interface AccordionTriggerProps {
+  value: string;
+  className?: string;
+  children: React.ReactNode | ((isActive: boolean) => React.ReactNode);
 }
 
 export const AccordionTrigger = ({
+  value,
   className,
-  onToggle,
-  ...rest
+  children,
 }: AccordionTriggerProps) => {
+  const { handleToggle, openItems } = useContext(AccordionContext)!;
+
+  const isActive = openItems.includes(value);
+
+  const handleClick = () => {
+    handleToggle(value);
+  };
+
   return (
     <div
-      className={twMerge(
-        'inline-flex items-center justify-between h-8 cursor-pointer',
-        className
-      )}
-      onClick={onToggle}
-      {...rest}
-    />
+      className={twMerge('cursor-pointer w-full', className)}
+      onClick={handleClick}
+    >
+      {typeof children === 'function' ? children(isActive) : children}
+    </div>
   );
 };
 
-interface AccordionContentProps extends MotionProps {
-  className?: string;
-  isVisible: boolean;
-  children: React.ReactNode;
-}
+interface AccordionContentProps extends AccordionItemProps {}
 
 export const AccordionContent = ({
-  isVisible,
+  value,
   className,
-  children,
   ...rest
 }: AccordionContentProps) => {
-  return (
-    <AnimatePresence initial={false}>
-      {isVisible && (
-        <motion.div
-          initial={{ height: 0 }}
-          animate={{ height: 'auto' }}
-          exit={{ height: 0 }}
-          transition={{ type: 'spring', duration: 0.4, bounce: 0 }}
-          className={twMerge('', className)}
-          {...rest}
-        >
-          <div>{children}</div>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
+  const { openItems } = useContext(AccordionContext)!;
+
+  return openItems.includes(value) ? (
+    <div
+      className={twMerge('w-full', className)}
+      {...rest}
+    />
+  ) : null;
 };

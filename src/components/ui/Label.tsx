@@ -12,7 +12,9 @@ export const Label = ({ className, name, ...rest }: LabelProps) => {
   return (
     <Text
       as='label'
-      className={twMerge('text-sm font-medium', className)}
+      weight={400}
+      size='sm'
+      className={twMerge('text-zinc-500', className)}
       htmlFor={name}
       {...rest}
     />

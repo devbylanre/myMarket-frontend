@@ -33,7 +33,7 @@ export const SelectTrigger = (props: SelectTriggerProps) => {
     <>
       <div
         className={twMerge(
-          'h-auto border w-full inline-flex gap-x-4 justify-between items-center cursor-pointer border-zinc-200 bg-white rounded-md shadow shadow-secondary/5 transition-all duration-200 ease-in-out',
+          'h-auto ring-1 ring-zinc-950/10 w-full inline-flex gap-x-4 justify-between items-center cursor-pointer bg-white rounded-md transition-all duration-200 ease-in-out',
           meta.touched && 'border-zinc-800',
           className
         )}
@@ -63,23 +63,17 @@ export const SelectValue = (props: SelectValueProps) => {
   const { placeholder, className, children, ...rest } = props;
 
   return (
-    <div
+    <Text
       className={twMerge(
-        'min-h-[36px] flex items-center flex-1 text-zinc-500',
+        'min-h-[36px] flex items-center flex-1 text-zinc-500 font-light px-2',
+        children && 'text-inherit font-medium text-zinc-800',
         className
       )}
+      size='sm'
       {...rest}
     >
-      {children || (
-        <Text
-          as='p'
-          size='sm'
-          className='px-2 text-inherit'
-        >
-          {placeholder}
-        </Text>
-      )}
-    </div>
+      {children || placeholder}
+    </Text>
   );
 };
 
@@ -99,7 +93,7 @@ export const SelectGroup = (props: SelectGroupProps) => {
           animate={{ y: [-20, 0] }}
           exit={{ y: [0, -4], opacity: [1, 0] }}
           className={twMerge(
-            'absolute w-full flex flex-col overflow-hidden bg-white shadow shadow-secondary/20 rounded-md mt-2',
+            'absolute w-full space-y-0.5 overflow-hidden bg-white ring-1 ring-zinc-950/10 h-64 overflow-y-scroll p-1 rounded-md mt-2',
             className
           )}
           {...rest}
@@ -113,12 +107,12 @@ interface SelectItemProps extends SelectProps {
   onSelect: React.MouseEventHandler<HTMLDivElement>;
 }
 
-export const SelectIem = (props: SelectItemProps) => {
+export const SelectItem = (props: SelectItemProps) => {
   const { className, children, onSelect, ...rest } = props;
 
   return (
     <div
-      className={twMerge('', className)}
+      className={className}
       onClick={onSelect}
       {...rest}
     >

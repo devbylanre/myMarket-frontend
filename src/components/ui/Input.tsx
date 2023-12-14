@@ -10,7 +10,7 @@ interface InputProps extends HTMLAttributes<HTMLInputElement> {
 
 export const Input = (props: InputProps) => {
   const { className, name, disabled, ...rest } = props;
-  const [, meta, helper] = useField(name);
+  const [, , helper] = useField(name);
 
   const onFocus = () => helper.setTouched(true);
   const onBlur = () => helper.setTouched(false);
@@ -19,10 +19,8 @@ export const Input = (props: InputProps) => {
     <Field
       name={name}
       className={twMerge(
-        'w-full rounded-md border font-medium transition-all duration-200 ease-in-out border-zinc-200 outline-none px-2 h-9 shadow shadow-secondary/5 bg-white text-sm placeholder:font-normal placeholder:text-zinc-500',
-        disabled && 'bg-opacity-80 bg-zinc-50 cursor-not-allowed',
-        meta.touched && !meta.error && 'border-zinc-800',
-        meta.error && 'border-red-500',
+        'w-full font-medium transition-all duration-200 ease-in-out outline-none px-2 h-9 bg-inherit text-sm text-zinc-800 placeholder:font-light flex-1 placeholder:text-zinc-500',
+        disabled && 'bg-zinc-50 cursor-not-allowed text-zinc-500',
         className
       )}
       onFocus={onFocus}

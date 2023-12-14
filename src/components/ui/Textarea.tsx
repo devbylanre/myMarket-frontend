@@ -12,16 +12,15 @@ interface TextareaProps extends React.HtmlHTMLAttributes<HTMLTextAreaElement> {
 export const Textarea = forwardRef<HTMLDivElement, TextareaProps>(
   (props: TextareaProps, ref) => {
     const { name, disabled, className, ...rest } = props;
-    const [, meta, helper] = useField(name);
+    const [, , helper] = useField(name);
 
     return (
       <Field
         ref={ref}
         as='textarea'
         className={twMerge(
-          'outline-none p-2 rounded-md text-sm border border-zinc-200 transition-all duration-200 ease-in-out bg-white shadow shadow-secondary/5',
+          'outline-none p-2 rounded-md text-sm flex-1 bg-white placeholder:text-zinc-500 placeholder:font-light text-zinc-800 font-medium',
           disabled && 'cursor-not-allowed bg-zinc-50 bg-opacity-80',
-          meta.touched && !meta.error && 'border-zinc-800',
           className
         )}
         name={name}

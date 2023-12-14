@@ -5,7 +5,7 @@ import { Text } from '../../../components/ui/Text';
 import {
   Select,
   SelectGroup,
-  SelectIem,
+  SelectItem,
   SelectTrigger,
   SelectValue,
   useSelect,
@@ -91,7 +91,7 @@ const FormSelect = () => {
             </SelectTrigger>
             <SelectGroup name='team'>
               {teams.map((team) => (
-                <SelectIem
+                <SelectItem
                   onSelect={() => selectTeam(team)}
                   key={team}
                   className={twMerge(
@@ -110,7 +110,7 @@ const FormSelect = () => {
                     {team}
                   </Text>
                   {checkTeam(team) && <LuCheck className='w-4 h-4' />}
-                </SelectIem>
+                </SelectItem>
               ))}
             </SelectGroup>
           </Select>
@@ -179,7 +179,7 @@ const FormMultipleSelect = () => {
             </SelectTrigger>
             <SelectGroup name='sport'>
               {options.map((option) => (
-                <SelectIem
+                <SelectItem
                   onSelect={() => selectSport(option)}
                   key={option}
                   className={twMerge(
@@ -198,7 +198,7 @@ const FormMultipleSelect = () => {
                     {option}
                   </Text>
                   {checkSport(option) && <LuCheck className='w-4 h-4' />}
-                </SelectIem>
+                </SelectItem>
               ))}
             </SelectGroup>
           </Select>

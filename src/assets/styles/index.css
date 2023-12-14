@@ -12,3 +12,12 @@
   font-family: 'Inter';
   src: url('../font/Inter-VariableFont_slnt\,wght.ttf');
 }
+
+::-webkit-scrollbar {
+  width: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #eee;
+  border-radius: 100px;
+}

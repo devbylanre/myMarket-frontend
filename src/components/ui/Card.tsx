@@ -8,7 +8,7 @@ export const Card = ({ className, ...rest }: CardProps) => {
   return (
     <div
       className={twMerge(
-        'flex flex-col p-3 bg-white rounded-md shadow-sm border border-zinc-200 transition-all duration-200 ease-in-out',
+        'flex flex-col p-3 bg-white rounded-md shadow-sm border border-zinc-200 transition-all duration-200 ease-in-out overflow-clip',
         className
       )}
       {...rest}
@@ -26,7 +26,7 @@ export const CardImage = ({ className, src, alt, ...rest }: CardImageProps) => {
     <img
       src={src}
       alt={alt}
-      className={twMerge('w-full rounded-md', className)}
+      className={twMerge('w-full rounded-md object-cover', className)}
       {...rest}
     />
   );

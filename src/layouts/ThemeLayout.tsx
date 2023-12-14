@@ -17,6 +17,7 @@ import {
   LuUser,
   LuChevronsDownUp,
   LuActivitySquare,
+  LuMinimize2,
 } from 'react-icons/lu';
 
 export const ThemeLayout = () => {
@@ -76,6 +77,11 @@ const menuItems: MenuItem[] = [
     name: 'Card',
     url: 'card',
     icon: <LuActivitySquare className={iconClassName} />,
+  },
+  {
+    name: 'Dropdown',
+    url: 'dropdown',
+    icon: <LuMinimize2 className={iconClassName} />,
   },
   {
     name: 'Input',

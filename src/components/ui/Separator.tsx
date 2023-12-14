@@ -6,7 +6,7 @@ const separatorVariants = cva('bg-zinc-200', {
   variants: {
     orientation: {
       horizontal: 'w-full h-[1px] my-3',
-      vertical: 'w-[1px] h-full mx-3',
+      vertical: 'w-[1px] mx-3',
     },
   },
   defaultVariants: {

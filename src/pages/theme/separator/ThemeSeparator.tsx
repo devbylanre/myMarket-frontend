@@ -49,7 +49,7 @@ const Card = () => {
             </Text>
           </div>
           <Separator />
-          <div className='inline-flex'>
+          <div className='flex'>
             <Button
               variant='outline'
               type='button'

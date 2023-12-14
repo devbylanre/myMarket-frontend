@@ -10,19 +10,25 @@ interface CheckboxProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const Checkbox = ({ name, className, ...rest }: CheckboxProps) => {
-  const [field, meta, helper] = useField(name);
+  const [field, , helper] = useField(name);
+
+  const onToggle = () => {
+    helper.setTouched(true);
+    helper.setValue(!field.value);
+  };
 
   return (
     <div
       className={twMerge(
-        'bg-white border rounded-md border-zinc-200 cursor-pointer h-5 w-5 flex items-center justify-center shadow shadow-secondary/5',
+        'bg-white border rounded border-zinc-200 cursor-pointer h-4 w-4 flex items-center justify-center shadow-sm',
+        field.value && 'bg-green-100 border-green-200',
         className
       )}
       {...rest}
-      onClick={() => helper.setValue(!meta.value)}
+      onClick={onToggle}
     >
       <AnimatePresence>
-        {field.value === true && (
+        {field.value && (
           <motion.span
             animate={{ opacity: [0, 1] }}
             exit={{ opacity: [1, 0] }}

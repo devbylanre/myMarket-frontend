@@ -5,7 +5,7 @@ import { Input } from '../../../components/ui/Input';
 import { Formik, Form } from 'formik';
 import { Label } from '../../../components/ui/Label';
 import { FormItem } from '../../../components/ui/FormItem';
-import { FormDescription } from '../../../components/ui/FormDescription';
+import { FormMessage } from '../../../components/ui/FormMessage';
 
 export const ThemeInput = () => {
   return (
@@ -109,7 +109,9 @@ const FormInputWithLabel = () => {
               placeholder='myMarket'
               className='w-80'
             />
-            <FormDescription>This is your public display name.</FormDescription>
+            <FormMessage name='username'>
+              This is your public display name.
+            </FormMessage>
           </FormItem>
         ) : (
           <Text as='p'>Coming soon</Text>
