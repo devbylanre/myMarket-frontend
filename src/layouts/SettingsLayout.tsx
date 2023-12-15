@@ -6,10 +6,8 @@ export const SettingsLayout = () => {
   return (
     <div className='flex'>
       <Sidebar />
-      <div className='w-full ml-[20%] min-h-screen bg-zinc-100'>
-        <div className='w-full m-auto my-5 md:w-3/4'>
-          <Outlet />
-        </div>
+      <div className='w-full ml-0 lg:ml-[20%] min-h-screen my-5 px-3 sm:px-10'>
+        <Outlet />
       </div>
     </div>
   );

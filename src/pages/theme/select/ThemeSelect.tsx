@@ -4,11 +4,10 @@ import { ThemeCard, ThemeHeader, ThemeTab } from '../Theme';
 import { Text } from '../../../components/ui/Text';
 import {
   Select,
-  SelectGroup,
+  SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-  useSelect,
 } from '../../../components/ui/Select';
 import { FormItem } from '../../../components/ui/FormItem';
 import { Label } from '../../../components/ui/Label';
@@ -46,7 +45,6 @@ const teams: string[] = [
 
 const FormSelect = () => {
   const [tab, setTab] = useState<'preview' | 'code'>('preview');
-  const [selectTeam, checkTeam, team] = useSelect('team');
 
   return (
     <div className='flex flex-col space-y-8'>
@@ -74,46 +72,6 @@ const FormSelect = () => {
       <ThemeCard tab={tab}>
         <FormItem className='w-96'>
           <Label name='team'>Assign task</Label>
-          <Select>
-            <SelectTrigger name='team'>
-              <SelectValue placeholder='Select organization team'>
-                {team && (
-                  <Text
-                    as='p'
-                    size='sm'
-                    weight={600}
-                    className='pl-2'
-                  >
-                    {team}
-                  </Text>
-                )}
-              </SelectValue>
-            </SelectTrigger>
-            <SelectGroup name='team'>
-              {teams.map((team) => (
-                <SelectItem
-                  onSelect={() => selectTeam(team)}
-                  key={team}
-                  className={twMerge(
-                    'h-8 px-2 inline-flex items-center hover:bg-zinc-50 cursor-pointer justify-between',
-                    checkTeam(team) && 'font-semibold'
-                  )}
-                >
-                  <Text
-                    as='p'
-                    size='sm'
-                    className={twMerge(
-                      'first-letter:uppercase',
-                      checkTeam(team) && 'font-semibold'
-                    )}
-                  >
-                    {team}
-                  </Text>
-                  {checkTeam(team) && <LuCheck className='w-4 h-4' />}
-                </SelectItem>
-              ))}
-            </SelectGroup>
-          </Select>
         </FormItem>
       </ThemeCard>
     </div>
@@ -130,7 +88,6 @@ const options: string[] = [
 
 const FormMultipleSelect = () => {
   const [tab, setTab] = useState<'preview' | 'code'>('preview');
-  const [selectSport, checkSport, sports] = useSelect('sport', true);
 
   return (
     <div className='flex flex-col space-y-8'>
@@ -158,49 +115,21 @@ const FormMultipleSelect = () => {
       <ThemeCard tab={tab}>
         <FormItem className='w-96'>
           <Label name='sport'>Select a sport</Label>
-          <Select>
-            <SelectTrigger name='sport'>
-              <SelectValue
-                placeholder='Select your favorite sport'
-                className='flex flex-wrap'
-              >
-                {sports.length > 0 &&
-                  Array.from(sports).map((sport) => (
-                    <Button
-                      key={sport}
-                      variant='outline'
-                      type='button'
-                      className='px-2 m-1 font-normal capitalize border rounded h-7 border-zinc-200 text-zinc-800'
-                    >
-                      {sport}
-                    </Button>
-                  ))}
-              </SelectValue>
+          <Select name='sport'>
+            <SelectTrigger>
+              <SelectValue placeholder='Choose a Sport' />
             </SelectTrigger>
-            <SelectGroup name='sport'>
-              {options.map((option) => (
+            <SelectContent>
+              {options.map((option, i) => (
                 <SelectItem
-                  onSelect={() => selectSport(option)}
-                  key={option}
-                  className={twMerge(
-                    'h-8 px-2 inline-flex items-center hover:bg-zinc-50 cursor-pointer justify-between',
-                    checkSport(option) && 'font-semibold'
-                  )}
+                  key={i}
+                  value={option}
+                  className={(isActive) => twMerge(isActive && 'bg-red-100')}
                 >
-                  <Text
-                    as='p'
-                    size='sm'
-                    className={twMerge(
-                      'first-letter:uppercase',
-                      checkSport(option) && 'font-semibold'
-                    )}
-                  >
-                    {option}
-                  </Text>
-                  {checkSport(option) && <LuCheck className='w-4 h-4' />}
+                  {option}
                 </SelectItem>
               ))}
-            </SelectGroup>
+            </SelectContent>
           </Select>
         </FormItem>
       </ThemeCard>

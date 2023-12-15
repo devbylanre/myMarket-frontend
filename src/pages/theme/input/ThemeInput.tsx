@@ -6,6 +6,7 @@ import { Formik, Form } from 'formik';
 import { Label } from '../../../components/ui/Label';
 import { FormItem } from '../../../components/ui/FormItem';
 import { FormMessage } from '../../../components/ui/FormMessage';
+import { FormControl } from '../../../components/ui/FormControl';
 
 export const ThemeInput = () => {
   return (
@@ -21,7 +22,7 @@ export const ThemeInput = () => {
       </ThemeHeader>
 
       <Formik
-        initialValues={{ firstName: '' }}
+        initialValues={{ firstName: '', username: '' }}
         onSubmit={() => {}}
       >
         <Form className='flex flex-col gap-y-8'>
@@ -61,11 +62,13 @@ const FormInput = () => {
 
       <ThemeCard tab={tab}>
         {tab === 'preview' ? (
-          <Input
-            name='firstName'
-            placeholder='Email address'
-            className='w-80'
-          />
+          <FormControl name='firstName'>
+            <Input
+              name='firstName'
+              placeholder='Email address'
+              className='w-80'
+            />
+          </FormControl>
         ) : (
           <Text as='p'>Coming soon</Text>
         )}
@@ -104,11 +107,13 @@ const FormInputWithLabel = () => {
         {tab === 'preview' ? (
           <FormItem>
             <Label name='username'>Username</Label>
-            <Input
-              name='username'
-              placeholder='myMarket'
-              className='w-80'
-            />
+            <FormControl name='username'>
+              <Input
+                name='username'
+                placeholder='myMarket'
+                className='w-80'
+              />
+            </FormControl>
             <FormMessage name='username'>
               This is your public display name.
             </FormMessage>

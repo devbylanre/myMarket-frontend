@@ -6,6 +6,7 @@ import { FormItem } from '../../../components/ui/FormItem';
 import { Label } from '../../../components/ui/Label';
 import { Textarea, TextareaLimit } from '../../../components/ui/Textarea';
 import { FormMessage } from '../../../components/ui/FormMessage';
+import { FormControl } from '../../../components/ui/FormControl';
 
 export const ThemeTextarea = () => {
   return (
@@ -46,7 +47,9 @@ const FormTextarea = () => {
           <Form>
             <FormItem className='w-96'>
               <Label name='bio'>Bio</Label>
-              <Textarea name='bio' />
+              <FormControl name='bio'>
+                <Textarea name='bio' />
+              </FormControl>
               <div className='inline-flex justify-between'>
                 <FormMessage name='bio'>
                   Displayed all across your profile

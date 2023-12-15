@@ -9,11 +9,10 @@ import { FormControl } from '../../../components/ui/FormControl';
 import { Input } from '../../../components/ui/Input';
 import {
   Select,
-  SelectGroup,
+  SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-  useSelect,
 } from '../../../components/ui/Select';
 import { twMerge } from 'tailwind-merge';
 
@@ -53,27 +52,5 @@ export const Brand = () => {
 };
 
 const Category = () => {
-  const [selectCategory, categoryExists, value] = useSelect('category');
-  return (
-    <Select className='col-span-full'>
-      <SelectTrigger name='category'>
-        <SelectValue placeholder='Product category'>{value}</SelectValue>
-      </SelectTrigger>
-      <SelectGroup name='category'>
-        {categories.map((category, i) => (
-          <SelectItem
-            key={i}
-            onSelect={() => selectCategory(category.name)}
-            className={twMerge(
-              'h-8 flex items-center px-1.5 rounded text-sm cursor-pointer hover:bg-zinc-100',
-              categoryExists(category.name) &&
-                'bg-primary/10 text-primary font-medium'
-            )}
-          >
-            {category.name || null}
-          </SelectItem>
-        ))}
-      </SelectGroup>
-    </Select>
-  );
+  return <></>;
 };

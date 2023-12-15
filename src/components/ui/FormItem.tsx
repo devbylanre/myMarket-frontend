@@ -11,7 +11,7 @@ export const FormItem = forwardRef<HTMLDivElement, FormItemProps>(
     return (
       <div
         ref={ref}
-        className={twMerge('flex flex-col gap-y-1.5 w-full', className)}
+        className={twMerge('flex flex-col gap-y-1.5', className)}
         {...rest}
       />
     );
