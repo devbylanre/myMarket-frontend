@@ -1,5 +1,5 @@
 import { Field } from 'formik';
-import React, { HTMLAttributes, InputHTMLAttributes, useContext } from 'react';
+import React, { InputHTMLAttributes, useContext } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { FormContext } from './Form';
 

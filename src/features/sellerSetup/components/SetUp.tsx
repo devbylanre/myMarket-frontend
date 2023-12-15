@@ -1,13 +1,15 @@
 import React from 'react';
 import { Text } from '../../../components/ui/Text';
-import { FormItem } from '../../../components/ui/FormItem';
-import { Label } from '../../../components/ui/Label';
-import { FormControl } from '../../../components/ui/FormControl';
 import { Input } from '../../../components/ui/Input';
-import { FormMessage } from '../../../components/ui/FormMessage';
-import { Textarea } from '../../../components/ui/Textarea';
 import { Button } from '../../../components/ui/Button';
+import {
+  FormControl,
+  FormField,
+  FormLabel,
+  FormMessage,
+} from '../../../components/ui/Form';
 import { LuWand2 } from 'react-icons/lu';
+import { Textarea } from '../../../components/ui/Textarea';
 
 export const SetUp = ({ onSwitch }: { onSwitch: () => void }) => {
   const handleSubmit = () => {
@@ -62,29 +64,27 @@ const DetailsFields = () => {
       >
         Store details
       </Text>
-      <FormItem>
-        <Label name='name'>Store name</Label>
-        <FormControl name='name'>
+      <FormField name='name'>
+        <FormLabel>Store name</FormLabel>
+        <FormControl>
           <Input
             name='name'
             placeholder='What would you name your store'
           />
         </FormControl>
-        <FormMessage name='name' />
-      </FormItem>
+        <FormMessage />
+      </FormField>
 
-      <FormItem>
-        <Label name='description'>Store description</Label>
-        <FormControl name='description'>
+      <FormField name='description'>
+        <FormLabel>Store description</FormLabel>
+        <FormControl>
           <Textarea
             name='description'
             placeholder='What would you name your store'
           />
         </FormControl>
-        <FormMessage name='description'>
-          Describe what your store sells{' '}
-        </FormMessage>
-      </FormItem>
+        <FormMessage>Describe what your store sells </FormMessage>
+      </FormField>
     </div>
   );
 };
@@ -101,52 +101,50 @@ export const LocationFields = () => {
         Store location
       </Text>
 
-      <FormItem>
-        <Label name='country'>Country</Label>
-        <FormControl name='country'>
+      <FormField name='country'>
+        <FormLabel>Country</FormLabel>
+        <FormControl>
           <Input
             name='country'
             placeholder='What would you name your store'
             disabled
           />
         </FormControl>
-        <FormMessage name='country'>
-          Available to users located in Nigeria
-        </FormMessage>
-      </FormItem>
+        <FormMessage>Available to users located in Nigeria</FormMessage>
+      </FormField>
 
-      <FormItem>
-        <Label name='state'>State</Label>
-        <FormControl name='state'>
+      <FormField name='state'>
+        <FormLabel>State</FormLabel>
+        <FormControl>
           <Input
             name='state'
             placeholder='What would you name your store'
           />
         </FormControl>
-        <FormMessage name='state' />
-      </FormItem>
+        <FormMessage />
+      </FormField>
 
-      <FormItem>
-        <Label name='city'>City</Label>
-        <FormControl name='city'>
+      <FormField name='city'>
+        <FormLabel>City</FormLabel>
+        <FormControl>
           <Input
             name='city'
             placeholder='What would you name your store'
           />
         </FormControl>
-        <FormMessage name='city' />
-      </FormItem>
+        <FormMessage />
+      </FormField>
 
-      <FormItem>
-        <Label name='address'>Address</Label>
-        <FormControl name='address'>
+      <FormField name='address'>
+        <FormLabel>Address</FormLabel>
+        <FormControl>
           <Input
             name='address'
             placeholder='What would you name your store'
           />
         </FormControl>
-        <FormMessage name='address' />
-      </FormItem>
+        <FormMessage />
+      </FormField>
     </div>
   );
 };

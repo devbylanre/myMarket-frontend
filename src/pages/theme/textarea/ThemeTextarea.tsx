@@ -53,7 +53,7 @@ const FormTextarea = () => {
             >
               <FormLabel>Bio</FormLabel>
               <FormControl>
-                <Textarea />
+                <Textarea name='bio' />
               </FormControl>
               <div className='inline-flex justify-between'>
                 <FormMessage>Displayed all across your profile</FormMessage>

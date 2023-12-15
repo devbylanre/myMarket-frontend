@@ -1,13 +1,15 @@
 import React from 'react';
 import { Text } from '../../../components/ui/Text';
 import { Input } from '../../../components/ui/Input';
-import { FormItem } from '../../../components/ui/FormItem';
-import { Label } from '../../../components/ui/Label';
 import { Textarea } from '../../../components/ui/Textarea';
 import { Checkbox } from '../../../components/ui/Checkbox';
 import { Button } from '../../../components/ui/Button';
-import { FormMessage } from '../../../components/ui/FormMessage';
-import { FormControl } from '../../../components/ui/FormControl';
+import {
+  FormField,
+  FormControl,
+  FormLabel,
+  FormMessage,
+} from '../../../components/ui/Form';
 import { Link } from 'react-router-dom';
 
 export const SignUpForm = () => {
@@ -37,59 +39,65 @@ export const SignUpForm = () => {
 const Fields = () => {
   return (
     <div className='grid grid-cols-1 gap-4 lg:grid-cols-2'>
-      <FormItem>
-        <Label name='firstName'>First name</Label>
-        <FormControl name='firstName'>
+      <FormField name='firstName'>
+        <FormLabel>First name</FormLabel>
+        <FormControl>
           <Input
             name='firstName'
             placeholder='e.g John'
           />
         </FormControl>
-        <FormMessage name='firstName' />
-      </FormItem>
-      <FormItem>
-        <Label name='lastName'>Last name</Label>
-        <FormControl name='lastName'>
+        <FormMessage />
+      </FormField>
+      <FormField name='lastName'>
+        <FormLabel>Last name</FormLabel>
+        <FormControl>
           <Input
             name='lastName'
             placeholder='e.g Doe'
           />
         </FormControl>
-        <FormMessage name='lastName' />
-      </FormItem>
-      <FormItem className='col-span-full'>
-        <Label name='bio'>Bio</Label>
-        <FormControl name='bio'>
+        <FormMessage />
+      </FormField>
+      <FormField
+        name='bio'
+        className='col-span-full'
+      >
+        <FormLabel>Bio</FormLabel>
+        <FormControl>
           <Textarea
             name='bio'
             placeholder='Write a bio about yourself'
           />
         </FormControl>
-        <FormMessage name='bio' />
-      </FormItem>
-      <FormItem>
-        <Label name='email'>Email address</Label>
-        <FormControl name='email'>
+        <FormMessage />
+      </FormField>
+      <FormField name='email'>
+        <FormLabel>Email address</FormLabel>
+        <FormControl>
           <Input
-            name='email'
+            name='label'
             placeholder='team@business.com'
           />
         </FormControl>
-        <FormMessage name='email' />
-      </FormItem>
-      <FormItem>
-        <Label name='password'>Password</Label>
-        <FormControl name='password'>
+        <FormMessage />
+      </FormField>
+      <FormField name='password'>
+        <FormLabel>Password</FormLabel>
+        <FormControl>
           <Input
             name='password'
             placeholder='Use a strong password'
           />
         </FormControl>
-        <FormMessage name='password' />
-      </FormItem>
-      <FormItem className='flex-row items-center col-span-full gap-x-2'>
-        <Checkbox name='accept' />
-        <FormMessage name='accept'>
+        <FormMessage />
+      </FormField>
+      <FormField
+        name='accept'
+        className='flex-row items-center col-span-full gap-x-2'
+      >
+        <Checkbox />
+        <FormMessage>
           Do you agree to our{' '}
           <Link
             to='/sign-up'
@@ -105,7 +113,7 @@ const Fields = () => {
             Terms of Service
           </Link>
         </FormMessage>
-      </FormItem>
+      </FormField>
     </div>
   );
 };

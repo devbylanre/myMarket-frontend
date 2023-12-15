@@ -1,12 +1,14 @@
 import React from 'react';
 import { Text } from '../../../components/ui/Text';
-import { FormItem } from '../../../components/ui/FormItem';
-import { Label } from '../../../components/ui/Label';
-import { FormControl } from '../../../components/ui/FormControl';
 import { Input } from '../../../components/ui/Input';
-import { FormMessage } from '../../../components/ui/FormMessage';
 import { Button } from '../../../components/ui/Button';
 import { Link } from 'react-router-dom';
+import {
+  FormControl,
+  FormField,
+  FormLabel,
+  FormMessage,
+} from '../../../components/ui/Form';
 
 export const SignInForm = () => {
   return (
@@ -48,27 +50,27 @@ export const SignInForm = () => {
 const Fields = () => {
   return (
     <div className='space-y-3'>
-      <FormItem>
-        <Label name='email'>Email</Label>
-        <FormControl name='email'>
+      <FormField name='email'>
+        <FormLabel>Email</FormLabel>
+        <FormControl>
           <Input
             name='email'
             placeholder='Enter your email address'
           />
         </FormControl>
-        <FormMessage name='email' />
-      </FormItem>
+        <FormMessage />
+      </FormField>
 
-      <FormItem>
-        <Label name='password'>Password</Label>
-        <FormControl name='password'>
+      <FormField name='password'>
+        <FormLabel>Password</FormLabel>
+        <FormControl>
           <Input
             name='password'
             placeholder='Enter your account password'
           />
         </FormControl>
-        <FormMessage name='password' />
-      </FormItem>
+        <FormMessage />
+      </FormField>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { ThemeCard, ThemeHeader, ThemeTab } from '../Theme';
 import { Text } from '../../../components/ui/Text';
 import { Formik, Form } from 'formik';
 import { Switch } from '../../../components/ui/Switch';
+import { FormField } from '../../../components/ui/Form';
 
 export const ThemeSwitch = () => {
   return (
@@ -55,7 +56,9 @@ const FormSwitch = () => {
           onSubmit={() => {}}
         >
           <Form>
-            <Switch name='read' />
+            <FormField name='read'>
+              <Switch />
+            </FormField>
           </Form>
         </Formik>
       </ThemeCard>

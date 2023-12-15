@@ -64,13 +64,15 @@ const FormInput = () => {
 
       <ThemeCard tab={tab}>
         {tab === 'preview' ? (
-          <FormControl>
-            <Input
-              name='firstName'
-              placeholder='Email address'
-              className='w-80'
-            />
-          </FormControl>
+          <FormField name='firstName'>
+            <FormControl>
+              <Input
+                name='firstName'
+                placeholder='Enter your first name'
+                className='w-80'
+              />
+            </FormControl>
+          </FormField>
         ) : (
           <Text as='p'>Coming soon</Text>
         )}

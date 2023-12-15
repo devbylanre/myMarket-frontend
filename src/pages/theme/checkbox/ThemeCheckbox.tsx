@@ -3,6 +3,7 @@ import { ThemeCard, ThemeHeader, ThemeTab } from '../Theme';
 import { Text } from '../../../components/ui/Text';
 import { Form, Formik } from 'formik';
 import { Checkbox } from '../../../components/ui/Checkbox';
+import { FormField } from '../../../components/ui/Form';
 
 export const ThemeCheckbox = () => {
   return (
@@ -38,7 +39,9 @@ const FormCheckbox = () => {
           onSubmit={() => {}}
         >
           <Form>
-            <Checkbox name='agree' />
+            <FormField name='agree'>
+              <Checkbox />
+            </FormField>
           </Form>
         </Formik>
       </ThemeCard>

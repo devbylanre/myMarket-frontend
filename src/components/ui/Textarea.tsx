@@ -1,16 +1,18 @@
 import React, { HTMLAttributes, forwardRef, useContext } from 'react';
-import { Field, useField } from 'formik';
+import { Field } from 'formik';
 import { twMerge } from 'tailwind-merge';
 import { Text } from './Text';
 import { FormContext } from './Form';
 
-interface TextareaProps extends React.HtmlHTMLAttributes<HTMLTextAreaElement> {
+interface TextareaProps
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+  name: string;
   disabled?: boolean;
 }
 
 export const Textarea = forwardRef<HTMLDivElement, TextareaProps>(
   (props: TextareaProps, ref) => {
-    const { disabled, className, ...rest } = props;
+    const { disabled, name, className, ...rest } = props;
 
     const { handleTouched } = useContext(FormContext)!;
 
@@ -18,6 +20,7 @@ export const Textarea = forwardRef<HTMLDivElement, TextareaProps>(
       <Field
         ref={ref}
         as='textarea'
+        name={name}
         className={twMerge(
           'outline-none p-2 rounded-md text-sm flex-1 bg-white placeholder:text-zinc-500 placeholder:font-normal text-zinc-800 font-medium',
           disabled && 'cursor-not-allowed bg-zinc-50 bg-opacity-80',

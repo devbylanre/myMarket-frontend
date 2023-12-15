@@ -1,13 +1,11 @@
 import React from 'react';
 import { Item } from './Item';
-import { FormItem } from '../../../components/ui/FormItem';
-import { Label } from '../../../components/ui/Label';
 import { Trigger } from './Trigger';
 import { AccordionContent } from '../../../components/ui/Accordion';
-import { FormControl } from '../../../components/ui/FormControl';
-import { Input } from '../../../components/ui/Input';
 import { Text } from '../../../components/ui/Text';
 import { Badge } from '../../../components/ui/Badge';
+import { FormField, FormControl, FormLabel } from '../../../components/ui/Form';
+import { Input } from '../../../components/ui/Input';
 
 export const Price = () => {
   return (
@@ -22,20 +20,18 @@ export const Price = () => {
       >
         <div className='inline-flex w-full gap-x-2'>
           {Array.from(['price', 'discount']).map((field) => (
-            <FormItem key={field}>
-              <Label
-                name={field}
-                className='capitalize'
-              >
-                {field}
-              </Label>
-              <FormControl name={field}>
+            <FormField
+              key={field}
+              name={field}
+            >
+              <FormLabel className='capitalize'>{field}</FormLabel>
+              <FormControl>
                 <Input
                   placeholder={`Product ${field}`}
                   name={field}
                 />
               </FormControl>
-            </FormItem>
+            </FormField>
           ))}
         </div>
 

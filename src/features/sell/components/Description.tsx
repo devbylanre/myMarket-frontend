@@ -2,9 +2,7 @@ import React from 'react';
 import { Item } from './Item';
 import { Trigger } from './Trigger';
 import { AccordionContent } from '../../../components/ui/Accordion';
-import { FormItem } from '../../../components/ui/FormItem';
-import { Label } from '../../../components/ui/Label';
-import { FormControl } from '../../../components/ui/FormControl';
+import { FormField, FormControl, FormLabel } from '../../../components/ui/Form';
 import { Textarea } from '../../../components/ui/Textarea';
 
 export const Description = () => {
@@ -15,15 +13,15 @@ export const Description = () => {
         title='Description'
       />
       <AccordionContent value='description'>
-        <FormItem>
-          <Label name='description'>Description</Label>
-          <FormControl name='description'>
+        <FormField name='description'>
+          <FormLabel>Description</FormLabel>
+          <FormControl>
             <Textarea
               name='description'
               placeholder='Product description'
             />
           </FormControl>
-        </FormItem>
+        </FormField>
       </AccordionContent>
     </Item>
   );

@@ -1,5 +1,4 @@
 import React, { HTMLAttributes, createContext, useContext } from 'react';
-import { useField } from 'formik';
 import { twMerge } from 'tailwind-merge';
 import { LuChevronDown } from 'react-icons/lu';
 import { motion, AnimatePresence, MotionProps } from 'framer-motion';

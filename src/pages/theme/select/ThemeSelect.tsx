@@ -10,9 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../../../components/ui/Select';
-import { LuCheck } from 'react-icons/lu';
 import { twMerge } from 'tailwind-merge';
-import { Button } from '../../../components/ui/Button';
 import { Badge } from '../../../components/ui/Badge';
 import { Avatar, AvatarFallback } from '../../../components/ui/Avatar';
 

@@ -1,10 +1,8 @@
 import React from 'react';
 import { AccordionContent } from '../../../components/ui/Accordion';
-import { FormItem } from '../../../components/ui/FormItem';
-import { FormControl } from '../../../components/ui/FormControl';
+import { FormField, FormControl, FormLabel } from '../../../components/ui/Form';
 import { Input } from '../../../components/ui/Input';
 import { Textarea } from '../../../components/ui/Textarea';
-import { Label } from '../../../components/ui/Label';
 import { Trigger } from './Trigger';
 import { Item } from './Item';
 
@@ -19,24 +17,24 @@ export const Detail = () => {
         className='space-y-3'
         value='detail'
       >
-        <FormItem>
-          <Label name='title'>Title</Label>
-          <FormControl name='title'>
+        <FormField name='title'>
+          <FormLabel>Title</FormLabel>
+          <FormControl>
             <Input
               placeholder='Product title'
               name='title'
             />
           </FormControl>
-        </FormItem>
-        <FormItem>
-          <Label name='tagline'>Tagline</Label>
-          <FormControl name='tagline'>
+        </FormField>
+        <FormField name='tagline'>
+          <FormLabel>Tagline</FormLabel>
+          <FormControl>
             <Textarea
-              placeholder='Short tagline e.g Apple macBook pro M3 space gray'
               name='tagline'
+              placeholder='Short tagline e.g Apple macBook pro M3 space gray'
             />
           </FormControl>
-        </FormItem>
+        </FormField>
       </AccordionContent>
     </Item>
   );

@@ -1,7 +1,7 @@
 import React, { HTMLAttributes } from 'react';
 import { Text } from '../../components/ui/Text';
 import { Badge } from '../../components/ui/Badge';
-import { LuCheck, LuMinimize2, LuPencilLine } from 'react-icons/lu';
+import { LuMinimize2, LuPencilLine } from 'react-icons/lu';
 import {
   Accordion,
   AccordionContent,
@@ -9,11 +9,10 @@ import {
   AccordionTrigger,
 } from '../../components/ui/Accordion';
 import { Form, Formik } from 'formik';
-import { FormControl } from '../../components/ui/FormControl';
 import { Input } from '../../components/ui/Input';
 import { Button } from '../../components/ui/Button';
 import { twMerge } from 'tailwind-merge';
-import { FormItem } from '../../components/ui/FormItem';
+import { FormField, FormControl } from '../../components/ui/Form';
 
 export const PersonalPage = () => {
   return (
@@ -127,8 +126,11 @@ const FirstName = () => {
       </AccordionTrigger>
 
       <AccordionContent value='first-name'>
-        <FormItem className='inline-flex'>
-          <FormControl name='firstName'>
+        <FormField
+          name='firstName'
+          className='inline-flex'
+        >
+          <FormControl>
             <Input
               name='firstName'
               placeholder='John Doe'
@@ -136,7 +138,7 @@ const FirstName = () => {
             />
           </FormControl>
           <Button size='sm'>Update</Button>
-        </FormItem>
+        </FormField>
       </AccordionContent>
     </AccordionItem>
   );
@@ -182,8 +184,11 @@ const LastName = () => {
       </AccordionTrigger>
 
       <AccordionContent value='last-name'>
-        <FormItem className='inline-flex'>
-          <FormControl name='lastName'>
+        <FormField
+          name='lastName'
+          className='inline-flex'
+        >
+          <FormControl>
             <Input
               name='lastName'
               placeholder='John Doe'
@@ -191,7 +196,7 @@ const LastName = () => {
             />
           </FormControl>
           <Button size='sm'>Update</Button>
-        </FormItem>
+        </FormField>
       </AccordionContent>
     </AccordionItem>
   );
