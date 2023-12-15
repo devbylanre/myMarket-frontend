@@ -8,7 +8,7 @@ import { Text } from './Text';
 interface SelectContextProps {
   multiple: boolean;
   name: string;
-  value: string | number;
+  value: any;
   touched: boolean;
   handleToggle: () => void;
   handleSelect: (value: string | number) => void;
@@ -82,7 +82,7 @@ export const SelectTrigger = (props: SelectTriggerProps) => {
   return (
     <div
       className={twMerge(
-        'h-9 ring-1 ring-zinc-950/10 w-full inline-flex gap-x-4 justify-between items-center cursor-pointer bg-white rounded-md transition-all duration-200 ease-in-out px-2',
+        'min-h-[36px] ring-1 ring-zinc-950/10 w-full inline-flex gap-x-4 justify-between items-center cursor-pointer bg-white rounded-md transition-all duration-200 ease-in-out px-2',
         touched && 'ring-zinc-800',
         className
       )}
@@ -103,7 +103,7 @@ export const SelectTrigger = (props: SelectTriggerProps) => {
 interface SelectValueProps {
   placeholder: string;
   className?: string;
-  children?: (v: string | number) => React.ReactNode | (string | number);
+  children?: (value: any) => React.ReactNode | (string | number);
 }
 
 export const SelectValue = (props: SelectValueProps) => {
@@ -113,17 +113,17 @@ export const SelectValue = (props: SelectValueProps) => {
   return (
     <Text
       className={twMerge(
-        'min-h-[36px] flex items-center flex-1 text-zinc-500 font-light',
-        value && 'font-medium text-zinc-800',
+        'flex-1 text-zinc-800 font-medium',
+        (!value || value.length < 1) && 'text-zinc-500 font-normal',
         className
       )}
       size='sm'
       {...rest}
     >
-      {typeof children === 'function'
-        ? children(value)
-        : value
-        ? value
+      {value > 0 || value.length > 0
+        ? typeof children === 'function'
+          ? children(value)
+          : value
         : placeholder}
     </Text>
   );
@@ -167,6 +167,7 @@ export const SelectItem = (props: SelectItemProps) => {
   return (
     <div
       className={twMerge(
+        'cursor-pointer',
         typeof className === 'function' ? className(isActive(value)) : className
       )}
       onClick={() => handleSelect(value)}

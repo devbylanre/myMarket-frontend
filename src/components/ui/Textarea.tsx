@@ -19,7 +19,7 @@ export const Textarea = forwardRef<HTMLDivElement, TextareaProps>(
         ref={ref}
         as='textarea'
         className={twMerge(
-          'outline-none p-2 rounded-md text-sm flex-1 bg-white placeholder:text-zinc-500 placeholder:font-light text-zinc-800 font-medium',
+          'outline-none p-2 rounded-md text-sm flex-1 bg-white placeholder:text-zinc-500 placeholder:font-normal text-zinc-800 font-medium',
           disabled && 'cursor-not-allowed bg-zinc-50 bg-opacity-80',
           className
         )}
@@ -49,8 +49,8 @@ export const TextareaLimit = ({
   return (
     <Text
       as='p'
-      size='xs'
-      className={twMerge('', className)}
+      size='sm'
+      className={twMerge('text-zinc-500', className)}
       {...rest}
     >
       {limit &&

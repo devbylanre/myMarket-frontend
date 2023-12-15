@@ -14,6 +14,8 @@ import { Label } from '../../../components/ui/Label';
 import { LuCheck } from 'react-icons/lu';
 import { twMerge } from 'tailwind-merge';
 import { Button } from '../../../components/ui/Button';
+import { Badge } from '../../../components/ui/Badge';
+import { Avatar, AvatarFallback } from '../../../components/ui/Avatar';
 
 export const ThemeSelect = () => {
   return (
@@ -36,11 +38,11 @@ export const ThemeSelect = () => {
 };
 
 const teams: string[] = [
-  'Marketing',
-  'Sales & Management',
-  'Designers',
-  'Human Resources',
-  'System analysts',
+  'Arike preorder',
+  'Tunde enugbe',
+  'Mayowa jakan',
+  'Funmi tukay',
+  'Blessing kojeunri',
 ];
 
 const FormSelect = () => {
@@ -72,6 +74,33 @@ const FormSelect = () => {
       <ThemeCard tab={tab}>
         <FormItem className='w-96'>
           <Label name='team'>Assign task</Label>
+          <Select name='team'>
+            <SelectTrigger>
+              <SelectValue placeholder='Select a team member' />
+            </SelectTrigger>
+            <SelectContent className='space-y-0.5'>
+              {teams.map((team, i) => (
+                <SelectItem
+                  key={i}
+                  value={team}
+                  className={(isActive) =>
+                    twMerge(
+                      'h-10 text-sm flex items-center hover:bg-zinc-100 px-2 rounded-md gap-x-2',
+                      isActive && 'bg-zinc-100'
+                    )
+                  }
+                >
+                  <Avatar
+                    src={`/assets/images/memoji-0${i + 1}.png`}
+                    alt={`user${i}`}
+                  >
+                    <AvatarFallback>{team[0]}</AvatarFallback>
+                  </Avatar>
+                  {team}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </FormItem>
       </ThemeCard>
     </div>
@@ -115,16 +144,36 @@ const FormMultipleSelect = () => {
       <ThemeCard tab={tab}>
         <FormItem className='w-96'>
           <Label name='sport'>Select a sport</Label>
-          <Select name='sport'>
+          <Select
+            name='sport'
+            multiple
+          >
             <SelectTrigger>
-              <SelectValue placeholder='Choose a Sport' />
+              <SelectValue placeholder='Choose a Sport'>
+                {(value: string[]) =>
+                  value.map((v, i) => (
+                    <Badge
+                      key={i}
+                      variant='outline'
+                      className='my-1 mr-1 text-sm capitalize'
+                    >
+                      {v}
+                    </Badge>
+                  ))
+                }
+              </SelectValue>
             </SelectTrigger>
             <SelectContent>
               {options.map((option, i) => (
                 <SelectItem
                   key={i}
                   value={option}
-                  className={(isActive) => twMerge(isActive && 'bg-red-100')}
+                  className={(isActive) =>
+                    twMerge(
+                      'capitalize text-sm h-8 flex items-center px-2',
+                      isActive && 'bg-zinc-100 rounded-md'
+                    )
+                  }
                 >
                   {option}
                 </SelectItem>

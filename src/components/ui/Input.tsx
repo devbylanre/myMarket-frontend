@@ -1,30 +1,27 @@
-import { useField, Field } from 'formik';
-import React, { HTMLAttributes } from 'react';
+import { Field } from 'formik';
+import React, { HTMLAttributes, InputHTMLAttributes, useContext } from 'react';
 import { twMerge } from 'tailwind-merge';
+import { FormContext } from './Form';
 
-interface InputProps extends HTMLAttributes<HTMLInputElement> {
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string;
-  name: string;
   disabled?: boolean;
 }
 
 export const Input = (props: InputProps) => {
-  const { className, name, disabled, ...rest } = props;
-  const [, , helper] = useField(name);
-
-  const onFocus = () => helper.setTouched(true);
-  const onBlur = () => helper.setTouched(false);
+  const { className, name, disabled = false, ...rest } = props;
+  const { handleTouched } = useContext(FormContext)!;
 
   return (
     <Field
       name={name}
       className={twMerge(
-        'w-full font-medium transition-all duration-200 ease-in-out outline-none px-2 h-9 bg-inherit text-sm text-zinc-800 placeholder:font-light flex-1 placeholder:text-zinc-500',
+        'w-full font-medium transition-all duration-200 ease-in-out outline-none px-2 h-9 bg-inherit text-sm text-zinc-800 placeholder:font-normal flex-1 placeholder:text-zinc-500',
         disabled && 'bg-zinc-50 cursor-not-allowed text-zinc-500',
         className
       )}
-      onFocus={onFocus}
-      onBlur={onBlur}
+      onFocus={() => handleTouched(true)}
+      onBlur={() => handleTouched(false)}
       disabled={disabled}
       {...rest}
     />

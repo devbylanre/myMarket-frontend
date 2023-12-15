@@ -52,5 +52,30 @@ export const Brand = () => {
 };
 
 const Category = () => {
-  return <></>;
+  return (
+    <Select
+      name='category'
+      className='col-span-full'
+    >
+      <SelectTrigger>
+        <SelectValue placeholder='Product category' />
+      </SelectTrigger>
+      <SelectContent>
+        {categories.map((category, i) => (
+          <SelectItem
+            key={i}
+            value={category.name}
+            className={(isActive) =>
+              twMerge(
+                'h-8 flex items-center px-1.5 rounded text-sm cursor-pointer hover:bg-zinc-100',
+                isActive && 'bg-primary/10 text-primary font-medium'
+              )
+            }
+          >
+            {category.name}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+  );
 };
