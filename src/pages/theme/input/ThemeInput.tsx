@@ -4,9 +4,11 @@ import { Text } from '../../../components/ui/Text';
 import { Input } from '../../../components/ui/Input';
 import { Formik, Form } from 'formik';
 import { Label } from '../../../components/ui/Label';
-import { FormItem } from '../../../components/ui/FormItem';
-import { FormMessage } from '../../../components/ui/FormMessage';
-import { FormControl } from '../../../components/ui/FormControl';
+import {
+  FormField,
+  FormControl,
+  FormMessage,
+} from '../../../components/ui/Form';
 
 export const ThemeInput = () => {
   return (
@@ -62,7 +64,7 @@ const FormInput = () => {
 
       <ThemeCard tab={tab}>
         {tab === 'preview' ? (
-          <FormControl name='firstName'>
+          <FormControl>
             <Input
               name='firstName'
               placeholder='Email address'
@@ -105,9 +107,9 @@ const FormInputWithLabel = () => {
 
       <ThemeCard tab={tab}>
         {tab === 'preview' ? (
-          <FormItem>
+          <FormField name='username'>
             <Label name='username'>Username</Label>
-            <FormControl name='username'>
+            <FormControl>
               <Input
                 name='username'
                 placeholder='myMarket'

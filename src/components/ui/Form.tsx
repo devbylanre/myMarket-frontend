@@ -4,6 +4,7 @@ import { twMerge } from 'tailwind-merge';
 import { Text } from './Text';
 
 interface FormContextProps {
+  name: string;
   touched: boolean;
   handleTouched: (value: boolean) => void;
   error: any;
@@ -16,14 +17,14 @@ export const FormContext = createContext<FormContextProps | undefined>(
 interface FormItemProps extends HTMLAttributes<HTMLDivElement> {
   name: string;
 }
-export const FormItem = ({ name, className, ...rest }: FormItemProps) => {
+export const FormField = ({ name, className, ...rest }: FormItemProps) => {
   const [field, meta, helper] = useField(name);
 
   const handleTouched = (value: boolean) => helper.setTouched(value);
 
   return (
     <FormContext.Provider
-      value={{ touched: meta.touched, handleTouched, error: meta.error }}
+      value={{ name, touched: meta.touched, handleTouched, error: meta.error }}
     >
       <div
         className={twMerge('space-y-1.5', className)}
@@ -71,5 +72,21 @@ export const FormMessage = ({
     >
       {error && touched ? error : children}
     </Text>
+  );
+};
+
+interface FormLabelProps extends HTMLAttributes<HTMLLabelElement> {}
+
+export const FormLabel = ({ className, ...rest }: FormLabelProps) => {
+  const { name } = useContext(FormContext)!;
+
+  return (
+    <Text
+      as='label'
+      size='sm'
+      weight={500}
+      htmlFor={name}
+      className={twMerge('text-zinc-500', className)}
+    />
   );
 };
