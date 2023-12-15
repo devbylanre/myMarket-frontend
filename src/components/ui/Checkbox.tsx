@@ -20,7 +20,7 @@ export const Checkbox = ({ className, ...rest }: CheckboxProps) => {
     <div
       className={twMerge(
         'bg-white rounded-md ring-1 ring-zinc-950/10 cursor-pointer h-4 w-4 flex items-center justify-center shadow-sm',
-        value && 'bg-green-100 ring-green-200',
+        value && 'bg-green-600 ring-green-200',
         className
       )}
       {...rest}
@@ -32,7 +32,7 @@ export const Checkbox = ({ className, ...rest }: CheckboxProps) => {
             animate={{ opacity: [0, 1] }}
             exit={{ opacity: [1, 0] }}
           >
-            <LuCheck className='w-3.5 h-3.5 stroke-green-600' />
+            <LuCheck className='w-4 h-4 p-[1px] stroke-white' />
           </motion.span>
         )}
       </AnimatePresence>

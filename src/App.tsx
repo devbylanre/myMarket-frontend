@@ -32,6 +32,7 @@ import { ProfilePage } from './pages/ProfilePage';
 
 // settings pages
 import { PersonalPage } from './pages/settings/PersonalPage';
+import { UserContextProvider } from './contexts/user.context';
 
 const router = createBrowserRouter([
   {
@@ -117,7 +118,9 @@ const router = createBrowserRouter([
 function App() {
   return (
     <div className='App font-inter'>
-      <RouterProvider router={router} />
+      <UserContextProvider>
+        <RouterProvider router={router} />
+      </UserContextProvider>
     </div>
   );
 }

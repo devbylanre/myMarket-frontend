@@ -3,6 +3,7 @@ import { ThemeCard, ThemeHeader, ThemeTab } from '../Theme';
 import { Text } from '../../../components/ui/Text';
 import { Toast } from '../../../components/ui/Toast';
 import { Button } from '../../../components/ui/Button';
+import { LuCheck } from 'react-icons/lu';
 
 export const ThemeToast = () => {
   return (
@@ -39,24 +40,20 @@ const Context = () => {
           Show toast
         </Button>
         <Toast
-          position='top-center'
-          variant='warning'
+          position='bottom-center'
+          variant='light'
           isVisible={isVisible}
           onClose={() => setIsVisible(false)}
+          className='inline-flex items-center rounded-full gap-x-2'
         >
+          <LuCheck className='w-5 h-5 p-0.5 bg-green-600 rounded-full stroke-white' />
           <Text
             as='h6'
             size='sm'
             weight={500}
+            className='text-green-800'
           >
-            Name updated successfully
-          </Text>
-          <Text
-            as='p'
-            size='sm'
-          >
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias
-            voluptate non architecto
+            Name updated successfully check your profile
           </Text>
         </Toast>
       </ThemeCard>
