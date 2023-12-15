@@ -1,18 +1,18 @@
-import React, { HTMLAttributes, forwardRef } from 'react';
+import React, { HTMLAttributes, forwardRef, useContext } from 'react';
 import { Field, useField } from 'formik';
 import { twMerge } from 'tailwind-merge';
 import { Text } from './Text';
+import { FormContext } from './Form';
 
 interface TextareaProps extends React.HtmlHTMLAttributes<HTMLTextAreaElement> {
-  name: string;
-  className?: string;
   disabled?: boolean;
 }
 
 export const Textarea = forwardRef<HTMLDivElement, TextareaProps>(
   (props: TextareaProps, ref) => {
-    const { name, disabled, className, ...rest } = props;
-    const [, , helper] = useField(name);
+    const { disabled, className, ...rest } = props;
+
+    const { handleTouched } = useContext(FormContext)!;
 
     return (
       <Field
@@ -23,9 +23,8 @@ export const Textarea = forwardRef<HTMLDivElement, TextareaProps>(
           disabled && 'cursor-not-allowed bg-zinc-50 bg-opacity-80',
           className
         )}
-        name={name}
-        onFocus={() => helper.setTouched(true)}
-        onBlur={() => helper.setTouched(false)}
+        onFocus={() => handleTouched(true)}
+        onBlur={() => handleTouched(false)}
         disabled={disabled}
         {...rest}
       />
@@ -34,17 +33,15 @@ export const Textarea = forwardRef<HTMLDivElement, TextareaProps>(
 );
 
 interface TextareaLimitProps extends HTMLAttributes<HTMLParagraphElement> {
-  name: string;
   limit?: number;
 }
 
 export const TextareaLimit = ({
-  name,
   className,
   limit,
   ...rest
 }: TextareaLimitProps) => {
-  const [, meta] = useField(name);
+  const { value } = useContext(FormContext)!;
 
   return (
     <Text
@@ -53,11 +50,7 @@ export const TextareaLimit = ({
       className={twMerge('text-zinc-500', className)}
       {...rest}
     >
-      {limit &&
-        limit &&
-        limit >= meta.value?.length &&
-        limit - meta.value?.length}{' '}
-      remaining
+      {limit && limit >= value?.length && limit - value?.length} remaining
     </Text>
   );
 };

@@ -4,66 +4,56 @@ import { twMerge } from 'tailwind-merge';
 import { LuChevronDown } from 'react-icons/lu';
 import { motion, AnimatePresence, MotionProps } from 'framer-motion';
 import { Text } from './Text';
-
-interface SelectContextProps {
-  multiple: boolean;
-  name: string;
-  value: any;
-  touched: boolean;
-  handleToggle: () => void;
-  handleSelect: (value: string | number) => void;
-  isActive: (value: string | number) => boolean;
-}
-
-const SelectContext = createContext<SelectContextProps | undefined>(undefined);
+import { FormContext } from './Form';
 
 interface SelectProps extends HTMLAttributes<HTMLDivElement> {
-  name: string;
   multiple?: boolean;
   className?: string;
 }
 
+interface SelectContextProps {
+  handleToggle: () => void;
+  handleSelect: (option: string | number) => void;
+  value: any;
+  isActive: (value: string | number) => boolean;
+  touched: boolean;
+  multiple: boolean;
+}
+
+const SelectContext = createContext<SelectContextProps | undefined>(undefined);
+
 export const Select = (props: SelectProps) => {
-  const { className, name, multiple = false, ...rest } = props;
+  const { className, multiple = false, ...rest } = props;
+  const { touched, helper, value } = useContext(FormContext)!;
 
-  const [field, meta, helper] = useField(name);
+  const handleToggle = () => helper.setTouched(!touched);
 
-  const handleToggle = () => helper.setTouched(!meta.touched);
-
-  const handleSelect = (value: string | number) => {
+  const handleSelect = (option: string | number) => {
     if (multiple) {
-      const array: any[] = field.value;
+      const array: any[] = value;
       helper.setValue(
-        array.includes(value)
-          ? array.filter((v) => v !== value)
-          : [...array, value]
+        array.includes(option)
+          ? array.filter((v) => v !== option)
+          : [...array, option]
       );
       return;
     }
 
-    helper.setValue(value);
+    helper.setValue(option);
   };
 
-  const isActive = (value: string | number) => {
+  const isActive = (option: string | number) => {
     if (multiple) {
-      const array: any[] = field.value;
-      return array.includes(value);
+      const array: any[] = value;
+      return array.includes(option);
     }
 
-    return field.value === value;
+    return value === option;
   };
 
   return (
     <SelectContext.Provider
-      value={{
-        multiple,
-        name,
-        value: field.value,
-        touched: meta.touched,
-        handleToggle,
-        handleSelect,
-        isActive,
-      }}
+      value={{ handleToggle, handleSelect, isActive, value, touched, multiple }}
     >
       <div
         className={twMerge('relative w-full', className)}

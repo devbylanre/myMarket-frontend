@@ -8,6 +8,8 @@ interface FormContextProps {
   touched: boolean;
   handleTouched: (value: boolean) => void;
   error: any;
+  value: any;
+  helper: Record<string, any>;
 }
 
 export const FormContext = createContext<FormContextProps | undefined>(
@@ -24,7 +26,14 @@ export const FormField = ({ name, className, ...rest }: FormItemProps) => {
 
   return (
     <FormContext.Provider
-      value={{ name, touched: meta.touched, handleTouched, error: meta.error }}
+      value={{
+        name,
+        touched: meta.touched,
+        handleTouched,
+        error: meta.error,
+        value: field.value,
+        helper: helper,
+      }}
     >
       <div
         className={twMerge('space-y-1.5', className)}

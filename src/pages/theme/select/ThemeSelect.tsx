@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Formik, Form } from 'formik';
 import { ThemeCard, ThemeHeader, ThemeTab } from '../Theme';
 import { Text } from '../../../components/ui/Text';
+import { FormField, FormLabel } from '../../../components/ui/Form';
 import {
   Select,
   SelectContent,
@@ -9,8 +10,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../../../components/ui/Select';
-import { FormItem } from '../../../components/ui/FormItem';
-import { Label } from '../../../components/ui/Label';
 import { LuCheck } from 'react-icons/lu';
 import { twMerge } from 'tailwind-merge';
 import { Button } from '../../../components/ui/Button';
@@ -72,9 +71,12 @@ const FormSelect = () => {
       />
 
       <ThemeCard tab={tab}>
-        <FormItem className='w-96'>
-          <Label name='team'>Assign task</Label>
-          <Select name='team'>
+        <FormField
+          name='team'
+          className='w-96'
+        >
+          <FormLabel>Assign task</FormLabel>
+          <Select>
             <SelectTrigger>
               <SelectValue placeholder='Select a team member' />
             </SelectTrigger>
@@ -101,7 +103,7 @@ const FormSelect = () => {
               ))}
             </SelectContent>
           </Select>
-        </FormItem>
+        </FormField>
       </ThemeCard>
     </div>
   );
@@ -142,12 +144,12 @@ const FormMultipleSelect = () => {
       />
 
       <ThemeCard tab={tab}>
-        <FormItem className='w-96'>
-          <Label name='sport'>Select a sport</Label>
-          <Select
-            name='sport'
-            multiple
-          >
+        <FormField
+          name='sport'
+          className='w-96'
+        >
+          <FormLabel>Select a sport</FormLabel>
+          <Select multiple>
             <SelectTrigger>
               <SelectValue placeholder='Choose a Sport'>
                 {(value: string[]) =>
@@ -180,7 +182,7 @@ const FormMultipleSelect = () => {
               ))}
             </SelectContent>
           </Select>
-        </FormItem>
+        </FormField>
       </ThemeCard>
     </div>
   );

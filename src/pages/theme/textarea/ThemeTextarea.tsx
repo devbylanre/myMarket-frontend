@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { ThemeCard, ThemeHeader, ThemeTab } from '../Theme';
 import { Text } from '../../../components/ui/Text';
 import { Formik, Form } from 'formik';
-import { FormItem } from '../../../components/ui/FormItem';
-import { Label } from '../../../components/ui/Label';
 import { Textarea, TextareaLimit } from '../../../components/ui/Textarea';
-import { FormMessage } from '../../../components/ui/FormMessage';
-import { FormControl } from '../../../components/ui/FormControl';
+import {
+  FormField,
+  FormControl,
+  FormLabel,
+  FormMessage,
+} from '../../../components/ui/Form';
 
 export const ThemeTextarea = () => {
   return (
@@ -45,21 +47,19 @@ const FormTextarea = () => {
           onSubmit={() => {}}
         >
           <Form>
-            <FormItem className='w-96'>
-              <Label name='bio'>Bio</Label>
-              <FormControl name='bio'>
-                <Textarea name='bio' />
+            <FormField
+              name='bio'
+              className='w-96'
+            >
+              <FormLabel>Bio</FormLabel>
+              <FormControl>
+                <Textarea />
               </FormControl>
               <div className='inline-flex justify-between'>
-                <FormMessage name='bio'>
-                  Displayed all across your profile
-                </FormMessage>
-                <TextareaLimit
-                  limit={250}
-                  name='bio'
-                />
+                <FormMessage>Displayed all across your profile</FormMessage>
+                <TextareaLimit limit={250} />
               </div>
-            </FormItem>
+            </FormField>
           </Form>
         </Formik>
       </ThemeCard>

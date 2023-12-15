@@ -3,11 +3,11 @@ import { ThemeCard, ThemeHeader, ThemeTab } from '../Theme';
 import { Text } from '../../../components/ui/Text';
 import { Input } from '../../../components/ui/Input';
 import { Formik, Form } from 'formik';
-import { Label } from '../../../components/ui/Label';
 import {
   FormField,
   FormControl,
   FormMessage,
+  FormLabel,
 } from '../../../components/ui/Form';
 
 export const ThemeInput = () => {
@@ -108,7 +108,7 @@ const FormInputWithLabel = () => {
       <ThemeCard tab={tab}>
         {tab === 'preview' ? (
           <FormField name='username'>
-            <Label name='username'>Username</Label>
+            <FormLabel>Username</FormLabel>
             <FormControl>
               <Input
                 name='username'
@@ -116,10 +116,8 @@ const FormInputWithLabel = () => {
                 className='w-80'
               />
             </FormControl>
-            <FormMessage name='username'>
-              This is your public display name.
-            </FormMessage>
-          </FormItem>
+            <FormMessage>This is your public display name.</FormMessage>
+          </FormField>
         ) : (
           <Text as='p'>Coming soon</Text>
         )}
