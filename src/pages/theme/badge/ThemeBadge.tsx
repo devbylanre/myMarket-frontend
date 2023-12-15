@@ -1,78 +1,93 @@
 import React, { useState } from 'react';
-import { ThemeCard, ThemeHeader, ThemeTab } from '../Theme';
 import { Text } from '../../../components/ui/Text';
-import { Badge } from '../../../components/ui/Badge';
+import { Badge, BadgeDismiss } from '../../../components/ui/Badge';
+import {
+  UtilCard,
+  UtilCardCode,
+  UtilCardPreview,
+  UtilContainer,
+  UtilHeader,
+  UtilTab,
+} from '../Util';
+import { LuX } from 'react-icons/lu';
 
 export const ThemeBadge = () => {
   return (
     <div className='flex flex-col gap-y-12'>
-      <ThemeHeader>
+      <UtilHeader>
         <Text
           as='p'
           size='sm'
         >
           A visual indicator for a value or status descriptor for UI elements.
         </Text>
-      </ThemeHeader>
+      </UtilHeader>
 
-      <BadgeVariants />
+      <Variants />
+      <VariantsWithDismiss />
     </div>
   );
 };
 
-const badgeVariants: string[] = [
-  'primary',
-  'secondary',
-  'dark',
-  'outline',
-  'soft',
-  'success',
-  'danger',
-  'warning',
-];
-
-const BadgeVariants = () => {
-  const [tab, setTab] = useState<'preview' | 'code'>('preview');
-
+const Variants = () => {
   return (
-    <div className='flex flex-col gap-y-8'>
-      <div>
-        <Text
-          as='h5'
-          size='lg'
-          weight={500}
-        >
-          Badge variants
-        </Text>
-        <Text
-          as='p'
-          size='sm'
-        >
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis at id
-          saepe, optio reiciendis nostrum! Totam iure vitae provident
-          praesentium quisquam iusto quia ut illo, facilis nostrum, sit velit
-          tempore!
-        </Text>
-      </div>
-
-      <ThemeTab
-        tab={tab}
-        setTab={setTab}
-      />
-
-      <ThemeCard tab={tab}>
-        <div className='inline-flex gap-x-3'>
-          {badgeVariants.map((variant) => (
+    <UtilContainer>
+      <UtilTab />
+      <UtilCard>
+        <UtilCardPreview className='flex flex-wrap gap-1.5'>
+          {Array.from([
+            'primary',
+            'secondary',
+            'dark',
+            'outline',
+            'soft',
+            'success',
+            'danger',
+            'warning',
+          ]).map((variant, i) => (
             <Badge
-              key={variant}
-              variant={variant as 'secondary'}
-              className='capitalize'
+              key={i}
+              variant={variant as 'primary'}
             >
-              {variant}
+              Badge {variant}
             </Badge>
           ))}
-        </div>
-      </ThemeCard>
-    </div>
+        </UtilCardPreview>
+        <UtilCardCode />
+      </UtilCard>
+    </UtilContainer>
+  );
+};
+
+const VariantsWithDismiss = () => {
+  return (
+    <UtilContainer>
+      <UtilTab />
+      <UtilCard>
+        <UtilCardPreview className='flex flex-wrap gap-1.5'>
+          {Array.from([
+            'primary',
+            'secondary',
+            'dark',
+            'outline',
+            'soft',
+            'success',
+            'danger',
+            'warning',
+          ]).map((variant, i) => (
+            <Badge
+              key={i}
+              variant={variant as 'primary'}
+            >
+              Badge {variant}
+              <BadgeDismiss>
+                <LuX />
+              </BadgeDismiss>
+            </Badge>
+          ))}
+        </UtilCardPreview>
+        <UtilCardCode />
+      </UtilCard>
+    </UtilContainer>
   );
 };

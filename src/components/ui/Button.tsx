@@ -3,20 +3,22 @@ import { cn } from '../../utils/util';
 import { cva, VariantProps } from 'class-variance-authority';
 
 const buttonVariants = cva(
-  'px-2.5 font-medium rounded-md inline-flex items-center justify-center gap-x-1.5 transition-all duration-200 ease-in-out shadow-sm ring-1',
+  'px-2.5 font-medium rounded-md inline-flex items-center justify-center gap-x-1.5 transition-all duration-200 ease-in-out ring-1 shadow-sm',
   {
     variants: {
       variant: {
-        default: 'text-white bg-primary hover:bg-primary/80 ring-primary hover',
+        default: 'ring-0 bg-none',
+        primary:
+          'bg-primary hover:bg-primary/90 text-white ring-primary ring-green-950/10',
         secondary:
           'text-primary bg-primary/10 hover:bg-primary/20 ring-primary/20',
         dark: 'bg-zinc-800 text-white hover:bg-zinc-800/90 ring-zinc-950',
         outline:
           'ring-zinc-950/10 bg-white text-zinc-600 hover:text-zinc-800 hover:bg-zinc-50',
-        soft: 'bg-zinc-100 hover:bg-zinc-200 ring-zinc-950/10',
-        success: 'bg-green-500 text-white hover:bg-green-600 ring-green-950/10',
-        warning: 'bg-amber-500 text-white hover:bg-amber-600 ring-amber-950/10',
-        danger: 'bg-red-500 text-white hover:bg-red-600 ring-red-950/10',
+        soft: 'bg-zinc-50 hover:bg-zinc-100 ring-zinc-950/10',
+        success: 'bg-green-600 text-white hover:bg-green-500 ring-green-950/10',
+        warning: 'bg-amber-500 text-white hover:bg-amber-400 ring-amber-950/10',
+        danger: 'bg-red-600 text-white hover:bg-red-500 ring-red-950/10',
       },
       size: {
         xs: 'h-7 text-xs',
@@ -31,7 +33,7 @@ const buttonVariants = cva(
     },
     defaultVariants: {
       size: 'md',
-      variant: 'default',
+      variant: 'primary',
     },
   }
 );

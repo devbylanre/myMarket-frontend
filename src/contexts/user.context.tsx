@@ -39,7 +39,7 @@ export const UserContextProvider = ({ children }: UserContextProvider) => {
   const [state, dispatch] = useReducer(reducer, initialState as never); // remove never
 
   return (
-    <UserContext.Provider value={{ state, dispatch }}>
+    <UserContext.Provider value={{ user: state.user, dispatch }}>
       {children}
     </UserContext.Provider>
   );

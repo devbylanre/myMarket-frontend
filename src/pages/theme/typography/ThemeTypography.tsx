@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 import { Text } from '../../../components/ui/Text';
-import { ThemeHeader, ThemeTab } from '../Theme';
-import { ThemeCard } from '../Theme';
+import {
+  UtilCard,
+  UtilCardCode,
+  UtilCardPreview,
+  UtilContainer,
+  UtilHeader,
+  UtilTab,
+} from '../Util';
 
 export const ThemeTypography = () => {
   return (
-    <div className='flex flex-col gap-y-12'>
-      <ThemeHeader>
+    <div className='space-y-12'>
+      <UtilHeader>
         <Text
           as='p'
           className='text-zinc-700'
@@ -14,57 +20,58 @@ export const ThemeTypography = () => {
           Documentation and examples for MyMarket UI typography, including
           global settings, headings, body text, lists, and more.
         </Text>
-      </ThemeHeader>
+      </UtilHeader>
 
-      <HeadingOne />
+      <Weight />
+      <Size />
     </div>
   );
 };
 
-const HeadingOne = () => {
-  const [tab, setTab] = useState<'preview' | 'code'>('preview');
+const Weight = () => {
   return (
-    <div className='flex flex-col gap-y-8'>
-      <div className='flex flex-col gap-y-1'>
-        <Text
-          as='h5'
-          size='lg'
-          weight={500}
-        >
-          Heading One | H1
-        </Text>
-        <Text
-          as='p'
-          size='sm'
-        >
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error enim,
-          eaque quidem, ipsum animi officiis praesentium voluptates asperiores
-          iusto provident delectus unde? Exercitationem ducimus delectus magnam,
-          sed nemo necessitatibus temporibus?
-        </Text>
-      </div>
-      <ThemeTab
-        tab={tab}
-        setTab={setTab}
-      />
-      <ThemeCard tab={tab}>
-        <div className='w-3/5'>
-          {tab === 'preview' ? (
+    <UtilContainer>
+      <UtilTab />
+      <UtilCard>
+        <UtilCardPreview>
+          {Array.from([100, 200, 300, 400, 500, 600, 700]).map((value, i) => (
             <Text
-              as='h3'
-              size='xl'
-              weight={500}
+              key={i}
+              as='h5'
+              size='2xl'
+              weight={value as 300}
             >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel odio
-              in totam! Officia expedita impedit quibusdam, asperiores quaerat
-              debitis enim rerum, nam nostrum eveniet beatae aliquid alias.
-              Dolorum, temporibus dolor.
+              Hello world weight {value}
             </Text>
-          ) : (
-            <Text as='p'>Coming soon</Text>
+          ))}
+        </UtilCardPreview>
+        <UtilCardCode />
+      </UtilCard>
+    </UtilContainer>
+  );
+};
+
+const Size = () => {
+  return (
+    <UtilContainer>
+      <UtilTab />
+      <UtilCard>
+        <UtilCardPreview>
+          {Array.from(['xs', 'sm', 'lg', 'xl', '2xl', '3xl', '4xl']).map(
+            (value, i) => (
+              <Text
+                key={i}
+                as='h5'
+                size={value as 'sm'}
+                weight={500}
+              >
+                Use a font size of {value}
+              </Text>
+            )
           )}
-        </div>
-      </ThemeCard>
-    </div>
+        </UtilCardPreview>
+        <UtilCardCode />
+      </UtilCard>
+    </UtilContainer>
   );
 };

@@ -1,131 +1,79 @@
 import React, { useState } from 'react';
-import { ThemeCard, ThemeHeader, ThemeTab } from '../Theme';
 import { Text } from '../../../components/ui/Text';
 import { Button } from '../../../components/ui/Button';
+import {
+  UtilCard,
+  UtilCardCode,
+  UtilCardPreview,
+  UtilContainer,
+  UtilHeader,
+  UtilTab,
+} from '../Util';
 
 export const ThemeButton = () => {
   return (
     <div className='flex flex-col gap-y-12'>
-      <ThemeHeader>
+      <UtilHeader>
         <Text as='p'>
           Apply varied button designs to actions within forms, dialogs, and
           other elements, offering compatibility with diverse sizes, states, and
           additional features.
         </Text>
-      </ThemeHeader>
-
-      <ButtonVariants />
-      <ButtonSizes />
+      </UtilHeader>
+      <Variants />
+      <Sizes />
     </div>
   );
 };
 
-const buttonVariants = [
-  'default' as 'default',
-  'secondary' as 'secondary',
-  'dark' as 'dark',
-  'outline' as 'outline',
-  'soft' as 'soft',
-  'warning' as 'warning',
-  'danger' as 'danger',
-  'success' as 'success',
-];
-
-const ButtonVariants = () => {
-  const [tab, setTab] = useState<'preview' | 'code'>('preview');
+const Variants = () => {
   return (
-    <div className='flex flex-col gap-y-8'>
-      <div className='flex flex-col gap-y-1'>
-        <Text
-          as='h3'
-          size='lg'
-          weight={500}
-        >
-          Button variants
-        </Text>
-        <Text
-          as='p'
-          size='sm'
-        >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque amet
-          optio facere perferendis ducimus repellendus, omnis autem consequuntur
-          laborum voluptas perspiciatis porro qui quidem voluptates repudiandae
-          explicabo soluta eius totam.
-        </Text>
-      </div>
-
-      <ThemeTab
-        tab={tab}
-        setTab={setTab}
-      />
-
-      <ThemeCard tab={tab}>
-        {tab === 'preview' ? (
-          <div className='inline-flex first-letter:uppercase gap-x-3'>
-            {buttonVariants.map((variant) => (
-              <Button
-                key={variant}
-                variant={variant}
-                className='capitalize'
-              >
-                {variant}
-              </Button>
-            ))}
-          </div>
-        ) : (
-          <Text as='p'>Coming soon</Text>
-        )}
-      </ThemeCard>
-    </div>
+    <UtilContainer>
+      <UtilTab />
+      <UtilCard>
+        <UtilCardPreview className='space-x-2 space-y-2'>
+          {Array.from([
+            'default',
+            'primary',
+            'secondary',
+            'soft',
+            'outline',
+            'success',
+            'danger',
+            'warning',
+          ]).map((value, i) => (
+            <Button
+              key={i}
+              variant={value as 'default'}
+            >
+              Variant {value}
+            </Button>
+          ))}
+        </UtilCardPreview>
+        <UtilCardCode />
+      </UtilCard>
+    </UtilContainer>
   );
 };
 
-const buttonSizes = ['xs', 'sm', 'md', 'lg', 'xl'];
-
-const ButtonSizes = () => {
-  const [tab, setTab] = useState<'preview' | 'code'>('preview');
+const Sizes = () => {
   return (
-    <div className='flex flex-col gap-y-8'>
-      <div className='flex flex-col gap-y-1'>
-        <Text
-          as='h3'
-          size='lg'
-          weight={500}
-        >
-          Button sizes
-        </Text>
-        <Text
-          as='p'
-          size='sm'
-        >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque amet
-          optio facere perferendis ducimus repellendus, omnis autem consequuntur
-          laborum voluptas perspiciatis porro qui quidem voluptates repudiandae
-          explicabo soluta eius totam.
-        </Text>
-      </div>
-
-      <ThemeTab
-        tab={tab}
-        setTab={setTab}
-      />
-
-      <ThemeCard tab={tab}>
-        {tab === 'preview' ? (
-          <div className='inline-flex first-letter:uppercase gap-x-3'>
-            {buttonSizes.map((size) => (
-              <Button
-                key={size}
-                size={size as 'xs'}
-              >
-                Size-{size}
-              </Button>
-            ))}
-          </div>
-        ) : (
-          <Text as='p'>Coming soon</Text>
-        )}
-      </ThemeCard>
-    </div>
+    <UtilContainer>
+      <UtilTab />
+      <UtilCard>
+        <UtilCardPreview className='space-x-2'>
+          {Array.from(['xs', 'sm', 'md', 'lg', 'xl']).map((value, i) => (
+            <Button
+              key={i}
+              variant='outline'
+              size={value as 'xs'}
+            >
+              Size {value}
+            </Button>
+          ))}
+        </UtilCardPreview>
+        <UtilCardCode />
+      </UtilCard>
+    </UtilContainer>
   );
 };

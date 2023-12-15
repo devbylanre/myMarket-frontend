@@ -18,6 +18,8 @@ const textVariants = cva('text-zinc-800', {
       '7xl': 'text-6xl md:text-7xl',
     },
     weight: {
+      100: 'font-thin',
+      200: 'font-extralight',
       300: 'font-light',
       400: 'font-normal',
       500: 'font-medium',
