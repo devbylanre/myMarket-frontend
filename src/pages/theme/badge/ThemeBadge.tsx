@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Text } from '../../../components/ui/Text';
 import { Badge, BadgeDismiss } from '../../../components/ui/Badge';
 import {

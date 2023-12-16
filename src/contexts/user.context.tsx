@@ -31,11 +31,11 @@ export const UserContext = createContext<UserContextProps | StateProps>({
   user: null,
 });
 
-interface UserContextProvider {
+interface UserContextProviderProps {
   children: React.ReactNode;
 }
 
-export const UserContextProvider = ({ children }: UserContextProvider) => {
+export const UserContextProvider = ({ children }: UserContextProviderProps) => {
   const [state, dispatch] = useReducer(reducer, initialState as never); // remove never
 
   return (

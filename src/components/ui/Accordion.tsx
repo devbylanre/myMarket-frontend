@@ -27,15 +27,20 @@ export const Accordion = ({
   className,
   ...rest
 }: AccordionProps) => {
-  const [openItems, setOpenItems] = useState<any[]>([]);
+  const [openItems, setOpenItems] = useState<string[]>([]);
 
   const handleToggle = (value: string) => {
     if (collapsible) {
-      setOpenItems((prevItems) =>
-        prevItems.includes(value)
-          ? prevItems.filter((item) => item !== value)
-          : [...prevItems, value]
-      );
+      if (type === 'multiple') {
+        setOpenItems((prevItems) =>
+          prevItems.includes(value)
+            ? prevItems.filter((item) => item !== value)
+            : [...prevItems, value]
+        );
+        return;
+      }
+
+      setOpenItems((prevItems) => (prevItems.includes(value) ? [] : [value]));
     }
   };
 
@@ -96,7 +101,9 @@ export const AccordionTrigger = ({
   );
 };
 
-interface AccordionContentProps extends AccordionItemProps {}
+interface AccordionContentProps extends HTMLAttributes<HTMLDivElement> {
+  value: string;
+}
 
 export const AccordionContent = ({
   value,

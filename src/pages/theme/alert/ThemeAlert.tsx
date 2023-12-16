@@ -1,8 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Text } from '../../../components/ui/Text';
-import { Alert } from '../../../components/ui/Alert';
-import { Button } from '../../../components/ui/Button';
-import { LuX } from 'react-icons/lu';
 import { UtilHeader } from '../Util';
 
 export const ThemeAlert = () => {
@@ -17,10 +14,4 @@ export const ThemeAlert = () => {
       </UtilHeader>
     </div>
   );
-};
-
-const Card = () => {
-  const [isAlertVisible, setIsAlertVisible] = useState<boolean>(false);
-
-  return;
 };

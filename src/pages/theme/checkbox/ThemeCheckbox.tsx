@@ -1,9 +1,16 @@
-import React, { useState } from 'react';
-import { UtilHeader } from '../Util';
+import React from 'react';
+import {
+  UtilCard,
+  UtilCardCode,
+  UtilCardPreview,
+  UtilContainer,
+  UtilHeader,
+  UtilTab,
+} from '../Util';
 import { Text } from '../../../components/ui/Text';
 import { Form, Formik } from 'formik';
 import { Checkbox } from '../../../components/ui/Checkbox';
-import { FormField } from '../../../components/ui/Form';
+import { FormField, FormLabel } from '../../../components/ui/Form';
 
 export const ThemeCheckbox = () => {
   return (
@@ -17,10 +24,37 @@ export const ThemeCheckbox = () => {
           cupiditate consectetur obcaecati dignissimos ducimus nulla, quis
         </Text>
       </UtilHeader>
+
+      <Formik
+        initialValues={{ agree: false }}
+        onSubmit={() => {}}
+      >
+        <Form>
+          <Example />
+        </Form>
+      </Formik>
     </div>
   );
 };
 
-const FormCheckbox = () => {
-  return;
+const Example = () => {
+  return (
+    <UtilContainer>
+      <UtilTab />
+      <UtilCard>
+        <UtilCardPreview>
+          <FormField
+            name='agree'
+            className='inline-flex items-center justify-between space-y-0 w-96'
+          >
+            <FormLabel>
+              Do you accept our Privacy policy and Terms of service?
+            </FormLabel>
+            <Checkbox />
+          </FormField>
+        </UtilCardPreview>
+        <UtilCardCode />
+      </UtilCard>
+    </UtilContainer>
+  );
 };

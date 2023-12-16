@@ -71,8 +71,7 @@ export const SelectTrigger = (props: SelectTriggerProps) => {
   return (
     <div
       className={twMerge(
-        'min-h-[36px] ring-1 ring-zinc-950/10 w-full inline-flex gap-x-4 justify-between items-center cursor-pointer bg-white rounded-md transition-all duration-200 ease-in-out px-2',
-        touched && 'ring-zinc-800',
+        'min-h-[36px] w-full inline-flex gap-x-4 justify-between items-center cursor-pointer bg-white rounded-md transition-all duration-200 ease-in-out px-2',
         className
       )}
       {...rest}

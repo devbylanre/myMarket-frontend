@@ -1,13 +1,21 @@
-import React, { useState } from 'react';
-import { UtilHeader } from '../Util';
+import React from 'react';
+import * as yup from 'yup';
+import {
+  UtilCard,
+  UtilCardCode,
+  UtilCardPreview,
+  UtilContainer,
+  UtilHeader,
+  UtilTab,
+} from '../Util';
 import { Text } from '../../../components/ui/Text';
 import { Input } from '../../../components/ui/Input';
 import { Formik, Form } from 'formik';
 import {
   FormField,
   FormControl,
-  FormMessage,
   FormLabel,
+  FormMessage,
 } from '../../../components/ui/Form';
 
 export const ThemeInput = () => {
@@ -24,19 +32,71 @@ export const ThemeInput = () => {
       </UtilHeader>
 
       <Formik
-        initialValues={{ firstName: '', username: '' }}
+        initialValues={{ firstName: '', username: '', address: '' }}
+        validationSchema={yup.object().shape({
+          address: yup.string().required('Provide your address'),
+        })}
         onSubmit={() => {}}
       >
-        <Form className='flex flex-col gap-y-8'></Form>
+        <Form className='flex flex-col gap-y-8'>
+          <Example />
+        </Form>
       </Formik>
     </div>
   );
 };
 
-const FormInput = () => {
-  return;
-};
+interface FieldProps {
+  name: string;
+  label: string | null;
+  placeholder: string;
+}
 
-const FormInputWithLabel = () => {
-  return;
+const fields: FieldProps[] = [
+  {
+    name: 'firstName',
+    label: null,
+    placeholder: 'Enter your first name',
+  },
+  {
+    name: 'username',
+    label: 'Username',
+    placeholder: 'Enter your username',
+  },
+  {
+    name: 'address',
+    label: 'Address',
+    placeholder: 'Provide your address',
+  },
+];
+
+const Example = () => {
+  return (
+    <>
+      {fields.map((field, i) => (
+        <UtilContainer key={i}>
+          <UtilTab />
+          <UtilCard>
+            <UtilCardPreview>
+              <FormField
+                name={field.name}
+                className='w-full sm:w-80'
+              >
+                {field.label && <FormLabel>{field.label}</FormLabel>}
+                <FormControl>
+                  <Input
+                    name={field.name}
+                    placeholder={field.placeholder}
+                    type='text'
+                  />
+                </FormControl>
+                {i > 1 && <FormMessage />}
+              </FormField>
+            </UtilCardPreview>
+            <UtilCardCode />
+          </UtilCard>
+        </UtilContainer>
+      ))}
+    </>
+  );
 };

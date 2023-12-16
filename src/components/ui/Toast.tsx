@@ -1,13 +1,20 @@
-import React, { HtmlHTMLAttributes, useEffect, forwardRef } from 'react';
+import React, {
+  useEffect,
+  createContext,
+  useState,
+  useContext,
+  HTMLAttributes,
+} from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
 import { cn } from '../../utils/util';
 import { AnimatePresence, MotionProps, motion } from 'framer-motion';
+import { twMerge } from 'tailwind-merge';
 
 type VerticalPosition = 'top' | 'bottom';
 type HorizontalPosition = 'left' | 'center' | 'right';
 
 const toastVariants = cva(
-  'absolute p-2 m-3 bg-white ring-1 rounded-md space-y-0.5 w-96 shadow-lg shadow-zinc-950/5 w-fit min-w-[200px]',
+  'absolute p-2 m-5 bg-white ring-1 rounded-md shadow-lg shadow-zinc-950/5 w-full sm:w-96',
   {
     variants: {
       variant: {
@@ -34,46 +41,77 @@ const toastVariants = cva(
   }
 );
 
-interface ToastProps extends MotionProps, VariantProps<typeof toastVariants> {
-  className?: string;
-  timeout?: number;
-  onClose: () => void;
+interface ToastContextProps {
   isVisible: boolean;
-  position?: `${VerticalPosition}-${HorizontalPosition}`;
+  onDismiss: () => void;
 }
 
-export const Toast = forwardRef<HTMLDivElement, ToastProps>(
-  (props: ToastProps, ref) => {
-    const {
-      className,
-      timeout,
-      onClose,
-      isVisible,
-      variant,
-      position,
-      ...rest
-    } = props;
+const ToastContext = createContext<ToastContextProps | undefined>(undefined);
 
-    useEffect(() => {
-      if (isVisible) {
-        const timer = setTimeout(() => onClose(), timeout || 4000);
-        return () => clearTimeout(timer);
-      }
-    }, [isVisible, onClose, timeout]);
+interface ToastProps extends MotionProps, VariantProps<typeof toastVariants> {
+  autoHide: boolean;
+  className?: string;
+  timeout?: number;
+  position?: `${VerticalPosition}-${HorizontalPosition}`;
+  variant: 'success' | 'danger' | 'light' | 'warning' | 'dark';
+}
 
-    return (
+export const Toast = (props: ToastProps) => {
+  const {
+    className,
+    timeout,
+    position = 'bottom-right',
+    variant,
+    autoHide = false,
+    ...rest
+  } = props;
+  const [isVisible, setIsVisible] = useState<boolean>(!autoHide);
+
+  const onDismiss = () => setIsVisible(false);
+
+  useEffect(() => {
+    if (isVisible) {
+      const timer = setTimeout(() => onDismiss(), timeout || 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [isVisible, timeout]);
+
+  return (
+    <ToastContext.Provider value={{ isVisible, onDismiss: onDismiss }}>
       <AnimatePresence>
         {isVisible && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            ref={ref}
             className={cn(toastVariants({ variant, position, className }))}
             {...rest}
           />
         )}
       </AnimatePresence>
-    );
-  }
-);
+    </ToastContext.Provider>
+  );
+};
+
+interface ToastContentProps extends HTMLAttributes<HTMLDivElement> {}
+export const ToastContent = ({ className, ...rest }: ToastContentProps) => {
+  return (
+    <div
+      className={twMerge('w-full', className)}
+      {...rest}
+    />
+  );
+};
+
+interface ToastDismissProps extends HTMLAttributes<HTMLDivElement> {}
+export const ToastDismiss = ({ className, ...rest }: ToastDismissProps) => {
+  const { onDismiss } = useContext(ToastContext)!;
+
+  return (
+    <div
+      onClick={() => onDismiss()}
+      className={twMerge('', className)}
+      {...rest}
+    />
+  );
+};

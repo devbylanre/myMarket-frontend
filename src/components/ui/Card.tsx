@@ -8,7 +8,7 @@ export const Card = ({ className, ...rest }: CardProps) => {
   return (
     <div
       className={twMerge(
-        'flex flex-col p-3 bg-white rounded-md shadow-sm border border-zinc-200 transition-all duration-200 ease-in-out overflow-clip',
+        'p-3 bg-white rounded-md ring-1 ring-zinc-950/10 transition-all duration-200 ease-in-out overflow-clip w-full',
         className
       )}
       {...rest}
@@ -63,17 +63,18 @@ export const CardDescription = ({
   );
 };
 
-interface CardHeaderProps extends CardProps {}
+interface CardHeaderProps extends HTMLAttributes<HTMLDivElement> {}
+
 export const CardHeader = ({ className, ...rest }: CardHeaderProps) => {
   return (
     <div
-      className={twMerge('flex w-full', className)}
+      className={twMerge('w-full', className)}
       {...rest}
     />
   );
 };
 
-interface CardContentProps extends CardProps {}
+interface CardContentProps extends HTMLAttributes<HTMLDivElement> {}
 export const CardContent = ({ className, ...rest }: CardContentProps) => {
   return (
     <div
@@ -83,7 +84,7 @@ export const CardContent = ({ className, ...rest }: CardContentProps) => {
   );
 };
 
-interface CardFooterProps extends CardProps {}
+interface CardFooterProps extends HTMLAttributes<HTMLDivElement> {}
 export const CardFooter = ({ className, ...rest }: CardFooterProps) => {
   return (
     <div

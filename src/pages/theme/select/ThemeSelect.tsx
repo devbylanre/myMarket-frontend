@@ -1,8 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Formik, Form } from 'formik';
-import { UtilHeader } from '../Util';
+import {
+  UtilCard,
+  UtilCardCode,
+  UtilCardPreview,
+  UtilContainer,
+  UtilHeader,
+  UtilTab,
+} from '../Util';
 import { Text } from '../../../components/ui/Text';
-import { FormField, FormLabel } from '../../../components/ui/Form';
+import { FormControl, FormField, FormLabel } from '../../../components/ui/Form';
 import {
   Select,
   SelectContent,
@@ -25,7 +32,10 @@ export const ThemeSelect = () => {
         initialValues={{ sport: [], team: '' }}
         onSubmit={() => {}}
       >
-        <Form className='flex flex-col gap-y-8'></Form>
+        <Form className='flex flex-col gap-y-8'>
+          <Example />
+          <ExampleWithMultipleOptions />
+        </Form>
       </Formik>
     </div>
   );
@@ -39,8 +49,53 @@ const teams: string[] = [
   'Blessing kojeunri',
 ];
 
-const FormSelect = () => {
-  return;
+const Example = () => {
+  return (
+    <UtilContainer>
+      <UtilTab />
+      <UtilCard>
+        <UtilCardPreview>
+          <FormField
+            name='sport'
+            className='w-full sm:w-80'
+          >
+            <FormLabel>Choose an organization team member</FormLabel>
+            <Select>
+              <FormControl>
+                <SelectTrigger>
+                  <SelectValue placeholder='Select a member' />
+                </SelectTrigger>
+              </FormControl>
+              <SelectContent>
+                {teams.map((team, i) => (
+                  <SelectItem
+                    key={i}
+                    value={team}
+                    className={(isActive) =>
+                      twMerge(
+                        'h-9 inline-flex items-center w-full px-1.5 hover:bg-zinc-100 rounded-md gap-x-2 text-sm',
+                        isActive &&
+                          'bg-primary/10 text-primary hover:bg-primary/10 font-medium'
+                      )
+                    }
+                  >
+                    <Avatar
+                      src={`/assets/images/memoji-0${i + 1}.png`}
+                      alt={`user${i}`}
+                    >
+                      <AvatarFallback>{team[0]}</AvatarFallback>
+                    </Avatar>
+                    {team}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </FormField>
+        </UtilCardPreview>
+        <UtilCardCode />
+      </UtilCard>
+    </UtilContainer>
+  );
 };
 
 const options: string[] = [
@@ -51,6 +106,57 @@ const options: string[] = [
   'hockey',
 ];
 
-const FormMultipleSelect = () => {
-  return;
+const ExampleWithMultipleOptions = () => {
+  return (
+    <UtilContainer>
+      <UtilTab />
+      <UtilCard>
+        <UtilCardPreview>
+          <FormField
+            name='team'
+            className='w-full sm:w-80'
+          >
+            <FormLabel>Choose your favourite sports</FormLabel>
+            <Select multiple>
+              <FormControl>
+                <SelectTrigger>
+                  <SelectValue placeholder='Select a member'>
+                    {(value) =>
+                      value.map((v: string, i: number) => (
+                        <Badge
+                          key={i}
+                          variant='outline'
+                          className='my-1 ml-0 mr-1 text-sm capitalize h-7'
+                        >
+                          {v}
+                        </Badge>
+                      ))
+                    }
+                  </SelectValue>
+                </SelectTrigger>
+              </FormControl>
+              <SelectContent>
+                {options.map((team, i) => (
+                  <SelectItem
+                    key={i}
+                    value={team}
+                    className={(isActive) =>
+                      twMerge(
+                        'h-9 inline-flex items-center w-full px-1.5 text-sm hover:bg-zinc-100 rounded-md gap-x-2 capitalize',
+                        isActive &&
+                          'bg-primary/10 text-primary hover:bg-primary/10 font-medium'
+                      )
+                    }
+                  >
+                    {team}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </FormField>
+        </UtilCardPreview>
+        <UtilCardCode />
+      </UtilCard>
+    </UtilContainer>
+  );
 };

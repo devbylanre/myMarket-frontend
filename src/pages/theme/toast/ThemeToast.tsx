@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
-import { UtilHeader } from '../Util';
 import { Text } from '../../../components/ui/Text';
-import { Toast } from '../../../components/ui/Toast';
+import { Toast, ToastContent } from '../../../components/ui/Toast';
 import { Button } from '../../../components/ui/Button';
-import { LuCheck } from 'react-icons/lu';
+import { LuRedo } from 'react-icons/lu';
+import {
+  UtilCard,
+  UtilCardCode,
+  UtilCardPreview,
+  UtilContainer,
+  UtilHeader,
+  UtilTab,
+} from '../Util';
 
 export const ThemeToast = () => {
   return (
@@ -15,10 +22,46 @@ export const ThemeToast = () => {
           tenetur unde.
         </Text>
       </UtilHeader>
+
+      <Example />
     </div>
   );
 };
 
-const Context = () => {
-  return;
+const Example = () => {
+  const [showToast, setShowToast] = useState(false);
+  return (
+    <UtilContainer>
+      <UtilTab />
+      <UtilCard>
+        <UtilCardPreview>
+          <Button
+            variant='outline'
+            onClick={() => setShowToast((state) => !state)}
+          >
+            Show toast
+          </Button>
+          {showToast && (
+            <Toast
+              variant='light'
+              autoHide={false}
+            >
+              <ToastContent className='flex items-center gap-x-2'>
+                <LuRedo className='w-5 h-5 p-1 bg-green-200 rounded-full stroke-green-800' />
+                <Text
+                  as='h6'
+                  size='sm'
+                  weight={500}
+                  className='flex-1 leading-tight text-green-800'
+                >
+                  First name updated successfully check profile
+                </Text>
+              </ToastContent>
+            </Toast>
+          )}
+        </UtilCardPreview>
+        <UtilCardCode />
+      </UtilCard>
+    </UtilContainer>
+  );
 };

@@ -16,10 +16,10 @@ export const FormContext = createContext<FormContextProps | undefined>(
   undefined
 );
 
-interface FormItemProps extends HTMLAttributes<HTMLDivElement> {
+interface FormFieldProps extends HTMLAttributes<HTMLDivElement> {
   name: string;
 }
-export const FormField = ({ name, className, ...rest }: FormItemProps) => {
+export const FormField = ({ name, className, ...rest }: FormFieldProps) => {
   const [field, meta, helper] = useField(name);
 
   const handleTouched = (value: boolean) => helper.setTouched(value);
@@ -96,6 +96,7 @@ export const FormLabel = ({ className, ...rest }: FormLabelProps) => {
       weight={500}
       htmlFor={name}
       className={twMerge('text-zinc-500', className)}
+      {...rest}
     />
   );
 };

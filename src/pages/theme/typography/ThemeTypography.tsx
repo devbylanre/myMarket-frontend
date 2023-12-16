@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Text } from '../../../components/ui/Text';
 import {
   UtilCard,
@@ -64,6 +64,7 @@ const Size = () => {
                 as='h5'
                 size={value as 'sm'}
                 weight={500}
+                className='w-full'
               >
                 Use a font size of {value}
               </Text>

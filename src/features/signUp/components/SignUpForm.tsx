@@ -94,10 +94,10 @@ const Fields = () => {
       </FormField>
       <FormField
         name='accept'
-        className='flex-row items-center col-span-full gap-x-2'
+        className='flex items-center space-y-0 col-span-full gap-x-2'
       >
         <Checkbox />
-        <FormMessage>
+        <FormMessage className='leading-tight'>
           Do you agree to our{' '}
           <Link
             to='/sign-up'

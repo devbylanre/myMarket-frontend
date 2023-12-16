@@ -109,7 +109,10 @@ export const UtilCardPreview = ({
 
   return (
     <div
-      className={twMerge('w-full lg:w-96', className)}
+      className={twMerge(
+        'w-full lg:w-96 flex items-center justify-center flex-wrap',
+        className
+      )}
       {...rest}
     />
   );

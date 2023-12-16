@@ -49,11 +49,16 @@ export const Brand = () => {
 
 const Category = () => {
   return (
-    <FormField name='category'>
-      <Select className='col-span-full'>
-        <SelectTrigger>
-          <SelectValue placeholder='Product category' />
-        </SelectTrigger>
+    <FormField
+      name='category'
+      className='col-span-full'
+    >
+      <Select>
+        <FormControl>
+          <SelectTrigger>
+            <SelectValue placeholder='Product category' />
+          </SelectTrigger>
+        </FormControl>
         <SelectContent>
           {categories.map((category, i) => (
             <SelectItem

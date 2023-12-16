@@ -1,7 +1,5 @@
 import React from 'react';
-import { Outlet, NavLink } from 'react-router-dom';
-import { twMerge } from 'tailwind-merge';
-import { Text } from '../components/ui/Text';
+import { Outlet } from 'react-router-dom';
 import { useUserContext } from '../hooks/useUserContext';
 import { Sidebar } from './theme/Sidebar';
 import { Header } from './theme/Header';

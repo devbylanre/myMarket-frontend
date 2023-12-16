@@ -33,6 +33,7 @@ import { ProfilePage } from './pages/ProfilePage';
 // settings pages
 import { PersonalPage } from './pages/settings/PersonalPage';
 import { UserContextProvider } from './contexts/user.context';
+import { ThemeAccordion } from './pages/theme/accordion/ThemeAccordion';
 
 const router = createBrowserRouter([
   {
@@ -109,6 +110,7 @@ const router = createBrowserRouter([
           { path: 'separator', element: <ThemeSeparator /> },
           { path: 'card', element: <ThemeCardPage /> },
           { path: 'dropdown', element: <ThemeDropdown /> },
+          { path: 'accordion', element: <ThemeAccordion /> },
         ],
       },
     ],

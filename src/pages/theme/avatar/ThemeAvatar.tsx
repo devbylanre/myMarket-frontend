@@ -1,7 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Text } from '../../../components/ui/Text';
 import { Avatar, AvatarFallback } from '../../../components/ui/Avatar';
-import { UtilHeader } from '../Util';
+import {
+  UtilCard,
+  UtilCardCode,
+  UtilCardPreview,
+  UtilContainer,
+  UtilHeader,
+  UtilTab,
+} from '../Util';
 
 export const ThemeAvatar = () => {
   return (
@@ -14,10 +21,27 @@ export const ThemeAvatar = () => {
           debitis et animi? Sed!
         </Text>
       </UtilHeader>
+
+      <UserAvatar />
     </div>
   );
 };
 
-const Card = () => {
-  return;
+const UserAvatar = () => {
+  return (
+    <UtilContainer>
+      <UtilTab />
+      <UtilCard>
+        <UtilCardPreview>
+          <Avatar
+            src='/assets/images/memoji-03.png'
+            alt='user'
+          >
+            <AvatarFallback>JD</AvatarFallback>
+          </Avatar>
+        </UtilCardPreview>
+        <UtilCardCode />
+      </UtilCard>
+    </UtilContainer>
+  );
 };
