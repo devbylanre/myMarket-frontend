@@ -3,7 +3,6 @@ import { Text } from '../../../components/ui/Text';
 import { Input } from '../../../components/ui/Input';
 import { Textarea } from '../../../components/ui/Textarea';
 import { Checkbox } from '../../../components/ui/Checkbox';
-import { Button } from '../../../components/ui/Button';
 import {
   FormField,
   FormControl,
@@ -14,7 +13,7 @@ import { Link } from 'react-router-dom';
 
 export const SignUpForm = () => {
   return (
-    <div className='flex flex-col gap-y-8'>
+    <>
       <div className='flex flex-col gap-y-2'>
         <Text
           as='h4'
@@ -28,11 +27,8 @@ export const SignUpForm = () => {
           eaque exercitationem laboriosam doloremque
         </Text>
       </div>
-
       <Fields />
-
-      <Button variant='dark'>Join the marketplace</Button>
-    </div>
+    </>
   );
 };
 
@@ -76,7 +72,7 @@ const Fields = () => {
         <FormLabel>Email address</FormLabel>
         <FormControl>
           <Input
-            name='label'
+            name='email'
             placeholder='team@business.com'
           />
         </FormControl>

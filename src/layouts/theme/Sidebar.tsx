@@ -17,6 +17,7 @@ import {
   LuChevronsDownUp,
   LuActivitySquare,
   LuMinimize2,
+  LuLoader,
 } from 'react-icons/lu';
 
 interface MenuItem {
@@ -89,6 +90,11 @@ const menuItems: MenuItem[] = [
     icon: <LuAlignVerticalJustifyCenter className={iconClassName} />,
   },
   {
+    name: 'Spinner',
+    url: 'spinner',
+    icon: <LuLoader className={iconClassName} />,
+  },
+  {
     name: 'Checkbox',
     url: 'checkbox',
     icon: <LuCheckSquare className={iconClassName} />,
@@ -98,6 +104,7 @@ const menuItems: MenuItem[] = [
     url: 'toast',
     icon: <LuPictureInPicture className={iconClassName} />,
   },
+
   {
     name: 'Alert',
     url: 'alert',
@@ -123,35 +130,43 @@ export const Sidebar = () => {
         </Text>
       </div>
       <div className='flex flex-col gap-y-1'>
-        {menuItems.map((item) => (
-          <NavLink
-            key={item.name}
-            to={item.url}
-            className={({ isActive }) =>
-              twMerge(
-                'inline-flex px-2 h-8 gap-x-3 items-center cursor-pointer transition-all duration-200 ease-in-out rounded-lg stroke-zinc-500 hover:bg-zinc-50',
-                isActive &&
-                  'bg-white stroke-zinc-800 text-zinc-800 ring-1 ring-zinc-950/5 shadow-lg shadow-zinc-500/10'
-              )
-            }
-          >
-            {({ isActive }) => (
-              <>
-                <span>{item.icon}</span>
-                <Text
-                  as='p'
-                  size='sm'
-                  className={twMerge(
-                    'text-zinc-500',
-                    isActive && 'font-medium text-zinc-800'
-                  )}
-                >
-                  {item.name}
-                </Text>
-              </>
-            )}
-          </NavLink>
-        ))}
+        {menuItems
+          .sort((a, b) => {
+            const nameA = a.name.toUpperCase();
+            const nameB = b.name.toUpperCase();
+            if (nameA < nameB) return -1;
+            if (nameA > nameB) return 1;
+            return 0;
+          })
+          .map((item) => (
+            <NavLink
+              key={item.name}
+              to={item.url}
+              className={({ isActive }) =>
+                twMerge(
+                  'inline-flex px-2 h-8 gap-x-3 items-center cursor-pointer transition-all duration-200 ease-in-out rounded-lg stroke-zinc-500 hover:bg-zinc-50',
+                  isActive &&
+                    'bg-white stroke-zinc-800 text-zinc-800 ring-1 ring-zinc-950/5 shadow-lg shadow-zinc-500/10'
+                )
+              }
+            >
+              {({ isActive }) => (
+                <>
+                  <span>{item.icon}</span>
+                  <Text
+                    as='p'
+                    size='sm'
+                    className={twMerge(
+                      'text-zinc-500',
+                      isActive && 'font-medium text-zinc-800'
+                    )}
+                  >
+                    {item.name}
+                  </Text>
+                </>
+              )}
+            </NavLink>
+          ))}
       </div>
     </div>
   );

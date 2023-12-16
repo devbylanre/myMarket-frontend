@@ -20,6 +20,8 @@ import { ThemeSeparator } from './pages/theme/separator/ThemeSeparator';
 import { ThemeAlert } from './pages/theme/alert/ThemeAlert';
 import { ThemeCardPage } from './pages/theme/card/ThemeCard';
 import { ThemeDropdown } from './pages/theme/dropdown/ThemeDropdown';
+import { ThemeAccordion } from './pages/theme/accordion/ThemeAccordion';
+import { ThemeSpinner } from './pages/theme/spinner/ThemeSpinner';
 
 // pages
 import { SignUpPage } from './pages/SignUpPage';
@@ -32,8 +34,9 @@ import { ProfilePage } from './pages/ProfilePage';
 
 // settings pages
 import { PersonalPage } from './pages/settings/PersonalPage';
+
+// contexts
 import { UserContextProvider } from './contexts/user.context';
-import { ThemeAccordion } from './pages/theme/accordion/ThemeAccordion';
 
 const router = createBrowserRouter([
   {
@@ -111,6 +114,7 @@ const router = createBrowserRouter([
           { path: 'card', element: <ThemeCardPage /> },
           { path: 'dropdown', element: <ThemeDropdown /> },
           { path: 'accordion', element: <ThemeAccordion /> },
+          { path: 'spinner', element: <ThemeSpinner /> },
         ],
       },
     ],

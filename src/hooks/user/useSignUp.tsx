@@ -13,10 +13,10 @@ export const useSignUp = () => {
     error: null,
   });
 
-  const signUp = async (data: any) => {
+  const signUp = async (data: any, callback?: (data: any) => void) => {
     setResource((prevResource) => ({ ...prevResource, isLoading: true }));
 
-    const response = await fetch('/api/v1/user/create', {
+    const response = await fetch('http://localhost:5000/api/v1/user/create', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
@@ -33,6 +33,8 @@ export const useSignUp = () => {
         isLoading: false,
         json: json.data,
       }));
+
+      callback && callback(json);
     } else {
       setResource((prevResource) => ({
         ...prevResource,
@@ -43,5 +45,5 @@ export const useSignUp = () => {
     }
   };
 
-  return [resource, signUp];
+  return { resource, signUp };
 };

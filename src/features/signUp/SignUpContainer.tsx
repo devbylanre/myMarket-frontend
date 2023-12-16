@@ -2,6 +2,8 @@ import { Form, Formik } from 'formik';
 import React from 'react';
 import * as yup from 'yup';
 import { SignUpForm } from './components/SignUpForm';
+import { useSignUp } from '../../hooks/user/useSignUp';
+import { Button } from '../../components/ui/Button';
 
 interface InitialValuesTypes {
   firstName: string;
@@ -44,15 +46,29 @@ const validationSchema = yup.object().shape({
 });
 
 export const SignUpContainer = () => {
+  const { resource, signUp } = useSignUp();
+
+  const handleSubmit = async (values: InitialValuesTypes) => {
+    console.log(values, resource);
+    await signUp({ isSeller: false, ...values });
+  };
+
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={() => {}}
+      onSubmit={handleSubmit}
     >
       {(formik) => (
-        <Form>
+        <Form className='space-y-8'>
           <SignUpForm />
+          <Button
+            variant='dark'
+            type='submit'
+            className='w-full'
+          >
+            Join the marketplace
+          </Button>
         </Form>
       )}
     </Formik>
