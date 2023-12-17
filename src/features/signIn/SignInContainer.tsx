@@ -1,7 +1,9 @@
 import { Form, Formik } from 'formik';
-import React from 'react';
 import * as yup from 'yup';
-import { SignInForm } from './components/SignInForm';
+import { useSignIn } from './hooks/useSignIn';
+import { Component } from './components/Component';
+import { Error } from './components/Error';
+import { Success } from './components/Success';
 
 interface InitialValueTypes {
   email: string;
@@ -25,14 +27,27 @@ const validationSchema = yup.object().shape({
 });
 
 export const SignInContainer = () => {
+  const { resource, signIn } = useSignIn();
+
+  const handleSubmit = async (values: InitialValueTypes) => {
+    await signIn(values, (data) => console.log(data));
+  };
+
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={() => {}}
+      onSubmit={handleSubmit}
     >
-      <Form>
-        <SignInForm />
+      <Form className='space-y-5'>
+        {resource.state === 'success' ? (
+          <Success />
+        ) : (
+          <>
+            <Component isLoading={resource.isLoading} />
+            {resource.error ? <Error error={resource.error} /> : null}
+          </>
+        )}
       </Form>
     </Formik>
   );

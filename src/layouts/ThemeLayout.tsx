@@ -1,13 +1,9 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { useUserContext } from '../hooks/useUserContext';
 import { Sidebar } from './theme/Sidebar';
 import { Header } from './theme/Header';
 
 export const ThemeLayout = () => {
-  const context = useUserContext();
-  console.log(context);
-
   return (
     <div className='flex flex-row min-h-screen'>
       {/* sidebar */}

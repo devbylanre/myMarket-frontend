@@ -10,7 +10,7 @@ export const SignInPage = () => {
       <SideBar />
 
       <div className='flex flex-col items-center md:justify-center'>
-        <div className='w-full px-4 py-8 lg:w-3/5 md:px-0 md:py-16'>
+        <div className='w-full px-3 my-8 md:w-4/5 lg:w-3/5'>
           <SignInContainer />
         </div>
       </div>
@@ -36,16 +36,16 @@ const SideBar = () => {
   return (
     <div className='flex-col items-center justify-center hidden md:flex bg-zinc-50'>
       <div className='flex flex-col w-3/5 gap-y-8'>
-        <div className='relative flex flex-col gap-y-3'>
+        <div className='space-y-3'>
           {users.map((user, i) => (
             <div
               key={i}
-              className='inline-flex p-2 bg-white border shadow-sm rounded-2xl border-primary/25 gap-x-2 w-fit'
+              className='inline-flex gap-x-3 w-fit'
             >
               <Avatar
                 src={`./assets/images/memoji-0${i + 1}.png`}
                 alt={user.name}
-                className='bg-white h-11 w-11'
+                className='bg-white shadow-xl shadow-zinc-200 h-11 w-11'
               >
                 <AvatarFallback>{user.name[0]}</AvatarFallback>
               </Avatar>
@@ -61,8 +61,8 @@ const SideBar = () => {
                   </Text>
                   <Text
                     as='p'
-                    size='sm'
-                    className='inline-flex items-center gap-x-1'
+                    size='xs'
+                    className='inline-flex items-center leading-tight gap-x-1'
                   >
                     <LuStar className='fill-primary stroke-none' />
                     {user.reviews}
@@ -71,7 +71,7 @@ const SideBar = () => {
 
                 <Text
                   as='p'
-                  size='sm'
+                  size='xs'
                 >
                   {user.address}
                 </Text>
@@ -91,8 +91,7 @@ const SideBar = () => {
           </Text>
           <Text as='p'>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus
-            quia aspernatur hic! Molestiae quia iusto assumenda ducimus debitis
-            repellendus laudantium
+            quia aspernatur hic! Molestiae quia iusto assumenda
           </Text>
         </div>
       </div>

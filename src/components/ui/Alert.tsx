@@ -49,7 +49,7 @@ export const Alert = (props: AlertProps) => {
 };
 
 const alertIconVariant = cva(
-  'min-w-[24px] min-h-[24px] p-1 flex rounded-full',
+  'min-w-[24px] min-h-[24px] w-fit h-fit p-1 flex rounded-full',
   {
     variants: {
       variant: {
@@ -113,9 +113,10 @@ export const AlertContent = ({ className, ...rest }: AlertContentProps) => {
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          initial={{ opacity: 0, height: '0%' }}
+          animate={{ opacity: 1, height: '100%' }}
+          exit={{ opacity: 0, height: '0%' }}
+          transition={{ duration: 0.4 }}
           className={twMerge(
             'ring-1 ring-zinc-950/10 p-2 rounded-2xl',
             className

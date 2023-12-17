@@ -1,15 +1,15 @@
-import React, { Dispatch, createContext, useReducer } from 'react';
+import React, { Dispatch, createContext, useEffect, useReducer } from 'react';
+
+const initialState = { user: null };
 
 interface StateProps {
   user: Record<string, any> | null;
 }
 
 interface ActionProps {
-  type: 'SIGN_IN' | 'SIGN_OUT' | 'UPDATE_USER';
-  payload: StateProps;
+  type: 'SIGN_IN' | 'UPDATE' | 'SIGN_OUT';
+  payload: Record<string, any>;
 }
-
-const initialState: StateProps = { user: null };
 
 const reducer = (state: StateProps, action: ActionProps) => {
   switch (action.type) {
@@ -17,26 +17,34 @@ const reducer = (state: StateProps, action: ActionProps) => {
       return { user: { ...action.payload } };
     case 'SIGN_OUT':
       return { user: null };
-    case 'UPDATE_USER':
+    case 'UPDATE':
       return { user: { ...state.user, ...action.payload } };
+    default:
+      return state;
   }
 };
 
 interface UserContextProps {
-  state: StateProps;
+  user: Record<string, any> | null;
   dispatch: Dispatch<ActionProps>;
 }
 
-export const UserContext = createContext<UserContextProps | StateProps>({
-  user: null,
-});
+export const UserContext = createContext<UserContextProps | null>(null);
 
-interface UserContextProviderProps {
+export const UserContextProvider = ({
+  children,
+}: {
   children: React.ReactNode;
-}
+}) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-export const UserContextProvider = ({ children }: UserContextProviderProps) => {
-  const [state, dispatch] = useReducer(reducer, initialState as never); // remove never
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user')!);
+
+    if (user) {
+      dispatch({ type: 'SIGN_IN', payload: user });
+    }
+  }, []);
 
   return (
     <UserContext.Provider value={{ user: state.user, dispatch }}>
