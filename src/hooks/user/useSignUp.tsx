@@ -4,17 +4,20 @@ export const useSignUp = () => {
   const [resource, setResource] = useState<{
     state: 'success' | 'error' | null;
     isLoading: boolean;
-    json: Record<string, any> | null;
-    error: any;
+    error: Record<string, any> | null;
+    data: Record<string, any> | null;
   }>({
     state: null,
     isLoading: false,
-    json: null,
     error: null,
+    data: null,
   });
 
-  const signUp = async (data: any, callback?: (data: any) => void) => {
-    setResource({ state: null, isLoading: true, json: null, error: null });
+  const signUp = async (
+    data: any,
+    callback?: (data: Record<string, any>) => void
+  ) => {
+    setResource({ state: null, isLoading: true, error: null, data: null });
 
     const response = await fetch('http://localhost:5000/api/v1/user/create', {
       method: 'POST',
@@ -27,20 +30,20 @@ export const useSignUp = () => {
     const json = await response.json();
 
     if (!response.ok) {
-      setResource((prevResource) => ({
-        ...prevResource,
+      return setResource({
         state: json.state,
         isLoading: false,
         error: json.error,
-      }));
+        data: null,
+      });
     }
 
-    setResource((prevResource) => ({
-      ...prevResource,
+    setResource({
       state: json.state,
       isLoading: false,
-      json: json.data,
-    }));
+      error: null,
+      data: json.data,
+    });
 
     return callback && callback(json);
   };

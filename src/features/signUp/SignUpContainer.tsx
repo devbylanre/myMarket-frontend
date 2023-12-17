@@ -54,7 +54,7 @@ export const SignUpContainer = () => {
   const { resource, signUp } = useSignUp();
 
   const handleSubmit = async (values: InitialValuesTypes) => {
-    await signUp({ isSeller: false, ...values }, (data) => console.log(data));
+    await signUp({ isSeller: false, ...values });
   };
 
   return (

@@ -17,7 +17,7 @@ export const SignUpPage = () => {
 };
 
 const links: { title: string; url: string }[] = [
-  { title: 'Sign in', url: '/sign-in' },
+  { title: 'Sign in', url: '/auth' },
   { title: 'Privacy policy', url: 'privacy' },
   { title: 'Terms of service', url: 'terms' },
 ];

@@ -37,6 +37,7 @@ import { PersonalPage } from './pages/settings/PersonalPage';
 
 // contexts
 import { UserContextProvider } from './contexts/user.context';
+import { VerifyTokenPage } from './pages/VerifyTokenPage';
 
 const router = createBrowserRouter([
   {
@@ -48,8 +49,17 @@ const router = createBrowserRouter([
         element: <SignUpPage />,
       },
       {
-        path: 'sign-in',
-        element: <SignInPage />,
+        path: 'auth',
+        children: [
+          {
+            index: true,
+            element: <SignInPage />,
+          },
+          {
+            path: 'verify/token/:token',
+            element: <VerifyTokenPage />,
+          },
+        ],
       },
       {
         path: 'app',

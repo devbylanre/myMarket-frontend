@@ -33,14 +33,23 @@ export const CardImage = ({ className, src, alt, ...rest }: CardImageProps) => {
 };
 
 interface CardTitleProps extends HTMLAttributes<HTMLHeadElement> {
-  as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  size?: string;
+  weight?: number;
 }
 
-export const CardTitle = ({ as, className, ...rest }: CardTitleProps) => {
+export const CardTitle = ({
+  as,
+  size,
+  weight,
+  className,
+  ...rest
+}: CardTitleProps) => {
   return (
     <Text
-      as={as}
-      weight={500}
+      as={as || 'h5'}
+      size={(size as 'md') || 'xl'}
+      weight={(weight as 600) || 500}
       className={className}
       {...rest}
     />
@@ -78,7 +87,7 @@ interface CardContentProps extends HTMLAttributes<HTMLDivElement> {}
 export const CardContent = ({ className, ...rest }: CardContentProps) => {
   return (
     <div
-      className={twMerge('flex w-full', className)}
+      className={twMerge('w-full', className)}
       {...rest}
     />
   );

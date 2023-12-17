@@ -1,3 +1,4 @@
+import { VariantProps, cva } from 'class-variance-authority';
 import { AnimatePresence, MotionProps, motion } from 'framer-motion';
 import React, {
   createContext,
@@ -7,27 +8,33 @@ import React, {
   useState,
 } from 'react';
 import { twMerge } from 'tailwind-merge';
+import { cn } from '../../utils/util';
+
+type AlertVariant = 'success' | 'warning' | 'danger' | 'default';
 
 interface AlertContextProps {
   isVisible: boolean;
   onDismiss: () => void;
   timeout?: number;
+  variant: AlertVariant;
 }
 
 const AlertContext = createContext<AlertContextProps | undefined>(undefined);
 
 interface AlertProps extends HTMLAttributes<HTMLDivElement> {
   timeout?: number;
+  variant?: AlertVariant;
 }
 
 export const Alert = (props: AlertProps) => {
-  const { timeout, className, ...rest } = props;
+  const { timeout, variant = 'default', className, ...rest } = props;
 
   const [isVisible, setIsVisible] = useState<boolean>(true);
 
   return (
     <AlertContext.Provider
       value={{
+        variant,
         isVisible,
         onDismiss: () => setIsVisible(false),
         timeout,
@@ -38,6 +45,39 @@ export const Alert = (props: AlertProps) => {
         {...rest}
       />
     </AlertContext.Provider>
+  );
+};
+
+const alertIconVariant = cva(
+  'min-w-[24px] min-h-[24px] p-1 flex rounded-full',
+  {
+    variants: {
+      variant: {
+        success: 'bg-green-200 text-green-800 stroke-green-800',
+        danger: 'bg-red-200 text-red-800 stroke-red-800',
+        warning: 'bg-amber-200 text-amber-800 stroke-amber-800',
+        default: 'bg-zinc-200 text-zinc-800 stroke-zinc-800',
+      },
+    },
+    defaultVariants: {
+      variant: 'default',
+    },
+  }
+);
+
+interface AlertIconProps
+  extends HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof alertIconVariant> {}
+
+export const AlertIcon = (props: AlertIconProps) => {
+  const { variant } = useContext(AlertContext)!;
+  const { className, ...rest } = props;
+
+  return (
+    <div
+      className={cn(alertIconVariant({ variant, className }))}
+      {...rest}
+    />
   );
 };
 
