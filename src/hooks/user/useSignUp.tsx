@@ -3,18 +3,18 @@ import { useState } from 'react';
 export const useSignUp = () => {
   const [resource, setResource] = useState<{
     state: 'success' | 'error' | null;
-    isLoading: boolean | null;
+    isLoading: boolean;
     json: Record<string, any> | null;
     error: any;
   }>({
     state: null,
-    isLoading: null,
+    isLoading: false,
     json: null,
     error: null,
   });
 
   const signUp = async (data: any, callback?: (data: any) => void) => {
-    setResource((prevResource) => ({ ...prevResource, isLoading: true }));
+    setResource({ state: null, isLoading: true, json: null, error: null });
 
     const response = await fetch('http://localhost:5000/api/v1/user/create', {
       method: 'POST',
@@ -26,16 +26,7 @@ export const useSignUp = () => {
 
     const json = await response.json();
 
-    if (response.ok) {
-      setResource((prevResource) => ({
-        ...prevResource,
-        state: json.state,
-        isLoading: false,
-        json: json.data,
-      }));
-
-      callback && callback(json);
-    } else {
+    if (!response.ok) {
       setResource((prevResource) => ({
         ...prevResource,
         state: json.state,
@@ -43,6 +34,15 @@ export const useSignUp = () => {
         error: json.error,
       }));
     }
+
+    setResource((prevResource) => ({
+      ...prevResource,
+      state: json.state,
+      isLoading: false,
+      json: json.data,
+    }));
+
+    return callback && callback(json);
   };
 
   return { resource, signUp };

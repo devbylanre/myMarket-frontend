@@ -22,7 +22,7 @@ interface SpinnerProps
   extends MotionProps,
     VariantProps<typeof spinnerVariants> {
   className?: string;
-  variant: 'default' | 'primary' | 'secondary' | 'dark';
+  variant: 'default' | 'primary' | 'secondary' | 'dark' | 'light';
 }
 
 export const Spinner = ({
