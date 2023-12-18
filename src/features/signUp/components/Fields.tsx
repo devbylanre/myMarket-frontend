@@ -1,38 +1,18 @@
 import React from 'react';
-import { Text } from '../../../components/ui/Text';
-import { Input } from '../../../components/ui/Input';
-import { Textarea } from '../../../components/ui/Textarea';
-import { Checkbox } from '../../../components/ui/Checkbox';
-import {
-  FormField,
-  FormControl,
-  FormLabel,
-  FormMessage,
-} from '../../../components/ui/Form';
 import { Link } from 'react-router-dom';
 
-export const SignUpForm = () => {
-  return (
-    <>
-      <div className='flex flex-col gap-y-2'>
-        <Text
-          as='h4'
-          weight={600}
-          size='3xl'
-        >
-          Join the community and sell your products
-        </Text>
-        <Text as='p'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum labore,
-          eaque exercitationem laboriosam doloremque
-        </Text>
-      </div>
-      <Fields />
-    </>
-  );
-};
+// components
+import { Input } from '../../../components/ui/Input';
+import { Checkbox } from '../../../components/ui/Checkbox';
+import { Textarea } from '../../../components/ui/Textarea';
+import {
+  FormField,
+  FormLabel,
+  FormControl,
+  FormMessage,
+} from '../../../components/ui/Form';
 
-const Fields = () => {
+export const Fields = () => {
   return (
     <div className='grid grid-cols-1 gap-3 lg:grid-cols-2'>
       <FormField name='firstName'>

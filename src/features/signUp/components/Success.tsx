@@ -2,7 +2,7 @@ import React from 'react';
 import { Text } from '../../../components/ui/Text';
 import { Badge } from '../../../components/ui/Badge';
 
-export const SuccessAlert = ({ email }: { email: string }) => {
+export const Success = ({ email }: { email: string }) => {
   return (
     <div className='space-y-2'>
       <Text

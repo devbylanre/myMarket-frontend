@@ -49,7 +49,9 @@ export const SignInContainer = () => {
         ) : (
           <>
             <Component isLoading={resource.isLoading} />
-            {resource.error ? <Error error={resource.error} /> : null}
+            {resource.state === 'error' ? (
+              <Error error={resource.error} />
+            ) : null}
           </>
         )}
       </Form>

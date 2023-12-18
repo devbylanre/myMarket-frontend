@@ -1,24 +1,18 @@
 import { useState } from 'react';
+import { ResourceSchema, UserSchema } from '../../../utils/HookProps';
 import { useUserContext } from '../../../hooks/useUserContext';
-
-interface ResourceProps {
-  state: 'success' | 'error' | null;
-  isLoading: boolean | null;
-  error: any;
-  data: Record<string, any> | null;
-}
 
 export const useSignIn = () => {
   const { dispatch } = useUserContext()!;
-  const [resource, setResource] = useState<ResourceProps>({
+  const [resource, setResource] = useState<ResourceSchema<UserSchema>>({
     state: null,
     isLoading: null,
     error: null,
     data: null,
   });
 
-  const signIn = async (
-    data: Record<string, any>,
+  const signIn = async <T extends { email: string }>(
+    data: T,
     callback?: (data: Record<string, any>) => void
   ) => {
     setResource({
@@ -39,12 +33,11 @@ export const useSignIn = () => {
     const json = await response.json();
 
     if (!response.ok) {
-      return setResource((prevResource) => ({
-        ...prevResource,
-        state: json.state,
+      return setResource({
+        state: 'error',
         isLoading: false,
         error: json.error,
-      }));
+      });
     }
 
     dispatch({ type: 'SIGN_IN', payload: json.data });
@@ -53,12 +46,11 @@ export const useSignIn = () => {
 
     sessionStorage.setItem('session', JSON.stringify(json.data.token));
 
-    setResource((prevResource) => ({
-      ...prevResource,
-      state: json.state,
+    setResource({
+      state: 'success',
       isLoading: false,
       data: json.data,
-    }));
+    });
 
     return callback && callback(json);
   };

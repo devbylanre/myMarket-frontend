@@ -1,10 +1,6 @@
 import { useState, createContext, HTMLAttributes, useContext } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-interface DropdownProps extends HTMLAttributes<HTMLDivElement> {
-  className?: string;
-}
-
 interface DropdownContextProps {
   isVisible: boolean;
   handleToggle: () => void;
@@ -15,8 +11,13 @@ const DropdownContext = createContext<DropdownContextProps | undefined>(
   undefined
 );
 
+interface DropdownProps {
+  className?: string;
+  children: React.ReactNode | ((isVisible: boolean) => React.ReactNode);
+}
+
 export const Dropdown = (props: DropdownProps) => {
-  const { className, ...rest } = props;
+  const { className, children } = props;
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
   const handleToggle = () => setIsVisible(!isVisible);
@@ -25,32 +26,27 @@ export const Dropdown = (props: DropdownProps) => {
 
   return (
     <DropdownContext.Provider value={{ isVisible, handleToggle, onHide }}>
-      <div
-        className={twMerge('relative', className)}
-        {...rest}
-      />
+      <div className={twMerge('relative', className)}>
+        {typeof children === 'function' ? children(isVisible) : children}
+      </div>
     </DropdownContext.Provider>
   );
 };
 
-interface DropdownTriggerProps {
-  className?: string;
-  children: React.ReactNode | ((isVisible: boolean) => React.ReactNode);
-}
+interface DropdownTriggerProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const DropdownTrigger = ({
   className,
-  children,
+  ...rest
 }: DropdownTriggerProps) => {
-  const { isVisible, handleToggle } = useContext(DropdownContext)!;
+  const { handleToggle } = useContext(DropdownContext)!;
 
   return (
     <div
-      className={twMerge('', className)}
+      className={twMerge('cursor-pointer', className)}
       onClick={handleToggle}
-    >
-      {typeof children === 'function' ? children(isVisible) : children}
-    </div>
+      {...rest}
+    />
   );
 };
 

@@ -1,15 +1,8 @@
-import React, { useState } from 'react';
-import { boolean } from 'yup';
-
-interface ResourceProps {
-  state: null | 'success' | 'error';
-  isLoading: null | boolean;
-  error: any;
-  data: null | Record<string, any>;
-}
+import { useState } from 'react';
+import { ResourceSchema } from '../../../utils/HookProps';
 
 export const useVerifyToken = () => {
-  const [resource, setResource] = useState<ResourceProps>({
+  const [resource, setResource] = useState<ResourceSchema<null>>({
     state: null,
     isLoading: false,
     error: null,
@@ -36,7 +29,6 @@ export const useVerifyToken = () => {
 
     if (!response.ok) {
       return setResource((prevResource) => ({
-        ...prevResource,
         state: json.state,
         isLoading: false,
         error: json.error,

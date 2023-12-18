@@ -1,4 +1,5 @@
 import React, { Dispatch, createContext, useEffect, useReducer } from 'react';
+import { UserSchema } from '../utils/HookProps';
 
 const initialState = { user: null };
 
@@ -6,12 +7,15 @@ interface StateProps {
   user: Record<string, any> | null;
 }
 
-interface ActionProps {
+interface ActionProps<T> {
   type: 'SIGN_IN' | 'UPDATE' | 'SIGN_OUT';
-  payload: Record<string, any>;
+  payload: T;
 }
 
-const reducer = (state: StateProps, action: ActionProps) => {
+const reducer = <T extends UserSchema | null>(
+  state: StateProps,
+  action: ActionProps<T>
+) => {
   switch (action.type) {
     case 'SIGN_IN':
       return { user: { ...action.payload } };
@@ -24,12 +28,14 @@ const reducer = (state: StateProps, action: ActionProps) => {
   }
 };
 
-interface UserContextProps {
+interface UserContextProps<T> {
   user: Record<string, any> | null;
-  dispatch: Dispatch<ActionProps>;
+  dispatch: Dispatch<T>;
 }
 
-export const UserContext = createContext<UserContextProps | null>(null);
+export const UserContext = createContext<UserContextProps<
+  ActionProps<null>
+> | null>(null);
 
 export const UserContextProvider = ({
   children,

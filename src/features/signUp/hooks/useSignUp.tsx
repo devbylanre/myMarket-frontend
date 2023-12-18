@@ -1,20 +1,16 @@
 import { useState } from 'react';
+import { ResourceSchema } from '../../../utils/HookProps';
 
 export const useSignUp = () => {
-  const [resource, setResource] = useState<{
-    state: 'success' | 'error' | null;
-    isLoading: boolean;
-    error: Record<string, any> | null;
-    data: Record<string, any> | null;
-  }>({
+  const [resource, setResource] = useState<ResourceSchema<null>>({
     state: null,
     isLoading: false,
     error: null,
     data: null,
   });
 
-  const signUp = async (
-    data: any,
+  const signUp = async <T extends { email: string }>(
+    data: T,
     callback?: (data: Record<string, any>) => void
   ) => {
     setResource({ state: null, isLoading: true, error: null, data: null });

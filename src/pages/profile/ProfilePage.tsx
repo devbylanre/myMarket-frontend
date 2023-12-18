@@ -1,11 +1,16 @@
 import React from 'react';
-import { Avatar, AvatarFallback } from '../components/ui/Avatar';
-import { Text } from '../components/ui/Text';
-import { Badge } from '../components/ui/Badge';
+import { Avatar, AvatarFallback } from '../../components/ui/Avatar';
 import { twMerge } from 'tailwind-merge';
 import { LuSettings2 } from 'react-icons/lu';
 
+// ui components
+import { Badge } from '../../components/ui/Badge';
+import { Text } from '../../components/ui/Text';
+import { useUserContext } from '../../hooks/useUserContext';
+
 export const ProfilePage = () => {
+  const { user } = useUserContext()!;
+
   return (
     <div className='space-y-12'>
       <div className='flex flex-col items-center gap-y-3'>
@@ -77,21 +82,17 @@ const Store = () => {
       <div className='inline-flex items-center justify-between w-full'>
         <div className='inline-flex p-0.5 rounded-md bg-zinc-100 w-fit'>
           {Array.from(['products', 'rankings']).map((tab, i) => (
-            <div
+            <Text
               key={i}
+              size='sm'
+              weight={500}
               className={twMerge(
-                'h-8 px-3 flex items-center justify-center rounded-md',
-                i === 0 && 'bg-white ring-1 ring-zinc-950/10'
+                'h-8 px-3 flex items-center justify-center rounded-md text-zinc-500 capitalize cursor-pointer',
+                i === 0 && 'bg-white ring-1 ring-zinc-950/10 text-zinc-800'
               )}
             >
-              <Text
-                as='p'
-                size='sm'
-                className='capitalize'
-              >
-                {tab}
-              </Text>
-            </div>
+              {tab}
+            </Text>
           ))}
         </div>
 

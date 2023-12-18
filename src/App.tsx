@@ -30,7 +30,7 @@ import { DashboardLayout } from './layouts/DashboardLayout';
 import { HomePage } from './pages/HomePage';
 import { Sell } from './pages/SellPage';
 import { SavedPage } from './pages/SavedPage';
-import { ProfilePage } from './pages/ProfilePage';
+import { ProfilePage } from './pages/profile/ProfilePage';
 
 // settings pages
 import { PersonalPage } from './pages/settings/PersonalPage';

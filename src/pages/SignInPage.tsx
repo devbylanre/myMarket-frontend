@@ -43,7 +43,7 @@ const SideBar = () => {
               className='inline-flex gap-x-3 w-fit'
             >
               <Avatar
-                src={`./assets/images/memoji-0${i + 1}.png`}
+                src={`/assets/images/memoji-0${i + 1}.png`}
                 alt={user.name}
                 className='bg-white shadow-xl shadow-zinc-200 h-11 w-11'
               >
