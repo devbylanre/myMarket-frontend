@@ -4,6 +4,7 @@ import { useSignIn } from './hooks/useSignIn';
 import { Component } from './components/Component';
 import { Error } from './components/Error';
 import { Success } from './components/Success';
+import { useNavigate } from 'react-router-dom';
 
 interface InitialValueTypes {
   email: string;
@@ -28,9 +29,12 @@ const validationSchema = yup.object().shape({
 
 export const SignInContainer = () => {
   const { resource, signIn } = useSignIn();
+  const navigate = useNavigate();
 
   const handleSubmit = async (values: InitialValueTypes) => {
-    await signIn(values, (data) => console.log(data));
+    await signIn(values, () => {
+      setTimeout(() => navigate('/app/'), 5000);
+    });
   };
 
   return (

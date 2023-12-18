@@ -1,15 +1,8 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
 import { Text } from '../../../components/ui/Text';
 import { Spinner } from '../../../components/ui/Spinner';
 
 export const Success = () => {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    setTimeout(() => navigate('/app/'), 5000);
-  }, [navigate]);
-
   return (
     <>
       <Spinner variant='primary' />

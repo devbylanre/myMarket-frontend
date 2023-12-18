@@ -51,7 +51,7 @@ export const useSignIn = () => {
 
     localStorage.setItem('user', JSON.stringify(json.data));
 
-    document.cookie = `token = ${json.data.token.signature}, expires = ${json.data.token.exp}`; // set cookie
+    sessionStorage.setItem('session', JSON.stringify(json.data.token));
 
     setResource((prevResource) => ({
       ...prevResource,

@@ -38,6 +38,7 @@ import { PersonalPage } from './pages/settings/PersonalPage';
 // contexts
 import { UserContextProvider } from './contexts/user.context';
 import { VerifyTokenPage } from './pages/VerifyTokenPage';
+import { Session } from './pages/Session';
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: 'sign-up',
         element: <SignUpPage />,
+      },
+      {
+        path: 'session',
+        element: <Session />,
       },
       {
         path: 'auth',
