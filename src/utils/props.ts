@@ -23,6 +23,8 @@ export type ResourceSchema<T> = (
   isLoading: boolean | null;
 };
 
+export type HookCallback<T> = (data?: T) => void;
+
 export interface UserSchema {
   _id: string;
   isSeller: boolean;

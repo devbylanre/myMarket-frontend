@@ -2,10 +2,11 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 // layout imports
 import { RootLayout } from './layouts/RootLayout';
-import { ThemeLayout } from './layouts/ThemeLayout';
-import { SettingsLayout } from './layouts/SettingsLayout';
 
-// theme imports
+// theme layout
+import { ThemeLayout } from './layouts/ThemeLayout';
+
+// theme layout pages
 import { ThemeTypography } from './pages/theme/typography/ThemeTypography';
 import { ThemeButton } from './pages/theme/button/ThemeButton';
 import { ThemeBadge } from './pages/theme/badge/ThemeBadge';
@@ -23,22 +24,30 @@ import { ThemeDropdown } from './pages/theme/dropdown/ThemeDropdown';
 import { ThemeAccordion } from './pages/theme/accordion/ThemeAccordion';
 import { ThemeSpinner } from './pages/theme/spinner/ThemeSpinner';
 
+// settings layout
+import { SettingsLayout } from './layouts/SettingsLayout';
+
+// settings layout pages
+import { PersonalPage } from './pages/settings/PersonalPage';
+
+// app layout
+import { AppLayout } from './layouts/AppLayout.tsx';
+
+// app layout pages
+import { HomePage } from './pages/app/HomePage';
+import { Sell } from './pages/app/SellPage';
+import { SavedPage } from './pages/app/SavedPage';
+import { ProfilePage } from './pages/profile/ProfilePage';
+
 // pages
 import { SignUpPage } from './pages/SignUpPage';
 import { SignInPage } from './pages/SignInPage';
-import { DashboardLayout } from './layouts/DashboardLayout';
-import { HomePage } from './pages/HomePage';
-import { Sell } from './pages/SellPage';
-import { SavedPage } from './pages/SavedPage';
-import { ProfilePage } from './pages/profile/ProfilePage';
-
-// settings pages
-import { PersonalPage } from './pages/settings/PersonalPage';
+import { Session } from './pages/Session';
+import { VerifyTokenPage } from './pages/VerifyTokenPage';
 
 // contexts
 import { UserContextProvider } from './contexts/user.context';
-import { VerifyTokenPage } from './pages/VerifyTokenPage';
-import { Session } from './pages/Session';
+import { SellerSetupPage } from './pages/app/SellerSetupPage';
 
 const router = createBrowserRouter([
   {
@@ -68,7 +77,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'app',
-        element: <DashboardLayout />,
+        element: <AppLayout />,
         children: [
           {
             index: true,
@@ -80,7 +89,16 @@ const router = createBrowserRouter([
           },
           {
             path: 'sell',
-            element: <Sell />,
+            children: [
+              {
+                index: true,
+                element: <Sell />,
+              },
+              {
+                path: 'setup',
+                element: <SellerSetupPage />,
+              },
+            ],
           },
           {
             path: 'profile',

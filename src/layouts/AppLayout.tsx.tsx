@@ -1,11 +1,11 @@
 import React from 'react';
-import { Sidebar } from './dashboard/Sidebar';
-import { Header } from './dashboard/Header';
+import { Sidebar } from './app/Sidebar';
+import { Header } from './app/Header';
 import { Outlet } from 'react-router-dom';
-import { OutletSidebar } from './dashboard/OutletSidebar';
+import { OutletSidebar } from './app/OutletSidebar';
 import { PrivateLayout } from './PrivateLayout';
 
-export const DashboardLayout = () => {
+export const AppLayout = () => {
   return (
     <PrivateLayout>
       <div className='flex'>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ResourceSchema } from '../../../utils/HookProps';
+import { ResourceSchema } from '../../../utils/props';
 
 export const useSignUp = () => {
   const [resource, setResource] = useState<ResourceSchema<null>>({

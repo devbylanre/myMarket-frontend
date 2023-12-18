@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ResourceSchema, UserSchema } from '../../../utils/HookProps';
+import { ResourceSchema, UserSchema } from '../../../utils/props';
 import { useUserContext } from '../../../hooks/useUserContext';
 
 export const useSignIn = () => {
@@ -41,10 +41,6 @@ export const useSignIn = () => {
     }
 
     dispatch({ type: 'SIGN_IN', payload: json.data });
-
-    localStorage.setItem('user', JSON.stringify(json.data));
-
-    sessionStorage.setItem('session', JSON.stringify(json.data.token));
 
     setResource({
       state: 'success',

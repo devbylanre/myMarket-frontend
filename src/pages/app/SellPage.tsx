@@ -1,6 +1,6 @@
 import React from 'react';
 // import { SellerContainer } from '../features/seller/SellerContainer';
-import { SellContainer } from '../features/sell/SellContainer';
+import { SellContainer } from '../../features/sell/SellContainer';
 
 export const Sell = () => {
   return (

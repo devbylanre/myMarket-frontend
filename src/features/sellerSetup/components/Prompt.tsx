@@ -1,12 +1,12 @@
 import React from 'react';
-import { LuGoal } from 'react-icons/lu';
+import { LuComponent } from 'react-icons/lu';
 import { Text } from '../../../components/ui/Text';
 import { Button } from '../../../components/ui/Button';
 
-export const Message = ({ onSwitch }: { onSwitch: () => void }) => {
+export const Prompt = ({ onSwitch }: { onSwitch: () => void }) => {
   return (
-    <div className='flex flex-col items-center w-3/5 m-auto gap-y-5'>
-      <LuGoal className='w-12 h-12 stroke-primary/50' />
+    <div className='flex flex-col items-center gap-y-5'>
+      <LuComponent className='w-12 h-12 stroke-primary' />
 
       <div className='space-y-1 text-center'>
         <Text
@@ -17,10 +17,7 @@ export const Message = ({ onSwitch }: { onSwitch: () => void }) => {
           Setup a Seller account
         </Text>
 
-        <Text
-          as='p'
-          size='sm'
-        >
+        <Text as='p'>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae
           voluptates voluptatem, culpa reprehenderit quas excepturi et esse
           error minus eum. Praesentium accusantium
@@ -31,7 +28,7 @@ export const Message = ({ onSwitch }: { onSwitch: () => void }) => {
         type='button'
         onClick={onSwitch}
       >
-        Setup a Seller account in 5min
+        Setup a Seller account in 3min
       </Button>
     </div>
   );

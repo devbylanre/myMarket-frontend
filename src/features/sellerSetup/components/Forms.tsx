@@ -10,34 +10,31 @@ import {
 } from '../../../components/ui/Form';
 import { LuWand2 } from 'react-icons/lu';
 import { Textarea } from '../../../components/ui/Textarea';
+import { Checkbox } from '../../../components/ui/Checkbox';
 
-export const SetUp = ({ onSwitch }: { onSwitch: () => void }) => {
-  const handleSubmit = () => {
-    onSwitch();
-  };
-
+export const Forms = () => {
   return (
     <div className='space-y-5'>
       <div className='space-y-1'>
         <Text
           as='h5'
           weight={500}
-          size='3xl'
-          className='text-primary'
+          size='xl'
         >
-          Setup your store
+          Setup your Store
         </Text>
-        <Text as='p'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
-          eligendi nihil saepe
+        <Text
+          as='p'
+          size='sm'
+        >
+          Set up your account by filling the required information
         </Text>
       </div>
-
       <Fields />
 
       <Button
+        type='submit'
         className='w-full'
-        onClick={handleSubmit}
       >
         Setup my store <LuWand2 />
       </Button>
@@ -57,13 +54,6 @@ const Fields = () => {
 const DetailsFields = () => {
   return (
     <div className='space-y-3'>
-      <Text
-        as='h5'
-        weight={500}
-        size='lg'
-      >
-        Store details
-      </Text>
       <FormField name='name'>
         <FormLabel>Store name</FormLabel>
         <FormControl>
@@ -98,7 +88,7 @@ export const LocationFields = () => {
         size='lg'
         className='col-span-full'
       >
-        Store location
+        Where is your store located?
       </Text>
 
       <FormField name='country'>
@@ -144,6 +134,15 @@ export const LocationFields = () => {
           />
         </FormControl>
         <FormMessage />
+      </FormField>
+      <FormField
+        name='accept'
+        className='inline-flex items-center space-y-0 col-span-full gap-x-2'
+      >
+        <Checkbox />
+        <FormMessage>
+          Do you accept our Seller Terms of Service and Privacy policy
+        </FormMessage>
       </FormField>
     </div>
   );

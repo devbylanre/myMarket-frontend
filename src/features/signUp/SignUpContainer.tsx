@@ -34,7 +34,7 @@ const validationSchema = yup.object().shape({
     .string()
     .required('Provide your bio?')
     .min(100, 'Minimum of 100 characters')
-    .max(250, 'Maximum of 250 characters'),
+    .max(250, 'Maximum of 256 characters'),
   password: yup
     .string()
     .required('Provide your password')

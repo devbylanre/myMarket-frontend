@@ -1,5 +1,5 @@
 import React from 'react';
-import { ProductCard } from '../components/templates/ProductCard';
+import { ProductCard } from '../../components/templates/ProductCard';
 
 export const HomePage = () => {
   return (
