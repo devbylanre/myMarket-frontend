@@ -2,11 +2,11 @@ import React, { HTMLAttributes } from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
 import { cn } from '../../utils/util';
 
-const separatorVariants = cva('bg-zinc-200', {
+const separatorVariants = cva('', {
   variants: {
     orientation: {
-      horizontal: 'w-full h-[1px] my-3',
-      vertical: 'w-[1px] mx-3',
+      horizontal: 'w-full my-3 border-t border-t-zinc-200',
+      vertical: 'w-fit border-l border-l-zinc-200 mx-3',
     },
   },
   defaultVariants: {

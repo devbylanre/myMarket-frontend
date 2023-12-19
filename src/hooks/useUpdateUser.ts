@@ -37,8 +37,6 @@ export const useUpdateUser = () => {
       const json = await response.json();
 
       if (!response.ok) {
-        console.log(json);
-
         return setResource({
           state: 'error',
           error: json.error,

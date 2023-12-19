@@ -49,12 +49,12 @@ export const Alert = (props: AlertProps) => {
 };
 
 const alertIconVariant = cva(
-  'min-w-[24px] min-h-[24px] w-fit h-fit p-1 flex rounded-full',
+  'min-w-[25px] min-h-[25px] w-fit h-fit p-1 flex rounded-md',
   {
     variants: {
       variant: {
         success: 'bg-green-200 text-green-800 stroke-green-800',
-        danger: 'bg-red-200 text-red-800 stroke-red-800',
+        danger: 'bg-red-500 text-white stroke-red-800',
         warning: 'bg-amber-200 text-amber-800 stroke-amber-800',
         default: 'bg-zinc-200 text-zinc-800 stroke-zinc-800',
       },
@@ -95,11 +95,23 @@ export const AlertDismiss = ({ className, ...rest }: AlertDismissProps) => {
   );
 };
 
-interface AlertContentProps extends MotionProps {
+const alertContentVariants = cva('p-2.5 rounded-xl', {
+  variants: {
+    variant: {
+      default: 'bg-zinc-100',
+      warning: 'bg-amber-100',
+      danger: 'bg-red-100',
+      success: 'bg-green-100',
+    },
+  },
+});
+interface AlertContentProps
+  extends MotionProps,
+    VariantProps<typeof alertContentVariants> {
   className?: string;
 }
 export const AlertContent = ({ className, ...rest }: AlertContentProps) => {
-  const { isVisible, timeout, onDismiss } = useContext(AlertContext)!;
+  const { isVisible, timeout, variant, onDismiss } = useContext(AlertContext)!;
 
   useEffect(() => {
     if (timeout) {
@@ -117,10 +129,7 @@ export const AlertContent = ({ className, ...rest }: AlertContentProps) => {
           animate={{ opacity: 1, height: '100%' }}
           exit={{ opacity: 0, height: '0%' }}
           transition={{ duration: 0.4 }}
-          className={twMerge(
-            'ring-1 ring-zinc-950/10 p-2 rounded-2xl',
-            className
-          )}
+          className={cn(alertContentVariants({ variant, className }))}
           {...rest}
         />
       )}

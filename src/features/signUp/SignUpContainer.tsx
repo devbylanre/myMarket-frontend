@@ -3,7 +3,7 @@ import * as yup from 'yup';
 import { Component } from './components/Component';
 import { useSignUp } from './hooks/useSignUp';
 import { Success } from './components/Success';
-import { Error } from './components/Error';
+import { FormErrorAlert } from '../../components/templates/FormErrorAlert';
 
 interface InitialValuesTypes {
   firstName: string;
@@ -66,7 +66,7 @@ export const SignUpContainer = () => {
             <>
               <Component isLoading={resource.isLoading} />
               {resource.state === 'error' ? (
-                <Error error={resource.error} />
+                <FormErrorAlert error={resource.error} />
               ) : null}
             </>
           )}

@@ -3,7 +3,7 @@ interface HookSuccess<T> {
   data: T | null;
 }
 
-interface HookError {
+export interface HookError {
   error: {
     code: number;
     details: any;
@@ -25,9 +25,22 @@ export type ResourceSchema<T> = (
 
 export type HookCallback<T> = (data?: T) => void;
 
-export interface UserSchema {
+export interface UserStoreSchema {
+  store: {
+    name: string;
+    description: string;
+    followers: string[];
+    location: {
+      state: string;
+      city: string;
+      address: string;
+    };
+  };
+}
+export interface UserSchema extends UserStoreSchema {
   _id: string;
   isSeller: boolean;
+  email: string;
   firstName: string;
   lastName: string;
   bio: string;
@@ -47,16 +60,6 @@ export interface UserSchema {
   };
   savedProducts: string[];
   social: string[];
-  store: {
-    name: string;
-    description: string;
-    followers: string[];
-    location: {
-      state: string;
-      city: string;
-      address: string;
-    };
-  };
   token: {
     signature: string;
     exp: number;

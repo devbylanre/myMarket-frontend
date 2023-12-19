@@ -2,9 +2,9 @@ import { Form, Formik } from 'formik';
 import * as yup from 'yup';
 import { useSignIn } from './hooks/useSignIn';
 import { Component } from './components/Component';
-import { Error } from './components/Error';
 import { Success } from './components/Success';
 import { useNavigate } from 'react-router-dom';
+import { FormErrorAlert } from '../../components/templates/FormErrorAlert';
 
 interface InitialValueTypes {
   email: string;
@@ -50,7 +50,7 @@ export const SignInContainer = () => {
           <>
             <Component isLoading={resource.isLoading} />
             {resource.state === 'error' ? (
-              <Error error={resource.error} />
+              <FormErrorAlert error={resource.error} />
             ) : null}
           </>
         )}

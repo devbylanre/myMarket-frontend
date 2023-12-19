@@ -28,7 +28,7 @@ import { ThemeSpinner } from './pages/theme/spinner/ThemeSpinner';
 import { SettingsLayout } from './layouts/SettingsLayout';
 
 // settings layout pages
-import { PersonalPage } from './pages/settings/PersonalPage';
+import { PersonalPage } from './pages/app/settings/PersonalPage';
 
 // app layout
 import { AppLayout } from './layouts/AppLayout.tsx';
@@ -37,7 +37,7 @@ import { AppLayout } from './layouts/AppLayout.tsx';
 import { HomePage } from './pages/app/HomePage';
 import { Sell } from './pages/app/SellPage';
 import { SavedPage } from './pages/app/SavedPage';
-import { ProfilePage } from './pages/profile/ProfilePage';
+import { ProfilePage } from './pages/app/profile/ProfilePage';
 
 // pages
 import { SignUpPage } from './pages/SignUpPage';

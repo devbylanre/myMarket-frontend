@@ -6,7 +6,7 @@ import { Prompt } from './components/Prompt';
 import { Forms } from './components/Forms';
 import { Success } from './components/Success';
 import { useUpdateSeller } from './hooks/useUpdateSeller';
-import { Text } from '../../components/ui/Text';
+import { FormErrorAlert } from '../../components/templates/FormErrorAlert';
 
 interface InitialValues {
   name: string;
@@ -98,11 +98,11 @@ export const SellerSetUpContainer = () => {
             key={component}
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            className='flex flex-col w-full mx-auto sm:w-3/5'
+            className='flex flex-col w-full mx-auto sm:w-3/5 gap-y-5'
           >
             {renderComponent(component, formik)}
             {resource.state === 'error' && (
-              <Text as='h6'>{resource.error?.message}</Text>
+              <FormErrorAlert error={resource.error} />
             )}
           </motion.div>
         </Form>

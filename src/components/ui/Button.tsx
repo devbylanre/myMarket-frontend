@@ -3,7 +3,7 @@ import { cn } from '../../utils/util';
 import { cva, VariantProps } from 'class-variance-authority';
 
 const buttonVariants = cva(
-  'px-2.5 font-medium rounded-md inline-flex items-center justify-center gap-x-1.5 transition-all duration-200 ease-in-out ring-1 shadow-sm',
+  'px-2.5 font-medium rounded-md inline-flex items-center justify-center gap-x-1.5 transition-all duration-200 ease-in-out ring-1 shadow shadow-zinc-100',
   {
     variants: {
       variant: {
@@ -14,14 +14,14 @@ const buttonVariants = cva(
           'text-primary bg-primary/10 hover:bg-primary/20 ring-primary/20',
         dark: 'bg-zinc-800 text-white hover:bg-zinc-800/90 ring-zinc-950',
         outline:
-          'ring-zinc-950/10 bg-white text-zinc-600 hover:text-zinc-800 hover:bg-zinc-50',
+          'ring-zinc-950/10 bg-white text-zinc-800 hover:text-zinc-950 hover:bg-zinc-50',
         soft: 'bg-zinc-50 hover:bg-zinc-100 ring-zinc-950/10',
         success: 'bg-green-600 text-white hover:bg-green-500 ring-green-950/10',
         warning: 'bg-amber-500 text-white hover:bg-amber-400 ring-amber-950/10',
         danger: 'bg-red-600 text-white hover:bg-red-500 ring-red-950/10',
       },
       size: {
-        xs: 'h-7 text-xs',
+        xs: 'h-7 text-sm',
         sm: 'h-8 text-sm',
         md: 'h-9 text-sm',
         lg: 'h-10 text-base',

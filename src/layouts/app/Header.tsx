@@ -88,8 +88,9 @@ const items = [
 const HeaderDropdown = () => {
   return (
     <>
-      {items.map((item) => (
+      {items.map((item, i) => (
         <Link
+          key={i}
           to={`/app/settings/${item.url}`}
           className='inline-flex items-center w-full h-8 px-2 transition-all duration-200 ease-in-out rounded cursor-pointer gap-x-2 hover:bg-zinc-100'
         >

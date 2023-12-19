@@ -1,8 +1,13 @@
 import React, { useEffect } from 'react';
 import { useUserContext } from '../hooks/useUserContext';
 import { useNavigate } from 'react-router-dom';
+import { UserSchema } from '../utils/props';
 
-export const PrivateLayout = ({ children }: { children: React.ReactNode }) => {
+interface PrivateLayoutProps {
+  children: (user: UserSchema) => React.ReactNode;
+}
+
+export const PrivateLayout = ({ children }: PrivateLayoutProps) => {
   const navigate = useNavigate();
   const { user } = useUserContext()!;
   const session = JSON.parse(sessionStorage.getItem('session')!);
@@ -19,5 +24,5 @@ export const PrivateLayout = ({ children }: { children: React.ReactNode }) => {
     }
   }, [session, user, dateTime, navigate]);
 
-  return <>{user && session ? children : null}</>;
+  return <>{user && session ? children(user) : null}</>;
 };
