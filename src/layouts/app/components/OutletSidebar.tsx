@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
-import { Text } from '../../components/ui/Text';
-import { Button } from '../../components/ui/Button';
+import { Text } from '../../../components/ui/Text';
+import { Button } from '../../../components/ui/Button';
 import { LuPlus, LuStarHalf } from 'react-icons/lu';
-import { Avatar, AvatarFallback } from '../../components/ui/Avatar';
+import { Avatar, AvatarFallback } from '../../../components/ui/Avatar';
+import { Separator } from '../../../components/ui/Separator';
 
 const users = [
   { name: 'Jide gbolahan', reviews: 3.7, store: 'Amazing digital solution' },
@@ -14,11 +15,10 @@ const users = [
 
 export const OutletSidebar = () => {
   return (
-    <div className='fixed right-0 hidden w-1/4 min-h-screen p-5 space-y-8 bg-white border-l lg:block border-l-zinc-200'>
+    <>
       <div className='inline-flex items-center justify-between w-full'>
         <Text
           as='h5'
-          size='lg'
           weight={500}
         >
           Top Sellers
@@ -26,12 +26,14 @@ export const OutletSidebar = () => {
 
         <Button
           variant='outline'
-          size='sm'
+          size='xs'
         >
           <LuPlus className='w-4 h-4' />
-          Upload product
+          Add Product
         </Button>
       </div>
+
+      <Separator />
 
       <div className='flex flex-col gap-y-3'>
         {users.map((user, i) => (
@@ -72,6 +74,6 @@ export const OutletSidebar = () => {
           </Link>
         ))}
       </div>
-    </div>
+    </>
   );
 };

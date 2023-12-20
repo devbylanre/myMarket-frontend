@@ -11,7 +11,7 @@ import { FormErrorToast } from '../../../components/templates/FormErrorToast';
 interface Schema {
   country: 'nigeria';
   countryCode: 234;
-  mobile: number | null;
+  number: number;
 }
 
 export const MobileContainer = () => {
@@ -22,7 +22,7 @@ export const MobileContainer = () => {
   const initialValues: Schema = {
     country: 'nigeria',
     countryCode: 234,
-    mobile: null,
+    number: mobile.number,
   };
 
   const handleSubmit = (values: Schema) => {

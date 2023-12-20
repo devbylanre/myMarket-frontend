@@ -1,10 +1,10 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 // layout imports
-import { RootLayout } from './layouts/RootLayout';
+import { RootLayout } from './layouts/root/RootLayout';
 
 // theme layout
-import { ThemeLayout } from './layouts/ThemeLayout';
+import { ThemeLayout } from './layouts/theme/ThemeLayout';
 
 // theme layout pages
 import { ThemeTypography } from './pages/theme/typography/ThemeTypography';
@@ -25,13 +25,13 @@ import { ThemeAccordion } from './pages/theme/accordion/ThemeAccordion';
 import { ThemeSpinner } from './pages/theme/spinner/ThemeSpinner';
 
 // settings layout
-import { SettingsLayout } from './layouts/SettingsLayout';
+import { SettingsLayout } from './layouts/settings/SettingsLayout';
 
 // settings layout pages
 import { PersonalPage } from './pages/app/settings/PersonalPage';
 
 // app layout
-import { AppLayout } from './layouts/AppLayout.tsx';
+import { AppLayout } from './layouts/app/AppLayout.tsx';
 
 // app layout pages
 import { HomePage } from './pages/app/HomePage';

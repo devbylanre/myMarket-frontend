@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { Sidebar } from './theme/Sidebar';
-import { Header } from './theme/Header';
+import { Sidebar } from './Sidebar';
+import { Header } from './Header';
 
 export const ThemeLayout = () => {
   return (

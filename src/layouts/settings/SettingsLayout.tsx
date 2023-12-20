@@ -1,7 +1,7 @@
 import React from 'react';
-import { Sidebar } from './settings/Sidebar';
+import { Sidebar } from './Sidebar';
 import { Outlet } from 'react-router-dom';
-import { PrivateLayout } from './PrivateLayout';
+import { PrivateLayout } from '../private/PrivateLayout';
 
 export const SettingsLayout = () => {
   return (
@@ -10,7 +10,7 @@ export const SettingsLayout = () => {
         <>
           <div className='flex'>
             <Sidebar user={user} />
-            <div className='w-full ml-0 lg:ml-[20%] min-h-screen px-3 sm:px-8'>
+            <div className='w-full lg:w-[80%] ml-0 lg:ml-[20%] min-h-screen px-3 sm:px-8 pb-5'>
               <Outlet context={user} />
             </div>
           </div>
