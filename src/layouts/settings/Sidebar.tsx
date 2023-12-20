@@ -13,7 +13,7 @@ import { Text } from '../../components/ui/Text';
 import { NavLink } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { Avatar, AvatarFallback } from '../../components/ui/Avatar';
-import { UserSchema } from '../../utils/props';
+import { UserSchema } from '../../utils/types';
 
 interface Item {
   title: string;

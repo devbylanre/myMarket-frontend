@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ResourceSchema } from '../../../utils/props';
+import { ResourceSchema } from '../../../utils/types';
 
 export const useVerifyToken = () => {
   const [resource, setResource] = useState<ResourceSchema<null>>({

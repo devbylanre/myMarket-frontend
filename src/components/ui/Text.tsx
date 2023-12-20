@@ -28,6 +28,7 @@ const textVariants = cva('text-zinc-800', {
     },
     accent: {
       bold: 'text-zinc-950',
+      danger: 'text-red-700',
       medium: 'text-zinc-600',
       light: 'text-zinc-500',
       lighter: 'text-zinc-400',

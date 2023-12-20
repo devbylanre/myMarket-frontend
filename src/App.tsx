@@ -41,7 +41,7 @@ import { ProfilePage } from './pages/app/profile/ProfilePage';
 
 // pages
 import { SignUpPage } from './pages/SignUpPage';
-import { SignInPage } from './pages/SignInPage';
+import { AuthPage } from './pages/AuthPage';
 import { Session } from './pages/Session';
 import { VerifyTokenPage } from './pages/VerifyTokenPage';
 
@@ -67,10 +67,10 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <SignInPage />,
+            element: <AuthPage />,
           },
           {
-            path: 'verify/token/:token',
+            path: 'verify/:token',
             element: <VerifyTokenPage />,
           },
         ],

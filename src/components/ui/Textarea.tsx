@@ -6,15 +6,14 @@ import { FormContext } from './Form';
 
 interface TextareaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
-  name: string;
   disabled?: boolean;
 }
 
 export const Textarea = forwardRef<HTMLDivElement, TextareaProps>(
   (props: TextareaProps, ref) => {
-    const { disabled, name, className, ...rest } = props;
+    const { disabled, className, ...rest } = props;
 
-    const { handleTouched } = useContext(FormContext)!;
+    const { name, handleTouched } = useContext(FormContext)!;
 
     return (
       <Field

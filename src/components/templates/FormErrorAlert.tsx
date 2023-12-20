@@ -4,7 +4,7 @@ import React from 'react';
 import { LuAnnoyed } from 'react-icons/lu';
 
 // props types
-import { HookError } from '../../utils/props';
+import { HookError } from '../../utils/types';
 
 // components
 import { Badge } from '../ui/Badge';

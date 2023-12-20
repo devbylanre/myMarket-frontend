@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useUserContext } from '../hooks/useUserContext';
 import { useNavigate } from 'react-router-dom';
-import { UserSchema } from '../utils/props';
+import { UserSchema } from '../utils/types';
 
 interface PrivateLayoutProps {
   children: (user: UserSchema) => React.ReactNode;

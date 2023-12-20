@@ -9,8 +9,8 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const Input = (props: InputProps) => {
-  const { className, name, disabled = false, ...rest } = props;
-  const { handleTouched } = useContext(FormContext)!;
+  const { className, disabled = false, ...rest } = props;
+  const { name, handleTouched } = useContext(FormContext)!;
 
   return (
     <Field

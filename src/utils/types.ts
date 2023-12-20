@@ -44,10 +44,7 @@ export interface UserSchema extends UserStoreSchema {
   firstName: string;
   lastName: string;
   bio: string;
-  mobile: {
-    countryCode: number | null;
-    mobile: number;
-  };
+  mobile: { country: string; countryCode: number; number: number };
   billing: {
     country: string;
     state: string;

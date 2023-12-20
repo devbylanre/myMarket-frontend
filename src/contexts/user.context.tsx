@@ -1,5 +1,5 @@
 import React, { Dispatch, createContext, useEffect, useReducer } from 'react';
-import { UserSchema } from '../utils/props';
+import { UserSchema } from '../utils/types';
 
 const initialState = { user: null };
 

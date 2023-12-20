@@ -2,16 +2,16 @@ import React from 'react';
 import { Text } from '../components/ui/Text';
 import { Avatar, AvatarFallback } from '../components/ui/Avatar';
 import { LuStar } from 'react-icons/lu';
-import { SignInContainer } from '../features/signIn/SignInContainer';
+import { EmailAuthContainer } from '../features/auth/email/EmailAuthContainer';
 
-export const SignInPage = () => {
+export const AuthPage = () => {
   return (
     <div className='grid min-h-screen grid-cols-1 md:grid-cols-2'>
       <SideBar />
 
       <div className='flex flex-col items-center md:justify-center'>
         <div className='w-full px-3 my-8 md:w-4/5 lg:w-3/5'>
-          <SignInContainer />
+          <EmailAuthContainer />
         </div>
       </div>
     </div>

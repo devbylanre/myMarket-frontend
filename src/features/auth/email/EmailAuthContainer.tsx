@@ -4,7 +4,7 @@ import { useSignIn } from './hooks/useSignIn';
 import { Component } from './components/Component';
 import { Success } from './components/Success';
 import { useNavigate } from 'react-router-dom';
-import { FormErrorAlert } from '../../components/templates/FormErrorAlert';
+import { FormErrorAlert } from '../../../components/templates/FormErrorAlert';
 
 interface InitialValueTypes {
   email: string;
@@ -27,7 +27,7 @@ const validationSchema = yup.object().shape({
     .min(8, 'Password must be at least 8 characters in length'),
 });
 
-export const SignInContainer = () => {
+export const EmailAuthContainer = () => {
   const { resource, signIn } = useSignIn();
   const navigate = useNavigate();
 

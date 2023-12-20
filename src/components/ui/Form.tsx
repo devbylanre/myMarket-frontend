@@ -70,17 +70,21 @@ export const FormMessage = ({
   const { error, touched } = useContext(FormContext)!;
 
   return (
-    <Text
-      as='p'
-      size='sm'
-      className={twMerge(
-        'text-zinc-500',
-        error && touched && 'text-red-600',
-        className
-      )}
-    >
-      {error && touched ? error : children}
-    </Text>
+    <>
+      {(error && touched) || children ? (
+        <Text
+          as='p'
+          size='sm'
+          className={twMerge(
+            'text-zinc-500',
+            error && touched && 'text-red-600',
+            className
+          )}
+        >
+          {error || children}
+        </Text>
+      ) : null}
+    </>
   );
 };
 

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { HookCallback, ResourceSchema } from '../utils/props';
+import { HookCallback, ResourceSchema } from '../utils/types';
 import { useUserContext } from './useUserContext';
 
 export const useUpdateUser = () => {

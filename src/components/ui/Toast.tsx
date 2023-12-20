@@ -1,7 +1,6 @@
 import React, {
   useEffect,
   createContext,
-  useState,
   useContext,
   HTMLAttributes,
 } from 'react';
@@ -14,14 +13,14 @@ type VerticalPosition = 'top' | 'bottom';
 type HorizontalPosition = 'left' | 'center' | 'right';
 
 const toastVariants = cva(
-  'absolute p-2 m-5 bg-white ring-1 rounded-md shadow-lg shadow-zinc-950/5 w-full sm:w-96',
+  'p-2 m-5 absolute min-w-[320px] rounded-xl shadow-lg shadow-zinc-100',
   {
     variants: {
       variant: {
-        danger: 'bg-red-100 ring-red-200',
-        success: 'ring-green-600',
-        dark: 'bg-zinc-800 ring-zinc-500',
-        light: 'bg-white ring-zinc-950/10',
+        danger: 'bg-red-100',
+        success: 'bg-green-100',
+        dark: 'bg-zinc-700',
+        light: 'bg-white',
         warning: 'bg-amber-100 ring-amber-200',
       },
       position: {
@@ -49,7 +48,8 @@ interface ToastContextProps {
 const ToastContext = createContext<ToastContextProps | undefined>(undefined);
 
 interface ToastProps extends MotionProps, VariantProps<typeof toastVariants> {
-  autoHide: boolean;
+  isVisible: boolean;
+  onDismiss: () => void;
   className?: string;
   timeout?: number;
   position?: `${VerticalPosition}-${HorizontalPosition}`;
@@ -60,14 +60,12 @@ export const Toast = (props: ToastProps) => {
   const {
     className,
     timeout,
-    position = 'bottom-right',
+    position = 'top-right',
     variant,
-    autoHide = false,
+    isVisible,
+    onDismiss,
     ...rest
   } = props;
-  const [isVisible, setIsVisible] = useState<boolean>(!autoHide);
-
-  const onDismiss = () => setIsVisible(false);
 
   useEffect(() => {
     if (isVisible) {
@@ -77,7 +75,7 @@ export const Toast = (props: ToastProps) => {
   }, [isVisible, timeout]);
 
   return (
-    <ToastContext.Provider value={{ isVisible, onDismiss: onDismiss }}>
+    <ToastContext.Provider value={{ isVisible, onDismiss }}>
       <AnimatePresence>
         {isVisible && (
           <motion.div
@@ -97,7 +95,7 @@ interface ToastContentProps extends HTMLAttributes<HTMLDivElement> {}
 export const ToastContent = ({ className, ...rest }: ToastContentProps) => {
   return (
     <div
-      className={twMerge('w-full', className)}
+      className={twMerge('w-full h-full', className)}
       {...rest}
     />
   );

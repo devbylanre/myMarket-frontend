@@ -1,6 +1,6 @@
 import React from 'react';
-import { Text } from '../../../components/ui/Text';
-import { Spinner } from '../../../components/ui/Spinner';
+import { Text } from '../../../../components/ui/Text';
+import { Spinner } from '../../../../components/ui/Spinner';
 
 export const Success = () => {
   return (

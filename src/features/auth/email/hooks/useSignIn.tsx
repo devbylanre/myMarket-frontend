@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { ResourceSchema, UserSchema } from '../../../utils/props';
-import { useUserContext } from '../../../hooks/useUserContext';
+import { ResourceSchema, UserSchema } from '../../../../utils/types';
+import { useUserContext } from '../../../../hooks/useUserContext';
 
 export const useSignIn = () => {
   const { dispatch } = useUserContext()!;

@@ -41,24 +41,23 @@ const Example = () => {
           >
             Show toast
           </Button>
-          {showToast && (
-            <Toast
-              variant='light'
-              autoHide={false}
-            >
-              <ToastContent className='flex items-center gap-x-2'>
-                <LuRedo className='w-5 h-5 p-1 bg-green-200 rounded-full stroke-green-800' />
-                <Text
-                  as='h6'
-                  size='sm'
-                  weight={500}
-                  className='flex-1 leading-tight text-green-800'
-                >
-                  First name updated successfully check profile
-                </Text>
-              </ToastContent>
-            </Toast>
-          )}
+          <Toast
+            variant='light'
+            isVisible={showToast}
+            onDismiss={() => setShowToast(true)}
+          >
+            <ToastContent className='flex items-center gap-x-2'>
+              <LuRedo className='w-5 h-5 p-1 bg-green-200 rounded-full stroke-green-800' />
+              <Text
+                as='h6'
+                size='sm'
+                weight={500}
+                className='flex-1 leading-tight text-green-800'
+              >
+                First name updated successfully check profile
+              </Text>
+            </ToastContent>
+          </Toast>
         </UtilCardPreview>
         <UtilCardCode />
       </UtilCard>
