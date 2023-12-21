@@ -28,7 +28,7 @@ export const BillingContainer = () => {
   };
 
   const handleSubmit = (values: FormSchema) => {
-    updateBilling({ billing: { ...values } });
+    updateBilling({ billing: { ...values } }, () => setAction('view'));
   };
 
   return (

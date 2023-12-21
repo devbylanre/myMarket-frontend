@@ -44,8 +44,11 @@ export const Sidebar = () => {
         </Text>
       </div>
       <div className='flex gap-2 lg:flex-col'>
-        {items.map((item) => (
-          <SidebarItem item={item} />
+        {items.map((item, i) => (
+          <SidebarItem
+            key={i}
+            item={item}
+          />
         ))}
       </div>
     </div>

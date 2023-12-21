@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 export const Session = () => {
   return (
     <Alert
-      variant='warning'
+      variant='default'
       className='w-full px-3 mx-auto mt-8 sm:w-4/5 md:w-3/5 lg:w-2/5'
     >
       <AlertContent className='flex flex-col items-center border-0 shadow-none gap-y-5 ring-0'>
@@ -27,10 +27,8 @@ export const Session = () => {
             as='p'
             size='sm'
           >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident,
-            quis ratione? Ex aut placeat ipsa tempora optio, et corrupti
-            facilis! Assumenda rem eius cumque impedit voluptatem sunt iste,
-            fugiat quisquam!
+            Your session has expired. Sign in to access your dashboard,
+            products, data, and many more
           </Text>
         </div>
         <Link to='/auth/'>

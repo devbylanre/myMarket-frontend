@@ -1,10 +1,10 @@
 import React from 'react';
-import { SettingsHeader } from '../../../components/templates/SettingsHeader';
-import { Logo } from './personal/Logo';
-import { Name } from './personal/Name';
-import { Bio } from './personal/Bio';
-import { Mobile } from './personal/Mobile';
-import { Billing } from './personal/Billing';
+import { SettingsHeader } from '../../../../components/templates/SettingsHeader';
+import { Logo } from './Logo';
+import { Name } from './Name';
+import { Bio } from './Bio';
+import { Mobile } from './Mobile';
+import { Billing } from './Billing';
 
 export const PersonalPage = () => {
   return (

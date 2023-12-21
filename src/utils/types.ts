@@ -56,7 +56,7 @@ export interface UserSchema extends UserStoreSchema {
     expiresAt: number;
   };
   savedProducts: string[];
-  social: string[];
+  accounts: { platform: string; url: string }[];
   token: {
     signature: string;
     exp: number;

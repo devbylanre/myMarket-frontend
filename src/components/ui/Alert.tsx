@@ -56,7 +56,7 @@ const alertIconVariant = cva(
         success: 'bg-green-200 text-green-800 stroke-green-800',
         danger: 'bg-red-500 text-white stroke-red-800',
         warning: 'bg-amber-200 text-amber-800 stroke-amber-800',
-        default: 'bg-zinc-200 text-zinc-800 stroke-zinc-800',
+        default: 'bg-white text-zinc-800 stroke-zinc-800',
       },
     },
     defaultVariants: {
@@ -98,7 +98,7 @@ export const AlertDismiss = ({ className, ...rest }: AlertDismissProps) => {
 const alertContentVariants = cva('p-2.5 rounded-xl', {
   variants: {
     variant: {
-      default: 'bg-zinc-100',
+      default: 'bg-white',
       warning: 'bg-amber-100',
       danger: 'bg-red-100',
       success: 'bg-green-100',

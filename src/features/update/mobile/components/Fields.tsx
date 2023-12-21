@@ -1,5 +1,9 @@
 import React from 'react';
-import { FormControl, FormField } from '../../../../components/ui/Form';
+import {
+  FormControl,
+  FormField,
+  FormMessage,
+} from '../../../../components/ui/Form';
 import { Input } from '../../../../components/ui/Input';
 import { Text } from '../../../../components/ui/Text';
 
@@ -20,6 +24,7 @@ export const Fields = () => {
         </Text>
         <Input type='number' />
       </FormControl>
+      <FormMessage />
     </FormField>
   );
 };

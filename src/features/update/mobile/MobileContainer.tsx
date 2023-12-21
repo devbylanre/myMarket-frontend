@@ -1,5 +1,6 @@
 import { Form, Formik } from 'formik';
 import React, { useState } from 'react';
+import * as yup from 'yup';
 import { Text } from '../../../components/ui/Text';
 import { useOutletContext } from 'react-router-dom';
 import { UserSchema } from '../../../utils/types';
@@ -9,10 +10,14 @@ import { ActionButtons } from '../util/ActionButtons';
 import { FormErrorToast } from '../../../components/templates/FormErrorToast';
 
 interface Schema {
-  country: 'nigeria';
   countryCode: 234;
   number: number;
 }
+
+const validationSchema = yup.object().shape({
+  countryCode: yup.number().required('Provide your country code'),
+  number: yup.number().required('Provide your mobile number'),
+});
 
 export const MobileContainer = () => {
   const { resource, updateMobile } = useUpdateMobile();
@@ -20,19 +25,19 @@ export const MobileContainer = () => {
   const [action, setAction] = useState<'edit' | 'view'>('view');
 
   const initialValues: Schema = {
-    country: 'nigeria',
     countryCode: 234,
     number: mobile.number,
   };
 
   const handleSubmit = (values: Schema) => {
-    updateMobile({ mobile: { ...values } });
+    updateMobile({ mobile: { ...values } }, () => setAction('view'));
   };
 
   return (
     <Formik
       initialValues={initialValues}
       onSubmit={handleSubmit}
+      validationSchema={validationSchema}
     >
       <Form className='space-y-1'>
         {action === 'view' ? (

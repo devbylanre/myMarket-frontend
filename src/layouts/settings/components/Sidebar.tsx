@@ -2,18 +2,16 @@ import React from 'react';
 import {
   LuAsterisk,
   LuCommand,
-  LuCompass,
-  LuFileSignature,
   LuHelpingHand,
-  LuInspect,
+  LuLink2,
   LuShieldClose,
   LuShoppingCart,
+  LuTextQuote,
 } from 'react-icons/lu';
-import { Text } from '../../components/ui/Text';
-import { NavLink } from 'react-router-dom';
-import { twMerge } from 'tailwind-merge';
-import { Avatar, AvatarFallback } from '../../components/ui/Avatar';
-import { UserSchema } from '../../utils/types';
+import { Text } from '../../../components/ui/Text';
+import { Avatar, AvatarFallback } from '../../../components/ui/Avatar';
+import { UserSchema } from '../../../utils/types';
+import { SidebarItem } from '../components/SidebarItem';
 
 interface Item {
   title: string;
@@ -30,39 +28,34 @@ const items: Item[] = [
     url: '',
   },
   {
-    title: 'Billing',
-    icon: <LuCompass className={iconClassName} />,
-    url: 'mail',
-  },
-  {
-    title: 'Contact & socials',
-    icon: <LuInspect className={iconClassName} />,
-    url: 'contact',
+    title: 'Social link',
+    icon: <LuLink2 className={iconClassName} />,
+    url: 'social',
   },
   {
     title: 'Store',
     icon: <LuShoppingCart className={iconClassName} />,
-    url: 'billing',
+    url: 'store',
   },
   {
     title: 'Privacy',
     icon: <LuShieldClose className={iconClassName} />,
-    url: 'billing',
+    url: 'privacy',
   },
   {
-    title: 'Password & security',
+    title: 'Security',
     icon: <LuAsterisk className={iconClassName} />,
-    url: 'billing',
+    url: 'security',
   },
   {
-    title: 'Terms of service',
-    icon: <LuFileSignature className={iconClassName} />,
-    url: 'billing',
+    title: 'Terms & Privacy policy',
+    icon: <LuTextQuote className={iconClassName} />,
+    url: 'terms',
   },
   {
     title: 'Help & support',
     icon: <LuHelpingHand className={iconClassName} />,
-    url: 'billing',
+    url: 'help',
   },
 ];
 
@@ -91,28 +84,11 @@ export const Sidebar = ({ user }: { user: UserSchema }) => {
       </div>
 
       <div className='space-y-1.5'>
-        {items.map((item) => (
-          <NavLink
-            to={`/app/settings/${item.url}`}
-            key={item.title}
-            end
-            className={({ isActive }) =>
-              twMerge(
-                'inline-flex items-center h-9 rounded-md w-full gap-x-4 px-2 text-zinc-600',
-                isActive ? 'bg-primary/5 text-primary' : 'hover:bg-zinc-50 '
-              )
-            }
-          >
-            {item.icon}
-            <Text
-              as='p'
-              size='sm'
-              weight={500}
-              className='text-inherit'
-            >
-              {item.title}
-            </Text>
-          </NavLink>
+        {items.map((item, i) => (
+          <SidebarItem
+            key={i}
+            item={item}
+          />
         ))}
       </div>
     </div>

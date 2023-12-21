@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // components
@@ -11,6 +11,7 @@ import {
   FormControl,
   FormMessage,
 } from '../../../components/ui/Form';
+import { LuEye, LuEyeOff } from 'react-icons/lu';
 
 export const Fields = () => {
   return (
@@ -58,16 +59,7 @@ export const Fields = () => {
         </FormControl>
         <FormMessage />
       </FormField>
-      <FormField name='password'>
-        <FormLabel>Password</FormLabel>
-        <FormControl>
-          <Input
-            name='password'
-            placeholder='Use a strong password'
-          />
-        </FormControl>
-        <FormMessage />
-      </FormField>
+      <Password />
       <FormField
         name='accept'
         className='flex items-center space-y-0 col-span-full gap-x-2'
@@ -91,5 +83,36 @@ export const Fields = () => {
         </FormMessage>
       </FormField>
     </div>
+  );
+};
+
+const Password = () => {
+  const [type, setType] = useState<'text' | 'password'>('password');
+
+  const iconClassName: string =
+    'w-4 h-4 text-zinc-500 hover:text-zinc-950 ml-2 self-center';
+
+  return (
+    <FormField name='password'>
+      <FormLabel>Password</FormLabel>
+      <FormControl>
+        {type === 'text' ? (
+          <LuEyeOff
+            className={iconClassName}
+            onClick={() => setType('password')}
+          />
+        ) : (
+          <LuEye
+            className={iconClassName}
+            onClick={() => setType('text')}
+          />
+        )}
+        <Input
+          type={type}
+          placeholder='Use a strong password'
+        />
+      </FormControl>
+      <FormMessage />
+    </FormField>
   );
 };

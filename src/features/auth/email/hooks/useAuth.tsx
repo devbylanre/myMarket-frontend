@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ResourceSchema, UserSchema } from '../../../../utils/types';
 import { useUserContext } from '../../../../hooks/useUserContext';
 
-export const useSignIn = () => {
+export const useAuth = () => {
   const { dispatch } = useUserContext()!;
   const [resource, setResource] = useState<ResourceSchema<UserSchema>>({
     state: null,

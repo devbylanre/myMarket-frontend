@@ -28,7 +28,7 @@ export const BioContainer = () => {
   const [action, setAction] = useState<'view' | 'edit'>('view');
 
   const handleSubmit = (values: Schema) => {
-    updateBio(values);
+    updateBio(values, () => setAction('view'));
   };
 
   return (

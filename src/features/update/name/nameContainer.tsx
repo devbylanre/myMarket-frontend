@@ -30,7 +30,7 @@ export const NameContainer = () => {
   };
 
   const handleSubmit = async (values: Schema) => {
-    await updateNames(values);
+    await updateNames(values, () => setAction('view'));
   };
 
   return (

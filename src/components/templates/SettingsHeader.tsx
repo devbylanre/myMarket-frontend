@@ -16,7 +16,7 @@ export const SettingsHeader = ({
   return (
     <div
       className={twMerge(
-        'w-full bg-white/80 space-y-0 backdrop-blur-sm py-0 sticky top-0 pt-5 pb-2'
+        'w-full bg-white/80 space-y-1 backdrop-blur-sm sticky top-0 pt-4'
       )}
       {...rest}
     >

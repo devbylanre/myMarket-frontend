@@ -28,7 +28,9 @@ import { ThemeSpinner } from './pages/theme/spinner/ThemeSpinner';
 import { SettingsLayout } from './layouts/settings/SettingsLayout';
 
 // settings layout pages
-import { PersonalPage } from './pages/app/settings/PersonalPage';
+import { PersonalPage } from './pages/app/settings/personal/PersonalPage';
+import { SecurityPage } from './pages/app/settings/security/SecurityPage';
+import { SocialPage } from './pages/app/settings/social/SocialPage';
 
 // app layout
 import { AppLayout } from './layouts/app/AppLayout.tsx';
@@ -113,6 +115,14 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <PersonalPage />,
+          },
+          {
+            path: 'security',
+            element: <SecurityPage />,
+          },
+          {
+            path: 'social',
+            element: <SocialPage />,
           },
         ],
       },

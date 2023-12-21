@@ -1,6 +1,6 @@
 import { Form, Formik } from 'formik';
 import * as yup from 'yup';
-import { useSignIn } from './hooks/useSignIn';
+import { useAuth } from './hooks/useAuth';
 import { Component } from './components/Component';
 import { Success } from './components/Success';
 import { useNavigate } from 'react-router-dom';
@@ -28,7 +28,7 @@ const validationSchema = yup.object().shape({
 });
 
 export const EmailAuthContainer = () => {
-  const { resource, signIn } = useSignIn();
+  const { resource, signIn } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (values: InitialValueTypes) => {

@@ -108,7 +108,7 @@ export const SelectValue = (props: SelectValueProps) => {
       size='sm'
       {...rest}
     >
-      {value > 0 || value.length > 0
+      {value
         ? typeof children === 'function'
           ? children(value)
           : value
@@ -144,7 +144,7 @@ export const SelectContent = (props: SelectContentProps) => {
 
 interface SelectItemProps {
   value: string | number;
-  className?: (isActive: boolean) => string | string;
+  className?: string | ((isActive: boolean) => string);
   children: React.ReactNode | ((isActive: boolean) => React.ReactNode);
 }
 
