@@ -7,14 +7,12 @@ export const SettingsLayout = () => {
   return (
     <PrivateLayout>
       {(user) => (
-        <>
-          <div className='flex'>
-            <Sidebar user={user} />
-            <div className='w-full lg:w-[80%] ml-0 lg:ml-[20%] min-h-screen px-3 sm:px-8 pb-5'>
-              <Outlet context={user} />
-            </div>
+        <div className='flex'>
+          <Sidebar user={user} />
+          <div className='w-full px-3 sm:px-8 lg:w-[84.44%] min-h-screen lg:ml-[16.66%] pb-5 mx-auto'>
+            <Outlet context={user} />
           </div>
-        </>
+        </div>
       )}
     </PrivateLayout>
   );

@@ -38,9 +38,10 @@ import { AppLayout } from './layouts/app/AppLayout.tsx';
 
 // app layout pages
 import { HomePage } from './pages/app/HomePage';
-import { Sell } from './pages/app/sell/SellPage';
 import { SavedPage } from './pages/app/SavedPage';
 import { ProfilePage } from './pages/app/profile/ProfilePage';
+import { SetupPage } from './pages/app/sell/SetupPage';
+import { CreatePage } from './pages/app/sell/CreatePage';
 
 // pages
 import { SignUpPage } from './pages/SignUpPage';
@@ -50,7 +51,6 @@ import { VerifyTokenPage } from './pages/VerifyTokenPage';
 
 // contexts
 import { UserContextProvider } from './contexts/user.context';
-import { SellerSetupPage } from './pages/app/sell/SellerSetupPage';
 
 const router = createBrowserRouter([
   {
@@ -75,8 +75,8 @@ const router = createBrowserRouter([
           {
             path: 'sell',
             children: [
-              { index: true, element: <Sell /> },
-              { path: 'setup', element: <SellerSetupPage /> },
+              { index: true, element: <CreatePage /> },
+              { path: 'setup', element: <SetupPage /> },
             ],
           },
           { path: 'profile', element: <ProfilePage /> },

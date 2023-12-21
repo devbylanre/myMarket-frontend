@@ -11,8 +11,10 @@ export const SidebarItem = ({ item }: { item: Record<string, any> }) => {
       end
       className={({ isActive }) =>
         twMerge(
-          'inline-flex items-center h-9 rounded-md w-full gap-x-4 px-2 text-zinc-600',
-          isActive ? 'bg-primary/10 text-primary' : 'hover:bg-zinc-50 '
+          'inline-flex items-center h-8 rounded-md w-full gap-x-3 px-2 text-zinc-600',
+          isActive
+            ? 'bg-white text-primary ring-1 ring-zinc-950/5'
+            : 'hover:bg-zinc-50 '
         )
       }
     >

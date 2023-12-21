@@ -1,6 +1,10 @@
 import React from 'react';
 import { FieldArray } from 'formik';
-import { FormField, FormControl } from '../../../../components/ui/Form';
+import {
+  FormField,
+  FormControl,
+  FormMessage,
+} from '../../../../components/ui/Form';
 import { Input } from '../../../../components/ui/Input';
 import { LuLink2, LuX, LuPlus } from 'react-icons/lu';
 import { twMerge } from 'tailwind-merge';
@@ -12,7 +16,7 @@ import {
   SelectValue,
 } from '../../../../components/ui/Select';
 
-export const FormFields = () => {
+export const SocialForm = () => {
   const iconClassName =
     'bg-zinc-100 rounded-lg w-5 h-5 p-0.5 text-zinc-500 cursor-pointer';
 
@@ -42,6 +46,7 @@ export const FormFields = () => {
                       className='h-8'
                     />
                   </FormControl>
+                  <FormMessage />
                 </FormField>
                 <div className='inline-flex items-center gap-x-2'>
                   {accounts.length > 1 ? (
@@ -106,6 +111,7 @@ const SelectField = ({ index }: { index: number }) => {
           ))}
         </SelectContent>
       </Select>
+      <FormMessage />
     </FormField>
   );
 };

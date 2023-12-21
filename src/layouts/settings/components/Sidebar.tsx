@@ -1,12 +1,10 @@
 import React from 'react';
 import {
   LuAsterisk,
-  LuCommand,
-  LuHelpingHand,
-  LuLink2,
-  LuShieldClose,
+  LuGalleryVerticalEnd,
+  LuListMinus,
+  LuSettings2,
   LuShoppingCart,
-  LuTextQuote,
 } from 'react-icons/lu';
 import { Text } from '../../../components/ui/Text';
 import { Avatar, AvatarFallback } from '../../../components/ui/Avatar';
@@ -19,17 +17,17 @@ interface Item {
   url: string;
 }
 
-const iconClassName: string = 'w-5 h-5';
+const iconClassName: string = 'w-4 h-4';
 
 const items: Item[] = [
   {
     title: 'Personal',
-    icon: <LuCommand className={iconClassName} />,
+    icon: <LuListMinus className={iconClassName} />,
     url: '',
   },
   {
-    title: 'Social link',
-    icon: <LuLink2 className={iconClassName} />,
+    title: 'Accounts',
+    icon: <LuGalleryVerticalEnd className={iconClassName} />,
     url: 'social',
   },
   {
@@ -38,51 +36,54 @@ const items: Item[] = [
     url: 'store',
   },
   {
-    title: 'Privacy',
-    icon: <LuShieldClose className={iconClassName} />,
-    url: 'privacy',
+    title: 'Authentication',
+    icon: <LuSettings2 className={iconClassName} />,
+    url: 'auth',
   },
   {
     title: 'Security',
     icon: <LuAsterisk className={iconClassName} />,
     url: 'security',
   },
-  {
-    title: 'Terms & Privacy policy',
-    icon: <LuTextQuote className={iconClassName} />,
-    url: 'terms',
-  },
-  {
-    title: 'Help & support',
-    icon: <LuHelpingHand className={iconClassName} />,
-    url: 'help',
-  },
 ];
+
+interface UserProps {
+  firstName: string;
+  lastName: string;
+  email: string;
+}
+
+const User = ({ firstName, lastName, email }: UserProps) => {
+  return (
+    <div className='inline-flex gap-x-3'>
+      <Avatar
+        src='/assets/images/memoji-05.png'
+        alt='user'
+        className='w-9 h-9'
+      >
+        <AvatarFallback>JD</AvatarFallback>
+      </Avatar>
+
+      <Text
+        as='p'
+        size='sm'
+        className='flex flex-col'
+      >
+        <span className='capitalize'>{`${firstName} ${lastName}`}</span>
+        <span className='text-xs text-zinc-500'>{email}</span>
+      </Text>
+    </div>
+  );
+};
 
 export const Sidebar = ({ user }: { user: UserSchema }) => {
   return (
-    <div className='fixed hidden w-1/5 h-full p-3 space-y-5 lg:block lg:border-r lg:border-r-zinc-200'>
-      <div className='inline-flex gap-x-3'>
-        <Avatar
-          src='/assets/images/memoji-05.png'
-          alt='user'
-          className='w-9 h-9'
-        >
-          <AvatarFallback>JD</AvatarFallback>
-        </Avatar>
-
-        <Text
-          as='p'
-          size='sm'
-          className='flex flex-col'
-        >
-          <span className='capitalize'>
-            {`${user.firstName} ${user.lastName}`}
-          </span>
-          <span className='text-xs text-zinc-500'>{user.email}</span>
-        </Text>
-      </div>
-
+    <div className='fixed hidden w-1/6 min-h-screen p-3 space-y-5 lg:block bg-zinc-100'>
+      <User
+        email={user.email}
+        firstName={user.firstName}
+        lastName={user.lastName}
+      />
       <div className='space-y-1.5'>
         {items.map((item, i) => (
           <SidebarItem

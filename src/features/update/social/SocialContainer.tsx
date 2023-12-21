@@ -1,6 +1,7 @@
 import { Formik, Form } from 'formik';
 import React, { useState } from 'react';
-import { FormFields } from './components/FormFields';
+import * as yup from 'yup';
+import { SocialForm } from './components/SocialForm';
 import { ActionButtons } from '../util/ActionButtons';
 import { useOutletContext } from 'react-router-dom';
 import { UserSchema } from '../../../utils/types';
@@ -18,11 +19,20 @@ export const SocialContainer = () => {
   const [action, setAction] = useState<'view' | 'edit'>('view');
 
   const initialValues: FormSchema = {
-    accounts: accounts,
+    accounts: (accounts.length > 0 && accounts) || [{ platform: '', url: '' }],
   };
 
+  const validationSchema = yup.object().shape({
+    accounts: yup.array().of(
+      yup.object().shape({
+        platform: yup.string().required('Select a platform'),
+        url: yup.string().required('Provide a URL'),
+      })
+    ),
+  });
+
   const handleSubmit = async (values: FormSchema) => {
-    await updateSocial({ accounts: [...accounts, values.accounts] }, () =>
+    await updateSocial({ accounts: [...values.accounts] }, () =>
       setAction('view')
     );
   };
@@ -31,9 +41,10 @@ export const SocialContainer = () => {
     <Formik
       initialValues={initialValues}
       onSubmit={handleSubmit}
+      validationSchema={validationSchema}
     >
       <Form className='space-y-1'>
-        {action === 'edit' ? <FormFields /> : <Data accounts={accounts} />}
+        {action === 'edit' ? <SocialForm /> : <Data accounts={accounts} />}
 
         <ActionButtons
           action={action}

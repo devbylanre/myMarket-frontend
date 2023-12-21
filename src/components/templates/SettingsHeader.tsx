@@ -1,6 +1,8 @@
 import React, { HTMLAttributes } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { Text } from '../ui/Text';
+import { LuCornerUpLeft } from 'react-icons/lu';
+import { Button } from '../ui/Button';
 
 interface SettingsHeaderProps extends HTMLAttributes<HTMLDivElement> {
   title: string;
@@ -16,25 +18,34 @@ export const SettingsHeader = ({
   return (
     <div
       className={twMerge(
-        'w-full bg-white/80 space-y-1 backdrop-blur-sm sticky top-0 pt-4 text-center'
+        'w-full bg-white/80 px-1 backdrop-blur-sm sticky top-0 pt-4 flex gap-x-8 justify-between items-center'
       )}
       {...rest}
     >
-      <Text
-        as='h5'
-        size='xl'
-        weight={500}
-      >
-        {title}
-      </Text>
+      <div className=''>
+        <Text
+          as='h5'
+          size='lg'
+          weight={600}
+        >
+          {title}
+        </Text>
 
-      <Text
-        as='p'
+        <Text
+          as='p'
+          size='sm'
+          accent='light'
+        >
+          {highlight}
+        </Text>
+      </div>
+      <Button
         size='sm'
-        accent='light'
+        variant='outline'
       >
-        {highlight}
-      </Text>
+        <LuCornerUpLeft className='w-4 h-4' />
+        Go to Dashboard
+      </Button>
     </div>
   );
 };

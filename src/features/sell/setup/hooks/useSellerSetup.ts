@@ -1,7 +1,7 @@
 import { useUpdateUser } from '../../../../hooks/useUpdateUser';
 
-export const useUpdateSeller = () => {
+export const useSellerSetup = () => {
   const { resource, updateUser } = useUpdateUser();
 
-  return { resource, updateSeller: updateUser };
+  return { resource, sellerSetup: updateUser };
 };

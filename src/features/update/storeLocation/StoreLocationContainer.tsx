@@ -40,7 +40,7 @@ export const StoreLocationContainer = () => {
 
   const handleSubmit = async (values: FormSchema) => {
     await updateStoreLocation(
-      { store: { location: { ...location, ...values } } },
+      { store: { ...store, location: { ...location, ...values } } },
       () => setAction('view')
     );
   };

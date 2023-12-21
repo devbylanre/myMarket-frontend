@@ -14,7 +14,7 @@ const buttonVariants = cva(
           'text-primary bg-primary/10 hover:bg-primary/20 ring-primary/20',
         dark: 'bg-zinc-800 text-white hover:bg-zinc-800/90 ring-zinc-950',
         outline:
-          'ring-zinc-950/10 bg-white text-zinc-800 hover:text-zinc-950 hover:bg-zinc-50',
+          'ring-zinc-950/10 bg-white text-zinc-600 hover:text-zinc-950 hover:bg-zinc-50',
         soft: 'bg-zinc-50 hover:bg-zinc-100 ring-zinc-950/10',
         success: 'bg-green-600 text-white hover:bg-green-500 ring-green-950/10',
         warning: 'bg-amber-500 text-white hover:bg-amber-400 ring-amber-950/10',

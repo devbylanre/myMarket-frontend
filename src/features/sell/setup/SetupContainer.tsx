@@ -1,12 +1,8 @@
 import { Formik, Form } from 'formik';
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import * as yup from 'yup';
-import { Prompt } from './components/Prompt';
-import { Forms } from './components/Forms';
-import { Success } from './components/Success';
-import { useUpdateSeller } from './hooks/useUpdateSeller';
+import { SetupForm } from './components/SetupForm';
 import { FormErrorAlert } from '../../../components/templates/FormErrorAlert';
+import { useSellerSetup } from './hooks/useSellerSetup';
 
 interface InitialValues {
   name: string;
@@ -45,45 +41,23 @@ const validationSchema = yup.object().shape({
     .oneOf([true], 'To sign up, you must agree to our Terms of service.'),
 });
 
-type Component = 'prompt' | 'set-up' | 'success';
-
 export const SetupContainer = () => {
-  const [component, setComponent] = useState<Component>('prompt');
-  const { resource, updateSeller } = useUpdateSeller();
-
-  const renderComponent = (
-    component: Component,
-    formik: Record<string, any>
-  ) => {
-    switch (component) {
-      case 'prompt':
-        return <Prompt onSwitch={() => setComponent('set-up')} />;
-      case 'set-up':
-        return <Forms isLoading={resource.isLoading} />;
-      case 'success':
-        return <Success />;
-      default:
-        return null;
-    }
-  };
+  const { resource, sellerSetup } = useSellerSetup();
 
   const handleSubmit = async (values: InitialValues) => {
-    await updateSeller(
-      {
-        isSeller: true,
-        store: {
-          name: values.name,
-          description: values.description,
-          location: {
-            city: values.city,
-            state: values.state,
-            country: values.country,
-            address: values.address,
-          },
+    await sellerSetup({
+      isSeller: true,
+      store: {
+        name: values.name,
+        description: values.description,
+        location: {
+          city: values.city,
+          state: values.state,
+          country: values.country,
+          address: values.address,
         },
       },
-      (data) => setComponent('success')
-    );
+    });
   };
 
   return (
@@ -92,21 +66,12 @@ export const SetupContainer = () => {
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      {(formik) => (
-        <Form>
-          <motion.div
-            key={component}
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            className='flex flex-col w-full mx-auto sm:w-3/5 gap-y-5'
-          >
-            {renderComponent(component, formik)}
-            {resource.state === 'error' && (
-              <FormErrorAlert error={resource.error} />
-            )}
-          </motion.div>
-        </Form>
-      )}
+      <Form>
+        <SetupForm isLoading={resource.isLoading} />
+        {resource.state === 'error' ? (
+          <FormErrorAlert error={resource.error} />
+        ) : null}
+      </Form>
     </Formik>
   );
 };

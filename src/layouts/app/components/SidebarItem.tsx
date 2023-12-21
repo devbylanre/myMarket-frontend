@@ -6,13 +6,12 @@ import { Text } from '../../../components/ui/Text';
 export const SidebarItem = ({ item }: { item: Record<string, any> }) => {
   return (
     <NavLink
-      key={item.name}
       to={`/app/${item.url}`}
       end
       className={({ isActive }) =>
         twMerge(
-          'flex flex-col lg:flex-row h-16 lg:h-10 justify-center lg:justify-start items-center w-full lg:px-3 hover:bg-primary/5 gap-2 lg:rounded-full',
-          isActive && 'lg:bg-primary/10'
+          'flex flex-col lg:flex-row lg:h-9 justify-center lg:justify-start items-center w-full hover:text-zinc-950 gap-2 text-zinc-500',
+          isActive && 'text-primary'
         )
       }
     >
@@ -20,8 +19,8 @@ export const SidebarItem = ({ item }: { item: Record<string, any> }) => {
         <>
           <span
             className={twMerge(
-              'fill-none stroke-zinc-500',
-              isActive && 'stroke-primary'
+              'fill-zinc-500 stroke-zinc-500',
+              isActive && 'fill-primary stroke-none'
             )}
           >
             {item.icon}
@@ -29,10 +28,8 @@ export const SidebarItem = ({ item }: { item: Record<string, any> }) => {
           <Text
             as='p'
             size='sm'
-            className={twMerge(
-              'text-zinc-500',
-              isActive && 'text-primary font-medium'
-            )}
+            weight={500}
+            className='text-inherit'
           >
             {item.name}
           </Text>
