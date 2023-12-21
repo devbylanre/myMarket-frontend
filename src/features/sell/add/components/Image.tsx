@@ -1,7 +1,7 @@
 import React from 'react';
-import { AccordionContent } from '../../../components/ui/Accordion';
+import { AccordionContent } from '../../../../components/ui/Accordion';
 import { LuDownloadCloud, LuX } from 'react-icons/lu';
-import { Text } from '../../../components/ui/Text';
+import { Text } from '../../../../components/ui/Text';
 import { Trigger } from './Trigger';
 import { Item } from './Item';
 

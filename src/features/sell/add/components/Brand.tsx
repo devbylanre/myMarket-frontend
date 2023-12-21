@@ -1,17 +1,21 @@
 import React from 'react';
-import categories from '../../../json/category.json';
+import categories from '../../../../json/category.json';
 import { Item } from './Item';
 import { Trigger } from './Trigger';
-import { AccordionContent } from '../../../components/ui/Accordion';
-import { Input } from '../../../components/ui/Input';
-import { FormField, FormControl, FormLabel } from '../../../components/ui/Form';
+import { AccordionContent } from '../../../../components/ui/Accordion';
+import { Input } from '../../../../components/ui/Input';
+import {
+  FormField,
+  FormControl,
+  FormLabel,
+} from '../../../../components/ui/Form';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '../../../components/ui/Select';
+} from '../../../../components/ui/Select';
 import { twMerge } from 'tailwind-merge';
 
 export const Brand = () => {

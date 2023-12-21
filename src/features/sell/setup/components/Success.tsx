@@ -1,7 +1,7 @@
 import React from 'react';
-import { Text } from '../../../components/ui/Text';
+import { Text } from '../../../../components/ui/Text';
 import { LuPartyPopper } from 'react-icons/lu';
-import { Button } from '../../../components/ui/Button';
+import { Button } from '../../../../components/ui/Button';
 
 export const Success = () => {
   return (

@@ -1,8 +1,8 @@
 import React from 'react';
 // import { SellerContainer } from '../features/seller/SellerContainer';
-import { SellContainer } from '../../features/sell/SellContainer';
-import { SellerSetup } from '../../components/templates/SellerSetup';
-import { UserSchema } from '../../utils/types';
+import { SellContainer } from '../../../features/sell/add/SellContainer';
+import { SellerSetup } from '../../../components/templates/SellerSetup';
+import { UserSchema } from '../../../utils/types';
 import { useOutletContext } from 'react-router-dom';
 
 export const Sell = () => {

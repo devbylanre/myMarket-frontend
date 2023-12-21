@@ -1,13 +1,13 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
-import { Accordion } from '../../components/ui/Accordion';
-import { Text } from '../../components/ui/Text';
+import { Accordion } from '../../../components/ui/Accordion';
+import { Text } from '../../../components/ui/Text';
 import { Detail } from './components/Detail';
 import { Image } from './components/Image';
 import { Price } from './components/Price';
 import { Brand } from './components/Brand';
 import { Description } from './components/Description';
-import { Button } from '../../components/ui/Button';
+import { Button } from '../../../components/ui/Button';
 
 interface InitialValues {
   title: string;

@@ -6,7 +6,7 @@ import { Prompt } from './components/Prompt';
 import { Forms } from './components/Forms';
 import { Success } from './components/Success';
 import { useUpdateSeller } from './hooks/useUpdateSeller';
-import { FormErrorAlert } from '../../components/templates/FormErrorAlert';
+import { FormErrorAlert } from '../../../components/templates/FormErrorAlert';
 
 interface InitialValues {
   name: string;
@@ -47,7 +47,7 @@ const validationSchema = yup.object().shape({
 
 type Component = 'prompt' | 'set-up' | 'success';
 
-export const SellerSetUpContainer = () => {
+export const SetupContainer = () => {
   const [component, setComponent] = useState<Component>('prompt');
   const { resource, updateSeller } = useUpdateSeller();
 
@@ -59,7 +59,7 @@ export const SellerSetUpContainer = () => {
       case 'prompt':
         return <Prompt onSwitch={() => setComponent('set-up')} />;
       case 'set-up':
-        return <Forms />;
+        return <Forms isLoading={resource.isLoading} />;
       case 'success':
         return <Success />;
       default:

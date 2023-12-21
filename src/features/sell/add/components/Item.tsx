@@ -1,5 +1,5 @@
 import React from 'react';
-import { AccordionItem } from '../../../components/ui/Accordion';
+import { AccordionItem } from '../../../../components/ui/Accordion';
 
 interface ItemProps {
   value: string;

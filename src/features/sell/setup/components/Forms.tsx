@@ -1,18 +1,19 @@
 import React from 'react';
-import { Text } from '../../../components/ui/Text';
-import { Input } from '../../../components/ui/Input';
-import { Button } from '../../../components/ui/Button';
+import { Text } from '../../../../components/ui/Text';
+import { Input } from '../../../../components/ui/Input';
+import { Button } from '../../../../components/ui/Button';
 import {
   FormControl,
   FormField,
   FormLabel,
   FormMessage,
-} from '../../../components/ui/Form';
+} from '../../../../components/ui/Form';
 import { LuWand2 } from 'react-icons/lu';
-import { Textarea } from '../../../components/ui/Textarea';
-import { Checkbox } from '../../../components/ui/Checkbox';
+import { Textarea } from '../../../../components/ui/Textarea';
+import { Checkbox } from '../../../../components/ui/Checkbox';
+import { Spinner } from '../../../../components/ui/Spinner';
 
-export const Forms = () => {
+export const Forms = ({ isLoading }: { isLoading: boolean | null }) => {
   return (
     <div className='space-y-5'>
       <div className='space-y-1'>
@@ -33,10 +34,17 @@ export const Forms = () => {
       <Fields />
 
       <Button
+        disabled={isLoading!}
         type='submit'
         className='w-full'
       >
-        Setup my store <LuWand2 />
+        {isLoading ? (
+          <Spinner variant='light' />
+        ) : (
+          <>
+            Setup my store <LuWand2 />
+          </>
+        )}
       </Button>
     </div>
   );

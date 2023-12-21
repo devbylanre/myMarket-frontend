@@ -31,13 +31,14 @@ import { SettingsLayout } from './layouts/settings/SettingsLayout';
 import { PersonalPage } from './pages/app/settings/personal/PersonalPage';
 import { SecurityPage } from './pages/app/settings/security/SecurityPage';
 import { SocialPage } from './pages/app/settings/social/SocialPage';
+import { StorePage } from './pages/app/settings/store/StorePage';
 
 // app layout
 import { AppLayout } from './layouts/app/AppLayout.tsx';
 
 // app layout pages
 import { HomePage } from './pages/app/HomePage';
-import { Sell } from './pages/app/SellPage';
+import { Sell } from './pages/app/sell/SellPage';
 import { SavedPage } from './pages/app/SavedPage';
 import { ProfilePage } from './pages/app/profile/ProfilePage';
 
@@ -49,103 +50,56 @@ import { VerifyTokenPage } from './pages/VerifyTokenPage';
 
 // contexts
 import { UserContextProvider } from './contexts/user.context';
-import { SellerSetupPage } from './pages/app/SellerSetupPage';
+import { SellerSetupPage } from './pages/app/sell/SellerSetupPage';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
     children: [
-      {
-        path: 'sign-up',
-        element: <SignUpPage />,
-      },
-      {
-        path: 'session',
-        element: <Session />,
-      },
+      { path: 'sign-up', element: <SignUpPage /> },
+      { path: 'session', element: <Session /> },
       {
         path: 'auth',
         children: [
-          {
-            index: true,
-            element: <AuthPage />,
-          },
-          {
-            path: 'verify/:token',
-            element: <VerifyTokenPage />,
-          },
+          { index: true, element: <AuthPage /> },
+          { path: 'verify/:token', element: <VerifyTokenPage /> },
         ],
       },
       {
         path: 'app',
         element: <AppLayout />,
         children: [
-          {
-            index: true,
-            element: <HomePage />,
-          },
-          {
-            path: 'saved',
-            element: <SavedPage />,
-          },
+          { index: true, element: <HomePage /> },
+          { path: 'saved', element: <SavedPage /> },
           {
             path: 'sell',
             children: [
-              {
-                index: true,
-                element: <Sell />,
-              },
-              {
-                path: 'setup',
-                element: <SellerSetupPage />,
-              },
+              { index: true, element: <Sell /> },
+              { path: 'setup', element: <SellerSetupPage /> },
             ],
           },
-          {
-            path: 'profile',
-            element: <ProfilePage />,
-          },
+          { path: 'profile', element: <ProfilePage /> },
         ],
       },
       {
         path: 'app/settings',
         element: <SettingsLayout />,
         children: [
-          {
-            index: true,
-            element: <PersonalPage />,
-          },
-          {
-            path: 'security',
-            element: <SecurityPage />,
-          },
-          {
-            path: 'social',
-            element: <SocialPage />,
-          },
+          { index: true, element: <PersonalPage /> },
+          { path: 'security', element: <SecurityPage /> },
+          { path: 'social', element: <SocialPage /> },
+          { path: 'store', element: <StorePage /> },
         ],
       },
       {
         path: 'theme',
         element: <ThemeLayout />,
         children: [
-          {
-            path: 'typography',
-            element: <ThemeTypography />,
-          },
-          {
-            path: 'alert',
-            element: <ThemeAlert />,
-          },
-          {
-            path: 'button',
-            element: <ThemeButton />,
-          },
-          {
-            path: 'badge',
-            element: <ThemeBadge />,
-          },
+          { path: 'typography', element: <ThemeTypography /> },
+          { path: 'alert', element: <ThemeAlert /> },
+          { path: 'button', element: <ThemeButton /> },
+          { path: 'badge', element: <ThemeBadge /> },
           { path: 'input', element: <ThemeInput /> },
           { path: 'textarea', element: <ThemeTextarea /> },
           { path: 'select', element: <ThemeSelect /> },

@@ -1,12 +1,12 @@
 import React from 'react';
-import { LuComponent } from 'react-icons/lu';
-import { Text } from '../../../components/ui/Text';
-import { Button } from '../../../components/ui/Button';
+import { LuSparkles } from 'react-icons/lu';
+import { Text } from '../../../../components/ui/Text';
+import { Button } from '../../../../components/ui/Button';
 
 export const Prompt = ({ onSwitch }: { onSwitch: () => void }) => {
   return (
     <div className='flex flex-col items-center gap-y-5'>
-      <LuComponent className='w-12 h-12 stroke-primary' />
+      <LuSparkles className='w-12 h-12 stroke-primary' />
 
       <div className='space-y-1 text-center'>
         <Text

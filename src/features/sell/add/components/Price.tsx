@@ -1,11 +1,15 @@
 import React from 'react';
 import { Item } from './Item';
 import { Trigger } from './Trigger';
-import { AccordionContent } from '../../../components/ui/Accordion';
-import { Text } from '../../../components/ui/Text';
-import { Badge } from '../../../components/ui/Badge';
-import { FormField, FormControl, FormLabel } from '../../../components/ui/Form';
-import { Input } from '../../../components/ui/Input';
+import { AccordionContent } from '../../../../components/ui/Accordion';
+import { Text } from '../../../../components/ui/Text';
+import { Badge } from '../../../../components/ui/Badge';
+import {
+  FormField,
+  FormControl,
+  FormLabel,
+} from '../../../../components/ui/Form';
+import { Input } from '../../../../components/ui/Input';
 
 export const Price = () => {
   return (

@@ -1,9 +1,13 @@
 import React from 'react';
 import { Item } from './Item';
 import { Trigger } from './Trigger';
-import { AccordionContent } from '../../../components/ui/Accordion';
-import { FormField, FormControl, FormLabel } from '../../../components/ui/Form';
-import { Textarea } from '../../../components/ui/Textarea';
+import { AccordionContent } from '../../../../components/ui/Accordion';
+import {
+  FormField,
+  FormControl,
+  FormLabel,
+} from '../../../../components/ui/Form';
+import { Textarea } from '../../../../components/ui/Textarea';
 
 export const Description = () => {
   return (

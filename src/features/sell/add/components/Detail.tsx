@@ -1,8 +1,12 @@
 import React from 'react';
-import { AccordionContent } from '../../../components/ui/Accordion';
-import { FormField, FormControl, FormLabel } from '../../../components/ui/Form';
-import { Input } from '../../../components/ui/Input';
-import { Textarea } from '../../../components/ui/Textarea';
+import { AccordionContent } from '../../../../components/ui/Accordion';
+import {
+  FormField,
+  FormControl,
+  FormLabel,
+} from '../../../../components/ui/Form';
+import { Input } from '../../../../components/ui/Input';
+import { Textarea } from '../../../../components/ui/Textarea';
 import { Trigger } from './Trigger';
 import { Item } from './Item';
 

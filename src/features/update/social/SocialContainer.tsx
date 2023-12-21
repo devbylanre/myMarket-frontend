@@ -4,8 +4,6 @@ import { FormFields } from './components/FormFields';
 import { ActionButtons } from '../util/ActionButtons';
 import { useOutletContext } from 'react-router-dom';
 import { UserSchema } from '../../../utils/types';
-import { Badge } from '../../../components/ui/Badge';
-import { LuLink2 } from 'react-icons/lu';
 import { useUpdateSocial } from './hooks/useUpdateSocial';
 import { FormErrorToast } from '../../../components/templates/FormErrorToast';
 import { Data } from './components/Data';

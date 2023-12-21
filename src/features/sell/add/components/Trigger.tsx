@@ -1,6 +1,6 @@
 import React from 'react';
-import { AccordionTrigger } from '../../../components/ui/Accordion';
-import { Text } from '../../../components/ui/Text';
+import { AccordionTrigger } from '../../../../components/ui/Accordion';
+import { Text } from '../../../../components/ui/Text';
 import { LuChevronDown } from 'react-icons/lu';
 
 interface TriggerProps {
