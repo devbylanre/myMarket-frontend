@@ -5,6 +5,7 @@ import { UserSchema } from '../../../../utils/types';
 import { SellerSetup } from '../../../../components/templates/SellerSetup';
 import { StoreName } from './StoreName';
 import { StoreDescription } from './StoreDescription';
+import { StoreLocation } from './StoreLocation';
 
 export const StorePage = () => {
   const { isSeller } = useOutletContext() as UserSchema;
@@ -20,6 +21,7 @@ export const StorePage = () => {
         <>
           <StoreName />
           <StoreDescription />
+          <StoreLocation />
         </>
       ) : (
         <div className='col-span-full'>

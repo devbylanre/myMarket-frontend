@@ -22,7 +22,9 @@ export const SocialContainer = () => {
   };
 
   const handleSubmit = async (values: FormSchema) => {
-    await updateSocial({ accounts: values.accounts }, () => setAction('view'));
+    await updateSocial({ accounts: [...accounts, values.accounts] }, () =>
+      setAction('view')
+    );
   };
 
   return (
