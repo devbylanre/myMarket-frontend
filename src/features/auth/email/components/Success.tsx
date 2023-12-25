@@ -5,7 +5,10 @@ import { motion } from 'framer-motion';
 
 export const Success = () => {
   return (
-    <motion.div animate={{ y: [-24, 0], opacity: [0, 1] }}>
+    <motion.div
+      animate={{ y: [-24, 0], opacity: [0, 1] }}
+      className='space-y-5'
+    >
       <Spinner variant='primary' />
       <div className='space-y-1'>
         <Text

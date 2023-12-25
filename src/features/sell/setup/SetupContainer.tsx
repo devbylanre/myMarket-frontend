@@ -3,6 +3,9 @@ import * as yup from 'yup';
 import { SetupForm } from './components/SetupForm';
 import { useSellerSetup } from './hooks/useSellerSetup';
 import { FormError } from '../../../components/templates/FormError';
+import { useOutletContext } from 'react-router-dom';
+import { IUser } from '../../../utils/types';
+import { Text } from '../../../components/ui/Text';
 
 interface InitialValues {
   name: string;
@@ -43,6 +46,7 @@ const validationSchema = yup.object().shape({
 
 export const SetupContainer = () => {
   const { resource, sellerSetup } = useSellerSetup();
+  const { isSeller } = useOutletContext() as IUser;
 
   const handleSubmit = async (values: InitialValues) => {
     await sellerSetup({
@@ -67,7 +71,16 @@ export const SetupContainer = () => {
       onSubmit={handleSubmit}
     >
       <Form className='w-full mx-auto sm:w-4/5 lg:w-2/5'>
-        <SetupForm isLoading={resource.isLoading} />
+        {!isSeller ? (
+          <SetupForm isLoading={resource.isLoading} />
+        ) : (
+          <div>
+            <Text>
+              You are now a seller, you can edit your store information from the
+              settings page
+            </Text>
+          </div>
+        )}
         {resource.state === 'error' ? (
           <FormError error={resource.error} />
         ) : null}

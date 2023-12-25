@@ -16,10 +16,7 @@ export const Component = ({ isLoading }: { isLoading: boolean | null }) => {
         >
           Sign in to your account
         </Text>
-        <Text as='p'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
-          maxime beatae accusamus, sint dolor.
-        </Text>
+        <Text as='p'>Welcome back, sign in to your account once again</Text>
       </div>
 
       <Fields />

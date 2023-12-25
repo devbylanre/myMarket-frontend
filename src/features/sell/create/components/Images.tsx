@@ -1,13 +1,6 @@
 import React, { useRef, useState } from 'react';
-import { motion } from 'framer-motion';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-} from '../../../../components/ui/Card';
+import { Card, CardContent } from '../../../../components/ui/Card';
 import { LuUpload } from 'react-icons/lu';
-import { Button } from '../../../../components/ui/Button';
-import { Avatar, AvatarFallback } from '../../../../components/ui/Avatar';
 import { Text } from '../../../../components/ui/Text';
 
 export const Images = ({ formik }: { formik: Record<string, any> }) => {
@@ -18,10 +11,8 @@ export const Images = ({ formik }: { formik: Record<string, any> }) => {
     handleChange: (e: React.ChangeEvent<HTMLInputElement>) => {
       const files = e.target.files;
 
-      if (files!.length > 0) {
-        formik.setFieldValue('images', files);
-
-        const processedImages = Array.from(files!).map((file) => {
+      if (files && files.length > 0) {
+        const processedImages = Array.from(files).map((file) => {
           const url = URL.createObjectURL(file);
 
           return {
@@ -32,7 +23,9 @@ export const Images = ({ formik }: { formik: Record<string, any> }) => {
           };
         });
 
-        setSelectedImages(processedImages);
+        setSelectedImages([...processedImages]);
+
+        formik.setFieldValue('images', files);
       }
     },
 
@@ -45,6 +38,17 @@ export const Images = ({ formik }: { formik: Record<string, any> }) => {
         ? text.slice(0, length) + '...'
         : text.slice(0, length);
     },
+
+    // pop: (name: string) => {
+    //   const filter = selectedImages.filter((image) => image.name !== name);
+
+    //   setSelectedImages(filter);
+
+    //   formik.setFieldValue(
+    //     'images',
+    //     filter.map((image) => new File([image], image))
+    //   );
+    // },
   };
 
   return (
@@ -58,21 +62,17 @@ export const Images = ({ formik }: { formik: Record<string, any> }) => {
         onChange={(e) => helper.handleChange(e)}
       />
 
-      <Card className='flex flex-col items-center p-2 py-5 gap-y-4 bg-primary/10 ring-0'>
-        <motion.span>
-          <LuUpload className='w-5 h-5' />
-        </motion.span>
-        <CardDescription>
-          Click on the button below to upload your product images
-        </CardDescription>
-        <Button
-          variant='outline'
-          size='xs'
-          type='button'
-          onClick={() => inputRef.current?.click()}
+      <Card
+        className='flex items-center p-0 cursor-pointer ring-0 gap-x-3'
+        onClick={() => inputRef.current?.click()}
+      >
+        <LuUpload className='p-2 rounded-lg w-9 h-9 bg-primary/5 text-primary' />
+        <Text
+          as='h6'
+          size='sm'
         >
-          Upload images
-        </Button>
+          Click to upload images
+        </Text>
       </Card>
 
       {selectedImages &&
@@ -82,13 +82,11 @@ export const Images = ({ formik }: { formik: Record<string, any> }) => {
             key={i}
             className='flex items-center p-0 overflow-visible rounded-none ring-0 bg-none gap-x-3'
           >
-            <Avatar
+            <img
               src={data.url}
               alt={data.name}
-              className='w-10 h-10'
-            >
-              <AvatarFallback>kf</AvatarFallback>
-            </Avatar>
+              className='w-12 h-12 rounded-lg ring-1 ring-zinc-950/5'
+            />
             <CardContent className='flex-1'>
               <Text
                 as='h6'
@@ -106,6 +104,16 @@ export const Images = ({ formik }: { formik: Record<string, any> }) => {
             </CardContent>
           </Card>
         ))}
+
+      {formik.errors.images ? (
+        <Text
+          as='p'
+          size='sm'
+          className='text-red-500'
+        >
+          {formik.errors.images}
+        </Text>
+      ) : null}
     </div>
   );
 };

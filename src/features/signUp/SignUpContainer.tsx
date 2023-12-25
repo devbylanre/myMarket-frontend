@@ -4,7 +4,6 @@ import { Component } from './components/Component';
 import { useSignUp } from './hooks/useSignUp';
 import { Success } from './components/Success';
 import { FormError } from '../../components/templates/FormError';
-import { Email } from '../../pages/app/settings/authentication/Email';
 
 interface InitialValuesTypes {
   firstName: string;

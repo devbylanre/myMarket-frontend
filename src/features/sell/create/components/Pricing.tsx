@@ -1,34 +1,27 @@
 import React from 'react';
 import {
-  FormControl,
   FormField,
   FormLabel,
   FormMessage,
 } from '../../../../components/ui/Form';
-import { Input } from '../../../../components/ui/Input';
+import { Number } from '../../../../components/ui/Number';
 
 export const Pricing = () => {
   return (
     <div className='grid grid-cols-2 gap-x-3'>
       <FormField name='price'>
         <FormLabel>Price</FormLabel>
-        <FormControl>
-          <Input
-            type='number'
-            placeholder='Product price'
-          />
-        </FormControl>
+        <Number>
+          <span className='text-xs'>NGN</span>
+        </Number>
         <FormMessage />
       </FormField>
 
       <FormField name='discount'>
         <FormLabel>Discount</FormLabel>
-        <FormControl>
-          <Input
-            type='number'
-            placeholder='Product discount'
-          />
-        </FormControl>
+        <Number>
+          <span className='text-xs font-bold'>%</span>
+        </Number>
         <FormMessage />
       </FormField>
     </div>

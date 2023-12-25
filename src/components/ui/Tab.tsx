@@ -30,20 +30,20 @@ export const Tab = ({ className, defaultTab, ...rest }: TabProps) => {
   return (
     <TabContext.Provider value={{ tab, isActive, toggleTab }}>
       <div
-        className={twMerge('flex overflow-x-hidden border-b', className)}
+        className={twMerge('flex flex-col gap-y-8', className)}
         {...rest}
       />
     </TabContext.Provider>
   );
 };
 
-interface TabIndicatorProps extends HTMLAttributes<HTMLDivElement> {}
+interface ITabList extends HTMLAttributes<HTMLDivElement> {}
 
-export const TabIndicator = ({ className, ...rest }: TabIndicatorProps) => {
+export const TabList = ({ className, ...rest }: ITabList) => {
   return (
     <div
       className={twMerge(
-        '-bottom-[1px] absolute left-0 rounded-full w-full h-[3px] bg-zinc-950',
+        'flex w-full md:w-fit overflow-clip bg-zinc-100 p-1 rounded-lg gap-x-1',
         className
       )}
       {...rest}
@@ -51,29 +51,41 @@ export const TabIndicator = ({ className, ...rest }: TabIndicatorProps) => {
   );
 };
 
-interface TabItemProps extends HTMLAttributes<HTMLDivElement> {
-  value: string | number;
+interface ITabTrigger extends HTMLAttributes<HTMLDivElement> {
+  value: string;
 }
 
-export const TabItem = ({
-  className,
-  children,
-  value,
-  ...rest
-}: TabItemProps) => {
+export const TabTrigger = ({ className, value, ...rest }: ITabTrigger) => {
   const { toggleTab, isActive } = useContext(TabContext)!;
 
   return (
     <div
       className={twMerge(
-        'min-w-[200px] relative flex flex-col items-center justify-center whitespace-nowrap py-2',
+        'w-full md:min-w-[80px] text-sm p-1 hover:bg-white rounded-md text-center cursor-pointer',
+        isActive(value) && 'bg-white ring-1 ring-zinc-950/5 shadow-sm',
         className
       )}
-      {...rest}
       onClick={() => toggleTab(value)}
-    >
-      {children}
-      {isActive(value) ? <TabIndicator /> : null}
-    </div>
+      {...rest}
+    />
+  );
+};
+
+interface ITabContent extends HTMLAttributes<HTMLDivElement> {
+  value: string;
+}
+
+export const TabContent = ({ className, value, ...rest }: ITabContent) => {
+  const { isActive } = useContext(TabContext)!;
+
+  return (
+    <>
+      {isActive(value) ? (
+        <div
+          className={className}
+          {...rest}
+        />
+      ) : null}
+    </>
   );
 };

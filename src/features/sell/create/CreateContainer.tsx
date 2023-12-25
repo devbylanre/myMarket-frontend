@@ -22,7 +22,7 @@ interface IForm {
   description: string;
   price: number;
   discount: number;
-  images: File[];
+  images: any;
 }
 
 const validationSchema = yup.object().shape({
@@ -41,8 +41,35 @@ const validationSchema = yup.object().shape({
   brand: yup.string().required('Product brand must be provided'),
   model: yup.string().required('Product model must be provided'),
   category: yup.string().required('Product category must be provided'),
-  price: yup.number().required('Product price must be provided'),
-  discount: yup.number().required('Product discount must be provided'),
+  price: yup
+    .number()
+    .required('Product price must be provided')
+    .min(1, 'Invalid product price'),
+  discount: yup
+    .number()
+    .required('Product discount must be provided')
+    .min(1, 'Invalid product discount')
+    .max(50, 'Product discount cannot exceed 50 percent'),
+  images: yup
+    .mixed()
+    .test(
+      'fileCount',
+      'At least one image must be provided',
+      (value: any) => value && value.length > 0
+    )
+    .test('fileSize', 'File size must be less than 2MB', (value: any) => {
+      if (!value) return true; // Handle undefined or null values
+      return value[0].size <= 2 * 1024 * 1024;
+    })
+    .test(
+      'fileType',
+      'Only PNG, JPG, or JPEG files are allowed',
+      (value: any) => {
+        if (!value) return true; // Handle undefined or null values
+        const allowedTypes = ['image/png', 'image/jpg', 'image/jpeg'];
+        return allowedTypes.includes(value[0].type);
+      }
+    ),
 });
 
 export const CreateContainer = () => {
@@ -55,14 +82,14 @@ export const CreateContainer = () => {
     model: '',
     category: '',
     description: '',
-    price: 0,
-    discount: 0,
-    images: [],
+    price: 0.0,
+    discount: 0.0,
+    images: undefined,
   };
 
   const handleSubmit = async (values: IForm) => {
-    console.log(values);
-    await createProduct(token.id, values);
+    console.log('submitting');
+    return await createProduct(token.id, { ...values });
   };
 
   return (
@@ -70,7 +97,7 @@ export const CreateContainer = () => {
       <div className='space-y-2'>
         <Text
           as='h3'
-          size='xl'
+          size='2xl'
           weight={600}
         >
           Upload new product

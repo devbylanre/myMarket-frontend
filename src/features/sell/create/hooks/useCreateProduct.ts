@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { IApiCallback, IApiResponse } from '../../../../utils/types';
+import { useProductContext } from '../../../../hooks/useProductContext';
 
 export const useCreateProduct = () => {
+  const { dispatch } = useProductContext()!;
   const [response, setResponse] = useState<IApiResponse<null>>({
     state: null,
     payload: null,
@@ -23,9 +25,18 @@ export const useCreateProduct = () => {
 
     const formData = new FormData();
 
-    Object.keys(data).map((key: string) => {
-      return formData.append(key, data[key]);
+    formData.append('title', data.title);
+    formData.append('tagline', data.description);
+    formData.append('description', data.description);
+    // Convert FileList to an array and then use forEach
+    Array.from(data.images).forEach((image: any) => {
+      formData.append('images', image);
     });
+    formData.append('price', data.price);
+    formData.append('discount', data.discount);
+    formData.append('category', data.category);
+    formData.append('brand', data.brand);
+    formData.append('model', data.model);
 
     const api = await fetch('http://localhost:5000/api/v1/product/create', {
       method: 'POST',
@@ -47,6 +58,8 @@ export const useCreateProduct = () => {
         isLoading: false,
       });
     }
+
+    dispatch({ type: 'CREATE', payload: json.data });
 
     setResponse({
       state: 'success',

@@ -32,6 +32,7 @@ export const SellerSetup = () => {
       </Text>
       <Link to='/app/sell/setup'>
         <Button
+          size='sm'
           onMouseOver={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
         >

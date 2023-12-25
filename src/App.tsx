@@ -40,8 +40,8 @@ import { AppLayout } from './layouts/app/AppLayout.tsx';
 import { HomePage } from './pages/app/HomePage';
 import { SavedPage } from './pages/app/SavedPage';
 import { ProfilePage } from './pages/app/profile/ProfilePage';
+import { SellPage } from './pages/app/sell/SellPage';
 import { SetupPage } from './pages/app/sell/SetupPage';
-import { CreatePage } from './pages/app/sell/CreatePage';
 
 // pages
 import { SignUpPage } from './pages/SignUpPage';
@@ -51,6 +51,7 @@ import { VerifyTokenPage } from './pages/VerifyTokenPage';
 
 // contexts
 import { UserContextProvider } from './contexts/user.context';
+import { ProductContextProvider } from './contexts/product.context';
 
 const router = createBrowserRouter([
   {
@@ -75,7 +76,7 @@ const router = createBrowserRouter([
           {
             path: 'sell',
             children: [
-              { index: true, element: <CreatePage /> },
+              { index: true, element: <SellPage /> },
               { path: 'setup', element: <SetupPage /> },
             ],
           },
@@ -122,7 +123,9 @@ function App() {
   return (
     <div className='App font-inter'>
       <UserContextProvider>
-        <RouterProvider router={router} />
+        <ProductContextProvider>
+          <RouterProvider router={router} />
+        </ProductContextProvider>
       </UserContextProvider>
     </div>
   );

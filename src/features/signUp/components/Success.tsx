@@ -1,6 +1,5 @@
 import React from 'react';
 import { Text } from '../../../components/ui/Text';
-import { Badge } from '../../../components/ui/Badge';
 
 export const Success = ({ email }: { email: string }) => {
   return (
