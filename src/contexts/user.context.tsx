@@ -1,21 +1,18 @@
 import React, { Dispatch, createContext, useEffect, useReducer } from 'react';
-import { UserSchema } from '../utils/types';
+import { IUser } from '../utils/types';
 
 const initialState = { user: null };
 
-interface StateProps {
-  user: UserSchema | null;
+interface IState {
+  user: IUser | null;
 }
 
-interface ActionProps<T> {
+interface IAction<T> {
   type: 'SIGN_IN' | 'UPDATE' | 'SIGN_OUT';
   payload: T;
 }
 
-const reducer = <T extends UserSchema | null>(
-  state: StateProps,
-  action: ActionProps<T>
-) => {
+const reducer = <T extends IUser | null>(state: IState, action: IAction<T>) => {
   switch (action.type) {
     case 'SIGN_IN':
       localStorage.setItem('user', JSON.stringify({ ...action.payload }));
@@ -27,6 +24,8 @@ const reducer = <T extends UserSchema | null>(
         user: { ...action.payload },
       };
     case 'SIGN_OUT':
+      localStorage.removeItem('user');
+      sessionStorage.removeItem('session');
       return { user: null };
     case 'UPDATE':
       localStorage.setItem(
@@ -40,12 +39,12 @@ const reducer = <T extends UserSchema | null>(
 };
 
 interface UserContextProps<T> {
-  user: UserSchema | null;
+  user: IUser | null;
   dispatch: Dispatch<T>;
 }
 
 export const UserContext = createContext<UserContextProps<
-  ActionProps<UserSchema>
+  IAction<IUser>
 > | null>(null);
 
 export const UserContextProvider = ({

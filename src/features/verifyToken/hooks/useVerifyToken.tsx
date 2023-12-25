@@ -1,19 +1,16 @@
 import { useState } from 'react';
-import { ResourceSchema } from '../../../utils/types';
+import { IApiCallback, IApiResponse } from '../../../utils/types';
 
 export const useVerifyToken = () => {
-  const [resource, setResource] = useState<ResourceSchema<null>>({
+  const [resource, setResource] = useState<IApiResponse<null>>({
     state: null,
     isLoading: false,
     error: null,
-    data: null,
+    payload: null,
   });
 
-  const verifyToken = async (
-    token: string,
-    callback?: (data: Record<string, any>) => void
-  ) => {
-    setResource({ state: null, isLoading: true, error: null, data: null });
+  const verifyToken = async (token: string, callback?: IApiCallback) => {
+    setResource({ state: null, isLoading: true, error: null, payload: null });
 
     const response = await fetch(
       `http://localhost:5000/api/v1/user/verify/token/${token}`,
@@ -31,16 +28,22 @@ export const useVerifyToken = () => {
       return setResource((prevResource) => ({
         state: json.state,
         isLoading: false,
-        error: json.error,
+        error: {
+          code: json.code,
+          message: json.message,
+        },
       }));
     }
 
-    setResource((prevResource) => ({
-      ...prevResource,
-      state: json.state,
+    setResource({
+      state: 'success',
+      payload: {
+        code: json.code,
+        message: json.message,
+        data: json.data,
+      },
       isLoading: false,
-      data: json.data,
-    }));
+    });
 
     return callback && callback(json.data);
   };

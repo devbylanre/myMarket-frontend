@@ -13,13 +13,12 @@ type VerticalPosition = 'top' | 'bottom';
 type HorizontalPosition = 'left' | 'center' | 'right';
 
 const toastVariants = cva(
-  'p-2 m-5 absolute min-w-[320px] rounded-xl shadow-lg shadow-zinc-100',
+  'p-2 m-4 absolute w-full sm:w-[320px] rounded-xl shadow-lg shadow-zinc-100',
   {
     variants: {
       variant: {
         danger: 'bg-red-100',
         success: 'bg-green-100',
-        dark: 'bg-zinc-700',
         light: 'bg-white',
         warning: 'bg-amber-100 ring-amber-200',
       },
@@ -53,7 +52,6 @@ interface ToastProps extends MotionProps, VariantProps<typeof toastVariants> {
   className?: string;
   timeout?: number;
   position?: `${VerticalPosition}-${HorizontalPosition}`;
-  variant: 'success' | 'danger' | 'light' | 'warning' | 'dark';
 }
 
 export const Toast = (props: ToastProps) => {
@@ -68,15 +66,16 @@ export const Toast = (props: ToastProps) => {
   } = props;
 
   useEffect(() => {
+    let timer: any;
     if (isVisible) {
-      const timer = setTimeout(() => onDismiss(), timeout || 4000);
-      return () => clearTimeout(timer);
+      timer = setTimeout(() => onDismiss(), timeout || 4000);
     }
-  }, [isVisible, timeout]);
+    return () => clearTimeout(timer);
+  }, [timeout, isVisible, onDismiss]);
 
   return (
     <ToastContext.Provider value={{ isVisible, onDismiss }}>
-      <AnimatePresence>
+      <AnimatePresence initial={false}>
         {isVisible && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -108,7 +107,7 @@ export const ToastDismiss = ({ className, ...rest }: ToastDismissProps) => {
   return (
     <div
       onClick={() => onDismiss()}
-      className={twMerge('', className)}
+      className={cn(className)}
       {...rest}
     />
   );

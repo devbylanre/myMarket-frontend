@@ -1,7 +1,7 @@
 import React from 'react';
-import { SettingsSection } from '../../../../components/templates/SettingsSection';
+import { SettingsSection } from '../../../../components/templates/settings/SettingsSection';
 import { Text } from '../../../../components/ui/Text';
-import { NameContainer } from '../../../../features/update/name/nameContainer';
+import { NameContainer } from '../../../../features/update/name/NameContainer';
 
 export const Name = () => {
   return (

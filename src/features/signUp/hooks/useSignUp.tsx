@@ -1,19 +1,19 @@
 import { useState } from 'react';
-import { ResourceSchema } from '../../../utils/types';
+import { IApiCallback, IApiResponse } from '../../../utils/types';
 
 export const useSignUp = () => {
-  const [resource, setResource] = useState<ResourceSchema<null>>({
+  const [resource, setResource] = useState<IApiResponse<null>>({
     state: null,
     isLoading: false,
     error: null,
-    data: null,
+    payload: null,
   });
 
   const signUp = async <T extends { email: string }>(
     data: T,
-    callback?: (data: Record<string, any>) => void
+    callback?: IApiCallback
   ) => {
-    setResource({ state: null, isLoading: true, error: null, data: null });
+    setResource({ state: null, isLoading: true, error: null, payload: null });
 
     const response = await fetch('http://localhost:5000/api/v1/user/create', {
       method: 'POST',
@@ -27,18 +27,23 @@ export const useSignUp = () => {
 
     if (!response.ok) {
       return setResource({
-        state: json.state,
+        state: 'error',
         isLoading: false,
-        error: json.error,
-        data: null,
+        error: {
+          code: json.code,
+          message: json.message,
+        },
       });
     }
 
     setResource({
-      state: json.state,
+      state: 'success',
       isLoading: false,
-      error: null,
-      data: json.data,
+      payload: {
+        code: json.code,
+        message: json.message,
+        data: json.data,
+      },
     });
 
     return callback && callback(json);

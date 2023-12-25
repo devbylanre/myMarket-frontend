@@ -1,10 +1,11 @@
 import React from 'react';
 import { Text } from '../../../../components/ui/Text';
 import { Spinner } from '../../../../components/ui/Spinner';
+import { motion } from 'framer-motion';
 
 export const Success = () => {
   return (
-    <>
+    <motion.div animate={{ y: [-24, 0], opacity: [0, 1] }}>
       <Spinner variant='primary' />
       <div className='space-y-1'>
         <Text
@@ -18,9 +19,9 @@ export const Success = () => {
           as='p'
           size='sm'
         >
-          We are redirecting you to your dashboard in 5s
+          Getting everything ready in 5 seconds ...
         </Text>
       </div>
-    </>
+    </motion.div>
   );
 };

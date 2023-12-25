@@ -1,54 +1,58 @@
-import React, { useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
-import { UserSchema } from '../../../utils/types';
-import { Form, Formik } from 'formik';
-import { FormFields } from './components/FormFields';
+import * as yup from 'yup';
+import { IUser } from '../../../utils/types';
+import { Form } from './components/Form';
 import { useUpdateBilling } from './hooks/useUpdateBilling';
 import { Data } from './components/Data';
-import { ActionButtons } from '../util/ActionButtons';
-import { FormErrorToast } from '../../../components/templates/FormErrorToast';
+import {
+  SettingsForm,
+  SettingsFormButtons,
+  SettingsFormMessage,
+} from '../../../components/templates/settings/SettingsForm';
 
-interface FormSchema {
+interface IForm {
   country: 'nigeria' | '';
   state: string;
   city: string;
   address: string;
 }
 
+const validationSchema = yup.object().shape({
+  country: yup.string().required('Provide a country'),
+  state: yup.string().required('Provide a state'),
+  city: yup.string().required('Provide a city'),
+  address: yup.string().required('Provide a address'),
+});
+
 export const BillingContainer = () => {
-  const { billing } = useOutletContext() as UserSchema;
-  const [action, setAction] = useState<'view' | 'edit'>('view');
+  const { billing } = useOutletContext() as IUser;
   const { resource, updateBilling } = useUpdateBilling();
 
-  const initialValues: FormSchema = {
+  const initialValues: IForm = {
     country: 'nigeria',
     state: billing.state,
     city: billing.city,
     address: billing.address,
   };
 
-  const handleSubmit = (values: FormSchema) => {
-    updateBilling({ billing: { ...values } }, () => setAction('view'));
+  const handleSubmit = (values: IForm) => {
+    updateBilling({ billing: { ...values } });
   };
 
   return (
-    <Formik
+    <SettingsForm
       initialValues={initialValues}
+      validationSchema={validationSchema}
       onSubmit={handleSubmit}
+      resource={resource}
     >
-      <Form>
-        {action === 'view' ? <Data billing={billing} /> : <FormFields />}
-
-        <ActionButtons
-          action={action}
-          setAction={setAction}
-          isLoading={resource.isLoading}
-        />
-
-        {resource.state === 'error' ? (
-          <FormErrorToast error={resource.error} />
-        ) : null}
-      </Form>
-    </Formik>
+      {(action) => (
+        <>
+          {action === 'view' ? <Data billing={billing} /> : <Form />}
+          <SettingsFormButtons />
+          <SettingsFormMessage />
+        </>
+      )}
+    </SettingsForm>
   );
 };

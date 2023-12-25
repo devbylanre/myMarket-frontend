@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  LuAsterisk,
   LuGalleryVerticalEnd,
   LuListMinus,
   LuSettings2,
@@ -8,7 +7,7 @@ import {
 } from 'react-icons/lu';
 import { Text } from '../../../components/ui/Text';
 import { Avatar, AvatarFallback } from '../../../components/ui/Avatar';
-import { UserSchema } from '../../../utils/types';
+import { IUser } from '../../../utils/types';
 import { SidebarItem } from '../components/SidebarItem';
 
 interface Item {
@@ -39,11 +38,6 @@ const items: Item[] = [
     title: 'Authentication',
     icon: <LuSettings2 className={iconClassName} />,
     url: 'auth',
-  },
-  {
-    title: 'Security',
-    icon: <LuAsterisk className={iconClassName} />,
-    url: 'security',
   },
 ];
 
@@ -76,7 +70,7 @@ const User = ({ firstName, lastName, email }: UserProps) => {
   );
 };
 
-export const Sidebar = ({ user }: { user: UserSchema }) => {
+export const Sidebar = ({ user }: { user: IUser }) => {
   return (
     <div className='fixed hidden w-1/6 min-h-screen p-3 space-y-5 lg:block bg-zinc-100'>
       <User

@@ -1,15 +1,16 @@
-import { Form, Formik } from 'formik';
-import React, { useState } from 'react';
 import * as yup from 'yup';
 import { useOutletContext } from 'react-router-dom';
-import { UserSchema } from '../../../utils/types';
+import { IUser } from '../../../utils/types';
 import { Text } from '../../../components/ui/Text';
-import { Fields } from './components/Fields';
-import { ActionButtons } from '../util/ActionButtons';
+import { Form } from './components/Form';
 import { useUpdateBio } from './hooks/useUpdateBio';
-import { FormErrorToast } from '../../../components/templates/FormErrorToast';
+import {
+  SettingsForm,
+  SettingsFormButtons,
+  SettingsFormMessage,
+} from '../../../components/templates/settings/SettingsForm';
 
-interface Schema {
+interface IForm {
   bio: string;
 }
 
@@ -23,43 +24,37 @@ const validationSchema = yup.object().shape({
 
 export const BioContainer = () => {
   const { resource, updateBio } = useUpdateBio();
-  const { bio } = useOutletContext() as UserSchema;
-  const initialValues: Schema = { bio: bio };
-  const [action, setAction] = useState<'view' | 'edit'>('view');
+  const { bio } = useOutletContext() as IUser;
+  const initialValues: IForm = { bio: bio };
 
-  const handleSubmit = (values: Schema) => {
-    updateBio(values, () => setAction('view'));
+  const handleSubmit = (values: IForm) => {
+    updateBio({ bio: values.bio });
   };
 
   return (
-    <Formik
+    <SettingsForm
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
+      resource={resource}
     >
-      <Form className='space-y-1'>
-        {action === 'view' ? (
-          <Text
-            as='p'
-            size='sm'
-            accent='medium'
-          >
-            {bio}
-          </Text>
-        ) : (
-          <Fields />
-        )}
-
-        <ActionButtons
-          action={action}
-          setAction={setAction}
-          isLoading={resource.isLoading}
-        />
-
-        {resource.state === 'error' ? (
-          <FormErrorToast error={resource.error} />
-        ) : null}
-      </Form>
-    </Formik>
+      {(action) => (
+        <>
+          {action === 'view' ? (
+            <Text
+              as='p'
+              size='sm'
+              accent='medium'
+            >
+              {bio}
+            </Text>
+          ) : (
+            <Form />
+          )}
+          <SettingsFormButtons />
+          <SettingsFormMessage />
+        </>
+      )}
+    </SettingsForm>
   );
 };

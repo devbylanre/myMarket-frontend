@@ -1,61 +1,54 @@
-import { Formik, Form } from 'formik';
-import React, { useState } from 'react';
 import * as yup from 'yup';
-import { SocialForm } from './components/SocialForm';
-import { ActionButtons } from '../util/ActionButtons';
+import { Form } from './components/Form';
 import { useOutletContext } from 'react-router-dom';
-import { UserSchema } from '../../../utils/types';
+import { IUser } from '../../../utils/types';
 import { useUpdateSocial } from './hooks/useUpdateSocial';
-import { FormErrorToast } from '../../../components/templates/FormErrorToast';
 import { Data } from './components/Data';
+import {
+  SettingsForm,
+  SettingsFormButtons,
+  SettingsFormMessage,
+} from '../../../components/templates/settings/SettingsForm';
 
-interface FormSchema {
+interface IForm {
   accounts: { platform: string; url: string }[];
 }
 
-export const SocialContainer = () => {
-  const { accounts } = useOutletContext() as UserSchema;
-  const { resource, updateSocial } = useUpdateSocial();
-  const [action, setAction] = useState<'view' | 'edit'>('view');
+const validationSchema = yup.object().shape({
+  accounts: yup.array().of(
+    yup.object().shape({
+      platform: yup.string().required('Select a platform'),
+      url: yup.string().required('Provide a URL'),
+    })
+  ),
+});
 
-  const initialValues: FormSchema = {
-    accounts: (accounts.length > 0 && accounts) || [{ platform: '', url: '' }],
+export const SocialContainer = () => {
+  const { accounts } = useOutletContext() as IUser;
+  const { resource, updateSocial } = useUpdateSocial();
+
+  const initialValues: IForm = {
+    accounts: accounts || [{ platform: '', url: '' }],
   };
 
-  const validationSchema = yup.object().shape({
-    accounts: yup.array().of(
-      yup.object().shape({
-        platform: yup.string().required('Select a platform'),
-        url: yup.string().required('Provide a URL'),
-      })
-    ),
-  });
-
-  const handleSubmit = async (values: FormSchema) => {
-    await updateSocial({ accounts: [...values.accounts] }, () =>
-      setAction('view')
-    );
+  const handleSubmit = async (values: IForm) => {
+    await updateSocial({ accounts: [...values.accounts] });
   };
 
   return (
-    <Formik
+    <SettingsForm
       initialValues={initialValues}
-      onSubmit={handleSubmit}
       validationSchema={validationSchema}
+      onSubmit={handleSubmit}
+      resource={resource}
     >
-      <Form className='space-y-1'>
-        {action === 'edit' ? <SocialForm /> : <Data accounts={accounts} />}
-
-        <ActionButtons
-          action={action}
-          setAction={setAction}
-          isLoading={resource.isLoading}
-        />
-
-        {resource.state === 'error' ? (
-          <FormErrorToast error={resource.error} />
-        ) : null}
-      </Form>
-    </Formik>
+      {(action) => (
+        <>
+          {action === 'view' ? <Data accounts={accounts} /> : <Form />}
+          <SettingsFormButtons />
+          <SettingsFormMessage />
+        </>
+      )}
+    </SettingsForm>
   );
 };

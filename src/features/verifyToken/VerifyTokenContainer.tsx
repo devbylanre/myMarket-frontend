@@ -1,9 +1,10 @@
-import { Card } from '../../components/ui/Card';
 import { useParams } from 'react-router-dom';
 import { useVerifyToken } from './hooks/useVerifyToken';
 import { Success } from './components/Success';
-import { Component } from './components/Component';
-import { FormErrorAlert } from '../../components/templates/FormErrorAlert';
+import { FormError } from '../../components/templates/FormError';
+import { Button } from '../../components/ui/Button';
+import { Spinner } from '../../components/ui/Spinner';
+import { Text } from '../../components/ui/Text';
 
 export const VerifyTokenContainer = () => {
   const { token } = useParams();
@@ -16,18 +17,44 @@ export const VerifyTokenContainer = () => {
   };
 
   return (
-    <Card className='w-full mx-auto space-y-5 shadow-xl md:w-3/6 lg:w-2/6 ring-0 shadow-zinc-200/50'>
+    <>
       {resource.state === 'success' ? (
         <Success />
       ) : (
         <>
-          <Component
-            onSubmit={onSubmit}
-            isLoading={resource.isLoading}
-          />
-          {resource.error ? <FormErrorAlert error={resource.error} /> : null}
+          <div className='space-y-5'>
+            <div className='space-y-2'>
+              <Text
+                as='h5'
+                size='2xl'
+                weight={500}
+              >
+                Verify your account
+              </Text>
+              <Text
+                as='p'
+                size='sm'
+              >
+                Click on the button to verify your account and proceed with the
+                authentication process
+              </Text>
+            </div>
+            <Button
+              type='button'
+              size='sm'
+              onClick={onSubmit}
+              disabled={resource.isLoading!}
+            >
+              {resource.isLoading ? (
+                <Spinner variant='light' />
+              ) : (
+                'Verify my account'
+              )}
+            </Button>
+          </div>
         </>
       )}
-    </Card>
+      {resource.state === 'error' ? <FormError error={resource.error} /> : null}
+    </>
   );
 };

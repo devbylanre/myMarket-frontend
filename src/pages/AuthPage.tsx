@@ -90,8 +90,8 @@ const SideBar = () => {
             Trade with real humans, No bots
           </Text>
           <Text as='p'>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus
-            quia aspernatur hic! Molestiae quia iusto assumenda
+            Welcome back, continue supporting local business by promoting or
+            buying from their stores
           </Text>
         </div>
       </div>

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Text } from '../../../../components/ui/Text';
 import { SocialContainer } from '../../../../features/update/social/SocialContainer';
-import { SettingsSection } from '../../../../components/templates/SettingsSection';
-import { SettingsHeader } from '../../../../components/templates/SettingsHeader';
+import { SettingsSection } from '../../../../components/templates/settings/SettingsSection';
+import { SettingsHeader } from '../../../../components/templates/settings/SettingsHeader';
 
 export const SocialPage = () => {
   return (

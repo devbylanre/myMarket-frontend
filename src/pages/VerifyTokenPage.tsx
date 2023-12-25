@@ -3,7 +3,7 @@ import { VerifyTokenContainer } from '../features/verifyToken/VerifyTokenContain
 
 export const VerifyTokenPage = () => {
   return (
-    <div className='flex flex-col justify-center min-h-screen p-3 bg-zinc-100'>
+    <div className='w-full mx-auto mt-8 space-y-5 sm:mt-12 lg:w-2/6 sm:w-3/5'>
       <VerifyTokenContainer />
     </div>
   );

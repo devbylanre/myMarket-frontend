@@ -1,8 +1,8 @@
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 import { SetupForm } from './components/SetupForm';
-import { FormErrorAlert } from '../../../components/templates/FormErrorAlert';
 import { useSellerSetup } from './hooks/useSellerSetup';
+import { FormError } from '../../../components/templates/FormError';
 
 interface InitialValues {
   name: string;
@@ -66,10 +66,10 @@ export const SetupContainer = () => {
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      <Form>
+      <Form className='w-full mx-auto sm:w-4/5 lg:w-2/5'>
         <SetupForm isLoading={resource.isLoading} />
         {resource.state === 'error' ? (
-          <FormErrorAlert error={resource.error} />
+          <FormError error={resource.error} />
         ) : null}
       </Form>
     </Formik>

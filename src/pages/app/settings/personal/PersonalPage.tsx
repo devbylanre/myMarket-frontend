@@ -1,6 +1,6 @@
 import React from 'react';
-import { SettingsHeader } from '../../../../components/templates/SettingsHeader';
-import { Logo } from './Logo';
+import { SettingsHeader } from '../../../../components/templates/settings/SettingsHeader';
+import { Photo } from './Photo';
 import { Name } from './Name';
 import { Bio } from './Bio';
 import { Mobile } from './Mobile';
@@ -13,7 +13,7 @@ export const PersonalPage = () => {
         title='Personal Settings'
         highlight='Customize and edit essential user settings data'
       ></SettingsHeader>
-      <Logo />
+      <Photo />
       <Name />
       <Bio />
       <Mobile />

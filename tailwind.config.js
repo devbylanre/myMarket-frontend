@@ -7,7 +7,7 @@ module.exports = {
         inter: 'Inter',
       },
       colors: {
-        primary: '#23a565',
+        primary: 'hsl(240, 70%, 50%)',
       },
     },
   },

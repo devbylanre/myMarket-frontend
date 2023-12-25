@@ -1,23 +1,20 @@
 import { useState } from 'react';
-import { HookCallback, ResourceSchema } from '../utils/types';
+import { IApiCallback, IApiResponse } from '../utils/types';
 import { useUserContext } from './useUserContext';
 
 export const useUpdateUser = () => {
   const { user, dispatch } = useUserContext()!;
-  const [resource, setResource] = useState<ResourceSchema<null>>({
+  const [resource, setResource] = useState<IApiResponse<null>>({
     state: null,
-    data: null,
+    payload: null,
     error: null,
     isLoading: null,
   });
 
-  const updateUser = async <T extends {}>(
-    data: T,
-    callback?: HookCallback<ResourceSchema<T>>
-  ) => {
+  const updateUser = async <T extends {}>(data: T, callback?: IApiCallback) => {
     setResource({
       state: null,
-      data: null,
+      payload: null,
       error: null,
       isLoading: true,
     });
@@ -39,7 +36,10 @@ export const useUpdateUser = () => {
       if (!response.ok) {
         return setResource({
           state: 'error',
-          error: json.error,
+          error: {
+            code: json.code,
+            message: json.message,
+          },
           isLoading: false,
         });
       }
@@ -48,22 +48,16 @@ export const useUpdateUser = () => {
 
       setResource({
         state: 'success',
-        data: json.data,
+        payload: {
+          code: json.code,
+          message: json.message,
+          data: json.data,
+        },
         isLoading: false,
       });
 
       return callback && callback(json);
     }
-
-    return setResource({
-      state: 'error',
-      error: {
-        code: 404,
-        message: 'User ID not found',
-        details: 'Null or Undefined user ID',
-      },
-      isLoading: false,
-    });
   };
 
   return { resource, updateUser };

@@ -1,4 +1,9 @@
-import React, { HTMLAttributes, createContext, useContext } from 'react';
+import React, {
+  HTMLAttributes,
+  createContext,
+  useContext,
+  useState,
+} from 'react';
 import { twMerge } from 'tailwind-merge';
 import { LuChevronDown } from 'react-icons/lu';
 import { motion, AnimatePresence, MotionProps } from 'framer-motion';
@@ -11,12 +16,13 @@ interface SelectProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 interface SelectContextProps {
-  handleToggle: () => void;
   handleSelect: (option: string | number) => void;
   value: any;
   isActive: (value: string | number) => boolean;
   touched: boolean;
   multiple: boolean;
+  handleToggle: () => void;
+  showOptions: boolean;
 }
 
 const SelectContext = createContext<SelectContextProps | undefined>(undefined);
@@ -24,8 +30,14 @@ const SelectContext = createContext<SelectContextProps | undefined>(undefined);
 export const Select = (props: SelectProps) => {
   const { className, multiple = false, ...rest } = props;
   const { touched, helper, value } = useContext(FormContext)!;
+  const [showOptions, setShowOptions] = useState<boolean>(false);
 
-  const handleToggle = () => helper.setTouched(!touched);
+  const handleToggle = () => {
+    if (!touched) {
+      helper.setTouched(true);
+    }
+    return setShowOptions(!showOptions);
+  };
 
   const handleSelect = (option: string | number) => {
     if (multiple) {
@@ -35,10 +47,10 @@ export const Select = (props: SelectProps) => {
           ? array.filter((v) => v !== option)
           : [...array, option]
       );
-      return;
+      return setShowOptions(false);
     }
-
     helper.setValue(option);
+    return setShowOptions(false);
   };
 
   const isActive = (option: string | number) => {
@@ -46,13 +58,20 @@ export const Select = (props: SelectProps) => {
       const array: any[] = value;
       return array.includes(option);
     }
-
     return value === option;
   };
 
   return (
     <SelectContext.Provider
-      value={{ handleToggle, handleSelect, isActive, value, touched, multiple }}
+      value={{
+        handleToggle,
+        handleSelect,
+        isActive,
+        showOptions,
+        value,
+        touched,
+        multiple,
+      }}
     >
       <div
         className={twMerge('relative w-full', className)}
@@ -66,7 +85,7 @@ interface SelectTriggerProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const SelectTrigger = (props: SelectTriggerProps) => {
   const { className, children, ...rest } = props;
-  const { handleToggle, touched } = useContext(SelectContext)!;
+  const { handleToggle, showOptions } = useContext(SelectContext)!;
 
   return (
     <div
@@ -79,7 +98,7 @@ export const SelectTrigger = (props: SelectTriggerProps) => {
     >
       {children}
       <motion.span
-        animate={touched ? { rotate: 180 } : { rotate: 0 }}
+        animate={showOptions ? { rotate: 180 } : { rotate: 0 }}
         transition={{ duration: 0.25 }}
       >
         <LuChevronDown className='w-4 h-4' />
@@ -123,14 +142,14 @@ interface SelectContentProps extends MotionProps {
 
 export const SelectContent = (props: SelectContentProps) => {
   const { className, ...rest } = props;
-  const { touched } = useContext(SelectContext)!;
+  const { showOptions } = useContext(SelectContext)!;
 
   return (
     <AnimatePresence>
-      {touched && (
+      {showOptions && (
         <motion.div
-          animate={{ y: [-20, 0] }}
-          exit={{ y: [0, -4], opacity: [1, 0] }}
+          animate={{ top: [28, 36] }}
+          exit={{ top: [36, 28], opacity: [1, 0] }}
           className={twMerge(
             'absolute w-full space-y-0.5 overflow-hidden bg-white ring-1 ring-zinc-950/10 max-h-64 overflow-y-scroll p-1 rounded-md mt-2',
             className

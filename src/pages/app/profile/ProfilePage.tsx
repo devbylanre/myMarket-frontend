@@ -6,13 +6,13 @@ import { Badge } from '../../../components/ui/Badge';
 import { Text } from '../../../components/ui/Text';
 import { SellerSetup } from '../../../components/templates/SellerSetup';
 import { useOutletContext } from 'react-router-dom';
-import { UserSchema, UserStoreSchema } from '../../../utils/types';
+import { IUser, IUSerStore } from '../../../utils/types';
 import { Separator } from '../../../components/ui/Separator';
 import { LuClipboard } from 'react-icons/lu';
 
 export const ProfilePage = () => {
   const { firstName, lastName, bio, store, isSeller } =
-    useOutletContext() as UserSchema;
+    useOutletContext() as IUser;
 
   return (
     <div>
@@ -53,7 +53,7 @@ export const ProfilePage = () => {
   );
 };
 
-const Store = ({ store }: UserStoreSchema) => {
+const Store = ({ store }: IUSerStore) => {
   return (
     <div className='space-y-5'>
       {/* create tab components for store, products, and analytics */}

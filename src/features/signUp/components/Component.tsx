@@ -17,8 +17,8 @@ export const Component = ({ isLoading }: { isLoading: boolean | null }) => {
           Join the community and sell your products
         </Text>
         <Text as='p'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum labore,
-          eaque exercitationem laboriosam doloremque
+          Create a new account by completing the form and trading with nigerians
+          in minutes
         </Text>
       </div>
 

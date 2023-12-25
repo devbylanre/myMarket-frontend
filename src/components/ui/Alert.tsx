@@ -1,33 +1,46 @@
 import { VariantProps, cva } from 'class-variance-authority';
-import { AnimatePresence, MotionProps, motion } from 'framer-motion';
 import React, {
   createContext,
   HTMLAttributes,
   useContext,
-  useEffect,
   useState,
 } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { cn } from '../../utils/util';
 
-type AlertVariant = 'success' | 'warning' | 'danger' | 'default';
+const alertVariant = cva(
+  'w-full sm:max-w-[320px] p-2 flex rounded-lg flex-wrap',
+  {
+    variants: {
+      variant: {
+        success: 'bg-green-50',
+        danger: 'bg-red-50',
+        warning: 'bg-amber-50',
+        ghost: 'bg-white',
+      },
+    },
+    defaultVariants: {
+      variant: 'ghost',
+    },
+  }
+);
 
 interface AlertContextProps {
   isVisible: boolean;
   onDismiss: () => void;
-  timeout?: number;
-  variant: AlertVariant;
+  variant: string | null | undefined;
 }
 
 const AlertContext = createContext<AlertContextProps | undefined>(undefined);
 
-interface AlertProps extends HTMLAttributes<HTMLDivElement> {
-  timeout?: number;
-  variant?: AlertVariant;
+interface IAlert
+  extends HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof alertVariant> {
+  className?: string;
 }
 
-export const Alert = (props: AlertProps) => {
-  const { timeout, variant = 'default', className, ...rest } = props;
+export const Alert = (props: IAlert) => {
+  const { variant, className, ...rest } = props;
 
   const [isVisible, setIsVisible] = useState<boolean>(true);
 
@@ -37,45 +50,27 @@ export const Alert = (props: AlertProps) => {
         variant,
         isVisible,
         onDismiss: () => setIsVisible(false),
-        timeout,
       }}
     >
-      <div
-        className={twMerge('w-full space-y-5', className)}
-        {...rest}
-      />
+      {isVisible ? (
+        <div
+          className={cn(alertVariant({ variant, className }))}
+          {...rest}
+        />
+      ) : null}
     </AlertContext.Provider>
   );
 };
 
-const alertIconVariant = cva(
-  'min-w-[25px] min-h-[25px] w-fit h-fit p-1 flex rounded-md',
-  {
-    variants: {
-      variant: {
-        success: 'bg-green-200 text-green-800 stroke-green-800',
-        danger: 'bg-red-500 text-white stroke-red-800',
-        warning: 'bg-amber-200 text-amber-800 stroke-amber-800',
-        default: 'bg-white text-zinc-800 stroke-zinc-800',
-      },
-    },
-    defaultVariants: {
-      variant: 'default',
-    },
-  }
-);
+interface IAlertIcon extends HTMLAttributes<HTMLDivElement> {}
 
-interface AlertIconProps
-  extends HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof alertIconVariant> {}
-
-export const AlertIcon = (props: AlertIconProps) => {
+export const AlertIcon = (props: IAlertIcon) => {
   const { variant } = useContext(AlertContext)!;
   const { className, ...rest } = props;
 
   return (
     <div
-      className={cn(alertIconVariant({ variant, className }))}
+      className={cn({ variant, className })}
       {...rest}
     />
   );
@@ -92,47 +87,5 @@ export const AlertDismiss = ({ className, ...rest }: AlertDismissProps) => {
       onClick={onDismiss}
       {...rest}
     />
-  );
-};
-
-const alertContentVariants = cva('p-2.5 rounded-xl', {
-  variants: {
-    variant: {
-      default: 'bg-white',
-      warning: 'bg-amber-100',
-      danger: 'bg-red-100',
-      success: 'bg-green-100',
-    },
-  },
-});
-interface AlertContentProps
-  extends MotionProps,
-    VariantProps<typeof alertContentVariants> {
-  className?: string;
-}
-export const AlertContent = ({ className, ...rest }: AlertContentProps) => {
-  const { isVisible, timeout, variant, onDismiss } = useContext(AlertContext)!;
-
-  useEffect(() => {
-    if (timeout) {
-      const timer = setTimeout(() => onDismiss(), timeout);
-
-      return () => clearTimeout(timer);
-    }
-  }, [onDismiss, timeout]);
-
-  return (
-    <AnimatePresence>
-      {isVisible && (
-        <motion.div
-          initial={{ opacity: 0, height: '0%' }}
-          animate={{ opacity: 1, height: '100%' }}
-          exit={{ opacity: 0, height: '0%' }}
-          transition={{ duration: 0.4 }}
-          className={cn(alertContentVariants({ variant, className }))}
-          {...rest}
-        />
-      )}
-    </AnimatePresence>
   );
 };

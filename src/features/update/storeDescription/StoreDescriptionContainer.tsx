@@ -1,32 +1,28 @@
-import { Form, Formik } from 'formik';
 import * as yup from 'yup';
-import React, { useState } from 'react';
-import { DescriptionForm } from './components/DescriptionForm';
-import { Text } from '../../../components/ui/Text';
-import { ActionButtons } from '../util/ActionButtons';
+import { Form } from './components/Form';
 import { useUpdateStoreDescription } from './hooks/useUpdateStoreDescription';
-import { FormErrorToast } from '../../../components/templates/FormErrorToast';
-import { UserSchema } from '../../../utils/types';
+import { IUser } from '../../../utils/types';
 import { useOutletContext } from 'react-router-dom';
+import {
+  SettingsForm,
+  SettingsFormButtons,
+  SettingsFormMessage,
+} from '../../../components/templates/settings/SettingsForm';
+import { Data } from './components/Data';
 
 export const StoreDescriptionContainer = () => {
-  const { store } = useOutletContext() as UserSchema;
+  const { store } = useOutletContext() as IUser;
 
   const initialValues: { description: string } = {
     description: store.description,
   };
 
-  const [action, setAction] = useState<'view' | 'edit'>('view');
-
   const { resource, updateStoreDescription } = useUpdateStoreDescription();
 
   const handleSubmit = async (values: { description: string }) => {
-    await updateStoreDescription(
-      {
-        store: { ...store, description: values.description },
-      },
-      () => setAction('view')
-    );
+    await updateStoreDescription({
+      store: { ...store, description: values.description },
+    });
   };
 
   const validationSchema = yup.object().shape({
@@ -34,34 +30,23 @@ export const StoreDescriptionContainer = () => {
   });
 
   return (
-    <Formik
+    <SettingsForm
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
+      resource={resource}
     >
-      <Form>
-        {action === 'view' ? (
-          <Text
-            as='p'
-            size='sm'
-            accent='medium'
-          >
-            {store.description}
-          </Text>
-        ) : (
-          <DescriptionForm />
-        )}
-
-        <ActionButtons
-          action={action}
-          setAction={setAction}
-          isLoading={resource.isLoading}
-        />
-
-        {resource.state === 'error' ? (
-          <FormErrorToast error={resource.error} />
-        ) : null}
-      </Form>
-    </Formik>
+      {(action) => (
+        <>
+          {action === 'edit' ? (
+            <Form />
+          ) : (
+            <Data description={store.description} />
+          )}
+          <SettingsFormButtons />
+          <SettingsFormMessage />
+        </>
+      )}
+    </SettingsForm>
   );
 };

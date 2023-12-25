@@ -1,31 +1,33 @@
-interface HookSuccess<T> {
-  message?: string | number;
-  data: T | null;
-}
-
-export interface HookError {
-  error: {
+interface ISuccessResponse<T> {
+  payload: {
     code: number;
-    details: any;
     message: string;
+    data: T | null;
   } | null;
 }
 
-interface HookState<S = 'success' | 'error' | null> {
+export interface IErrorResponse {
+  error: {
+    code: number;
+    message: string | any[];
+  } | null;
+}
+
+interface IState<S = 'success' | 'error' | null> {
   state: S;
 }
 
-export type ResourceSchema<T> = (
-  | (HookSuccess<T> & HookState<'success'>)
-  | (HookError & HookState<'error'>)
-  | (HookSuccess<T> & HookError & HookState<null>)
+export type IApiResponse<T> = (
+  | (ISuccessResponse<T> & IState<'success'>)
+  | (IErrorResponse & IState<'error'>)
+  | (IErrorResponse & ISuccessResponse<T> & IState<null>)
 ) & {
   isLoading: boolean | null;
 };
 
-export type HookCallback<T> = (data?: T) => void;
+export type IApiCallback = (data?: any) => void;
 
-export interface UserStoreSchema {
+export interface IUSerStore {
   store: {
     name: string;
     description: string;
@@ -37,7 +39,7 @@ export interface UserStoreSchema {
     };
   };
 }
-export interface UserSchema extends UserStoreSchema {
+export interface IUser extends IUSerStore {
   _id: string;
   isSeller: boolean;
   email: string;
@@ -58,11 +60,15 @@ export interface UserSchema extends UserStoreSchema {
   savedProducts: string[];
   accounts: { platform: string; url: string }[];
   token: {
-    signature: string;
+    id: string;
     exp: number;
   };
   verification: {
     token: string;
     verified: true;
+  };
+  photo: {
+    url: string;
+    name: string;
   };
 }

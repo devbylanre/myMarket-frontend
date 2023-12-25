@@ -8,7 +8,7 @@ export const SignUpPage = () => {
     <div className='grid min-h-screen grid-cols-1 md:grid-cols-2'>
       <SideBar />
       <div className='flex justify-center'>
-        <div className='w-full px-4 py-8 md:px-0 md:w-4/5 lg:w-3/5 md:py-16'>
+        <div className='w-full px-3 py-8 md:px-0 md:w-4/5 lg:w-3/5 md:py-16'>
           <SignUpContainer />
         </div>
       </div>
@@ -17,9 +17,9 @@ export const SignUpPage = () => {
 };
 
 const links: { title: string; url: string }[] = [
-  { title: 'Sign in', url: '/auth' },
-  { title: 'Privacy policy', url: 'privacy' },
-  { title: 'Terms of service', url: 'terms' },
+  { title: 'Sign in', url: '/auth/' },
+  { title: 'Privacy policy', url: '' },
+  { title: 'Terms of service', url: '' },
 ];
 
 const SideBar = () => {
@@ -32,15 +32,11 @@ const SideBar = () => {
           weight={500}
           className='text-primary'
         >
-          Sell locally. Purchase Globally
+          eCommerce platform that promotes local trades
         </Text>
-        <Text
-          as='h2'
-          size='md'
-        >
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima
-          voluptas ea expedita voluptate ducimus. Ea rerum soluta optio
-          reiciendis veritatis molestias
+        <Text as='h2'>
+          Elevate your community with our thriving eCommerce platform supporting
+          local businesses worldwide.
         </Text>
       </div>
 

@@ -1,15 +1,16 @@
-import { Form, Formik } from 'formik';
-import React, { useState } from 'react';
 import * as yup from 'yup';
 import { useOutletContext } from 'react-router-dom';
-import { UserSchema } from '../../../utils/types';
-import { Text } from '../../../components/ui/Text';
-import { FormFields } from './components/FormFields';
+import { IUser } from '../../../utils/types';
+import { Form } from './components/Form';
 import { useUpdateName } from './hooks/useUpdateName';
-import { FormErrorToast } from '../../../components/templates/FormErrorToast';
-import { ActionButtons } from '../util/ActionButtons';
+import {
+  SettingsForm,
+  SettingsFormButtons,
+  SettingsFormMessage,
+} from '../../../components/templates/settings/SettingsForm';
+import { Data } from './components/Data';
 
-interface Schema {
+interface IForm {
   firstName: string;
   lastName: string;
 }
@@ -20,49 +21,42 @@ const validationSchema = yup.object().shape({
 });
 
 export const NameContainer = () => {
-  const { firstName, lastName } = useOutletContext() as UserSchema;
+  const { firstName, lastName } = useOutletContext() as IUser;
   const { resource, updateNames } = useUpdateName();
-  const [action, setAction] = useState<'edit' | 'view'>('view');
 
-  const initialValues: Schema = {
+  const initialValues: IForm = {
     firstName: firstName,
     lastName: lastName,
   };
 
-  const handleSubmit = async (values: Schema) => {
-    await updateNames(values, () => setAction('view'));
+  const handleSubmit = async (values: IForm) => {
+    await updateNames({
+      firstName: values.firstName,
+      lastName: values.lastName,
+    });
   };
 
   return (
-    <Formik
+    <SettingsForm
       initialValues={initialValues}
-      onSubmit={handleSubmit}
       validationSchema={validationSchema}
+      onSubmit={handleSubmit}
+      resource={resource}
     >
-      <Form className='space-y-1'>
-        {action === 'view' ? (
-          <Text
-            as='p'
-            size='sm'
-            className='flex flex-col capitalize gap-y-1'
-          >
-            {`${firstName} ${lastName}`}
-          </Text>
-        ) : (
-          <FormFields />
-        )}
-
-        <ActionButtons
-          action={action}
-          setAction={setAction}
-          isLoading={resource.isLoading}
-        />
-
-        {/* form error */}
-        {resource.state === 'error' ? (
-          <FormErrorToast error={resource.error} />
-        ) : null}
-      </Form>
-    </Formik>
+      {(action) => (
+        <>
+          {action === 'view' ? (
+            <Data
+              firstName={firstName}
+              lastName={lastName}
+            />
+          ) : (
+            <Form />
+          )}
+          <SettingsFormButtons />
+          <SettingsFormMessage />
+        </>
+      )}
+    </SettingsForm>
   );
 };

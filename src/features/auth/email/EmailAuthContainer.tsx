@@ -4,7 +4,7 @@ import { useAuth } from './hooks/useAuth';
 import { Component } from './components/Component';
 import { Success } from './components/Success';
 import { useNavigate } from 'react-router-dom';
-import { FormErrorAlert } from '../../../components/templates/FormErrorAlert';
+import { FormError } from '../../../components/templates/FormError';
 
 interface InitialValueTypes {
   email: string;
@@ -47,13 +47,12 @@ export const EmailAuthContainer = () => {
         {resource.state === 'success' ? (
           <Success />
         ) : (
-          <>
-            <Component isLoading={resource.isLoading} />
-            {resource.state === 'error' ? (
-              <FormErrorAlert error={resource.error} />
-            ) : null}
-          </>
+          <Component isLoading={resource.isLoading} />
         )}
+
+        {resource.state === 'error' ? (
+          <FormError error={resource.error} />
+        ) : null}
       </Form>
     </Formik>
   );

@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import { ResourceSchema, UserSchema } from '../../../../utils/types';
+import { IApiResponse, IUser } from '../../../../utils/types';
 import { useUserContext } from '../../../../hooks/useUserContext';
 
 export const useAuth = () => {
   const { dispatch } = useUserContext()!;
-  const [resource, setResource] = useState<ResourceSchema<UserSchema>>({
+  const [resource, setResource] = useState<IApiResponse<IUser>>({
     state: null,
     isLoading: null,
     error: null,
-    data: null,
+    payload: null,
   });
 
   const signIn = async <T extends { email: string }>(
@@ -19,7 +19,7 @@ export const useAuth = () => {
       state: null,
       isLoading: true,
       error: null,
-      data: null,
+      payload: null,
     });
 
     const response = await fetch('http://localhost:5000/api/v1/user/auth', {
@@ -36,7 +36,10 @@ export const useAuth = () => {
       return setResource({
         state: 'error',
         isLoading: false,
-        error: json.error,
+        error: {
+          code: json.code,
+          message: json.message,
+        },
       });
     }
 
@@ -45,7 +48,11 @@ export const useAuth = () => {
     setResource({
       state: 'success',
       isLoading: false,
-      data: json.data,
+      payload: {
+        code: json.code,
+        message: json.message,
+        data: json.data,
+      },
     });
 
     return callback && callback(json);

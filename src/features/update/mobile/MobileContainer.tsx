@@ -1,13 +1,14 @@
-import { Form, Formik } from 'formik';
-import React, { useState } from 'react';
 import * as yup from 'yup';
-import { Text } from '../../../components/ui/Text';
 import { useOutletContext } from 'react-router-dom';
-import { UserSchema } from '../../../utils/types';
-import { Fields } from './components/Fields';
+import { IUser } from '../../../utils/types';
+import { Form } from './components/Form';
 import { useUpdateMobile } from './hooks/useUpdateMobile';
-import { ActionButtons } from '../util/ActionButtons';
-import { FormErrorToast } from '../../../components/templates/FormErrorToast';
+import {
+  SettingsForm,
+  SettingsFormButtons,
+  SettingsFormMessage,
+} from '../../../components/templates/settings/SettingsForm';
+import { Text } from '../../../components/ui/Text';
 
 interface Schema {
   countryCode: 234;
@@ -21,8 +22,7 @@ const validationSchema = yup.object().shape({
 
 export const MobileContainer = () => {
   const { resource, updateMobile } = useUpdateMobile();
-  const { mobile } = useOutletContext() as UserSchema;
-  const [action, setAction] = useState<'edit' | 'view'>('view');
+  const { mobile } = useOutletContext() as IUser;
 
   const initialValues: Schema = {
     countryCode: 234,
@@ -30,49 +30,33 @@ export const MobileContainer = () => {
   };
 
   const handleSubmit = (values: Schema) => {
-    updateMobile({ mobile: { ...values } }, () => setAction('view'));
+    updateMobile({ mobile: { ...values } });
   };
 
   return (
-    <Formik
+    <SettingsForm
       initialValues={initialValues}
-      onSubmit={handleSubmit}
       validationSchema={validationSchema}
+      onSubmit={handleSubmit}
+      resource={resource}
     >
-      <Form className='space-y-1'>
-        {action === 'view' ? (
-          <>
+      {(action) => (
+        <>
+          {action === 'view' ? (
             <Text
               as='p'
               size='sm'
               accent='medium'
             >
-              Nigeria
+              {`+${mobile.countryCode} ${mobile.number}`}
             </Text>
-            <Text
-              as='p'
-              size='sm'
-              accent='medium'
-            >
-              {mobile.number > 0
-                ? `+${mobile.countryCode} ${mobile.number}`
-                : 'Not yet provided, Update'}
-            </Text>
-          </>
-        ) : (
-          <Fields />
-        )}
-
-        <ActionButtons
-          action={action}
-          setAction={setAction}
-          isLoading={resource.isLoading}
-        />
-
-        {resource.state === 'error' ? (
-          <FormErrorToast error={resource.error} />
-        ) : null}
-      </Form>
-    </Formik>
+          ) : (
+            <Form />
+          )}
+          <SettingsFormButtons />
+          <SettingsFormMessage />
+        </>
+      )}
+    </SettingsForm>
   );
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { LuMoreVertical, LuSettings } from 'react-icons/lu';
+import { LuSettings } from 'react-icons/lu';
 import { Text } from '../../../components/ui/Text';
 import { Avatar, AvatarFallback } from '../../../components/ui/Avatar';
 import { Link } from 'react-router-dom';
@@ -26,7 +26,6 @@ const User = ({ firstName, lastName }: HeaderProps) => {
       >
         {`${firstName} ${lastName}`}
       </Text>
-      <LuMoreVertical />
     </div>
   );
 };
@@ -44,7 +43,7 @@ export const Header = ({ firstName, lastName }: HeaderProps) => {
 
       <div className='flex items-center gap-x-3'>
         <Link to='/app/settings/'>
-          <LuSettings className='w-6 h-6 p-1 bg-white rounded-full text-zinc-500 hover:text-primary' />
+          <LuSettings className='p-1 bg-white rounded-full w-7 h-7 text-zinc-500 hover:text-primary' />
         </Link>
         <User
           firstName={firstName}

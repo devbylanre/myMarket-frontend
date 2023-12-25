@@ -44,7 +44,7 @@ const Example = () => {
           <Toast
             variant='light'
             isVisible={showToast}
-            onDismiss={() => setShowToast(true)}
+            onDismiss={() => setShowToast(false)}
           >
             <ToastContent className='flex items-center gap-x-2'>
               <LuRedo className='w-5 h-5 p-1 bg-green-200 rounded-full stroke-green-800' />

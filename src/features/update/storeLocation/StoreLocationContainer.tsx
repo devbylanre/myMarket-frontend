@@ -1,73 +1,61 @@
-import { Form, Formik } from 'formik';
-import React, { useState } from 'react';
 import * as yup from 'yup';
 import { useOutletContext } from 'react-router-dom';
-import { UserSchema } from '../../../utils/types';
-import { LocationData } from './components/LocationData';
-import { LocationForm } from './components/LocationForm';
-import { ActionButtons } from '../util/ActionButtons';
+import { IUser } from '../../../utils/types';
 import { useUpdateStoreLocation } from './hooks/useUpdateStoreLocation';
-import { FormErrorToast } from '../../../components/templates/FormErrorToast';
+import {
+  SettingsForm,
+  SettingsFormButtons,
+  SettingsFormMessage,
+} from '../../../components/templates/settings/SettingsForm';
+import { Data } from './components/Data';
+import { Form } from './components/Form';
 
-interface FormSchema {
+interface IForm {
   country: 'Nigeria';
   state: string;
   city: string;
   address: string;
 }
 
+const validationSchema = yup.object().shape({
+  country: yup.string().required('Provide a country'),
+  state: yup.string().required('Provide a state'),
+  city: yup.string().required('Provide a city'),
+  address: yup.string().required('Provide a address'),
+});
+
 export const StoreLocationContainer = () => {
   const { resource, updateStoreLocation } = useUpdateStoreLocation();
-
-  const { store } = useOutletContext() as UserSchema;
+  const { store } = useOutletContext() as IUser;
   const { location } = store;
 
-  const [action, setAction] = useState<'edit' | 'view'>('view');
-
-  const initialValues: FormSchema = {
+  const initialValues: IForm = {
     country: 'Nigeria',
-    state: location.state,
-    city: location.city,
-    address: location.address,
+    state: location.state || '',
+    city: location.city || '',
+    address: location.address || '',
   };
 
-  const validationSchema = yup.object().shape({
-    country: yup.string().required('Provide a country'),
-    state: yup.string().required('Provide a state'),
-    city: yup.string().required('Provide a city'),
-    address: yup.string().required('Provide a address'),
-  });
-
-  const handleSubmit = async (values: FormSchema) => {
-    await updateStoreLocation(
-      { store: { ...store, location: { ...location, ...values } } },
-      () => setAction('view')
-    );
+  const handleSubmit = async (values: IForm) => {
+    await updateStoreLocation({
+      store: { ...store, location: { ...values } },
+    });
   };
 
   return (
-    <Formik
+    <SettingsForm
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
+      resource={resource}
     >
-      <Form className='space-y-1'>
-        {action === 'view' ? (
-          <LocationData location={location} />
-        ) : (
-          <LocationForm />
-        )}
-
-        <ActionButtons
-          action={action}
-          setAction={setAction}
-          isLoading={resource.isLoading}
-        />
-
-        {resource.state === 'error' ? (
-          <FormErrorToast error={resource.error} />
-        ) : null}
-      </Form>
-    </Formik>
+      {(action) => (
+        <>
+          {action === 'view' ? <Data location={store.location} /> : <Form />}
+          <SettingsFormButtons />
+          <SettingsFormMessage />
+        </>
+      )}
+    </SettingsForm>
   );
 };

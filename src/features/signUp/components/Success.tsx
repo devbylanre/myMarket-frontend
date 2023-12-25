@@ -9,13 +9,15 @@ export const Success = ({ email }: { email: string }) => {
         as='h5'
         size='2xl'
         weight={600}
-        className='text-primary'
       >
         Account registration successful
       </Text>
-      <Text as='p'>
+      <Text
+        as='p'
+        size='sm'
+      >
         An email was sent to your email{' '}
-        <Badge className='h-6 text-sm'>{email}</Badge> along with an account
+        <span className='text-primary'>{email}</span> along with an account
         activation link. Click on the link to verify your account
       </Text>
     </div>
