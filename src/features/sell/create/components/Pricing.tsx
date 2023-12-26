@@ -5,25 +5,42 @@ import {
   FormMessage,
 } from '../../../../components/ui/Form';
 import { Number } from '../../../../components/ui/Number';
+import { Text } from '../../../../components/ui/Text';
 
-export const Pricing = () => {
+export const Pricing = ({ price }: { price: number }) => {
   return (
-    <div className='grid grid-cols-2 gap-x-3'>
-      <FormField name='price'>
-        <FormLabel>Price</FormLabel>
-        <Number>
-          <span className='text-xs'>NGN</span>
-        </Number>
-        <FormMessage />
-      </FormField>
+    <>
+      <div className='flex flex-col justify-between gap-3 sm:flex-row'>
+        <FormField
+          name='price'
+          className='w-full'
+        >
+          <FormLabel>Price</FormLabel>
+          <Number>
+            <span className='text-xs'>NGN</span>
+          </Number>
+          <FormMessage />
+        </FormField>
 
-      <FormField name='discount'>
-        <FormLabel>Discount</FormLabel>
-        <Number>
-          <span className='text-xs font-bold'>%</span>
-        </Number>
-        <FormMessage />
-      </FormField>
-    </div>
+        <FormField
+          name='discount'
+          className='w-full'
+        >
+          <FormLabel>Discount</FormLabel>
+          <Number>
+            <span className='text-xs font-bold'>%</span>
+          </Number>
+          <FormMessage />
+        </FormField>
+      </div>
+      <Text
+        size='xs'
+        weight={500}
+        className='mt-4'
+      >
+        Based on price and discount value, your product will be sold for NGN
+        {price.toFixed(2) || 0}
+      </Text>
+    </>
   );
 };

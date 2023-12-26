@@ -14,7 +14,7 @@ export const AppLayout = () => {
             lastName={user.lastName}
           />
           <Sidebar />
-          <div className='lg:ml-[17%] w-full lg:w-[83%] bg-white min-h-screen lg:rounded-ss-lg p-5'>
+          <div className='lg:ml-[17%] w-full lg:w-[83%] bg-white min-h-screen p-3 lg:p-8 mb-20 lg:mb-0'>
             <Outlet context={user} />
           </div>
         </div>

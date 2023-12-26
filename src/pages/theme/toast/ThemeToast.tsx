@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Text } from '../../../components/ui/Text';
 import { Toast, ToastContent } from '../../../components/ui/Toast';
 import { Button } from '../../../components/ui/Button';
-import { LuRedo } from 'react-icons/lu';
 import {
   UtilCard,
   UtilCardCode,
@@ -37,27 +36,25 @@ const Example = () => {
         <UtilCardPreview>
           <Button
             variant='outline'
+            size='xs'
             onClick={() => setShowToast((state) => !state)}
           >
             Show toast
           </Button>
-          <Toast
-            variant='light'
-            isVisible={showToast}
-            onDismiss={() => setShowToast(false)}
-          >
-            <ToastContent className='flex items-center gap-x-2'>
-              <LuRedo className='w-5 h-5 p-1 bg-green-200 rounded-full stroke-green-800' />
-              <Text
-                as='h6'
-                size='sm'
-                weight={500}
-                className='flex-1 leading-tight text-green-800'
-              >
-                First name updated successfully check profile
-              </Text>
-            </ToastContent>
-          </Toast>
+          {showToast && (
+            <Toast variant='default'>
+              <ToastContent className='flex items-center gap-x-2'>
+                <Text
+                  as='h6'
+                  size='sm'
+                  weight={500}
+                  className='flex-1 leading-tight'
+                >
+                  User name updated successfully
+                </Text>
+              </ToastContent>
+            </Toast>
+          )}
         </UtilCardPreview>
         <UtilCardCode />
       </UtilCard>

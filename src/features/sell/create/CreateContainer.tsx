@@ -44,12 +44,11 @@ const validationSchema = yup.object().shape({
   price: yup
     .number()
     .required('Product price must be provided')
-    .min(1, 'Invalid product price'),
+    .min(10, 'Product price cannot be less than 10NGN'),
   discount: yup
     .number()
-    .required('Product discount must be provided')
-    .min(1, 'Invalid product discount')
-    .max(50, 'Product discount cannot exceed 50 percent'),
+    .min(0, 'Product discount cannot be less than 0')
+    .max(99.9, 'Product discount cannot exceed 99.9 percent'),
   images: yup
     .mixed()
     .test(
@@ -119,7 +118,12 @@ export const CreateContainer = () => {
             <Separator className='my-8' />
             <BrandAndCategory />
             <Separator className='my-8' />
-            <Pricing />
+            <Pricing
+              price={
+                formik.values.price -
+                (formik.values.price * formik.values.discount) / 100
+              }
+            />
             <Separator className='my-8' />
             <Images formik={formik} />
             <Buttons isLoading={status.isLoading} />

@@ -17,8 +17,8 @@ const iconClassName: string = 'w-5 h-5 fill-inherit stroke-inherit';
 
 const items: Items[] = [
   {
-    name: 'Explore',
-    url: '',
+    name: 'Shop',
+    url: 'shop',
     icon: <RiAppsFill className={iconClassName} />,
   },
   {
@@ -40,7 +40,7 @@ const items: Items[] = [
 
 export const Sidebar = () => {
   return (
-    <div className='fixed bottom-0 left-0 z-50 flex justify-between w-full p-3 bg-white lg:space-y-2 lg:top-12 lg:h-screen lg:w-1/6 lg:block gap-y-4 lg:rounded-se-xl'>
+    <div className='fixed bottom-0 left-0 z-50 flex justify-between w-full p-3 lg:space-y-2 lg:top-12 lg:h-screen lg:w-1/6 lg:block gap-y-4 bg-zinc-100 lg:bg-inherit'>
       {items.map((item, i) => (
         <SidebarItem
           key={i}

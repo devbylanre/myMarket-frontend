@@ -6,13 +6,7 @@ import { Images } from './cards/Images';
 import { Details } from './cards/Details';
 import { SellerInformation } from './cards/Seller';
 import { Separator } from '../../../components/ui/Separator';
-import {
-  Tab,
-  TabContent,
-  TabList,
-  TabTrigger,
-} from '../../../components/ui/Tab';
-import { Description } from './Description';
+import { ProductTab } from './Tab';
 
 export const ProductPage = () => {
   const { id } = useParams();
@@ -69,25 +63,7 @@ export const ProductPage = () => {
             </>
           </div>
           <Separator className='my-8' />
-          <Tab defaultTab='description'>
-            <TabList>
-              <TabTrigger
-                value='description'
-                className='px-3'
-              >
-                Description
-              </TabTrigger>
-              <TabTrigger
-                value='reviews'
-                className='px-3'
-              >
-                Reviews
-              </TabTrigger>
-            </TabList>
-            <TabContent value='description'>
-              <Description description={product.description} />
-            </TabContent>
-          </Tab>
+          <ProductTab description={product.description} />
         </>
       )}
     </div>

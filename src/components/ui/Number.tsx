@@ -16,14 +16,14 @@ export const Number = ({
   const { name, helper } = useContext(FormContext)!;
   return (
     <div
-      className={twMerge('inline-flex gap-x-2 leading-tight', className)}
+      className={twMerge('flex gap-x-2 w-fit leading-tight', className)}
       {...rest}
     >
       {children}
       <Field
         name={name}
         className={twMerge(
-          'text-xl font-semibold text-inherit outline-none leading-none'
+          'text-xl font-semibold text-inherit outline-none leading-none flex-auto w-48'
         )}
         onFocus={() => helper.setTouched(true)}
         onBlur={() => helper.setTouched(false)}

@@ -3,6 +3,7 @@ import React, {
   createContext,
   useContext,
   HTMLAttributes,
+  useState,
 } from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
 import { cn } from '../../utils/util';
@@ -13,14 +14,14 @@ type VerticalPosition = 'top' | 'bottom';
 type HorizontalPosition = 'left' | 'center' | 'right';
 
 const toastVariants = cva(
-  'p-2 m-4 absolute w-full sm:w-[320px] rounded-xl shadow-lg shadow-zinc-100',
+  'p-2 m-4 absolute w-full sm:w-[320px] rounded-md shadow shadow-zinc-100',
   {
     variants: {
       variant: {
-        danger: 'bg-red-100',
-        success: 'bg-green-100',
-        light: 'bg-white',
-        warning: 'bg-amber-100 ring-amber-200',
+        danger: 'bg-red-50',
+        success: 'bg-green-50',
+        default: 'bg-white ring-1 ring-zinc-950/10',
+        warning: 'bg-amber-50 ring-amber-200',
       },
       position: {
         'top-left': 'top-0 start-0',
@@ -33,7 +34,7 @@ const toastVariants = cva(
       },
     },
     defaultVariants: {
-      variant: 'light',
+      variant: 'default',
       position: 'bottom-right',
     },
   }
@@ -47,8 +48,6 @@ interface ToastContextProps {
 const ToastContext = createContext<ToastContextProps | undefined>(undefined);
 
 interface ToastProps extends MotionProps, VariantProps<typeof toastVariants> {
-  isVisible: boolean;
-  onDismiss: () => void;
   className?: string;
   timeout?: number;
   position?: `${VerticalPosition}-${HorizontalPosition}`;
@@ -60,10 +59,12 @@ export const Toast = (props: ToastProps) => {
     timeout,
     position = 'top-right',
     variant,
-    isVisible,
-    onDismiss,
     ...rest
   } = props;
+
+  const [isVisible, setIsVisible] = useState<boolean>(true);
+
+  const onDismiss = () => setIsVisible(false);
 
   useEffect(() => {
     let timer: any;
@@ -71,15 +72,14 @@ export const Toast = (props: ToastProps) => {
       timer = setTimeout(() => onDismiss(), timeout || 4000);
     }
     return () => clearTimeout(timer);
-  }, [timeout, isVisible, onDismiss]);
+  }, [timeout, isVisible]);
 
   return (
     <ToastContext.Provider value={{ isVisible, onDismiss }}>
       <AnimatePresence initial={false}>
         {isVisible && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            animate={{ opacity: [0, 1], y: [-200, 0] }}
             exit={{ opacity: 0 }}
             className={cn(toastVariants({ variant, position, className }))}
             {...rest}
@@ -94,7 +94,7 @@ interface ToastContentProps extends HTMLAttributes<HTMLDivElement> {}
 export const ToastContent = ({ className, ...rest }: ToastContentProps) => {
   return (
     <div
-      className={twMerge('w-full h-full', className)}
+      className={twMerge('w-full', className)}
       {...rest}
     />
   );

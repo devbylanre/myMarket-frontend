@@ -61,7 +61,7 @@ export const TabTrigger = ({ className, value, ...rest }: ITabTrigger) => {
   return (
     <div
       className={twMerge(
-        'w-full text-sm p-1 hover:bg-white rounded-md text-center cursor-pointer',
+        'w-full text-sm py-1 px-3 hover:bg-white rounded-md text-center cursor-pointer',
         isActive(value) && 'bg-white ring-1 ring-zinc-950/5 shadow-sm',
         className
       )}

@@ -7,11 +7,10 @@ export const SidebarItem = ({ item }: { item: Record<string, any> }) => {
   return (
     <NavLink
       to={`/app/${item.url}`}
-      end
       className={({ isActive }) =>
         twMerge(
-          'flex flex-col lg:flex-row lg:h-9 justify-center lg:justify-start items-center w-full hover:text-zinc-950 gap-2 text-zinc-500',
-          isActive && 'text-primary'
+          'flex flex-col  lg:flex-row lg:h-9 justify-center lg:justify-start items-center w-full hover:text-zinc-950 gap-2 text-zinc-500 lg:px-2 lg:rounded-md',
+          isActive && 'text-primary lg:bg-white hover:bg-none'
         )
       }
     >
@@ -29,7 +28,7 @@ export const SidebarItem = ({ item }: { item: Record<string, any> }) => {
             as='p'
             size='sm'
             weight={500}
-            className='text-inherit'
+            className='text-xs text-inherit sm:text-sm'
           >
             {item.name}
           </Text>

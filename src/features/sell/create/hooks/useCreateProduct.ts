@@ -26,7 +26,7 @@ export const useCreateProduct = () => {
     const formData = new FormData();
 
     formData.append('title', data.title);
-    formData.append('tagline', data.description);
+    formData.append('tagline', data.tagline);
     formData.append('description', data.description);
     // Convert FileList to an array and then use forEach
     Array.from(data.images).forEach((image: any) => {
