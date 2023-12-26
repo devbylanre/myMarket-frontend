@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useUserContext } from '../../hooks/useUserContext';
 import { useNavigate } from 'react-router-dom';
-import { IUser } from '../../utils/types';
+import { User } from '../../contexts/user.types';
 
 interface PrivateLayoutProps {
-  children: (user: IUser) => React.ReactNode;
+  children: (user: User) => React.ReactNode;
 }
 
 export const PrivateLayout = ({ children }: PrivateLayoutProps) => {

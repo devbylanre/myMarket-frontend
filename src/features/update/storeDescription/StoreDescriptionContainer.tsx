@@ -1,7 +1,6 @@
 import * as yup from 'yup';
 import { Form } from './components/Form';
 import { useUpdateStoreDescription } from './hooks/useUpdateStoreDescription';
-import { IUser } from '../../../utils/types';
 import { useOutletContext } from 'react-router-dom';
 import {
   SettingsForm,
@@ -9,15 +8,16 @@ import {
   SettingsFormMessage,
 } from '../../../components/templates/settings/SettingsForm';
 import { Data } from './components/Data';
+import { User } from '../../../contexts/user.types';
 
 export const StoreDescriptionContainer = () => {
-  const { store } = useOutletContext() as IUser;
+  const { store } = useOutletContext() as User;
 
   const initialValues: { description: string } = {
     description: store.description,
   };
 
-  const { resource, updateStoreDescription } = useUpdateStoreDescription();
+  const { status, updateStoreDescription } = useUpdateStoreDescription();
 
   const handleSubmit = async (values: { description: string }) => {
     await updateStoreDescription({
@@ -34,7 +34,7 @@ export const StoreDescriptionContainer = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
-      resource={resource}
+      status={status}
     >
       {(action) => (
         <>

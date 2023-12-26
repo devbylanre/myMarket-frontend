@@ -1,33 +1,6 @@
-interface ISuccessResponse<T> {
-  payload: {
-    code: number;
-    message: string;
-    data: T | null;
-  } | null;
-}
+import { Dispatch } from 'react';
 
-export interface IErrorResponse {
-  error: {
-    code: number;
-    message: string | any[];
-  } | null;
-}
-
-interface IState<S = 'success' | 'error' | null> {
-  state: S;
-}
-
-export type IApiResponse<T> = (
-  | (ISuccessResponse<T> & IState<'success'>)
-  | (IErrorResponse & IState<'error'>)
-  | (IErrorResponse & ISuccessResponse<T> & IState<null>)
-) & {
-  isLoading: boolean | null;
-};
-
-export type IApiCallback = (data?: any) => void;
-
-export interface IUSerStore {
+export interface UserStore {
   store: {
     name: string;
     description: string;
@@ -39,7 +12,7 @@ export interface IUSerStore {
     };
   };
 }
-export interface IUser extends IUSerStore {
+export interface User extends UserStore {
   _id: string;
   isSeller: boolean;
   email: string;
@@ -71,4 +44,17 @@ export interface IUser extends IUSerStore {
     url: string;
     name: string;
   };
+}
+
+export interface Action<T> {
+  type: 'SIGN_IN' | 'SIGN_OUT' | 'UPDATE';
+  payload: T;
+}
+
+export interface State {
+  user: User | null;
+}
+export interface Context<T> {
+  user: User | null;
+  dispatch: Dispatch<T>;
 }

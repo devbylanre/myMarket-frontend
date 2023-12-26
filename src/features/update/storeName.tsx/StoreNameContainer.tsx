@@ -1,6 +1,5 @@
 import * as yup from 'yup';
 import { useOutletContext } from 'react-router-dom';
-import { IUser } from '../../../utils/types';
 import { Form } from './components/Form';
 import { useUpdateStoreName } from './hooks/useUpdateStoreName';
 import {
@@ -9,14 +8,15 @@ import {
   SettingsFormMessage,
 } from '../../../components/templates/settings/SettingsForm';
 import { Data } from './components/Data';
+import { User } from '../../../contexts/user.types';
 
 interface IForm {
   name: string;
 }
 
 export const StoreNameContainer = () => {
-  const { store } = useOutletContext() as IUser;
-  const { resource, updateStoreName } = useUpdateStoreName();
+  const { store } = useOutletContext() as User;
+  const { status, updateStoreName } = useUpdateStoreName();
 
   const initialValues: IForm = {
     name: store.name,
@@ -35,7 +35,7 @@ export const StoreNameContainer = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
-      resource={resource}
+      status={status}
     >
       {(action) => (
         <>

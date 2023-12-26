@@ -1,6 +1,5 @@
 import * as yup from 'yup';
 import { useOutletContext } from 'react-router-dom';
-import { IUser } from '../../../utils/types';
 import { Text } from '../../../components/ui/Text';
 import { Form } from './components/Form';
 import { useUpdateBio } from './hooks/useUpdateBio';
@@ -9,6 +8,7 @@ import {
   SettingsFormButtons,
   SettingsFormMessage,
 } from '../../../components/templates/settings/SettingsForm';
+import { User } from '../../../contexts/user.types';
 
 interface IForm {
   bio: string;
@@ -23,8 +23,8 @@ const validationSchema = yup.object().shape({
 });
 
 export const BioContainer = () => {
-  const { resource, updateBio } = useUpdateBio();
-  const { bio } = useOutletContext() as IUser;
+  const { status, updateBio } = useUpdateBio();
+  const { bio } = useOutletContext() as User;
   const initialValues: IForm = { bio: bio };
 
   const handleSubmit = (values: IForm) => {
@@ -36,7 +36,7 @@ export const BioContainer = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
-      resource={resource}
+      status={status}
     >
       {(action) => (
         <>

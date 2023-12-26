@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useVerifyToken } from './hooks/useVerifyToken';
+import { useVerifyToken } from './hooks/useVerify';
 import { Success } from './components/Success';
 import { FormError } from '../../components/templates/FormError';
 import { Button } from '../../components/ui/Button';
@@ -8,17 +8,17 @@ import { Text } from '../../components/ui/Text';
 
 export const VerifyTokenContainer = () => {
   const { token } = useParams();
-  const { resource, verifyToken } = useVerifyToken();
+  const { status, verify } = useVerifyToken();
 
   const onSubmit = async () => {
     if (token) {
-      await verifyToken(token);
+      await verify(token);
     }
   };
 
   return (
     <>
-      {resource.state === 'success' ? (
+      {status.state === 'success' ? (
         <Success />
       ) : (
         <>
@@ -43,9 +43,9 @@ export const VerifyTokenContainer = () => {
               type='button'
               size='sm'
               onClick={onSubmit}
-              disabled={resource.isLoading!}
+              disabled={status.isLoading!}
             >
-              {resource.isLoading ? (
+              {status.isLoading ? (
                 <Spinner variant='light' />
               ) : (
                 'Verify my account'
@@ -54,7 +54,7 @@ export const VerifyTokenContainer = () => {
           </div>
         </>
       )}
-      {resource.state === 'error' ? <FormError error={resource.error} /> : null}
+      {status.state === 'error' ? <FormError error={status.error} /> : null}
     </>
   );
 };

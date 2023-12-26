@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { IApiCallback, IApiResponse } from '../../../../utils/types';
+import { Status, Callback } from '../../../../hooks/types';
 import { useProductContext } from '../../../../hooks/useProductContext';
 
 export const useCreateProduct = () => {
   const { dispatch } = useProductContext()!;
-  const [response, setResponse] = useState<IApiResponse<null>>({
+  const [status, setStatus] = useState<Status<null>>({
     state: null,
     payload: null,
     error: null,
@@ -14,9 +14,9 @@ export const useCreateProduct = () => {
   const createProduct = async (
     token: string,
     data: any,
-    callback?: IApiCallback
+    callback?: Callback
   ) => {
-    setResponse({
+    setStatus({
       state: null,
       error: null,
       payload: null,
@@ -49,7 +49,7 @@ export const useCreateProduct = () => {
     const json = await api.json();
 
     if (!api.ok) {
-      return setResponse({
+      return setStatus({
         state: 'error',
         error: {
           code: json.code,
@@ -61,7 +61,7 @@ export const useCreateProduct = () => {
 
     dispatch({ type: 'CREATE', payload: json.data });
 
-    setResponse({
+    setStatus({
       state: 'success',
       payload: {
         code: json.code,
@@ -74,5 +74,5 @@ export const useCreateProduct = () => {
     return callback && callback();
   };
 
-  return { response, createProduct };
+  return { status, createProduct };
 };

@@ -52,20 +52,24 @@ const Category = () => {
         </FormControl>
 
         <SelectContent>
-          {category.map((category, i) => (
-            <SelectItem
-              key={i}
-              value={category.name}
-              className={(isActive) =>
-                twMerge(
-                  'text-zinc-500 py-1.5 hover:bg-zinc-50 px-2 text-sm rounded-lg',
-                  isActive && 'bg-primary/10 text-primary hover:bg-none'
-                )
-              }
-            >
-              {category.name}
-            </SelectItem>
-          ))}
+          {category
+            .sort((a, b) =>
+              a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+            )
+            .map((category, i) => (
+              <SelectItem
+                key={i}
+                value={category.name}
+                className={(isActive) =>
+                  twMerge(
+                    'text-zinc-500 py-1.5 hover:bg-zinc-50 px-2 text-sm rounded-lg',
+                    isActive && 'bg-primary/10 text-primary hover:bg-none'
+                  )
+                }
+              >
+                {category.name}
+              </SelectItem>
+            ))}
         </SelectContent>
       </Select>
     </FormField>

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Alert, AlertDismiss } from '../../components/ui/Alert';
 import { LuBadgeAlert, LuX } from 'react-icons/lu';
-import { IErrorResponse } from '../../utils/types';
+import { Error } from '../../hooks/types';
 import { Text } from '../../components/ui/Text';
 
-export const FormError = ({ error }: IErrorResponse) => {
+export const FormError = ({ error }: Error) => {
   return (
     <Alert
       variant='warning'

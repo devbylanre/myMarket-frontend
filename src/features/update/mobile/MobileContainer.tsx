@@ -1,6 +1,5 @@
 import * as yup from 'yup';
 import { useOutletContext } from 'react-router-dom';
-import { IUser } from '../../../utils/types';
 import { Form } from './components/Form';
 import { useUpdateMobile } from './hooks/useUpdateMobile';
 import {
@@ -9,6 +8,7 @@ import {
   SettingsFormMessage,
 } from '../../../components/templates/settings/SettingsForm';
 import { Text } from '../../../components/ui/Text';
+import { User } from '../../../contexts/user.types';
 
 interface Schema {
   countryCode: 234;
@@ -21,8 +21,8 @@ const validationSchema = yup.object().shape({
 });
 
 export const MobileContainer = () => {
-  const { resource, updateMobile } = useUpdateMobile();
-  const { mobile } = useOutletContext() as IUser;
+  const { status, updateMobile } = useUpdateMobile();
+  const { mobile } = useOutletContext() as User;
 
   const initialValues: Schema = {
     countryCode: 234,
@@ -38,7 +38,7 @@ export const MobileContainer = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
-      resource={resource}
+      status={status}
     >
       {(action) => (
         <>

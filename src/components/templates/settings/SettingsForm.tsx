@@ -7,7 +7,7 @@ import React, {
   useContext,
   useState,
 } from 'react';
-import { IApiResponse } from '../../../utils/types';
+import { Status } from '../../../hooks/types';
 
 import { LuBadgeAlert, LuPenLine, LuX } from 'react-icons/lu';
 import { Button } from '../../ui/Button';
@@ -22,13 +22,13 @@ interface ISettingsForm {
   children:
     | React.ReactNode
     | ((action: IAction, formik: Record<string, any>) => React.ReactNode);
-  resource: IApiResponse<any>;
+  status: Status<any>;
 }
 
 type IAction = 'view' | 'edit';
 
 interface ISettingsFormContext {
-  resource: IApiResponse<any>;
+  status: Status<any>;
   action: IAction;
   setAction: Dispatch<SetStateAction<IAction>>;
 }
@@ -36,8 +36,7 @@ interface ISettingsFormContext {
 const SettingsFormContext = createContext<ISettingsFormContext | null>(null);
 
 export const SettingsForm = (props: ISettingsForm) => {
-  const { initialValues, validationSchema, onSubmit, children, resource } =
-    props;
+  const { initialValues, validationSchema, onSubmit, children, status } = props;
   const [action, setAction] = useState<IAction>('view');
 
   const handleSubmit = (values: any) => {
@@ -46,7 +45,7 @@ export const SettingsForm = (props: ISettingsForm) => {
   };
 
   return (
-    <SettingsFormContext.Provider value={{ action, setAction, resource }}>
+    <SettingsFormContext.Provider value={{ action, setAction, status }}>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -65,7 +64,7 @@ export const SettingsForm = (props: ISettingsForm) => {
 };
 
 export const SettingsFormButtons = () => {
-  const { resource, action, setAction } = useContext(SettingsFormContext)!;
+  const { status, action, setAction } = useContext(SettingsFormContext)!;
 
   return (
     <>
@@ -92,9 +91,9 @@ export const SettingsFormButtons = () => {
           <Button
             size='xs'
             type='submit'
-            disabled={resource.isLoading!}
+            disabled={status.isLoading!}
           >
-            {resource.isLoading ? <Spinner variant='light' /> : 'Update'}
+            {status.isLoading ? <Spinner variant='light' /> : 'Update'}
           </Button>
         </div>
       )}
@@ -103,11 +102,11 @@ export const SettingsFormButtons = () => {
 };
 
 export const SettingsFormMessage = () => {
-  const { resource } = useContext(SettingsFormContext)!;
+  const { status } = useContext(SettingsFormContext)!;
 
   return (
     <>
-      {resource.state === 'error' ? (
+      {status.state === 'error' ? (
         <Alert
           variant='warning'
           className='mt-2 gap-x-2'
@@ -119,10 +118,10 @@ export const SettingsFormMessage = () => {
             weight={500}
             className='flex-1'
           >
-            {resource.state === 'error'
-              ? Array.isArray(resource.error?.message)
-                ? resource.error?.message[0].msg
-                : resource.error?.message
+            {status.state === 'error'
+              ? Array.isArray(status.error?.message)
+                ? status.error?.message[0].msg
+                : status.error?.message
               : null}
           </Text>
           <AlertDismiss>

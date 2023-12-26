@@ -1,7 +1,7 @@
-import { useUpdateUser } from '../../../../hooks/useUpdateUser';
+import { useUpdate } from '../../../../hooks/user/useUpdate';
 
 export const useUpdateMobile = () => {
-  const { resource, updateUser } = useUpdateUser();
+  const { status, update } = useUpdate();
 
-  return { resource, updateMobile: updateUser };
+  return { status, updateMobile: update };
 };

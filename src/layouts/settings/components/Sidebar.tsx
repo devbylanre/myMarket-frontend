@@ -7,8 +7,8 @@ import {
 } from 'react-icons/lu';
 import { Text } from '../../../components/ui/Text';
 import { Avatar, AvatarFallback } from '../../../components/ui/Avatar';
-import { IUser } from '../../../utils/types';
 import { SidebarItem } from '../components/SidebarItem';
+import { User } from '../../../contexts/user.types';
 
 interface Item {
   title: string;
@@ -45,17 +45,26 @@ interface UserProps {
   firstName: string;
   lastName: string;
   email: string;
+  photo: string;
 }
 
-const User = ({ firstName, lastName, email }: UserProps) => {
+const UserDetails = ({ firstName, lastName, email, photo }: UserProps) => {
   return (
     <div className='inline-flex gap-x-3'>
       <Avatar
-        src='/assets/images/memoji-05.png'
+        src={photo}
         alt='user'
         className='w-9 h-9'
       >
-        <AvatarFallback>JD</AvatarFallback>
+        <AvatarFallback>
+          <Text
+            as='p'
+            size='lg'
+          >
+            {firstName[0]}
+            {lastName[0]}
+          </Text>
+        </AvatarFallback>
       </Avatar>
 
       <Text
@@ -70,13 +79,14 @@ const User = ({ firstName, lastName, email }: UserProps) => {
   );
 };
 
-export const Sidebar = ({ user }: { user: IUser }) => {
+export const Sidebar = ({ user }: { user: User }) => {
   return (
     <div className='fixed hidden w-1/6 min-h-screen p-3 space-y-5 lg:block bg-zinc-100'>
-      <User
+      <UserDetails
         email={user.email}
         firstName={user.firstName}
         lastName={user.lastName}
+        photo={user.photo.url}
       />
       <div className='space-y-1.5'>
         {items.map((item, i) => (

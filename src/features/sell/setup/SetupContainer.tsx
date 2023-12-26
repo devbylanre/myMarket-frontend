@@ -4,8 +4,8 @@ import { SetupForm } from './components/SetupForm';
 import { useSellerSetup } from './hooks/useSellerSetup';
 import { FormError } from '../../../components/templates/FormError';
 import { useOutletContext } from 'react-router-dom';
-import { IUser } from '../../../utils/types';
 import { Text } from '../../../components/ui/Text';
+import { User } from '../../../contexts/user.types';
 
 interface InitialValues {
   name: string;
@@ -45,8 +45,8 @@ const validationSchema = yup.object().shape({
 });
 
 export const SetupContainer = () => {
-  const { resource, sellerSetup } = useSellerSetup();
-  const { isSeller } = useOutletContext() as IUser;
+  const { status, sellerSetup } = useSellerSetup();
+  const { isSeller } = useOutletContext() as User;
 
   const handleSubmit = async (values: InitialValues) => {
     await sellerSetup({
@@ -72,7 +72,7 @@ export const SetupContainer = () => {
     >
       <Form className='w-full mx-auto sm:w-4/5 lg:w-2/5'>
         {!isSeller ? (
-          <SetupForm isLoading={resource.isLoading} />
+          <SetupForm isLoading={status.isLoading} />
         ) : (
           <div>
             <Text>
@@ -81,9 +81,7 @@ export const SetupContainer = () => {
             </Text>
           </div>
         )}
-        {resource.state === 'error' ? (
-          <FormError error={resource.error} />
-        ) : null}
+        {status.state === 'error' ? <FormError error={status.error} /> : null}
       </Form>
     </Formik>
   );

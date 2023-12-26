@@ -35,6 +35,8 @@ export const Select = (props: SelectProps) => {
   const handleToggle = () => {
     if (!touched) {
       helper.setTouched(true);
+    } else {
+      helper.setTouched(false);
     }
     return setShowOptions(!showOptions);
   };

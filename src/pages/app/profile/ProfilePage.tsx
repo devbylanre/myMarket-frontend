@@ -6,7 +6,6 @@ import { Badge } from '../../../components/ui/Badge';
 import { Text } from '../../../components/ui/Text';
 import { SellerSetup } from '../../../components/templates/SellerSetup';
 import { useOutletContext } from 'react-router-dom';
-import { IUser, IUSerStore } from '../../../utils/types';
 import { Separator } from '../../../components/ui/Separator';
 import { Billing } from './cards/Billing';
 import { Email } from './cards/Email';
@@ -17,10 +16,16 @@ import {
   TabList,
   TabTrigger,
 } from '../../../components/ui/Tab';
+import { User, UserStore } from '../../../contexts/user.types';
+import { useProductContext } from '../../../hooks/useProductContext';
+import { ProductCard } from './cards/Product';
+import { ProductsEmptyState } from './cards/ProductsEmptyState';
 
 export const ProfilePage = () => {
   const { firstName, email, lastName, bio, store, isSeller, billing, mobile } =
-    useOutletContext() as IUser;
+    useOutletContext() as User;
+
+  const { products } = useProductContext()!;
 
   return (
     <div className='w-full mx-auto md:w-11/12'>
@@ -65,20 +70,37 @@ export const ProfilePage = () => {
       <Separator className='my-8' />
 
       <Tab defaultTab='store'>
-        <TabList>
+        <TabList className='mx-auto'>
           <TabTrigger value='store'>Store</TabTrigger>
           <TabTrigger value='products'>Products</TabTrigger>
-          <TabTrigger value='members'>Members</TabTrigger>
+          <TabTrigger value='Community'>Community</TabTrigger>
         </TabList>
         <TabContent value='store'>
           {isSeller ? <Store store={store} /> : <SellerSetup />}
+        </TabContent>
+        <TabContent
+          value='products'
+          className='space-y-5'
+        >
+          {products && products.length > 0 ? (
+            <div className='grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3'>
+              {products.map((product, i) => (
+                <ProductCard
+                  key={i}
+                  product={product}
+                />
+              ))}
+            </div>
+          ) : (
+            <ProductsEmptyState />
+          )}
         </TabContent>
       </Tab>
     </div>
   );
 };
 
-const Store = ({ store }: IUSerStore) => {
+const Store = ({ store }: UserStore) => {
   return (
     <div className='flex flex-col gap-12 md:gap-20 md:flex-row'>
       {/* create tab components for store, products, and analytics */}
@@ -112,8 +134,9 @@ const Location = ({ location }: { location: Record<string, any> }) => {
         .sort((a, b) => {
           return a.toLowerCase().localeCompare(b.toLowerCase());
         })
-        .map((key) => (
+        .map((key, i) => (
           <Text
+            key={i}
             as='p'
             size='sm'
             className='first-letter:uppercase'

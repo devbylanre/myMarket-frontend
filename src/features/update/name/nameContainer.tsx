@@ -1,6 +1,5 @@
 import * as yup from 'yup';
 import { useOutletContext } from 'react-router-dom';
-import { IUser } from '../../../utils/types';
 import { Form } from './components/Form';
 import { useUpdateName } from './hooks/useUpdateName';
 import {
@@ -9,6 +8,7 @@ import {
   SettingsFormMessage,
 } from '../../../components/templates/settings/SettingsForm';
 import { Data } from './components/Data';
+import { User } from '../../../contexts/user.types';
 
 interface IForm {
   firstName: string;
@@ -21,8 +21,8 @@ const validationSchema = yup.object().shape({
 });
 
 export const NameContainer = () => {
-  const { firstName, lastName } = useOutletContext() as IUser;
-  const { resource, updateNames } = useUpdateName();
+  const { firstName, lastName } = useOutletContext() as User;
+  const { status, updateNames } = useUpdateName();
 
   const initialValues: IForm = {
     firstName: firstName,
@@ -41,7 +41,7 @@ export const NameContainer = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
-      resource={resource}
+      status={status}
     >
       {(action) => (
         <>

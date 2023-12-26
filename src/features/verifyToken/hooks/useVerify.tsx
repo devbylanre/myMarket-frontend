@@ -1,16 +1,16 @@
 import { useState } from 'react';
-import { IApiCallback, IApiResponse } from '../../../utils/types';
+import { Status, Callback } from '../../../hooks/types';
 
 export const useVerifyToken = () => {
-  const [resource, setResource] = useState<IApiResponse<null>>({
+  const [status, setStatus] = useState<Status<null>>({
     state: null,
     isLoading: false,
     error: null,
     payload: null,
   });
 
-  const verifyToken = async (token: string, callback?: IApiCallback) => {
-    setResource({ state: null, isLoading: true, error: null, payload: null });
+  const verify = async (token: string, callback?: Callback) => {
+    setStatus({ state: null, isLoading: true, error: null, payload: null });
 
     const response = await fetch(
       `http://localhost:5000/api/v1/user/verify/token/${token}`,
@@ -25,7 +25,7 @@ export const useVerifyToken = () => {
     const json = await response.json();
 
     if (!response.ok) {
-      return setResource((prevResource) => ({
+      return setStatus((prevResource) => ({
         state: json.state,
         isLoading: false,
         error: {
@@ -35,7 +35,7 @@ export const useVerifyToken = () => {
       }));
     }
 
-    setResource({
+    setStatus({
       state: 'success',
       payload: {
         code: json.code,
@@ -48,5 +48,5 @@ export const useVerifyToken = () => {
     return callback && callback(json.data);
   };
 
-  return { resource, verifyToken };
+  return { status, verify };
 };

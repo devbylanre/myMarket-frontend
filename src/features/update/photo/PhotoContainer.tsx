@@ -4,9 +4,9 @@ import * as yup from 'yup';
 import { Form, Formik } from 'formik';
 import { Text } from '../../../components/ui/Text';
 import { useOutletContext } from 'react-router-dom';
-import { IUser } from '../../../utils/types';
 import { Photo } from './components/Photo';
 import { Upload } from './components/Upload';
+import { User } from '../../../contexts/user.types';
 
 interface IForm {
   photo: File | null;
@@ -29,14 +29,14 @@ const validationSchema = yup.object().shape({
 });
 
 export const PhotoContainer = () => {
-  const { _id, photo, firstName, lastName } = useOutletContext() as IUser;
+  const { _id, photo, firstName, lastName } = useOutletContext() as User;
   const initialValues: IForm = {
     photo: null,
   };
 
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
-  const { response, uploadPhoto } = useUploadPhoto();
+  const { status, uploadPhoto } = useUploadPhoto();
 
   const photoRef = useRef<HTMLInputElement | null>(null);
 
@@ -91,8 +91,8 @@ export const PhotoContainer = () => {
               size='sm'
               className='mt-1 text-red-500'
             >
-              {response.state === 'error'
-                ? (response.error?.message as string)
+              {status.state === 'error'
+                ? (status.error?.message as string)
                 : formik.errors.photo}
             </Text>
           </Form>

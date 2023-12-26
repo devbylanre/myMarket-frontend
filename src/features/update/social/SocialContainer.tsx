@@ -1,7 +1,6 @@
 import * as yup from 'yup';
 import { Form } from './components/Form';
 import { useOutletContext } from 'react-router-dom';
-import { IUser } from '../../../utils/types';
 import { useUpdateSocial } from './hooks/useUpdateSocial';
 import { Data } from './components/Data';
 import {
@@ -9,6 +8,7 @@ import {
   SettingsFormButtons,
   SettingsFormMessage,
 } from '../../../components/templates/settings/SettingsForm';
+import { User } from '../../../contexts/user.types';
 
 interface IForm {
   accounts: { platform: string; url: string }[];
@@ -24,8 +24,8 @@ const validationSchema = yup.object().shape({
 });
 
 export const SocialContainer = () => {
-  const { accounts } = useOutletContext() as IUser;
-  const { resource, updateSocial } = useUpdateSocial();
+  const { accounts } = useOutletContext() as User;
+  const { status, updateSocial } = useUpdateSocial();
 
   const initialValues: IForm = {
     accounts: accounts || [{ platform: '', url: '' }],
@@ -40,7 +40,7 @@ export const SocialContainer = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
-      resource={resource}
+      status={status}
     >
       {(action) => (
         <>

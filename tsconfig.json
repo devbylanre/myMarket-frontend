@@ -16,5 +16,5 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "src/features/signUp/components/Component.tsx"]
+  "include": ["src"]
 }

@@ -8,7 +8,7 @@ export const Card = ({ className, ...rest }: CardProps) => {
   return (
     <div
       className={twMerge(
-        'p-3 bg-white rounded-md ring-1 ring-zinc-950/10 transition-all duration-200 ease-in-out overflow-clip w-full',
+        'p-3 bg-white rounded-md ring-1 ring-zinc-950/10 transition-all duration-200 ease-in-out w-full',
         className
       )}
       {...rest}

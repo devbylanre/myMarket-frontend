@@ -48,10 +48,11 @@ import { SignUpPage } from './pages/SignUpPage';
 import { AuthPage } from './pages/AuthPage';
 import { Session } from './pages/Session';
 import { VerifyTokenPage } from './pages/VerifyTokenPage';
+import { ProductPage } from './pages/app/product/ProductPage';
 
 // contexts
-import { UserContextProvider } from './contexts/user.context';
-import { ProductContextProvider } from './contexts/product.context';
+import { UserContextProvider } from './contexts/user';
+import { ProductContextProvider } from './contexts/product';
 
 const router = createBrowserRouter([
   {
@@ -73,6 +74,8 @@ const router = createBrowserRouter([
         children: [
           { index: true, element: <HomePage /> },
           { path: 'saved', element: <SavedPage /> },
+          { path: 'profile', element: <ProfilePage /> },
+          { path: 'product/:id', element: <ProductPage /> },
           {
             path: 'sell',
             children: [
@@ -80,7 +83,6 @@ const router = createBrowserRouter([
               { path: 'setup', element: <SetupPage /> },
             ],
           },
-          { path: 'profile', element: <ProfilePage /> },
         ],
       },
       {

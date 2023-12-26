@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { IApiCallback, IApiResponse } from '../../../../utils/types';
+import { Status, Callback } from '../../../../hooks/types';
 import { useUserContext } from '../../../../hooks/useUserContext';
 
 export const useChangeEmail = () => {
-  const [resource, setResource] = useState<IApiResponse<null>>({
+  const [status, setStatus] = useState<Status<null>>({
     state: null,
     error: null,
     payload: null,
@@ -15,9 +15,9 @@ export const useChangeEmail = () => {
   const changeEmail = async <T extends { email: string }>(
     id: string,
     data: T,
-    callback?: IApiCallback
+    callback?: Callback
   ) => {
-    setResource({
+    setStatus({
       state: null,
       error: null,
       payload: null,
@@ -38,7 +38,7 @@ export const useChangeEmail = () => {
     const json = await response.json();
 
     if (!response.ok) {
-      return setResource({
+      return setStatus({
         state: 'error',
         error: {
           code: json.code,
@@ -50,7 +50,7 @@ export const useChangeEmail = () => {
 
     dispatch({ type: 'UPDATE', payload: json.data });
 
-    setResource({
+    setStatus({
       state: 'success',
       payload: {
         code: json.code,
@@ -63,5 +63,5 @@ export const useChangeEmail = () => {
     return callback && callback();
   };
 
-  return { resource, changeEmail };
+  return { status, changeEmail };
 };

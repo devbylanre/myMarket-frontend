@@ -1,19 +1,20 @@
 import { useState } from 'react';
-import { IApiCallback, IApiResponse, IUser } from '../../../../utils/types';
+import { Status, Callback } from '../../../../hooks/types';
 import { useUserContext } from '../../../../hooks/useUserContext';
+import { User } from '../../../../contexts/user.types';
 
 export const useUploadPhoto = () => {
   const { dispatch } = useUserContext()!;
 
-  const [response, setResponse] = useState<IApiResponse<null>>({
+  const [status, setStatus] = useState<Status<null>>({
     state: null,
     error: null,
     payload: null,
     isLoading: null,
   });
 
-  const uploadPhoto = async (id: string, data: any, cb?: IApiCallback) => {
-    setResponse({
+  const uploadPhoto = async (id: string, data: any, cb?: Callback) => {
+    setStatus({
       state: null,
       error: null,
       payload: null,
@@ -36,7 +37,7 @@ export const useUploadPhoto = () => {
     const json = await api.json();
 
     if (!api.ok) {
-      return setResponse({
+      return setStatus({
         state: 'error',
         error: {
           code: json.code,
@@ -46,9 +47,9 @@ export const useUploadPhoto = () => {
       });
     }
 
-    dispatch({ type: 'UPDATE', payload: { photo: json.data } as IUser });
+    dispatch({ type: 'UPDATE', payload: { photo: json.data } as User });
 
-    setResponse({
+    setStatus({
       state: 'success',
       payload: {
         code: json.code,
@@ -61,5 +62,5 @@ export const useUploadPhoto = () => {
     return cb && cb(json.data);
   };
 
-  return { response, uploadPhoto };
+  return { status, uploadPhoto };
 };

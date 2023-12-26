@@ -46,7 +46,7 @@ const validationSchema = yup.object().shape({
 });
 
 export const SignUpContainer = () => {
-  const { resource, signUp } = useSignUp();
+  const { status, signUp } = useSignUp();
 
   const handleSubmit = async (values: InitialValuesTypes) => {
     await signUp({ isSeller: false, ...values });
@@ -60,14 +60,12 @@ export const SignUpContainer = () => {
     >
       {(formik) => (
         <Form className='space-y-8'>
-          {resource.state === 'success' ? (
+          {status.state === 'success' ? (
             <Success email={formik.values.email} />
           ) : (
-            <Component isLoading={resource.isLoading} />
+            <Component isLoading={status.isLoading} />
           )}
-          {resource.state === 'error' ? (
-            <FormError error={resource.error} />
-          ) : null}
+          {status.state === 'error' ? <FormError error={status.error} /> : null}
         </Form>
       )}
     </Formik>

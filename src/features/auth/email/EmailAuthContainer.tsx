@@ -28,7 +28,7 @@ const validationSchema = yup.object().shape({
 });
 
 export const EmailAuthContainer = () => {
-  const { resource, signIn } = useAuth();
+  const { status, signIn } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (values: InitialValueTypes) => {
@@ -44,15 +44,13 @@ export const EmailAuthContainer = () => {
       onSubmit={handleSubmit}
     >
       <Form className='space-y-5'>
-        {resource.state === 'success' ? (
+        {status.state === 'success' ? (
           <Success />
         ) : (
-          <Component isLoading={resource.isLoading} />
+          <Component isLoading={status.isLoading} />
         )}
 
-        {resource.state === 'error' ? (
-          <FormError error={resource.error} />
-        ) : null}
+        {status.state === 'error' ? <FormError error={status.error} /> : null}
       </Form>
     </Formik>
   );

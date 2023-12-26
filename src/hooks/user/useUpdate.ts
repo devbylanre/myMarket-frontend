@@ -1,18 +1,18 @@
 import { useState } from 'react';
-import { IApiCallback, IApiResponse } from '../utils/types';
-import { useUserContext } from './useUserContext';
+import { Status, Callback } from '../types';
+import { useUserContext } from '../useUserContext';
 
-export const useUpdateUser = () => {
+export const useUpdate = () => {
   const { user, dispatch } = useUserContext()!;
-  const [resource, setResource] = useState<IApiResponse<null>>({
+  const [status, setStatus] = useState<Status<null>>({
     state: null,
     payload: null,
     error: null,
     isLoading: null,
   });
 
-  const updateUser = async <T extends {}>(data: T, callback?: IApiCallback) => {
-    setResource({
+  const update = async <T extends {}>(data: T, callback?: Callback) => {
+    setStatus({
       state: null,
       payload: null,
       error: null,
@@ -34,7 +34,7 @@ export const useUpdateUser = () => {
       const json = await response.json();
 
       if (!response.ok) {
-        return setResource({
+        return setStatus({
           state: 'error',
           error: {
             code: json.code,
@@ -46,7 +46,7 @@ export const useUpdateUser = () => {
 
       dispatch({ type: 'UPDATE', payload: json.data });
 
-      setResource({
+      setStatus({
         state: 'success',
         payload: {
           code: json.code,
@@ -60,5 +60,5 @@ export const useUpdateUser = () => {
     }
   };
 
-  return { resource, updateUser };
+  return { status, update };
 };

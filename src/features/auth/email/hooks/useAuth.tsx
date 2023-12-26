@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { IApiResponse, IUser } from '../../../../utils/types';
+import { Status, Callback } from '../../../../hooks/types';
 import { useUserContext } from '../../../../hooks/useUserContext';
+import { User } from '../../../../contexts/user.types';
 
 export const useAuth = () => {
   const { dispatch } = useUserContext()!;
-  const [resource, setResource] = useState<IApiResponse<IUser>>({
+  const [status, setStatus] = useState<Status<User>>({
     state: null,
     isLoading: null,
     error: null,
@@ -13,9 +14,9 @@ export const useAuth = () => {
 
   const signIn = async <T extends { email: string }>(
     data: T,
-    callback?: (data: Record<string, any>) => void
+    callback?: Callback
   ) => {
-    setResource({
+    setStatus({
       state: null,
       isLoading: true,
       error: null,
@@ -33,7 +34,7 @@ export const useAuth = () => {
     const json = await response.json();
 
     if (!response.ok) {
-      return setResource({
+      return setStatus({
         state: 'error',
         isLoading: false,
         error: {
@@ -45,7 +46,7 @@ export const useAuth = () => {
 
     dispatch({ type: 'SIGN_IN', payload: json.data });
 
-    setResource({
+    setStatus({
       state: 'success',
       isLoading: false,
       payload: {
@@ -58,5 +59,5 @@ export const useAuth = () => {
     return callback && callback(json);
   };
 
-  return { resource, signIn };
+  return { status, signIn };
 };

@@ -1,6 +1,5 @@
 import * as yup from 'yup';
 import { useOutletContext } from 'react-router-dom';
-import { IUser } from '../../../utils/types';
 import { useUpdateStoreLocation } from './hooks/useUpdateStoreLocation';
 import {
   SettingsForm,
@@ -9,6 +8,7 @@ import {
 } from '../../../components/templates/settings/SettingsForm';
 import { Data } from './components/Data';
 import { Form } from './components/Form';
+import { User } from '../../../contexts/user.types';
 
 interface IForm {
   country: 'Nigeria';
@@ -25,8 +25,8 @@ const validationSchema = yup.object().shape({
 });
 
 export const StoreLocationContainer = () => {
-  const { resource, updateStoreLocation } = useUpdateStoreLocation();
-  const { store } = useOutletContext() as IUser;
+  const { status, updateStoreLocation } = useUpdateStoreLocation();
+  const { store } = useOutletContext() as User;
   const { location } = store;
 
   const initialValues: IForm = {
@@ -47,7 +47,7 @@ export const StoreLocationContainer = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
-      resource={resource}
+      status={status}
     >
       {(action) => (
         <>

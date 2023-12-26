@@ -6,9 +6,9 @@ import {
   SettingsFormMessage,
 } from '../../../components/templates/settings/SettingsForm';
 import { useChangeEmail } from './hooks/useChangeEmail';
-import { IUser } from '../../../utils/types';
 import { useOutletContext } from 'react-router-dom';
 import { Text } from '../../../components/ui/Text';
+import { User } from '../../../contexts/user.types';
 
 interface IForm {
   email: string;
@@ -27,8 +27,8 @@ const validationSchema = yup.object().shape({
 });
 
 export const EmailContainer = () => {
-  const { resource, changeEmail } = useChangeEmail();
-  const { _id, email } = useOutletContext() as IUser;
+  const { status, changeEmail } = useChangeEmail();
+  const { _id, email } = useOutletContext() as User;
   const initialValues: IForm = {
     email: '',
     password: '',
@@ -43,7 +43,7 @@ export const EmailContainer = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
-      resource={resource}
+      status={status}
     >
       {(action) => (
         <>

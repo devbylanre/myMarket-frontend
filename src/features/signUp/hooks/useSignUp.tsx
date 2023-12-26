@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { IApiCallback, IApiResponse } from '../../../utils/types';
+import { Status, Callback } from '../../../hooks/types';
 
 export const useSignUp = () => {
-  const [resource, setResource] = useState<IApiResponse<null>>({
+  const [status, setStatus] = useState<Status<null>>({
     state: null,
     isLoading: false,
     error: null,
@@ -11,9 +11,9 @@ export const useSignUp = () => {
 
   const signUp = async <T extends { email: string }>(
     data: T,
-    callback?: IApiCallback
+    callback?: Callback
   ) => {
-    setResource({ state: null, isLoading: true, error: null, payload: null });
+    setStatus({ state: null, isLoading: true, error: null, payload: null });
 
     const response = await fetch('http://localhost:5000/api/v1/user/create', {
       method: 'POST',
@@ -26,7 +26,7 @@ export const useSignUp = () => {
     const json = await response.json();
 
     if (!response.ok) {
-      return setResource({
+      return setStatus({
         state: 'error',
         isLoading: false,
         error: {
@@ -36,7 +36,7 @@ export const useSignUp = () => {
       });
     }
 
-    setResource({
+    setStatus({
       state: 'success',
       isLoading: false,
       payload: {
@@ -49,5 +49,5 @@ export const useSignUp = () => {
     return callback && callback(json);
   };
 
-  return { resource, signUp };
+  return { status, signUp };
 };

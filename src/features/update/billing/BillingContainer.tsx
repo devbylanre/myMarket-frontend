@@ -1,6 +1,5 @@
 import { useOutletContext } from 'react-router-dom';
 import * as yup from 'yup';
-import { IUser } from '../../../utils/types';
 import { Form } from './components/Form';
 import { useUpdateBilling } from './hooks/useUpdateBilling';
 import { Data } from './components/Data';
@@ -9,6 +8,7 @@ import {
   SettingsFormButtons,
   SettingsFormMessage,
 } from '../../../components/templates/settings/SettingsForm';
+import { User } from '../../../contexts/user.types';
 
 interface IForm {
   country: 'nigeria' | '';
@@ -25,8 +25,8 @@ const validationSchema = yup.object().shape({
 });
 
 export const BillingContainer = () => {
-  const { billing } = useOutletContext() as IUser;
-  const { resource, updateBilling } = useUpdateBilling();
+  const { billing } = useOutletContext() as User;
+  const { status, updateBilling } = useUpdateBilling();
 
   const initialValues: IForm = {
     country: 'nigeria',
@@ -44,7 +44,7 @@ export const BillingContainer = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
-      resource={resource}
+      status={status}
     >
       {(action) => (
         <>

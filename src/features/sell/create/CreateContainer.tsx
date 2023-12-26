@@ -1,5 +1,5 @@
 import React from 'react';
-import { Formik, Form } from 'formik';
+import { Formik, Form, FormikHelpers } from 'formik';
 import { Text } from '../../../components/ui/Text';
 import { Details } from './components/Details';
 import { Separator } from '../../../components/ui/Separator';
@@ -9,9 +9,9 @@ import { BrandAndCategory } from './components/BrandAndCategory';
 import { Pricing } from './components/Pricing';
 import { Images } from './components/Images';
 import { useOutletContext } from 'react-router-dom';
-import { IUser } from '../../../utils/types';
 import { useCreateProduct } from './hooks/useCreateProduct';
 import { FormError } from '../../../components/templates/FormError';
+import { User } from '../../../contexts/user.types';
 
 interface IForm {
   title: string;
@@ -33,11 +33,11 @@ const validationSchema = yup.object().shape({
   tagline: yup
     .string()
     .required('Product tagline must be provided')
-    .max(256, 'Product tagline cannot exceed 256 characters'),
+    .max(320, 'Product tagline cannot exceed 320 characters'),
   description: yup
     .string()
     .required('Product description must be provided')
-    .max(1500, 'Product description cannot exceed 1500 characters'),
+    .max(2500, 'Product description cannot exceed 2500 characters'),
   brand: yup.string().required('Product brand must be provided'),
   model: yup.string().required('Product model must be provided'),
   category: yup.string().required('Product category must be provided'),
@@ -73,8 +73,8 @@ const validationSchema = yup.object().shape({
 });
 
 export const CreateContainer = () => {
-  const { token } = useOutletContext() as IUser;
-  const { response, createProduct } = useCreateProduct();
+  const { token } = useOutletContext() as User;
+  const { status, createProduct } = useCreateProduct();
   const initialValues: IForm = {
     title: '',
     tagline: '',
@@ -87,9 +87,13 @@ export const CreateContainer = () => {
     images: undefined,
   };
 
-  const handleSubmit = async (values: IForm) => {
-    console.log('submitting');
-    return await createProduct(token.id, { ...values });
+  const handleSubmit = async (
+    values: IForm,
+    { resetForm }: FormikHelpers<IForm>
+  ) => {
+    await createProduct(token.id, { ...values });
+
+    resetForm();
   };
 
   return (
@@ -118,10 +122,10 @@ export const CreateContainer = () => {
             <Pricing />
             <Separator className='my-8' />
             <Images formik={formik} />
-            <Buttons />
+            <Buttons isLoading={status.isLoading} />
 
-            {response.state === 'error' ? (
-              <FormError error={response.error} />
+            {status.state === 'error' ? (
+              <FormError error={status.error} />
             ) : null}
           </Form>
         )}
