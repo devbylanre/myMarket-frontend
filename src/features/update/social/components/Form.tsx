@@ -15,6 +15,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../../../../components/ui/Select';
+import { Text } from '../../../../components/ui/Text';
 
 export const Form = () => {
   const iconClassName =
@@ -23,7 +24,6 @@ export const Form = () => {
   return (
     <FieldArray name='accounts'>
       {(fieldArrayProps) => {
-        console.log(fieldArrayProps);
         const { push, remove, form } = fieldArrayProps;
         const accounts = form.values.accounts;
 
@@ -80,12 +80,12 @@ export const Form = () => {
 
 const SelectField = ({ index }: { index: number }) => {
   const platforms: string[] = [
-    'Google',
-    'WhatsApp',
-    'Twitter',
-    'Instagram',
-    'Facebook',
-    'Others',
+    'google',
+    'whatsApp',
+    'twitter',
+    'instagram',
+    'facebook',
+    'others',
   ];
 
   return (
@@ -96,7 +96,10 @@ const SelectField = ({ index }: { index: number }) => {
       <Select>
         <FormControl>
           <SelectTrigger>
-            <SelectValue placeholder='Select platform' />
+            <SelectValue
+              placeholder='Select platform'
+              className='capitalize'
+            />
           </SelectTrigger>
         </FormControl>
         <SelectContent>
@@ -104,9 +107,20 @@ const SelectField = ({ index }: { index: number }) => {
             <SelectItem
               key={i}
               value={platform}
-              className='flex items-center h-8 px-2 text-sm rounded-md text-zinc-500 hover:bg-zinc-100'
+              className={(isActive) =>
+                twMerge(
+                  'flex items-center h-8 px-2 text-sm rounded-md text-zinc-500 hover:bg-zinc-100',
+                  isActive && 'bg-primary/10 text-primary'
+                )
+              }
             >
-              {platform}
+              <Text
+                as='p'
+                size='sm'
+                className='capitalize text-inherit'
+              >
+                {platform}
+              </Text>
             </SelectItem>
           ))}
         </SelectContent>

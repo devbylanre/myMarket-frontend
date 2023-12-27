@@ -30,7 +30,7 @@ import { SettingsLayout } from './layouts/settings/SettingsLayout';
 // settings layout pages
 import { PersonalPage } from './pages/app/settings/personal/PersonalPage';
 import { AuthenticationPage } from './pages/app/settings/authentication/AuthenticationPage';
-import { SocialPage } from './pages/app/settings/social/SocialPage';
+import { AccountsPage } from './pages/app/settings/accounts/AccountsPage';
 import { StorePage } from './pages/app/settings/store/StorePage';
 
 // app layout
@@ -98,7 +98,7 @@ const router = createBrowserRouter([
         children: [
           { index: true, element: <PersonalPage /> },
           { path: 'auth', element: <AuthenticationPage /> },
-          { path: 'social', element: <SocialPage /> },
+          { path: 'social', element: <AccountsPage /> },
           { path: 'store', element: <StorePage /> },
         ],
       },

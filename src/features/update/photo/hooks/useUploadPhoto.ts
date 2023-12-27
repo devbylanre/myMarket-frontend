@@ -24,9 +24,7 @@ export const useUploadPhoto = () => {
     const formData = new FormData();
     formData.append('photo', data);
 
-    console.log(formData);
-
-    const api = await fetch(
+    const response = await fetch(
       `http://localhost:5000/api/v1/user/upload/photo/${id}`,
       {
         method: 'PUT',
@@ -34,9 +32,9 @@ export const useUploadPhoto = () => {
       }
     );
 
-    const json = await api.json();
+    const json = await response.json();
 
-    if (!api.ok) {
+    if (!response.ok) {
       return setStatus({
         state: 'error',
         error: {

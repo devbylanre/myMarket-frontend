@@ -23,12 +23,13 @@ const validationSchema = yup.object().shape({
   ),
 });
 
-export const SocialContainer = () => {
+export const AccountsContainer = () => {
   const { accounts } = useOutletContext() as User;
   const { status, updateSocial } = useUpdateSocial();
 
   const initialValues: IForm = {
-    accounts: accounts || [{ platform: '', url: '' }],
+    accounts:
+      accounts && accounts.length > 1 ? accounts : [{ platform: '', url: '' }],
   };
 
   const handleSubmit = async (values: IForm) => {

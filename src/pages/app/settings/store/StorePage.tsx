@@ -6,28 +6,35 @@ import { StoreName } from './StoreName';
 import { StoreDescription } from './StoreDescription';
 import { StoreLocation } from './StoreLocation';
 import { User } from '../../../../contexts/user.types';
+import { Helmet } from 'react-helmet-async';
 
 export const StorePage = () => {
-  const { isSeller } = useOutletContext() as User;
+  const { isSeller, store } = useOutletContext() as User;
 
   return (
     <>
-      <SettingsHeader
-        title='Store'
-        highlight='Edit or customize your store settings'
-      />
+      <Helmet>
+        <title>Store - {store.name}</title>
+      </Helmet>
 
-      {isSeller ? (
-        <>
-          <StoreName />
-          <StoreDescription />
-          <StoreLocation />
-        </>
-      ) : (
-        <div className='col-span-full'>
-          <SellerSetup />
-        </div>
-      )}
+      <div>
+        <SettingsHeader
+          title='Store'
+          highlight='Edit or customize your store settings'
+        />
+
+        {isSeller ? (
+          <>
+            <StoreName />
+            <StoreDescription />
+            <StoreLocation />
+          </>
+        ) : (
+          <div className='col-span-full'>
+            <SellerSetup />
+          </div>
+        )}
+      </div>
     </>
   );
 };

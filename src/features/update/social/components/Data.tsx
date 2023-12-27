@@ -1,34 +1,63 @@
 import React from 'react';
-import { LuLink2, LuLink2Off } from 'react-icons/lu';
 import { Text } from '../../../../components/ui/Text';
-import { Badge } from '../../../../components/ui/Badge';
+import {
+  RiFacebookFill,
+  RiGoogleFill,
+  RiLink,
+  RiTwitterXFill,
+  RiWhatsappFill,
+} from 'react-icons/ri';
+
+const Platform = ({ platform }: { platform: string }) => {
+  const helper = {
+    showIcon: (platform: string) => {
+      switch (platform) {
+        case 'google':
+          return <RiGoogleFill />;
+        case 'whatsApp':
+          return <RiWhatsappFill />;
+        case 'twitter':
+          return <RiTwitterXFill />;
+        case 'facebook':
+          return <RiFacebookFill />;
+        case 'others':
+          return <RiLink />;
+        default:
+          return null;
+      }
+    },
+  };
+
+  return <>{helper.showIcon(platform)}</>;
+};
 
 export const Data = ({ accounts }: { accounts: Record<string, string>[] }) => {
   return (
-    <div>
-      {accounts.length > 0 ? (
-        <div className='flex flex-col flex-wrap gap-2'>
-          {accounts.map((account, i) => (
-            <Badge
-              key={i}
-              variant='outline'
-            >
-              <LuLink2 className='w-4 h-4' />
-              {`${account.platform}: ${account.url}`}
-            </Badge>
-          ))}
-        </div>
-      ) : (
-        <div className='inline-flex items-center gap-x-2'>
-          <LuLink2Off className='w-5 h-5 text-zinc-500' />
-          <Text
-            as='p'
-            size='sm'
-            className='text-sm'
+    <div className='space-y-2'>
+      {accounts && accounts.length > 0 ? (
+        accounts.map((account, i) => (
+          <div
+            key={i}
+            className='flex items-center gap-x-2 text-zinc-500'
           >
-            No social account was found
-          </Text>
-        </div>
+            <Platform platform={account.platform} />
+            <Text
+              as='p'
+              size='sm'
+              className='text-zinc-950'
+            >
+              {account.url}
+            </Text>
+          </div>
+        ))
+      ) : (
+        <Text
+          as='p'
+          size='sm'
+          className='text-sm'
+        >
+          Add a social account by clicking edit button
+        </Text>
       )}
     </div>
   );

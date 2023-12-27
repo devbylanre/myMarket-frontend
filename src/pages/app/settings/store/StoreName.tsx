@@ -9,6 +9,7 @@ export const StoreName = () => {
       <div className='space-y-1'>
         <Text
           as='h6'
+          size='sm'
           weight={500}
         >
           Store name

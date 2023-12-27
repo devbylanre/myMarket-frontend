@@ -153,7 +153,7 @@ export const SelectContent = (props: SelectContentProps) => {
           animate={{ top: [28, 36] }}
           exit={{ top: [36, 28], opacity: [1, 0] }}
           className={twMerge(
-            'absolute w-full space-y-0.5 overflow-hidden bg-white ring-1 ring-zinc-950/10 max-h-64 overflow-y-scroll p-1 rounded-md mt-2',
+            'absolute w-full space-y-0.5 overflow-hidden z-10 bg-white ring-1 ring-zinc-950/10 max-h-64 overflow-y-scroll p-1 rounded-md mt-2',
             className
           )}
           {...rest}
