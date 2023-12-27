@@ -1,18 +1,16 @@
 import { Dispatch } from 'react';
 
 export interface UserStore {
-  store: {
-    name: string;
-    description: string;
-    followers: string[];
-    location: {
-      state: string;
-      city: string;
-      address: string;
-    };
+  name: string;
+  description: string;
+  followers: string[];
+  location: {
+    state: string;
+    city: string;
+    address: string;
   };
 }
-export interface User extends UserStore {
+export interface User {
   _id: string;
   isSeller: boolean;
   email: string;
@@ -44,6 +42,7 @@ export interface User extends UserStore {
     url: string;
     name: string;
   };
+  store: UserStore;
 }
 
 export interface Action<T> {

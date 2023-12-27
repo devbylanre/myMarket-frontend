@@ -32,7 +32,7 @@ const User = ({ firstName, lastName }: HeaderProps) => {
 
 export const Header = ({ firstName, lastName }: HeaderProps) => {
   return (
-    <div className='sticky top-0 z-50 flex items-center justify-between h-12 px-3 bg-white/30 backdrop-blur-lg'>
+    <div className='sticky top-0 z-50 flex items-center justify-between px-3 border-b h-14 bg-white/30 backdrop-blur-lg border-b-zinc-200'>
       <Text
         as='h5'
         weight={600}

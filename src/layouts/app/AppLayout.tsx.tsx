@@ -8,13 +8,13 @@ export const AppLayout = () => {
   return (
     <PrivateLayout>
       {(user) => (
-        <div className='min-h-screen bg-zinc-100'>
+        <div className='min-h-screen'>
           <Header
             firstName={user.firstName}
             lastName={user.lastName}
           />
-          <Sidebar />
-          <div className='lg:ml-[17%] w-full lg:w-[83%] bg-white min-h-screen p-3 lg:p-8 mb-20 lg:mb-0'>
+          <Sidebar id={user._id} />
+          <div className='lg:w-[83%] lg:ml-[17%] min-h-screen bg-white'>
             <Outlet context={user} />
           </div>
         </div>

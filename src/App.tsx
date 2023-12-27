@@ -53,6 +53,7 @@ import { ProductPage } from './pages/app/product/ProductPage';
 // contexts
 import { UserContextProvider } from './contexts/user';
 import { ProductContextProvider } from './contexts/product';
+import { HelmetProvider } from 'react-helmet-async';
 
 const router = createBrowserRouter([
   {
@@ -80,11 +81,12 @@ const router = createBrowserRouter([
             ],
           },
           { path: 'saved', element: <SavedPage /> },
-          { path: 'profile', element: <ProfilePage /> },
+          { path: 'profile/:id', element: <ProfilePage /> },
           {
             path: 'sell',
             children: [
               { index: true, element: <SellPage /> },
+              { path: 'edit/:id', element: <SellPage /> },
               { path: 'setup', element: <SetupPage /> },
             ],
           },
@@ -129,11 +131,13 @@ const router = createBrowserRouter([
 function App() {
   return (
     <div className='App font-inter'>
-      <UserContextProvider>
-        <ProductContextProvider>
-          <RouterProvider router={router} />
-        </ProductContextProvider>
-      </UserContextProvider>
+      <HelmetProvider>
+        <UserContextProvider>
+          <ProductContextProvider>
+            <RouterProvider router={router} />
+          </ProductContextProvider>
+        </UserContextProvider>
+      </HelmetProvider>
     </div>
   );
 }

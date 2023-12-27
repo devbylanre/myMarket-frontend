@@ -1,6 +1,5 @@
 import React from 'react';
 import { Formik, Form, FormikHelpers } from 'formik';
-import { Text } from '../../../components/ui/Text';
 import { Details } from './components/Details';
 import { Separator } from '../../../components/ui/Separator';
 import { Buttons } from './components/Buttons';
@@ -96,44 +95,30 @@ export const CreateContainer = () => {
   };
 
   return (
-    <>
-      <div className='space-y-2'>
-        <Text
-          as='h3'
-          size='2xl'
-          weight={600}
-        >
-          Upload new product
-        </Text>
-      </div>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={handleSubmit}
+    >
+      {(formik) => (
+        <Form>
+          <Details />
+          <Separator className='my-8' />
+          <BrandAndCategory />
+          <Separator className='my-8' />
+          <Pricing
+            price={
+              formik.values.price -
+              (formik.values.price * formik.values.discount) / 100
+            }
+          />
+          <Separator className='my-8' />
+          <Images formik={formik} />
+          <Buttons isLoading={status.isLoading} />
 
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-      >
-        {(formik) => (
-          <Form className='mt-5'>
-            <Details />
-            <Separator className='my-8' />
-            <BrandAndCategory />
-            <Separator className='my-8' />
-            <Pricing
-              price={
-                formik.values.price -
-                (formik.values.price * formik.values.discount) / 100
-              }
-            />
-            <Separator className='my-8' />
-            <Images formik={formik} />
-            <Buttons isLoading={status.isLoading} />
-
-            {status.state === 'error' ? (
-              <FormError error={status.error} />
-            ) : null}
-          </Form>
-        )}
-      </Formik>
-    </>
+          {status.state === 'error' ? <FormError error={status.error} /> : null}
+        </Form>
+      )}
+    </Formik>
   );
 };

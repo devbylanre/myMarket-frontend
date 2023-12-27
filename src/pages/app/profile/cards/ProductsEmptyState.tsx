@@ -4,9 +4,9 @@ import { LuFolderOpen } from 'react-icons/lu';
 
 export const ProductsEmptyState = () => {
   return (
-    <div className='flex flex-col items-center gap-y-5 max-w-[320px] mx-auto'>
+    <div className='space-y-4 max-w-[320px]'>
       <LuFolderOpen className='w-12 h-12 text-zinc-400' />
-      <div className='space-y-1 text-center'>
+      <div className='space-y-1'>
         <Text
           as='h5'
           size='xl'
