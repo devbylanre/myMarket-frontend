@@ -13,7 +13,10 @@ interface ProductTabProps {
 
 export const ProductTab = ({ description }: ProductTabProps) => {
   return (
-    <Tab defaultTab='description'>
+    <Tab
+      defaultTab='description'
+      className='px-3 sm:px-8'
+    >
       <TabList>
         <TabTrigger
           value='description'

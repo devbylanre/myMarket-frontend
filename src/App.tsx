@@ -51,7 +51,10 @@ import { SignUpPage } from './pages/SignUpPage';
 import { AuthPage } from './pages/AuthPage';
 import { Session } from './pages/Session';
 import { VerifyTokenPage } from './pages/VerifyTokenPage';
-import { ProductPage } from './pages/app/product/ProductPage';
+import {
+  ProductPage,
+  ProductPageLoader,
+} from './pages/app/product/ProductPage';
 
 // contexts
 import { UserContextProvider } from './contexts/user';
@@ -80,7 +83,11 @@ const router = createBrowserRouter([
             path: 'shop',
             children: [
               { index: true, element: <HomePage /> },
-              { path: 'product/:id', element: <ProductPage /> },
+              {
+                path: 'product/:id',
+                element: <ProductPage />,
+                loader: ProductPageLoader,
+              },
             ],
           },
           { path: 'saved', element: <SavedPage /> },

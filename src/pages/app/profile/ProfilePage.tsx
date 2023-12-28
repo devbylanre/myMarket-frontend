@@ -9,6 +9,7 @@ import { Details } from './cards/Details';
 import { Helmet } from 'react-helmet-async';
 import { Bio } from './cards/Bio';
 import { ProfileTab } from './cards/ProfileTab';
+import { Accounts } from './cards/Accounts';
 
 export const ProfilePage = () => {
   const sectionClassName = 'px-3 sm:px-8';
@@ -67,6 +68,7 @@ export const ProfilePage = () => {
                 mobile={user.mobile}
                 billing={user.billing}
               />
+              <Accounts accounts={user.accounts} />
             </div>
 
             <Separator orientation='vertical' />

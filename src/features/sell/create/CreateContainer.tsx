@@ -21,7 +21,7 @@ interface IForm {
   description: string;
   price: number;
   discount: number;
-  images: any;
+  images: any[];
 }
 
 const validationSchema = yup.object().shape({
@@ -56,16 +56,16 @@ const validationSchema = yup.object().shape({
       (value: any) => value && value.length > 0
     )
     .test('fileSize', 'File size must be less than 2MB', (value: any) => {
-      if (!value) return true; // Handle undefined or null values
-      return value[0].size <= 2 * 1024 * 1024;
+      if (!value || value.length < 1) return true; // Handle undefined or null values
+      return value[0].file.size <= 2 * 1024 * 1024;
     })
     .test(
       'fileType',
       'Only PNG, JPG, or JPEG files are allowed',
       (value: any) => {
-        if (!value) return true; // Handle undefined or null values
+        if (!value || value.length < 1) return true; // Handle undefined or null values
         const allowedTypes = ['image/png', 'image/jpg', 'image/jpeg'];
-        return allowedTypes.includes(value[0].type);
+        return allowedTypes.includes(value[0].file.type);
       }
     ),
 });
@@ -82,7 +82,7 @@ export const CreateContainer = () => {
     description: '',
     price: 0.0,
     discount: 0.0,
-    images: undefined,
+    images: [],
   };
 
   const handleSubmit = async (
