@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Avatar, AvatarFallback } from '../../../components/ui/Avatar';
 import { Text } from '../../../components/ui/Text';
-import { useOutletContext } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 import { Separator } from '../../../components/ui/Separator';
 import { User } from '../../../contexts/user.types';
 import { twMerge } from 'tailwind-merge';
@@ -11,41 +11,18 @@ import { Bio } from './cards/Bio';
 import { ProfileTab } from './cards/ProfileTab';
 
 export const ProfilePage = () => {
-  const [user, setUser] = useState<User | null>(null);
-  const { _id } = useOutletContext() as User;
-
-  useEffect(() => {
-    const helper = {
-      fetchData: async () => {
-        const response = await fetch(
-          `http://localhost:5000/api/v1/user/fetch/${_id}`,
-          {
-            method: 'GET',
-            headers: { 'content-type': 'application/json' },
-          }
-        );
-
-        const json = await response.json();
-
-        if (response.ok) {
-          setUser(json.data);
-        }
-      },
-    };
-
-    helper.fetchData();
-  }, [_id]);
-
   const sectionClassName = 'px-3 sm:px-8';
+  const payload: any = useLoaderData();
+  const user = payload.data as User;
 
   return (
     <>
       {user ? (
         <>
           <Helmet>
-            <title>{`${user.firstName} ${user.lastName}`}</title>
+            <title>Profile - {`${user.firstName} ${user.lastName}`}</title>
             <meta
-              name='keyword'
+              name='keywords'
               content={`${user.firstName} ${user.lastName}`}
             />
             <meta
@@ -54,56 +31,62 @@ export const ProfilePage = () => {
             />
           </Helmet>
 
-          <div className='mt-5'>
-            <div
-              className={twMerge(
-                sectionClassName,
-                'inline-flex items-center gap-x-3'
-              )}
+          <div
+            className={twMerge(
+              sectionClassName,
+              'inline-flex items-center gap-x-3 py-5'
+            )}
+          >
+            <Avatar
+              src='/assets/images/memoji-05.png'
+              alt='user'
+              className='w-12 h-12 bg-white shadow-xl'
             >
-              <Avatar
-                src='/assets/images/memoji-05.png'
-                alt='user'
-                className='w-12 h-12 bg-white shadow-xl'
-              >
-                <AvatarFallback></AvatarFallback>
-              </Avatar>
+              <AvatarFallback></AvatarFallback>
+            </Avatar>
 
-              <Text
-                as='h5'
-                size='2xl'
-                className='capitalize'
-              >
-                {user.firstName + ' ' + user.lastName}
-              </Text>
-            </div>
-
-            <Separator className='my-5' />
-
-            <div
-              className={twMerge(
-                sectionClassName,
-                'grid w-full grid-cols-1 gap-8 mt-8 lg:grid-cols-4 lg:gap-12'
-              )}
+            <Text
+              as='h5'
+              size='2xl'
+              className='capitalize'
             >
-              <div>
-                <Bio bio={user.bio} />
-                <Separator />
-                <Details
-                  email={user.email}
-                  mobile={user.mobile}
-                  billing={user.billing}
-                />
-              </div>
+              {user.firstName + ' ' + user.lastName}
+            </Text>
+          </div>
 
-              <ProfileTab
-                isSeller={user.isSeller}
-                store={user.store}
+          <div
+            className={twMerge(
+              'border-t border-t-zinc-200 flex flex-col lg:flex-row px-3 sm:px-8 h-full'
+            )}
+          >
+            <div className='py-5 basis-full lg:basis-5/12'>
+              <Bio bio={user.bio} />
+              <Separator className='my-5' />
+              <Details
+                email={user.email}
+                mobile={user.mobile}
+                billing={user.billing}
               />
             </div>
+
+            <Separator orientation='vertical' />
+
+            <ProfileTab
+              isSeller={user.isSeller}
+              store={user.store}
+            />
           </div>
         </>
       ) : null}
     </>
   );
+};
+
+export const ProfilePageLoader = async ({ params }: { params: any }) => {
+  const helper = {
+    fetchData: async () =>
+      fetch(`http://localhost:5000/api/v1/user/fetch/${params.id}`),
+  };
+
+  return helper.fetchData();
 };

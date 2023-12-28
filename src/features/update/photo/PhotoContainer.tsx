@@ -2,12 +2,11 @@ import React, { useRef, useState } from 'react';
 import { useUploadPhoto } from './hooks/useUploadPhoto';
 import * as yup from 'yup';
 import { Form, Formik } from 'formik';
-import { Text } from '../../../components/ui/Text';
 import { useOutletContext } from 'react-router-dom';
 import { Photo } from './components/Photo';
 import { Upload } from './components/Upload';
 import { User } from '../../../contexts/user.types';
-import { Button } from '../../../components/ui/Button';
+import { FormError } from '../../../components/templates/FormError';
 
 interface IForm {
   photo: File | undefined;
@@ -31,43 +30,39 @@ const validationSchema = yup.object().shape({
 
 export const PhotoContainer = () => {
   const { _id, photo, firstName, lastName } = useOutletContext() as User;
-
-  const [isHovered, setIsHovered] = useState<boolean>(false);
   const [isSelected, setIsSelected] = useState<boolean>(false);
-
   const { status, uploadPhoto } = useUploadPhoto();
-
   const photoRef = useRef<HTMLInputElement | null>(null);
 
-  const handleSubmit = async (values: IForm) => {
-    await uploadPhoto(_id, values.photo);
-    setIsSelected(false);
+  const helper = {
+    submit: async (values: IForm) => {
+      await uploadPhoto(_id, values.photo);
+    },
+    change: (e: React.ChangeEvent<HTMLInputElement>, setValue: any) => {
+      setValue('photo', e.target.files![0]);
+      setIsSelected(true);
+    },
   };
 
   return (
     <Formik
       initialValues={{ photo: undefined }}
       validationSchema={validationSchema}
-      onSubmit={handleSubmit}
+      onSubmit={helper.submit}
     >
       {(formik) => (
         <>
           <Form>
-            <div
-              onMouseOver={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-              onMouseOut={() => setIsHovered(false)}
-              className='w-12 h-12 rounded-full cursor-pointer'
-            >
-              {!isHovered ? (
-                <Photo
-                  url={photo.url}
-                  firstName={firstName}
-                  lastName={lastName}
-                />
-              ) : (
-                <Upload click={() => photoRef.current?.click()} />
-              )}
+            <div className='flex items-center gap-x-2'>
+              <Photo
+                url={photo.url}
+                firstName={firstName}
+                lastName={lastName}
+              />
+              <Upload
+                isSelected={isSelected}
+                click={() => photoRef.current?.click()}
+              />
             </div>
 
             <input
@@ -75,32 +70,10 @@ export const PhotoContainer = () => {
               type='file'
               name='photo'
               className='hidden'
-              onChange={(e) => {
-                formik.setFieldValue('photo', e.target.files![0]);
-                setIsSelected(true);
-              }}
+              onChange={(e) => helper.change(e, formik.setFieldValue)}
             />
 
-            {isSelected && (
-              <Button
-                type='submit'
-                variant='outline'
-                size='xs'
-                className='mt-2'
-              >
-                Upload
-              </Button>
-            )}
-
-            <Text
-              as='p'
-              size='sm'
-              className='mt-1 text-red-500'
-            >
-              {status.state === 'error'
-                ? (status.error?.message as string)
-                : formik.errors.photo}
-            </Text>
+            <FormError error={status.state === 'error' ? status.error : null} />
           </Form>
         </>
       )}

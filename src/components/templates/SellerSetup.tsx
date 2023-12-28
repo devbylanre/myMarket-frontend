@@ -9,7 +9,7 @@ export const SellerSetup = () => {
   const [hover, setHover] = useState<boolean>(false);
 
   return (
-    <div className='flex flex-col mx-auto mt-8 min-w-[240px] max-w-[500px] gap-y-5 text-center items-center'>
+    <div className='flex flex-col mx-auto min-w-[240px] max-w-[500px] gap-y-5 text-center items-center'>
       <Text
         as='h5'
         size='2xl'

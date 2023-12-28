@@ -23,9 +23,9 @@ export const ProfileTab = ({ isSeller, store }: ProfileTabProps) => {
   return (
     <Tab
       defaultTab='store'
-      className='col-span-3'
+      className='col-span-3 py-5 basis-full'
     >
-      <TabList>
+      <TabList className='mx-auto'>
         <TabTrigger value='store'>Store</TabTrigger>
         <TabTrigger value='products'>Products</TabTrigger>
         <TabTrigger value='Community'>Community</TabTrigger>
@@ -33,10 +33,7 @@ export const ProfileTab = ({ isSeller, store }: ProfileTabProps) => {
       <TabContent value='store'>
         {isSeller ? <Store store={store} /> : <SellerSetup />}
       </TabContent>
-      <TabContent
-        value='products'
-        className='space-y-5'
-      >
+      <TabContent value='products'>
         {products && products.length > 0 ? (
           <div className='grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3'>
             {products.map((product, i) => (

@@ -14,7 +14,7 @@ export const Photo = ({ firstName, lastName, url }: IPhoto) => {
     <Avatar
       src={url}
       alt='user'
-      className='w-full h-full'
+      className='w-12 h-12'
     >
       <AvatarFallback>
         <Text

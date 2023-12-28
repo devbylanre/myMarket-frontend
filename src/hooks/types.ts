@@ -1,16 +1,12 @@
 interface Success<T> {
-  payload: {
-    code: number;
-    message: string;
-    data: T | null;
-  } | null;
+  code: number;
+  message: string;
+  data: T | null;
 }
 
 export interface Error {
-  error: {
-    code: number;
-    message: string | any[];
-  } | null;
+  code: number;
+  message: string | any[];
 }
 
 interface IState<S = 'success' | 'error' | null> {
@@ -18,9 +14,9 @@ interface IState<S = 'success' | 'error' | null> {
 }
 
 export type Status<T> = (
-  | (Success<T> & IState<'success'>)
-  | (Error & IState<'error'>)
-  | (Error & Success<T> & IState<null>)
+  | ({ payload: Success<T> } & IState<'success'>)
+  | ({ error: Error } & IState<'error'>)
+  | ({ error: Error | null } & { payload: Success<T> | null } & IState<null>)
 ) & {
   isLoading: boolean | null;
 };

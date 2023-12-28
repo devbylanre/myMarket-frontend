@@ -48,14 +48,18 @@ export const ProductContextProvider = ({
   useEffect(() => {
     const helper = {
       fetchProducts: async () => {
-        const response = await fetch(
-          `http://localhost:5000/api/v1/user/fetch/products/${user._id}`
-        );
+        try {
+          const response = await fetch(
+            `http://localhost:5000/api/v1/user/fetch/products/${user._id}`
+          );
 
-        const json = await response.json();
+          const json = await response.json();
 
-        if (response.ok) {
-          dispatch({ type: 'SET', payload: json.data });
+          if (response.ok) {
+            dispatch({ type: 'SET', payload: json.data });
+          }
+        } catch (error: any) {
+          return console.error(error.message);
         }
       },
     };
