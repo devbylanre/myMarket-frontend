@@ -12,16 +12,16 @@ export const useUpdate = () => {
   });
 
   const update = async <T extends {}>(data: T, callback?: Callback) => {
-    setStatus({
-      state: null,
-      payload: null,
-      error: null,
-      isLoading: true,
-    });
+    try {
+      setStatus({
+        state: null,
+        payload: null,
+        error: null,
+        isLoading: true,
+      });
 
-    if (user) {
       const response = await fetch(
-        `http://localhost:5000/api/v1/user/update/${user._id}`,
+        `http://localhost:5000/api/v1/user/update/${user?._id}`,
         {
           method: 'PUT',
           headers: {
@@ -57,6 +57,8 @@ export const useUpdate = () => {
       });
 
       return callback && callback(json);
+    } catch (error: any) {
+      console.error(error.message);
     }
   };
 

@@ -17,50 +17,54 @@ export const useDelete = () => {
     id: string,
     callback?: Callback
   ) => {
-    setStatus({
-      state: null,
-      error: null,
-      payload: null,
-      isLoading: true,
-    });
+    try {
+      setStatus({
+        state: null,
+        error: null,
+        payload: null,
+        isLoading: true,
+      });
 
-    const response = await fetch(
-      `http://localhost:5000/api/v1/product/delete/${id}`,
-      {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
+      const response = await fetch(
+        `http://localhost:5000/api/v1/product/delete/${id}`,
+        {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const json = await response.json();
+
+      if (!response.ok) {
+        return setStatus({
+          state: 'error',
+          error: {
+            code: json.code,
+            message: json.message,
+          },
+          isLoading: false,
+        });
       }
-    );
 
-    const json = await response.json();
+      dispatch({ type: 'DELETE', payload: { _id: id } as Product });
 
-    if (!response.ok) {
-      return setStatus({
-        state: 'error',
-        error: {
+      setStatus({
+        state: 'success',
+        payload: {
           code: json.code,
           message: json.message,
+          data: json.data,
         },
         isLoading: false,
       });
+
+      return callback && callback(json.data);
+    } catch (error: any) {
+      console.error(error.message);
     }
-
-    dispatch({ type: 'DELETE', payload: { _id: id } as Product });
-
-    setStatus({
-      state: 'success',
-      payload: {
-        code: json.code,
-        message: json.message,
-        data: json.data,
-      },
-      isLoading: false,
-    });
-
-    return callback && callback(json.data);
   };
 
   return { status, deleteProduct };

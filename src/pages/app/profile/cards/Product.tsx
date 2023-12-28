@@ -9,22 +9,32 @@ import { Toast, ToastContent } from '../../../../components/ui/Toast';
 import { Spinner } from '../../../../components/ui/Spinner';
 
 export const ProductCard = ({ product }: { product: Product }) => {
+  const helper = {
+    excerpt: (data: string, length: number) => {
+      return data.length > length ? data.slice(0, length) + '...' : data;
+    },
+
+    getPrice: (price: number, discount: number) => {
+      return price - price * (discount / 100);
+    },
+  };
+
   return (
-    <Card className='relative flex flex-col gap-y-5 ring-0'>
+    <Card className='relative flex flex-col p-0 gap-y-3 ring-0'>
       <Link to={`/app/shop/product/${product._id}`}>
         <img
-          src={product.images[0].url as string}
+          src={'/assets/images/product.jpg'}
           alt={product.title}
-          className='object-cover w-full h-64 rounded-md cursor-pointer ring-1 ring-zinc-950/5'
+          className='object-cover w-full h-48 bg-white rounded-lg cursor-pointer ring-1 ring-zinc-950/10'
         />
       </Link>
       <CardContent className='space-y-3'>
         <Text
           as='h5'
           weight={500}
-          className='flex-1 cursor-pointer text-md sm:text-lg hover:underline'
+          size='sm'
         >
-          {product.title}
+          {helper.excerpt(product.title, 28)}
         </Text>
       </CardContent>
       <CardFooter className='flex items-center justify-between gap-x-3'>

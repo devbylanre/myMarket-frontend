@@ -2,6 +2,7 @@ import React from 'react';
 import { Card } from '../../../../components/ui/Card';
 import { Text } from '../../../../components/ui/Text';
 import { LuGlobe, LuMail, LuPhone } from 'react-icons/lu';
+import { Separator } from '../../../../components/ui/Separator';
 
 interface DetailsProps {
   billing: Record<string, string>;
@@ -58,17 +59,20 @@ const Mobile = ({ mobile }: { mobile: Record<string, any> }) => {
 
 export const Details = ({ billing, email, mobile }: DetailsProps) => {
   return (
-    <div className='w-full space-y-3'>
-      <Text
-        as='h6'
-        size='sm'
-        weight={500}
-      >
-        Details
-      </Text>
-      <Billing billing={billing} />
-      <Email email={email} />
-      <Mobile mobile={mobile} />
-    </div>
+    <>
+      <Separator className='my-5' />
+      <div className='w-full space-y-3'>
+        <Text
+          as='h6'
+          size='sm'
+          weight={500}
+        >
+          Details
+        </Text>
+        <Billing billing={billing} />
+        <Email email={email} />
+        <Mobile mobile={mobile} />
+      </div>
+    </>
   );
 };

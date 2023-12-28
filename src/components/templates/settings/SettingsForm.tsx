@@ -9,11 +9,11 @@ import React, {
 } from 'react';
 import { Status } from '../../../hooks/types';
 
-import { LuBadgeAlert, LuPenLine, LuX } from 'react-icons/lu';
+import { LuPenLine } from 'react-icons/lu';
 import { Button } from '../../ui/Button';
 import { Spinner } from '../../ui/Spinner';
-import { Text } from '../../ui/Text';
-import { Alert, AlertDismiss } from '../../ui/Alert';
+import { FormError } from '../FormError';
+import { Toast, ToastContent } from '../../ui/Toast';
 
 interface ISettingsForm {
   initialValues: Record<string, any>;
@@ -106,28 +106,13 @@ export const SettingsFormMessage = () => {
 
   return (
     <>
-      {status.state === 'error' ? (
-        <Alert
-          variant='warning'
-          className='mt-2 gap-x-2'
-        >
-          <LuBadgeAlert className='w-5 h-5 fill-amber-500 stroke-white' />
-          <Text
-            as='h6'
-            size='sm'
-            weight={500}
-            className='flex-1'
-          >
-            {status.state === 'error'
-              ? Array.isArray(status.error?.message)
-                ? status.error?.message[0].msg
-                : status.error?.message
-              : null}
-          </Text>
-          <AlertDismiss>
-            <LuX />
-          </AlertDismiss>
-        </Alert>
+      <FormError error={status.state === 'error' ? status.error : null} />
+      {status.state === 'success' ? (
+        <Toast variant='success'>
+          <ToastContent className='text-sm'>
+            {status.payload.message}
+          </ToastContent>
+        </Toast>
       ) : null}
     </>
   );

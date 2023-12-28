@@ -18,7 +18,7 @@ export const PersonalPage = () => {
         <title>Personal - {`${firstName} ${lastName}`}</title>
       </Helmet>
 
-      <div className='overflow-hidden'>
+      <>
         <SettingsHeader
           title='Personal Settings'
           highlight='Customize and edit essential user settings data'
@@ -28,7 +28,7 @@ export const PersonalPage = () => {
         <Bio />
         <Mobile />
         <Billing />
-      </div>
+      </>
     </>
   );
 };

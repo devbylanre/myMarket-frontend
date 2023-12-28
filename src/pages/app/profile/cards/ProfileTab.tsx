@@ -33,16 +33,17 @@ export const ProfileTab = ({ isSeller, store }: ProfileTabProps) => {
       <TabContent value='store'>
         {isSeller ? <Store store={store} /> : <SellerSetup />}
       </TabContent>
-      <TabContent value='products'>
+      <TabContent
+        value='products'
+        className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
+      >
         {products && products.length > 0 ? (
-          <div className='grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3'>
-            {products.map((product, i) => (
-              <ProductCard
-                key={i}
-                product={product}
-              />
-            ))}
-          </div>
+          products.map((product, i) => (
+            <ProductCard
+              key={i}
+              product={product}
+            />
+          ))
         ) : (
           <ProductsEmptyState />
         )}

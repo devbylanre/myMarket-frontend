@@ -13,51 +13,55 @@ export const useUploadPhoto = () => {
     isLoading: null,
   });
 
-  const uploadPhoto = async (id: string, data: any, cb?: Callback) => {
-    setStatus({
-      state: null,
-      error: null,
-      payload: null,
-      isLoading: true,
-    });
+  const uploadPhoto = async (id: string, data: any, callback?: Callback) => {
+    try {
+      setStatus({
+        state: null,
+        error: null,
+        payload: null,
+        isLoading: true,
+      });
 
-    const formData = new FormData();
-    formData.append('photo', data);
+      const formData = new FormData();
+      formData.append('photo', data);
 
-    const response = await fetch(
-      `http://localhost:5000/api/v1/user/upload/photo/${id}`,
-      {
-        method: 'PUT',
-        body: formData,
+      const response = await fetch(
+        `http://localhost:5000/api/v1/user/upload/photo/${id}`,
+        {
+          method: 'PUT',
+          body: formData,
+        }
+      );
+
+      const json = await response.json();
+
+      if (!response.ok) {
+        return setStatus({
+          state: 'error',
+          error: {
+            code: json.code,
+            message: json.message,
+          },
+          isLoading: false,
+        });
       }
-    );
 
-    const json = await response.json();
+      dispatch({ type: 'UPDATE', payload: { photo: json.data } as User });
 
-    if (!response.ok) {
-      return setStatus({
-        state: 'error',
-        error: {
+      setStatus({
+        state: 'success',
+        payload: {
           code: json.code,
           message: json.message,
+          data: json.data,
         },
         isLoading: false,
       });
+
+      return callback && callback(json.data);
+    } catch (error: any) {
+      console.error(error);
     }
-
-    dispatch({ type: 'UPDATE', payload: { photo: json.data } as User });
-
-    setStatus({
-      state: 'success',
-      payload: {
-        code: json.code,
-        message: json.message,
-        data: json.data,
-      },
-      isLoading: false,
-    });
-
-    return cb && cb(json.data);
   };
 
   return { status, uploadPhoto };

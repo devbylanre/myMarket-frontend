@@ -14,7 +14,7 @@ type VerticalPosition = 'top' | 'bottom';
 type HorizontalPosition = 'left' | 'center' | 'right';
 
 const toastVariants = cva(
-  'p-2 m-4 absolute w-full sm:w-[320px] rounded-md shadow shadow-zinc-100',
+  'p-2 m-4 absolute w-full sm:w-[320px] rounded-md shadow shadow-zinc-100 z-50',
   {
     variants: {
       variant: {

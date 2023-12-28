@@ -16,62 +16,69 @@ export const useCreateProduct = () => {
     data: any,
     callback?: Callback
   ) => {
-    setStatus({
-      state: null,
-      error: null,
-      payload: null,
-      isLoading: true,
-    });
+    try {
+      setStatus({
+        state: null,
+        error: null,
+        payload: null,
+        isLoading: true,
+      });
 
-    const formData = new FormData();
+      const formData = new FormData();
 
-    formData.append('title', data.title);
-    formData.append('tagline', data.tagline);
-    formData.append('description', data.description);
-    // Convert FileList to an array and then use forEach
-    Array.from(data.images).forEach((image: any) => {
-      formData.append('images', image.file);
-    });
-    formData.append('price', data.price);
-    formData.append('discount', data.discount);
-    formData.append('category', data.category);
-    formData.append('brand', data.brand);
-    formData.append('model', data.model);
+      formData.append('title', data.title);
+      formData.append('tagline', data.tagline);
+      formData.append('description', data.description);
+      // Convert FileList to an array and then use forEach
+      Array.from(data.images).forEach((image: any) => {
+        formData.append('images', image.file);
+      });
+      formData.append('price', data.price);
+      formData.append('discount', data.discount);
+      formData.append('category', data.category);
+      formData.append('brand', data.brand);
+      formData.append('model', data.model);
 
-    const api = await fetch('http://localhost:5000/api/v1/product/create', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      body: formData,
-    });
+      const response = await fetch(
+        'http://localhost:5000/api/v1/product/create',
+        {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: formData,
+        }
+      );
 
-    const json = await api.json();
+      const json = await response.json();
 
-    if (!api.ok) {
-      return setStatus({
-        state: 'error',
-        error: {
+      if (!response.ok) {
+        return setStatus({
+          state: 'error',
+          error: {
+            code: json.code,
+            message: json.message,
+          },
+          isLoading: false,
+        });
+      }
+
+      dispatch({ type: 'CREATE', payload: json.data });
+
+      setStatus({
+        state: 'success',
+        payload: {
           code: json.code,
           message: json.message,
+          data: json.data,
         },
         isLoading: false,
       });
+
+      return callback && callback();
+    } catch (error: any) {
+      console.error(error.message);
     }
-
-    dispatch({ type: 'CREATE', payload: json.data });
-
-    setStatus({
-      state: 'success',
-      payload: {
-        code: json.code,
-        message: json.message,
-        data: json.data,
-      },
-      isLoading: false,
-    });
-
-    return callback && callback();
   };
 
   return { status, createProduct };

@@ -29,7 +29,7 @@ export const AccountsContainer = () => {
 
   const initialValues: IForm = {
     accounts:
-      accounts && accounts.length > 1 ? accounts : [{ platform: '', url: '' }],
+      accounts && accounts.length > 0 ? accounts : [{ platform: '', url: '' }],
   };
 
   const handleSubmit = async (values: IForm) => {
