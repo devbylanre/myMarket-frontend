@@ -2,6 +2,7 @@ import React from 'react';
 import {
   RiArrowLeftRightFill,
   RiPushpinFill,
+  RiSettings2Fill,
   RiShoppingCartFill,
   RiUser6Fill,
 } from 'react-icons/ri';
@@ -36,6 +37,11 @@ export const Sidebar = ({ id }: { id: string }) => {
       name: 'Profile',
       url: `profile/${id}`,
       icon: <RiUser6Fill className={iconClassName} />,
+    },
+    {
+      name: 'Settings',
+      url: 'settings/',
+      icon: <RiSettings2Fill className={iconClassName} />,
     },
   ];
 

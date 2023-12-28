@@ -24,15 +24,6 @@ import { ThemeDropdown } from './pages/theme/dropdown/ThemeDropdown';
 import { ThemeAccordion } from './pages/theme/accordion/ThemeAccordion';
 import { ThemeSpinner } from './pages/theme/spinner/ThemeSpinner';
 
-// settings layout
-import { SettingsLayout } from './layouts/settings/SettingsLayout';
-
-// settings layout pages
-import { PersonalPage } from './pages/app/settings/personal/PersonalPage';
-import { AuthenticationPage } from './pages/app/settings/authentication/AuthenticationPage';
-import { AccountsPage } from './pages/app/settings/accounts/AccountsPage';
-import { StorePage } from './pages/app/settings/store/StorePage';
-
 // app layout
 import { AppLayout } from './layouts/app/AppLayout.tsx';
 
@@ -60,6 +51,7 @@ import {
 import { UserContextProvider } from './contexts/user';
 import { ProductContextProvider } from './contexts/product';
 import { HelmetProvider } from 'react-helmet-async';
+import { SettingsPage } from './pages/app/settings/SettingsPage';
 
 const router = createBrowserRouter([
   {
@@ -79,6 +71,8 @@ const router = createBrowserRouter([
         path: 'app',
         element: <AppLayout />,
         children: [
+          { path: 'saved', element: <SavedPage /> },
+          { path: 'settings', element: <SettingsPage /> },
           {
             path: 'shop',
             children: [
@@ -90,7 +84,6 @@ const router = createBrowserRouter([
               },
             ],
           },
-          { path: 'saved', element: <SavedPage /> },
           {
             path: 'profile/:id',
             element: <ProfilePage />,
@@ -106,16 +99,7 @@ const router = createBrowserRouter([
           },
         ],
       },
-      {
-        path: 'app/settings',
-        element: <SettingsLayout />,
-        children: [
-          { index: true, element: <PersonalPage /> },
-          { path: 'auth', element: <AuthenticationPage /> },
-          { path: 'social', element: <AccountsPage /> },
-          { path: 'store', element: <StorePage /> },
-        ],
-      },
+
       {
         path: 'theme',
         element: <ThemeLayout />,
