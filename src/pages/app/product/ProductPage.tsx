@@ -6,13 +6,31 @@ import { Details } from './cards/Details';
 import { SellerInformation } from './cards/Seller';
 import { Separator } from '../../../components/ui/Separator';
 import { ProductTab } from './Tab';
+import { Helmet } from 'react-helmet-async';
 
 export const ProductPage = () => {
   const payload: any = useLoaderData();
   const product = payload.data as Product;
 
   return (
-    <div>
+    <>
+      <Helmet>
+        <title>Shop - {product.title}</title>
+        <meta
+          name='description'
+          content={product.tagline}
+        />
+        <meta
+          name='keywords'
+          content={
+            product.title
+              .split(' ')
+              .map((key) => key + '|')
+              .join('') as any
+          }
+        />
+      </Helmet>
+
       {product && (
         <>
           <div className='grid w-full grid-cols-1 gap-12 px-3 mx-auto mt-8 sm:px-8 lg:grid-cols-3'>
@@ -39,7 +57,7 @@ export const ProductPage = () => {
           <ProductTab description={product.description} />
         </>
       )}
-    </div>
+    </>
   );
 };
 

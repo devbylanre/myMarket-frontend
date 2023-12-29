@@ -8,9 +8,10 @@ import { BrandAndCategory } from './components/BrandAndCategory';
 import { Pricing } from './components/Pricing';
 import { Images } from './components/Images';
 import { useOutletContext } from 'react-router-dom';
-import { useCreateProduct } from './hooks/useCreateProduct';
 import { FormError } from '../../../components/templates/FormError';
 import { User } from '../../../contexts/user.types';
+import { Product } from '../../../contexts/product.types';
+import { useProduct } from './hooks/useProduct';
 
 interface IForm {
   title: string;
@@ -70,35 +71,42 @@ const validationSchema = yup.object().shape({
     ),
 });
 
-export const CreateContainer = () => {
+export const CreateContainer = ({ product }: { product: Product | null }) => {
   const { token } = useOutletContext() as User;
-  const { status, createProduct } = useCreateProduct();
+  const { status, action } = useProduct(product);
+
   const initialValues: IForm = {
-    title: '',
-    tagline: '',
-    brand: '',
-    model: '',
-    category: '',
-    description: '',
-    price: 0.0,
-    discount: 0.0,
-    images: [],
+    title: product?.title || '',
+    tagline: product?.tagline || '',
+    brand: product?.brand || '',
+    model: product?.model || '',
+    category: product?.category || '',
+    description: product?.description || '',
+    price: product?.price || 0.0,
+    discount: product?.discount || 0.0,
+    images: product ? [{ file: { size: 0, type: 'image/jpg' } }] : [],
   };
 
-  const handleSubmit = async (
-    values: IForm,
-    { resetForm }: FormikHelpers<IForm>
-  ) => {
-    await createProduct(token.id, { ...values });
+  const helper = {
+    onSubmit: async (values: IForm, { resetForm }: FormikHelpers<IForm>) => {
+      if (product) {
+        const { images, ...payload } = values;
+        await action(token.id, product._id, payload);
+        return;
+      }
 
-    resetForm();
+      await action(token.id, { ...values }, null);
+
+      resetForm();
+    },
   };
 
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={handleSubmit}
+      onSubmit={helper.onSubmit}
+      enableReinitialize
     >
       {(formik) => (
         <Form>
@@ -113,7 +121,8 @@ export const CreateContainer = () => {
             }
           />
           <Separator className='my-8' />
-          <Images formik={formik} />
+          {product ? null : <Images formik={formik} />}
+          <Separator className='my-5' />
           <Buttons isLoading={status.isLoading} />
 
           {status.state === 'error' ? <FormError error={status.error} /> : null}

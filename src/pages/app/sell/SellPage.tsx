@@ -1,6 +1,6 @@
 import React from 'react';
 import { CreateContainer } from '../../../features/sell/create/CreateContainer';
-import { useOutletContext } from 'react-router-dom';
+import { useLoaderData, useOutletContext } from 'react-router-dom';
 import { SellerSetup } from '../../../components/templates/SellerSetup';
 import { User } from '../../../contexts/user.types';
 import { Text } from '../../../components/ui/Text';
@@ -8,6 +8,7 @@ import { Helmet } from 'react-helmet-async';
 
 export const SellPage = () => {
   const { isSeller } = useOutletContext() as User;
+  const json = useLoaderData() as Record<string, any>;
 
   return (
     <>
@@ -30,9 +31,37 @@ export const SellPage = () => {
           </Text>
         </div>
         <div className='basis-full'>
-          {isSeller ? <CreateContainer /> : <SellerSetup />}
+          {isSeller ? (
+            <CreateContainer product={json ? json.data : null} />
+          ) : (
+            <SellerSetup />
+          )}
         </div>
       </div>
     </>
   );
+};
+
+export const SellPageLoader = ({ params }: { params: any }) => {
+  const helper = {
+    getUserToken: () => {
+      const user = JSON.parse(localStorage.getItem('user')!);
+      return user.token.id;
+    },
+
+    fetchProduct: async (token: string) => {
+      return await fetch(
+        `http://localhost:5000/api/v1/product/fetch/${params.id}`,
+        {
+          method: 'GET',
+          headers: {
+            'content-type': 'application/json',
+            Authorization: 'Bearer ' + token,
+          },
+        }
+      );
+    },
+  };
+
+  return helper.fetchProduct(helper.getUserToken());
 };

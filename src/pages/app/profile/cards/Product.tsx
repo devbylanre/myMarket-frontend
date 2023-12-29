@@ -38,7 +38,9 @@ export const ProductCard = ({ product }: { product: Product }) => {
         </Text>
       </CardContent>
       <CardFooter className='flex items-center justify-between gap-x-3'>
-        <LuPenLine className='w-4 h-4 cursor-pointer stroke-zinc-500 hover:stroke-primary' />
+        <Link to={`/app/sell/${product._id}`}>
+          <LuPenLine className='w-4 h-4 cursor-pointer stroke-zinc-500 hover:stroke-primary' />
+        </Link>
         <LuShare2 className='w-4 h-4 cursor-pointer stroke-zinc-500 hover:stroke-primary' />
 
         <TrashProduct id={product._id} />

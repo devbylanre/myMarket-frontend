@@ -7,7 +7,6 @@ import { LuFolderMinus } from 'react-icons/lu';
 
 export const Images = ({ formik }: { formik: Record<string, any> }) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
-  console.log(formik);
 
   const helper = {
     change: (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -7,9 +7,8 @@ export const Buttons = ({ isLoading }: { isLoading: boolean | null }) => {
     <Button
       variant='primary'
       type='submit'
-      size='sm'
       disabled={isLoading ? isLoading : false}
-      className='w-full mt-8'
+      className='w-full'
     >
       {isLoading ? <Spinner variant='light' /> : 'Upload new product'}
     </Button>

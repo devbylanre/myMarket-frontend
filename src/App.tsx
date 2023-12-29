@@ -34,7 +34,7 @@ import {
   ProfilePage,
   ProfilePageLoader,
 } from './pages/app/profile/ProfilePage';
-import { SellPage } from './pages/app/sell/SellPage';
+import { SellPage, SellPageLoader } from './pages/app/sell/SellPage';
 import { SetupPage } from './pages/app/sell/SetupPage';
 
 // pages
@@ -93,7 +93,11 @@ const router = createBrowserRouter([
             path: 'sell',
             children: [
               { index: true, element: <SellPage /> },
-              { path: 'edit/:id', element: <SellPage /> },
+              {
+                path: ':id',
+                element: <SellPage />,
+                loader: SellPageLoader,
+              },
               { path: 'setup', element: <SetupPage /> },
             ],
           },

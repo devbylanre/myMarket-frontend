@@ -2,17 +2,24 @@ import React from 'react';
 import { Text } from '../components/ui/Text';
 import { NavLink } from 'react-router-dom';
 import { SignUpContainer } from '../features/signUp/SignUpContainer';
+import { Helmet } from 'react-helmet-async';
 
 export const SignUpPage = () => {
   return (
-    <div className='grid min-h-screen grid-cols-1 md:grid-cols-2'>
-      <SideBar />
-      <div className='flex justify-center'>
-        <div className='w-full px-3 py-8 md:px-0 md:w-4/5 lg:w-3/5 md:py-16'>
-          <SignUpContainer />
+    <>
+      <Helmet>
+        <title>Sign Up - myMarket</title>
+      </Helmet>
+
+      <div className='grid min-h-screen grid-cols-1 md:grid-cols-2'>
+        <SideBar />
+        <div className='flex justify-center'>
+          <div className='w-full px-3 py-8 md:px-0 md:w-4/5 lg:w-3/5 md:py-16'>
+            <SignUpContainer />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

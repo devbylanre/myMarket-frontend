@@ -3,18 +3,25 @@ import { Text } from '../components/ui/Text';
 import { Avatar, AvatarFallback } from '../components/ui/Avatar';
 import { LuStar } from 'react-icons/lu';
 import { EmailAuthContainer } from '../features/auth/email/EmailAuthContainer';
+import { Helmet } from 'react-helmet-async';
 
 export const AuthPage = () => {
   return (
-    <div className='grid min-h-screen grid-cols-1 md:grid-cols-2'>
-      <SideBar />
+    <>
+      <Helmet>
+        <title>Sign in</title>
+      </Helmet>
 
-      <div className='flex flex-col items-center md:justify-center'>
-        <div className='w-full px-3 my-8 md:w-4/5 lg:w-3/5'>
-          <EmailAuthContainer />
+      <div className='grid min-h-screen grid-cols-1 md:grid-cols-2'>
+        <SideBar />
+
+        <div className='flex flex-col items-center md:justify-center'>
+          <div className='w-full px-3 my-8 md:w-4/5 lg:w-3/5'>
+            <EmailAuthContainer />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
