@@ -9,7 +9,6 @@ interface IPhoto {
 }
 
 export const Photo = ({ firstName, lastName, url }: IPhoto) => {
-  console.log(url);
   return (
     <Avatar
       src={url}

@@ -3,7 +3,7 @@ import * as yup from 'yup';
 import { Component } from './components/Component';
 import { useSignUp } from './hooks/useSignUp';
 import { Success } from './components/Success';
-import { FormError } from '../../components/templates/FormError';
+import { FormError } from '../shared/FormError';
 
 interface InitialValuesTypes {
   firstName: string;

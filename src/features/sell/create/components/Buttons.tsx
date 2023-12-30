@@ -5,7 +5,6 @@ import { Spinner } from '../../../../components/ui/Spinner';
 export const Buttons = ({ isLoading }: { isLoading: boolean | null }) => {
   return (
     <Button
-      variant='primary'
       type='submit'
       disabled={isLoading ? isLoading : false}
       className='w-full'

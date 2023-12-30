@@ -23,7 +23,6 @@ export const ActionButtons = ({
       {action === 'view' ? (
         <Button
           size='xs'
-          variant='default'
           className='px-0 text-primary'
           type='button'
           onClick={() => setAction('edit')}

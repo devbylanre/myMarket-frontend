@@ -10,19 +10,20 @@ import { cn } from '../../utils/util';
 import { twMerge } from 'tailwind-merge';
 
 const badgeVariants = cva(
-  'rounded-md px-1.5 h-6 w-fit text-xs ring-1 font-medium inline-flex gap-x-1 items-center shadow-sm',
+  'rounded-lg px-1.5 h-6 w-fit text-xs ring-1 inline-flex gap-x-1 items-center ring-inset',
   {
     variants: {
       variant: {
-        primary: 'bg-primary/80 text-white ring-primary/20',
-        secondary: 'bg-primary/10 text-primary ring-1 ring-primary/20',
-        dark: 'bg-zinc-800 text-white ring-zinc-200',
-        outline: 'ring-zinc-200 text-zinc-950 bg-white',
-        soft: 'bg-zinc-50 text-zinc-800 shadow-sm ring-zinc-200',
-        danger: 'bg-red-100 text-red-800 ring-red-200',
-        warning: 'bg-amber-100 text-amber-800 ring-amber-200',
-        success: 'bg-green-100 text-green-800 ring-green-200',
+        solid: 'bg-primary-500 text-white ring-primary-600',
+        outline: 'ring-zinc-950/10 text-zinc-950 bg-white',
+        danger: 'bg-red-500 text-white ring-red-950/10 ring-inset',
+        warning: 'bg-amber-500 text-white ring-amber-950/10',
+        success: 'bg-green-500 text-white ring-green-950/10',
       },
+    },
+
+    defaultVariants: {
+      variant: 'outline',
     },
   }
 );
@@ -40,7 +41,7 @@ const BadgeContext = createContext<BadgeContextProps | undefined>(undefined);
 
 export const Badge = forwardRef<HTMLDivElement, BadgeProps>(
   (props: BadgeProps, ref) => {
-    const { variant = 'secondary', className, ...rest } = props;
+    const { variant, className, ...rest } = props;
     const [isVisible, setIsVisible] = useState<boolean>(true);
 
     const hideBadge = () => setIsVisible(false);

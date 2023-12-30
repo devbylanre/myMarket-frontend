@@ -2,7 +2,7 @@ import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 import { SetupForm } from './components/SetupForm';
 import { useSellerSetup } from './hooks/useSellerSetup';
-import { FormError } from '../../../components/templates/FormError';
+import { FormError } from '../../shared/FormError';
 import { useOutletContext } from 'react-router-dom';
 import { Text } from '../../../components/ui/Text';
 import { User } from '../../../contexts/user.types';

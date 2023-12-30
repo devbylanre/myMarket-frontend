@@ -50,7 +50,7 @@ export const FormControl = ({ className, ...rest }: FormControlProps) => {
   return (
     <div
       className={twMerge(
-        'rounded-md ring-1 ring-zinc-950/10 h-fit shadow-sm flex transition-all duration-200 ease-in-out overflow-clip bg-white',
+        'rounded-lg ring-1 ring-zinc-950/10 h-fit shadow-sm flex transition-all duration-200 ease-in-out overflow-clip bg-white',
         touched && !error && 'ring-zinc-800',
         touched && error && 'ring-red-500',
         className
@@ -97,9 +97,8 @@ export const FormLabel = ({ className, ...rest }: FormLabelProps) => {
     <Text
       as='label'
       size='sm'
-      weight={500}
       htmlFor={name}
-      className={twMerge('text-zinc-500', className)}
+      className={twMerge('text-zinc-600', className)}
       {...rest}
     />
   );

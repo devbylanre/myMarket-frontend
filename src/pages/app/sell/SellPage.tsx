@@ -16,28 +16,32 @@ export const SellPage = () => {
         <title>Sell</title>
       </Helmet>
 
-      <div className='flex flex-col gap-8 px-3 py-8 lg:gap-12 lg:w-4/5 lg:flex-row sm:px-8 lg:px-12'>
-        <div className='space-y-2 basis-full lg:basis-4/6'>
-          <Text
-            as='h5'
-            weight={500}
-            size='2xl'
-          >
-            Upload new product
-          </Text>
-          <Text as='p'>
-            Upload new product in a few easy steps, fill the form with your new
-            product details and then click on the button to upload it.
-          </Text>
-        </div>
-        <div className='basis-full'>
-          {isSeller ? (
-            <CreateContainer product={json ? json.data : null} />
-          ) : (
+      <>
+        {isSeller ? (
+          <div className='flex flex-col gap-8 px-3 py-8 lg:gap-12 lg:w-4/5 lg:flex-row sm:px-8 lg:px-12'>
+            <div className='space-y-2 basis-full lg:basis-4/6'>
+              <Text
+                as='h5'
+                weight={500}
+                size='2xl'
+              >
+                Upload new product
+              </Text>
+              <Text as='p'>
+                Upload new product in a few easy steps, fill the form with your
+                new product details and then click on the button to upload it.
+              </Text>
+            </div>
+            <div className='basis-full'>
+              <CreateContainer product={json ? json.data : null} />
+            </div>
+          </div>
+        ) : (
+          <div className='mt-8'>
             <SellerSetup />
-          )}
-        </div>
-      </div>
+          </div>
+        )}
+      </>
     </>
   );
 };

@@ -129,7 +129,7 @@ export const SelectValue = (props: SelectValueProps) => {
       size='sm'
       {...rest}
     >
-      {value
+      {value && value?.length > 1
         ? typeof children === 'function'
           ? children(value)
           : value

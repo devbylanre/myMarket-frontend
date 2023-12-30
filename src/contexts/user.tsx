@@ -1,4 +1,4 @@
-import React, { Dispatch, createContext, useEffect, useReducer } from 'react';
+import React, { createContext, useEffect, useReducer } from 'react';
 import { Action, State, User, Context } from './user.types';
 
 const initialState: State = { user: null };

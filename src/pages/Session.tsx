@@ -29,7 +29,7 @@ export const Session = () => {
           </Text>
         </div>
         <Link to='/auth/'>
-          <Button variant='dark'>Sign in once again</Button>
+          <Button>Sign in once again</Button>
         </Link>
       </div>
     </Alert>

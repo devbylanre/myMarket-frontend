@@ -7,22 +7,22 @@ import { RootLayout } from './layouts/root/RootLayout';
 import { ThemeLayout } from './layouts/theme/ThemeLayout';
 
 // theme layout pages
-import { ThemeTypography } from './pages/theme/typography/ThemeTypography';
-import { ThemeButton } from './pages/theme/button/ThemeButton';
-import { ThemeBadge } from './pages/theme/badge/ThemeBadge';
-import { ThemeInput } from './pages/theme/input/ThemeInput';
-import { ThemeTextarea } from './pages/theme/textarea/ThemeTextarea';
-import { ThemeSelect } from './pages/theme/select/ThemeSelect';
-import { ThemeSwitch } from './pages/theme/switch/ThemeSwitch';
-import { ThemeCheckbox } from './pages/theme/checkbox/ThemeCheckbox';
-import { ThemeToast } from './pages/theme/toast/ThemeToast';
-import { ThemeAvatar } from './pages/theme/avatar/ThemeAvatar';
-import { ThemeSeparator } from './pages/theme/separator/ThemeSeparator';
-import { ThemeAlert } from './pages/theme/alert/ThemeAlert';
-import { ThemeCardPage } from './pages/theme/card/ThemeCard';
-import { ThemeDropdown } from './pages/theme/dropdown/ThemeDropdown';
-import { ThemeAccordion } from './pages/theme/accordion/ThemeAccordion';
-import { ThemeSpinner } from './pages/theme/spinner/ThemeSpinner';
+import { TypographyPage } from './pages/components/typography/TypographyPage';
+import { ButtonPage } from './pages/components/button/ButtonPage';
+import { BadgePage } from './pages/components/badge/BadgePage';
+import { InputPage } from './pages/components/input/InputPage';
+import { TextareaPage } from './pages/components/textarea/TextareaPage';
+import { SelectPage } from './pages/components/select/SelectPage';
+import { SwitchPage } from './pages/components/switch/SwitchPage';
+import { CheckboxPage } from './pages/components/checkbox/CheckboxPage';
+import { ToastPage } from './pages/components/toast/ToastPage';
+import { AvatarPage } from './pages/components/avatar/AvatarPage';
+import { SeparatorPage } from './pages/components/separator/SeparatorPage';
+import { AlertPage } from './pages/components/alert/AlertPage';
+import { CardPage } from './pages/components/card/CardPage';
+import { DropdownPage } from './pages/components/dropdown/DropdownPage';
+import { AccordionPage } from './pages/components/accordion/AccordionPage';
+import { SpinnerPage } from './pages/components/spinner/SpinnerPage';
 
 // app layout
 import { AppLayout } from './layouts/app/AppLayout.tsx';
@@ -41,7 +41,7 @@ import { SetupPage } from './pages/app/sell/SetupPage';
 import { SignUpPage } from './pages/SignUpPage';
 import { AuthPage } from './pages/AuthPage';
 import { Session } from './pages/Session';
-import { VerifyTokenPage } from './pages/VerifyTokenPage';
+import { EmailPage } from './pages/EmailPage';
 import {
   ProductPage,
   ProductPageLoader,
@@ -60,13 +60,8 @@ const router = createBrowserRouter([
     children: [
       { path: 'sign-up', element: <SignUpPage /> },
       { path: 'session', element: <Session /> },
-      {
-        path: 'auth',
-        children: [
-          { index: true, element: <AuthPage /> },
-          { path: 'verify/:token', element: <VerifyTokenPage /> },
-        ],
-      },
+      { path: 'auth', element: <AuthPage /> },
+      { path: 'verify', element: <EmailPage /> },
       {
         path: 'app',
         element: <AppLayout />,
@@ -105,25 +100,25 @@ const router = createBrowserRouter([
       },
 
       {
-        path: 'theme',
+        path: 'components',
         element: <ThemeLayout />,
         children: [
-          { path: 'typography', element: <ThemeTypography /> },
-          { path: 'alert', element: <ThemeAlert /> },
-          { path: 'button', element: <ThemeButton /> },
-          { path: 'badge', element: <ThemeBadge /> },
-          { path: 'input', element: <ThemeInput /> },
-          { path: 'textarea', element: <ThemeTextarea /> },
-          { path: 'select', element: <ThemeSelect /> },
-          { path: 'switch', element: <ThemeSwitch /> },
-          { path: 'checkbox', element: <ThemeCheckbox /> },
-          { path: 'toast', element: <ThemeToast /> },
-          { path: 'avatar', element: <ThemeAvatar /> },
-          { path: 'separator', element: <ThemeSeparator /> },
-          { path: 'card', element: <ThemeCardPage /> },
-          { path: 'dropdown', element: <ThemeDropdown /> },
-          { path: 'accordion', element: <ThemeAccordion /> },
-          { path: 'spinner', element: <ThemeSpinner /> },
+          { path: 'typography', element: <TypographyPage /> },
+          { path: 'alert', element: <AlertPage /> },
+          { path: 'button', element: <ButtonPage /> },
+          { path: 'badge', element: <BadgePage /> },
+          { path: 'input', element: <InputPage /> },
+          { path: 'textarea', element: <TextareaPage /> },
+          { path: 'select', element: <SelectPage /> },
+          { path: 'switch', element: <SwitchPage /> },
+          { path: 'checkbox', element: <CheckboxPage /> },
+          { path: 'toast', element: <ToastPage /> },
+          { path: 'avatar', element: <AvatarPage /> },
+          { path: 'separator', element: <SeparatorPage /> },
+          { path: 'card', element: <CardPage /> },
+          { path: 'dropdown', element: <DropdownPage /> },
+          { path: 'accordion', element: <AccordionPage /> },
+          { path: 'spinner', element: <SpinnerPage /> },
         ],
       },
     ],

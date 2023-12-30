@@ -4,7 +4,7 @@ import { useAuth } from './hooks/useAuth';
 import { Component } from './components/Component';
 import { Success } from './components/Success';
 import { useNavigate } from 'react-router-dom';
-import { FormError } from '../../../components/templates/FormError';
+import { FormError } from '../../shared/FormError';
 
 interface InitialValueTypes {
   email: string;

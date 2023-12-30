@@ -12,7 +12,7 @@ import { Status } from '../../../hooks/types';
 import { LuPenLine } from 'react-icons/lu';
 import { Button } from '../../ui/Button';
 import { Spinner } from '../../ui/Spinner';
-import { FormError } from '../FormError';
+import { FormError } from '../../../features/shared/FormError';
 import { Toast, ToastContent } from '../../ui/Toast';
 
 interface ISettingsForm {
@@ -71,9 +71,9 @@ export const SettingsFormButtons = () => {
       {action === 'view' ? (
         <Button
           size='xs'
-          variant='default'
-          className='px-0 text-primary'
+          className='px-0 text-primary-800 hover:text-primary-500'
           type='button'
+          variant='ghost'
           onClick={() => setAction('edit')}
         >
           Edit <LuPenLine />

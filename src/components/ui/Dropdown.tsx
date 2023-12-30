@@ -63,7 +63,7 @@ export const DropdownContent = ({
   return (
     <div
       className={twMerge(
-        'absolute top-12 bg-white z-10 ring-1 rounded-md p-1 ring-zinc-950/10 left-0 w-full',
+        'absolute mt-1 bg-white z-10 ring-1 rounded-md p-1 ring-zinc-950/10 left-0 w-full',
         className
       )}
       {...rest}

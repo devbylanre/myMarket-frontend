@@ -6,15 +6,13 @@ import { cn } from '../../utils/util';
 const spinnerVariants = cva('w-5 h-5 border-2 rounded-full border-current', {
   variants: {
     variant: {
-      default: 'border-zinc-500 border-t-transparent',
-      primary: 'border-primary border-t-transparent',
-      secondary: 'border-primary/50 border-t-transparent',
+      primary: 'border-primary-500 border-t-transparent',
       dark: 'border-zinc-950 border-t-transparent',
       light: 'border-white border-t-transparent',
     },
   },
   defaultVariants: {
-    variant: 'default',
+    variant: 'dark',
   },
 });
 
@@ -22,12 +20,11 @@ interface SpinnerProps
   extends MotionProps,
     VariantProps<typeof spinnerVariants> {
   className?: string;
-  variant: 'default' | 'primary' | 'secondary' | 'dark' | 'light';
 }
 
 export const Spinner = ({
   className,
-  variant = 'default',
+  variant = 'dark',
   ...rest
 }: SpinnerProps) => {
   return (

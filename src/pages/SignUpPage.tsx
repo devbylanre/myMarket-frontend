@@ -31,7 +31,7 @@ const links: { title: string; url: string }[] = [
 
 const SideBar = () => {
   return (
-    <div className='flex-col justify-between hidden w-full h-full p-8 bg-transparent md:flex from-white to-primary/20 bg-gradient-to-br'>
+    <div className='flex-col justify-between hidden w-full h-full p-8 bg-transparent md:flex from-white to-primary-50 bg-gradient-to-br'>
       <div className='flex flex-col w-4/5 lg:w-3/5 gap-y-2'>
         <Text
           as='h2'

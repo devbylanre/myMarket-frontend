@@ -25,7 +25,6 @@ export const Component = ({ isLoading }: { isLoading: boolean | null }) => {
       <Fields />
 
       <Button
-        variant='dark'
         type='submit'
         className='w-full'
         disabled={isLoading!}

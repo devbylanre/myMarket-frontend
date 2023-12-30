@@ -8,7 +8,7 @@ import { BrandAndCategory } from './components/BrandAndCategory';
 import { Pricing } from './components/Pricing';
 import { Images } from './components/Images';
 import { useOutletContext } from 'react-router-dom';
-import { FormError } from '../../../components/templates/FormError';
+import { FormError } from '../../shared/FormError';
 import { User } from '../../../contexts/user.types';
 import { Product } from '../../../contexts/product.types';
 import { useProduct } from './hooks/useProduct';

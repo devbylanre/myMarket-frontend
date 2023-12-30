@@ -6,7 +6,7 @@ import { useOutletContext } from 'react-router-dom';
 import { Photo } from './components/Photo';
 import { Upload } from './components/Upload';
 import { User } from '../../../contexts/user.types';
-import { FormError } from '../../../components/templates/FormError';
+import { FormError } from '../../shared/FormError';
 
 interface IForm {
   photo: File | undefined;
@@ -37,6 +37,7 @@ export const PhotoContainer = () => {
   const helper = {
     submit: async (values: IForm) => {
       await uploadPhoto(_id, values.photo);
+      setIsSelected(false);
     },
     change: (e: React.ChangeEvent<HTMLInputElement>, setValue: any) => {
       setValue('photo', e.target.files![0]);
@@ -61,6 +62,7 @@ export const PhotoContainer = () => {
               />
               <Upload
                 isSelected={isSelected}
+                isLoading={status.isLoading}
                 click={() => photoRef.current?.click()}
               />
             </div>

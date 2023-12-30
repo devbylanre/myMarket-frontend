@@ -69,7 +69,7 @@ const Content = () => {
         <Badge variant='outline'>-15% off</Badge>
         <Badge variant='outline'>Shoes & Sneakers</Badge>
       </div>
-      <Badge variant='secondary'>
+      <Badge>
         4.3 <LuStar />
       </Badge>
     </CardContent>
