@@ -9,7 +9,7 @@ import { twMerge } from 'tailwind-merge';
 import { cn } from '../../utils/util';
 
 const alertVariant = cva(
-  'w-full sm:max-w-[320px] p-2 flex rounded-lg flex-wrap',
+  'w-full sm:max-w-[320px] p-2 flex rounded-lg flex-wrap transition-all duration-300 ease-in-out',
   {
     variants: {
       variant: {
@@ -52,27 +52,16 @@ export const Alert = (props: IAlert) => {
         onDismiss: () => setIsVisible(false),
       }}
     >
-      {isVisible ? (
-        <div
-          className={cn(alertVariant({ variant, className }))}
-          {...rest}
-        />
-      ) : null}
+      <div
+        className={cn(
+          alertVariant({ variant, className }),
+          isVisible
+            ? 'opacity-100 visible translate-x-0'
+            : 'opacity-0 invisible -translate-x-4'
+        )}
+        {...rest}
+      />
     </AlertContext.Provider>
-  );
-};
-
-interface IAlertIcon extends HTMLAttributes<HTMLDivElement> {}
-
-export const AlertIcon = (props: IAlertIcon) => {
-  const { variant } = useContext(AlertContext)!;
-  const { className, ...rest } = props;
-
-  return (
-    <div
-      className={cn({ variant, className })}
-      {...rest}
-    />
   );
 };
 

@@ -19,13 +19,10 @@ export const useFetch = () => {
         isLoading: true,
       });
 
-      const response = await fetch(
-        'http://localhost/5000/api/vi/user/fetch/' + id,
-        {
-          method: 'GET',
-          headers: { 'content-type': 'application/json' },
-        }
-      );
+      const response = await fetch('http://localhost/5000/api/vi/user/' + id, {
+        method: 'GET',
+        headers: { 'content-type': 'application/json' },
+      });
 
       const json = await response.json();
 

@@ -9,10 +9,13 @@ interface CheckboxProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const Checkbox = ({ className, ...rest }: CheckboxProps) => {
-  const { helper, value } = useContext(FormContext)!;
+  const { helper, value, touched } = useContext(FormContext)!;
 
   const onToggle = () => {
-    helper.setTouched(true);
+    if (!touched) {
+      helper.setTouched(true);
+    }
+
     helper.setValue(!value);
   };
 

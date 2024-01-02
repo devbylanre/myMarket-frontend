@@ -5,25 +5,30 @@ import {
   TabTrigger,
   TabContent,
 } from '../../../../components/ui/Tab';
-import { useProductContext } from '../../../../hooks/useProductContext';
 import { Store } from './Store';
 import { UserStore } from '../../../../contexts/user.types';
 import { SellerSetup } from '../../../../components/templates/SellerSetup';
 import { ProductCard } from './Product';
 import { ProductsEmptyState } from './ProductsEmptyState';
+import { Product } from '../../../../contexts/product.types';
 
 interface ProfileTabProps {
   isSeller: boolean;
   store: UserStore;
+  products: Product[];
+  userId: string;
 }
 
-export const ProfileTab = ({ isSeller, store }: ProfileTabProps) => {
-  const { products } = useProductContext()!;
-
+export const ProfileTab = ({
+  isSeller,
+  userId,
+  products,
+  store,
+}: ProfileTabProps) => {
   return (
     <Tab
       defaultTab='store'
-      className='col-span-3 py-5 basis-full'
+      className='py-5 lg:mr-[30%] w-full lg:w-9/12 px-3 lg:px-8'
     >
       <TabList className='mx-auto'>
         <TabTrigger value='store'>Store</TabTrigger>
@@ -35,15 +40,18 @@ export const ProfileTab = ({ isSeller, store }: ProfileTabProps) => {
       </TabContent>
       <TabContent
         value='products'
-        className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
+        className=''
       >
         {products && products.length > 0 ? (
-          products.map((product, i) => (
-            <ProductCard
-              key={i}
-              product={product}
-            />
-          ))
+          <div className='grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-4'>
+            {products.map((product, i) => (
+              <ProductCard
+                key={i}
+                product={product}
+                userId={userId}
+              />
+            ))}
+          </div>
         ) : (
           <ProductsEmptyState />
         )}

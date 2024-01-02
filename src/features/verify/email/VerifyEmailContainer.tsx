@@ -1,17 +1,17 @@
 import { useSearchParams } from 'react-router-dom';
-import { useVerification } from './hooks/useVerification';
+import { useVerifyEmail } from './hooks/useVerifyEmail';
 import { Success } from './components/Success';
-import { FormError } from '../shared/FormError';
-import { Button } from '../../components/ui/Button';
-import { Spinner } from '../../components/ui/Spinner';
+import { FormError } from '../../shared/FormError';
+import { Button } from '../../../components/ui/Button';
+import { Spinner } from '../../../components/ui/Spinner';
 import { Card } from './components/Card';
 
-export const VerificationContainer = () => {
+export const VerifyEmailContainer = () => {
   const [searchParams] = useSearchParams();
-  const { status, verification } = useVerification();
+  const { status, verify } = useVerifyEmail();
 
   const onSubmit = async () => {
-    verification({
+    verify({
       email: searchParams.get('email') as string,
       token: searchParams.get('token') as string,
     });
@@ -31,15 +31,11 @@ export const VerificationContainer = () => {
             onClick={onSubmit}
             disabled={status.isLoading!}
           >
-            {status.isLoading ? (
-              <Spinner variant='light' />
-            ) : (
-              'Verify my account'
-            )}
+            {status.isLoading ? <Spinner /> : 'Verify my account'}
           </Button>
-          <FormError error={status.state === 'error' ? status.error : null} />
         </>
       )}
+      <FormError error={status.state === 'error' ? status.error : null} />
     </>
   );
 };

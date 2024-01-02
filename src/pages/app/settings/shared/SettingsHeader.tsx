@@ -1,6 +1,6 @@
 import React, { HTMLAttributes } from 'react';
 import { twMerge } from 'tailwind-merge';
-import { Text } from '../../ui/Text';
+import { Text } from '../../../../components/ui/Text';
 
 interface SettingsHeaderProps extends HTMLAttributes<HTMLDivElement> {
   title: string;

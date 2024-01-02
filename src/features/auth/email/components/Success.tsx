@@ -9,7 +9,7 @@ export const Success = () => {
       animate={{ y: [-24, 0], opacity: [0, 1] }}
       className='space-y-5'
     >
-      <Spinner variant='primary' />
+      <Spinner />
       <div className='space-y-1'>
         <Text
           as='h5'

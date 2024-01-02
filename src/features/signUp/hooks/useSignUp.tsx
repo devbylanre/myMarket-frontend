@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { Status, Callback } from '../../../hooks/types';
+import { User } from '../../../contexts/user.types';
 
 export const useSignUp = () => {
-  const [status, setStatus] = useState<Status<null>>({
+  const [status, setStatus] = useState<Status<User>>({
     state: null,
     isLoading: false,
     error: null,
@@ -15,24 +16,27 @@ export const useSignUp = () => {
   ) => {
     setStatus({ state: null, isLoading: true, error: null, payload: null });
 
-    const response = await fetch('http://localhost:5000/api/v1/user/create', {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'content-type': 'application/json',
-      },
-    });
+    const response = await fetch(
+      'https://mymarket-sepia.vercel.app/user/create',
+      {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      }
+    );
 
     const json = await response.json();
 
     if (!response.ok) {
       return setStatus({
         state: 'error',
-        isLoading: false,
         error: {
           code: json.code,
           message: json.message,
         },
+        isLoading: false,
       });
     }
 

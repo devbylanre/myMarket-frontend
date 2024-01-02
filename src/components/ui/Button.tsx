@@ -9,7 +9,7 @@ const buttonVariants = cva(
       variant: {
         ghost: 'ring-0 bg-none shadow-none text-zinc-600 hover:text-zinc-950',
         solid:
-          'bg-primary-500 hover:bg-primary-400 text-white ring-primary ring-primary-600',
+          'bg-primary-500 hover:bg-primary-400 text-white ring-primary-600',
         outline:
           'ring-zinc-950/10 bg-white text-zinc-600 hover:text-zinc-950 hover:bg-zinc-50',
         danger: 'bg-red-600 text-white hover:bg-red-500 ring-red-950/10',
@@ -45,7 +45,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         className={cn(
-          disabled && 'opacity-50 hover:bg-opacity-0',
+          disabled && 'opacity-70 hover:bg-transparent',
           buttonVariants({ variant, size, className })
         )}
         {...rest}

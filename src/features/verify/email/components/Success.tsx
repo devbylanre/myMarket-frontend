@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 // components
-import { Button } from '../../../components/ui/Button';
-import { Text } from '../../../components/ui/Text';
+import { Button } from '../../../../components/ui/Button';
+import { Text } from '../../../../components/ui/Text';
 
 export const Success = () => {
   return (

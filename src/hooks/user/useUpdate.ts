@@ -21,7 +21,7 @@ export const useUpdate = () => {
       });
 
       const response = await fetch(
-        `http://localhost:5000/api/v1/user/update/${user?._id}`,
+        `http://localhost:5000/api/v1/user/${user?._id}`,
         {
           method: 'PUT',
           headers: {

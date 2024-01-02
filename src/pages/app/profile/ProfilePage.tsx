@@ -1,18 +1,18 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
-import { Separator } from '../../../components/ui/Separator';
 import { User } from '../../../contexts/user.types';
 import { twMerge } from 'tailwind-merge';
-import { Details } from './cards/Details';
+import { Details } from './shared/Details';
 import { Helmet } from 'react-helmet-async';
-import { Bio } from './cards/Bio';
-import { ProfileTab } from './cards/ProfileTab';
-import { Accounts } from './cards/Accounts';
-import { UserCard } from './cards/UserCard';
+import { Bio } from './shared/Bio';
+import { ProfileTab } from './shared/ProfileTab';
+import { Accounts } from './shared/Accounts';
+import { UserCard } from './shared/UserCard';
 
 export const ProfilePage = () => {
   const payload: any = useLoaderData();
-  const user = payload.data as User;
+  const user = payload.user.data as User;
+  const products = payload.products.data;
 
   return (
     <>
@@ -32,20 +32,17 @@ export const ProfilePage = () => {
 
           <div
             className={twMerge(
-              'border-t border-t-zinc-200 flex flex-col lg:flex-row px-3 sm:px-8 h-full'
+              'border-t border-t-zinc-200 flex flex-col-reverse lg:flex-row w-full'
             )}
           >
             <ProfileTab
               isSeller={user.isSeller}
               store={user.store}
+              products={products}
+              userId={user._id}
             />
 
-            <Separator
-              orientation='vertical'
-              className='mx-5'
-            />
-
-            <div className='py-5 basis-full lg:basis-5/12'>
+            <div className='px-3 py-5 lg:border-l lg:fixed lg:right-0 lg:w-3/12 border-l-zinc-200 lg:h-screen'>
               <UserCard
                 firstName={user.firstName}
                 lastName={user.lastName}
@@ -68,9 +65,25 @@ export const ProfilePage = () => {
 
 export const ProfilePageLoader = async ({ params }: { params: any }) => {
   const helper = {
-    fetchData: async () =>
-      fetch(`http://localhost:5000/api/v1/user/fetch/${params.id}`),
+    fetchData: async () => {
+      const response = await fetch(
+        `http://localhost:5000/api/v1/user/fetch/${params.id}`
+      );
+
+      return await response.json();
+    },
+
+    fetchProducts: async () => {
+      const response = await fetch(
+        `http://localhost:5000/api/v1/user/fetch/products/${params.id}`
+      );
+
+      return await response.json();
+    },
   };
 
-  return helper.fetchData();
+  const user = await helper.fetchData();
+  const products = await helper.fetchProducts();
+
+  return { user, products };
 };

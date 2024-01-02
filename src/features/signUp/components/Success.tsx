@@ -16,7 +16,7 @@ export const Success = ({ email }: { email: string }) => {
         size='sm'
       >
         An email was sent to your email{' '}
-        <span className='text-primary'>{email}</span> along with an account
+        <span className='font-medium'>{email}</span> along with an account
         activation link. Click on the link to verify your account
       </Text>
     </div>

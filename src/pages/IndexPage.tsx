@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { SignUpContainer } from '../features/signUp/SignUpContainer';
 import { Helmet } from 'react-helmet-async';
 
-export const SignUpPage = () => {
+export const IndexPage = () => {
   return (
     <>
       <Helmet>

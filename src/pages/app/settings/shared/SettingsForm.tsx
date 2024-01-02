@@ -1,4 +1,4 @@
-import { Formik, Form } from 'formik';
+import { Formik, Form, FormikProps } from 'formik';
 
 import React, {
   Dispatch,
@@ -7,25 +7,28 @@ import React, {
   useContext,
   useState,
 } from 'react';
-import { Status } from '../../../hooks/types';
+import { Status } from '../../../../hooks/types';
 
 import { LuPenLine } from 'react-icons/lu';
-import { Button } from '../../ui/Button';
-import { Spinner } from '../../ui/Spinner';
-import { FormError } from '../../../features/shared/FormError';
-import { Toast, ToastContent } from '../../ui/Toast';
+import { Button } from '../../../../components/ui/Button';
+import { Spinner } from '../../../../components/ui/Spinner';
+import { FormError } from '../../../../features/shared/FormError';
+import { Toast, ToastContent } from '../../../../components/ui/Toast';
+
+type IAction = 'view' | 'edit';
 
 interface ISettingsForm {
   initialValues: Record<string, any>;
   validationSchema: any;
-  onSubmit: (values: any) => void;
   children:
     | React.ReactNode
-    | ((action: IAction, formik: Record<string, any>) => React.ReactNode);
+    | ((
+        action: IAction,
+        formik: FormikProps<Record<string, any>>
+      ) => React.ReactNode);
   status: Status<any>;
+  onSubmit: (values: any) => void;
 }
-
-type IAction = 'view' | 'edit';
 
 interface ISettingsFormContext {
   status: Status<any>;
@@ -41,7 +44,7 @@ export const SettingsForm = (props: ISettingsForm) => {
 
   const handleSubmit = (values: any) => {
     onSubmit(values);
-    setAction('view');
+    status.state === 'success' && setAction('view');
   };
 
   return (
@@ -52,7 +55,7 @@ export const SettingsForm = (props: ISettingsForm) => {
         onSubmit={handleSubmit}
       >
         {(formik) => (
-          <Form>
+          <Form className='space-y-2'>
             {typeof children === 'function'
               ? children(action, formik)
               : children}
@@ -79,7 +82,7 @@ export const SettingsFormButtons = () => {
           Edit <LuPenLine />
         </Button>
       ) : (
-        <div className='flex pt-2 gap-x-3'>
+        <div className='flex gap-x-3'>
           <Button
             size='xs'
             type='button'
@@ -106,9 +109,16 @@ export const SettingsFormMessage = () => {
 
   return (
     <>
-      <FormError error={status.state === 'error' ? status.error : null} />
+      {status.state === 'error' ? (
+        <div className='w-full sm:w-96'>
+          <FormError error={status.state === 'error' ? status.error : null} />
+        </div>
+      ) : null}
       {status.state === 'success' ? (
-        <Toast variant='success'>
+        <Toast
+          variant='success'
+          position='bottom-center'
+        >
           <ToastContent className='text-sm'>
             {status.payload.message}
           </ToastContent>

@@ -2,13 +2,19 @@ import { Link, useOutletContext } from 'react-router-dom';
 import { Card, CardContent, CardFooter } from '../../../../components/ui/Card';
 import { Text } from '../../../../components/ui/Text';
 import { Product } from '../../../../contexts/product.types';
-import { LuPenLine, LuShare2, LuTrash } from 'react-icons/lu';
+import { LuPenLine, LuTrash } from 'react-icons/lu';
 import { useDelete } from '../../../../hooks/product/useDelete';
 import { User } from '../../../../contexts/user.types';
 import { Toast, ToastContent } from '../../../../components/ui/Toast';
 import { Spinner } from '../../../../components/ui/Spinner';
 
-export const ProductCard = ({ product }: { product: Product }) => {
+export const ProductCard = ({
+  product,
+  userId,
+}: {
+  product: Product;
+  userId: string;
+}) => {
   const helper = {
     excerpt: (data: string, length: number) => {
       return data.length > length ? data.slice(0, length) + '...' : data;
@@ -23,7 +29,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
     <Card className='relative flex flex-col p-0 gap-y-3 ring-0'>
       <Link to={`/app/shop/product/${product._id}`}>
         <img
-          src={'/assets/images/product.jpg'}
+          src={product.images[0].url}
           alt={product.title}
           className='object-cover w-full h-48 bg-white rounded-lg cursor-pointer ring-1 ring-zinc-950/10'
         />
@@ -39,11 +45,12 @@ export const ProductCard = ({ product }: { product: Product }) => {
       </CardContent>
       <CardFooter className='flex items-center justify-between gap-x-3'>
         <Link to={`/app/sell/${product._id}`}>
-          <LuPenLine className='w-4 h-4 cursor-pointer stroke-zinc-500 hover:stroke-primary' />
+          {userId === product.user ? (
+            <LuPenLine className='w-4 h-4 cursor-pointer stroke-zinc-500 hover:stroke-primary' />
+          ) : null}
         </Link>
-        <LuShare2 className='w-4 h-4 cursor-pointer stroke-zinc-500 hover:stroke-primary' />
 
-        <TrashProduct id={product._id} />
+        {userId === product.user ? <TrashProduct id={product._id} /> : null}
       </CardFooter>
     </Card>
   );
@@ -78,7 +85,7 @@ const TrashProduct = ({ id }: { id: string }) => {
           </>
         ) : (
           <Spinner
-            variant='primary'
+            variant='default'
             className='w-4 h-4'
           />
         )}

@@ -6,7 +6,7 @@ import {
   SettingsForm,
   SettingsFormButtons,
   SettingsFormMessage,
-} from '../../../components/templates/settings/SettingsForm';
+} from '../../../pages/app/settings/shared/SettingsForm';
 import { Data } from './components/Data';
 import { User } from '../../../contexts/user.types';
 

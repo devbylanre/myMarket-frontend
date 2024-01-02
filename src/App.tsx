@@ -28,7 +28,7 @@ import { SpinnerPage } from './pages/components/spinner/SpinnerPage';
 import { AppLayout } from './layouts/app/AppLayout.tsx';
 
 // app layout pages
-import { HomePage } from './pages/app/HomePage';
+import { HomePage, ProductsLoader } from './pages/app/index/HomePage';
 import { SavedPage } from './pages/app/SavedPage';
 import {
   ProfilePage,
@@ -38,10 +38,10 @@ import { SellPage, SellPageLoader } from './pages/app/sell/SellPage';
 import { SetupPage } from './pages/app/sell/SetupPage';
 
 // pages
-import { SignUpPage } from './pages/SignUpPage';
+import { IndexPage } from './pages/IndexPage';
 import { AuthPage } from './pages/AuthPage';
 import { Session } from './pages/Session';
-import { EmailPage } from './pages/EmailPage';
+import { VerifyEmailPage } from './pages/VerifyEmailPage';
 import {
   ProductPage,
   ProductPageLoader,
@@ -58,10 +58,10 @@ const router = createBrowserRouter([
     path: '/',
     element: <RootLayout />,
     children: [
-      { path: 'sign-up', element: <SignUpPage /> },
-      { path: 'session', element: <Session /> },
+      { index: true, element: <IndexPage /> },
       { path: 'auth', element: <AuthPage /> },
-      { path: 'verify', element: <EmailPage /> },
+      { path: 'session', element: <Session /> },
+      { path: 'email/verify', element: <VerifyEmailPage /> },
       {
         path: 'app',
         element: <AppLayout />,
@@ -71,7 +71,7 @@ const router = createBrowserRouter([
           {
             path: 'shop',
             children: [
-              { index: true, element: <HomePage /> },
+              { index: true, element: <HomePage />, loader: ProductsLoader },
               {
                 path: 'product/:id',
                 element: <ProductPage />,

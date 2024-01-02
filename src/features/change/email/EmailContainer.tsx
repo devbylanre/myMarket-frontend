@@ -4,7 +4,7 @@ import {
   SettingsForm,
   SettingsFormButtons,
   SettingsFormMessage,
-} from '../../../components/templates/settings/SettingsForm';
+} from '../../../pages/app/settings/shared/SettingsForm';
 import { useChangeEmail } from './hooks/useChangeEmail';
 import { useOutletContext } from 'react-router-dom';
 import { Text } from '../../../components/ui/Text';

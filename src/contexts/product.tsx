@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useReducer } from 'react';
 import { State, Action, ProductContextProps, Product } from './product.types';
+import { useUserContext } from '../hooks/useUserContext';
 
 const defaultState: State = { products: [] };
 
@@ -43,14 +44,14 @@ export const ProductContextProvider = ({
   children: React.ReactNode;
 }) => {
   const [state, dispatch] = useReducer(reducer, defaultState);
-  const user = JSON.parse(localStorage.getItem('user')!);
+  const { user } = useUserContext()!;
 
   useEffect(() => {
     const helper = {
-      fetchProducts: async () => {
+      fetchProducts: async (id: string | null) => {
         try {
           const response = await fetch(
-            `http://localhost:5000/api/v1/user/fetch/products/${user._id}`
+            `http://localhost:5000/api/v1/user/fetch/products/${id}`
           );
 
           const json = await response.json();
@@ -64,8 +65,8 @@ export const ProductContextProvider = ({
       },
     };
 
-    helper.fetchProducts();
-  }, [user._id]);
+    user && helper.fetchProducts(user?._id);
+  }, [user]);
 
   return (
     <ProductContext.Provider value={{ products: state.products, dispatch }}>

@@ -32,30 +32,28 @@ export const ProductPage = () => {
       </Helmet>
 
       {product && (
-        <>
-          <div className='grid w-full grid-cols-1 gap-12 px-3 mx-auto mt-8 sm:px-8 lg:grid-cols-3'>
-            <>
-              <Images images={product.images} />
-              <div className='col-span-full md:col-span-2'>
-                <Details
-                  title={product.title}
-                  tagline={product.tagline}
-                  category={product.category}
-                  brand={product.brand}
-                  model={product.model}
-                  price={(
-                    product.price / product.discount +
-                    product.price
-                  ).toFixed(2)}
-                />
-                <Separator className='my-8' />
-                <SellerInformation seller={product.seller} />
-              </div>
-            </>
+        <div className='py-8'>
+          <div className='grid w-full grid-cols-1 gap-12 px-3 mx-auto sm:px-8 lg:grid-cols-3'>
+            <Images images={product.images} />
+            <div className='col-span-full md:col-span-2'>
+              <Details
+                title={product.title}
+                tagline={product.tagline}
+                category={product.category}
+                brand={product.brand}
+                model={product.model}
+                price={(
+                  product.price -
+                  (product.price * product.discount) / 100
+                ).toFixed(2)}
+              />
+              <Separator className='my-8' />
+              <SellerInformation seller={product.seller} />
+            </div>
           </div>
           <Separator className='my-8' />
           <ProductTab description={product.description} />
-        </>
+        </div>
       )}
     </>
   );
@@ -71,7 +69,7 @@ export const ProductPageLoader = ({ params }: { params: any }) => {
     fetchProduct: async (token: string) => {
       if (params.id) {
         return await fetch(
-          `http://localhost:5000/api/v1/product/fetch/${params.id}`,
+          `http://localhost:5000/api/v1/product/fetch/single/${params.id}`,
           {
             method: 'GET',
             headers: {

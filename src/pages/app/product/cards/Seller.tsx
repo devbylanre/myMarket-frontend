@@ -4,6 +4,7 @@ import { Card } from '../../../../components/ui/Card';
 import { Avatar, AvatarFallback } from '../../../../components/ui/Avatar';
 import { Text } from '../../../../components/ui/Text';
 import { Button } from '../../../../components/ui/Button';
+import { Link } from 'react-router-dom';
 
 export const SellerInformation = ({
   seller,
@@ -41,12 +42,14 @@ export const SellerInformation = ({
             </Text>
           </div>
 
-          <Button
-            size='xs'
-            variant='outline'
-          >
-            Browse products
-          </Button>
+          <Link to={`/app/profile/${seller._id}`}>
+            <Button
+              size='xs'
+              variant='outline'
+            >
+              Browse products
+            </Button>
+          </Link>
         </Card>
       )}
     </>

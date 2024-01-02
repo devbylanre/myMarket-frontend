@@ -1,5 +1,5 @@
 import React from 'react';
-import { SettingsHeader } from '../../../../components/templates/settings/SettingsHeader';
+import { SettingsHeader } from '../shared/SettingsHeader';
 import { useOutletContext } from 'react-router-dom';
 import { SellerSetup } from '../../../../components/templates/SellerSetup';
 import { StoreName } from './StoreName';

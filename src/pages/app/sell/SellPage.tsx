@@ -54,8 +54,8 @@ export const SellPageLoader = ({ params }: { params: any }) => {
     },
 
     fetchProduct: async (token: string) => {
-      return await fetch(
-        `http://localhost:5000/api/v1/product/fetch/${params.id}`,
+      const response = await fetch(
+        `http://localhost:5000/api/v1/product/fetch/single/${params.id}`,
         {
           method: 'GET',
           headers: {
@@ -64,6 +64,8 @@ export const SellPageLoader = ({ params }: { params: any }) => {
           },
         }
       );
+
+      return await response.json();
     },
   };
 

@@ -15,6 +15,7 @@ export interface Product {
   model: string;
   images: Record<string, any>[];
   reviews: any[];
+  user: string;
   seller?: Seller;
 }
 

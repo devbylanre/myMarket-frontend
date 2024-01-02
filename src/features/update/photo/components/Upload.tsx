@@ -14,10 +14,7 @@ export const Upload = ({ click, isLoading, isSelected }: UploadProps) => {
   return (
     <>
       {isLoading ? (
-        <Spinner
-          variant='primary'
-          className='w-5 h-5'
-        />
+        <Spinner className='w-5 h-5' />
       ) : (
         <motion.button
           type={isSelected ? 'submit' : 'button'}

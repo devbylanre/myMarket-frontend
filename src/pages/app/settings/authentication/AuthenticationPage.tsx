@@ -1,5 +1,5 @@
 import React from 'react';
-import { SettingsHeader } from '../../../../components/templates/settings/SettingsHeader';
+import { SettingsHeader } from '../shared/SettingsHeader';
 import { Email } from './Email';
 import { Helmet } from 'react-helmet-async';
 import { useOutletContext } from 'react-router-dom';

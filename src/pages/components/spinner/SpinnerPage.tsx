@@ -24,10 +24,10 @@ export const SpinnerPage = () => {
 const Example = () => {
   return (
     <>
-      {Array.from(['light', 'primary', 'dark']).map((variant, i) => (
+      {Array.from(['light', 'default', 'dark']).map((variant, i) => (
         <Spinner
           key={i}
-          variant={variant as 'primary'}
+          variant={variant as 'default'}
         />
       ))}
     </>

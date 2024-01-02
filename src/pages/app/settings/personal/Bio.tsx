@@ -1,5 +1,5 @@
 import React from 'react';
-import { SettingsSection } from '../../../../components/templates/settings/SettingsSection';
+import { SettingsSection } from '../shared/SettingsSection';
 import { Text } from '../../../../components/ui/Text';
 import { BioContainer } from '../../../../features/update/bio/BioContainer';
 

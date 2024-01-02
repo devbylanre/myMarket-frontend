@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Status, Callback } from '../../../hooks/types';
+import { Status, Callback } from '../../../../hooks/types';
 
-export const useVerification = () => {
+export const useVerifyEmail = () => {
   const [status, setStatus] = useState<Status<null>>({
     state: null,
     isLoading: false,
@@ -9,17 +9,14 @@ export const useVerification = () => {
     payload: null,
   });
 
-  const verification = async (
-    data: Record<string, string>,
-    callback?: Callback
-  ) => {
+  const verify = async (data: Record<string, string>, callback?: Callback) => {
     try {
       setStatus({ state: null, isLoading: true, error: null, payload: null });
 
       const response = await fetch(
-        `http://localhost:5000/api/v1/user/verification/email`,
+        `http://localhost:5000/api/v1/user/email/verify`,
         {
-          method: 'PUT',
+          method: 'POST',
           headers: {
             'content-type': 'application/json',
           },
@@ -56,5 +53,5 @@ export const useVerification = () => {
     }
   };
 
-  return { status, verification };
+  return { status, verify };
 };

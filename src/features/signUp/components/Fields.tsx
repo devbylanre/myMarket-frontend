@@ -90,7 +90,7 @@ const Password = () => {
   const [type, setType] = useState<'text' | 'password'>('password');
 
   const iconClassName: string =
-    'w-4 h-4 text-zinc-500 hover:text-zinc-950 ml-2 self-center';
+    'w-4 h-4 text-zinc-500 hover:text-zinc-950 ml-2 self-center cursor-pointer';
 
   return (
     <FormField name='password'>

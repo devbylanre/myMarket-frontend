@@ -6,17 +6,17 @@ import {
   SettingsForm,
   SettingsFormButtons,
   SettingsFormMessage,
-} from '../../../components/templates/settings/SettingsForm';
+} from '../../../pages/app/settings/shared/SettingsForm';
 import { Text } from '../../../components/ui/Text';
 import { User } from '../../../contexts/user.types';
 
 interface Schema {
-  countryCode: 234;
+  code: 234;
   number: number;
 }
 
 const validationSchema = yup.object().shape({
-  countryCode: yup.number().required('Provide your country code'),
+  code: yup.number().required('Provide your country code'),
   number: yup.number().required('Provide your mobile number'),
 });
 
@@ -25,7 +25,7 @@ export const MobileContainer = () => {
   const { mobile } = useOutletContext() as User;
 
   const initialValues: Schema = {
-    countryCode: 234,
+    code: 234,
     number: mobile.number,
   };
 
@@ -48,7 +48,7 @@ export const MobileContainer = () => {
               size='sm'
               accent='medium'
             >
-              {`+${mobile.countryCode} ${mobile.number}`}
+              {`+${mobile.code} ${mobile.number}`}
             </Text>
           ) : (
             <Form />

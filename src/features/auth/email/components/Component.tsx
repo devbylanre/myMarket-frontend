@@ -35,7 +35,7 @@ export const Component = ({ isLoading }: { isLoading: boolean | null }) => {
       >
         Don't have an account?{' '}
         <Link
-          to='/sign-up'
+          to='/'
           className='underline'
         >
           Sign up

@@ -51,8 +51,11 @@ export const TabList = ({ className, ...rest }: ITabList) => {
   );
 };
 
-interface ITabTrigger extends HTMLAttributes<HTMLDivElement> {
+interface ITabTrigger
+  extends Omit<HTMLAttributes<HTMLDivElement>, 'className'> {
+  className?: string | ((isActive: boolean) => string);
   value: string;
+  children?: React.ReactNode;
 }
 
 export const TabTrigger = ({ className, value, ...rest }: ITabTrigger) => {
@@ -63,7 +66,7 @@ export const TabTrigger = ({ className, value, ...rest }: ITabTrigger) => {
       className={twMerge(
         'w-full text-sm py-1 px-3 hover:bg-white rounded-md text-center cursor-pointer',
         isActive(value) && 'bg-white ring-1 ring-zinc-950/5 shadow-sm',
-        className
+        typeof className === 'function' ? className(isActive(value)) : className
       )}
       onClick={() => toggleTab(value)}
       {...rest}

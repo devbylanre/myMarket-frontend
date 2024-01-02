@@ -95,8 +95,7 @@ export const CreateContainer = ({ product }: { product: Product | null }) => {
         return;
       }
 
-      await action(token.id, { ...values }, null);
-
+      await action(token.id, values, null);
       resetForm();
     },
   };

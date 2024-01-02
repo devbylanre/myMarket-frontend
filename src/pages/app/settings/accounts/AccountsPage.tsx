@@ -1,8 +1,8 @@
 import React from 'react';
 import { Text } from '../../../../components/ui/Text';
 import { AccountsContainer } from '../../../../features/update/social/AccountsContainer';
-import { SettingsSection } from '../../../../components/templates/settings/SettingsSection';
-import { SettingsHeader } from '../../../../components/templates/settings/SettingsHeader';
+import { SettingsSection } from '../shared/SettingsSection';
+import { SettingsHeader } from '../shared/SettingsHeader';
 import { Helmet } from 'react-helmet-async';
 import { useOutletContext } from 'react-router-dom';
 import { User } from '../../../../contexts/user.types';

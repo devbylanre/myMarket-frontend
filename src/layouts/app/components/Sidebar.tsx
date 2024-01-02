@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   RiArrowLeftRightFill,
-  RiPushpinFill,
   RiSettings2Fill,
   RiShoppingCartFill,
   RiUser6Fill,
@@ -22,11 +21,6 @@ export const Sidebar = ({ id }: { id: string }) => {
       name: 'Shop',
       url: 'shop',
       icon: <RiShoppingCartFill className={iconClassName} />,
-    },
-    {
-      name: 'Saved Products',
-      url: 'saved',
-      icon: <RiPushpinFill className={iconClassName} />,
     },
     {
       name: 'Sell',

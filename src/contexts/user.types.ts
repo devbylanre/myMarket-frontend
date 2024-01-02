@@ -17,7 +17,7 @@ export interface User {
   firstName: string;
   lastName: string;
   bio: string;
-  mobile: { country: string; countryCode: number; number: number };
+  mobile: { country: string; code: number; number: number };
   billing: {
     country: string;
     state: string;
@@ -28,15 +28,10 @@ export interface User {
     code: number;
     expiresAt: number;
   };
-  savedProducts: string[];
   accounts: { platform: string; url: string }[];
   token: {
     id: string;
     exp: number;
-  };
-  verification: {
-    token: string;
-    verified: true;
   };
   photo: {
     url: string;

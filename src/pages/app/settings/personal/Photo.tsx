@@ -2,7 +2,7 @@ import React from 'react';
 
 // components
 import { Text } from '../../../../components/ui/Text';
-import { SettingsSection } from '../../../../components/templates/settings/SettingsSection';
+import { SettingsSection } from '../shared/SettingsSection';
 import { PhotoContainer } from '../../../../features/update/photo/PhotoContainer';
 
 export const Photo = () => {

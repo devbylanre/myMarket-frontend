@@ -26,7 +26,7 @@ export const useDelete = () => {
       });
 
       const response = await fetch(
-        `http://localhost:5000/api/v1/product/delete/${id}`,
+        `http://localhost:5000/api/v1/product/${id}`,
         {
           method: 'DELETE',
           headers: {

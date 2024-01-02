@@ -6,13 +6,13 @@ import { cn } from '../../utils/util';
 const spinnerVariants = cva('w-5 h-5 border-2 rounded-full border-current', {
   variants: {
     variant: {
-      primary: 'border-primary-500 border-t-transparent',
+      default: 'border-primary-500 border-t-transparent',
       dark: 'border-zinc-950 border-t-transparent',
       light: 'border-white border-t-transparent',
     },
   },
   defaultVariants: {
-    variant: 'dark',
+    variant: 'default',
   },
 });
 
@@ -24,7 +24,7 @@ interface SpinnerProps
 
 export const Spinner = ({
   className,
-  variant = 'dark',
+  variant = 'default',
   ...rest
 }: SpinnerProps) => {
   return (

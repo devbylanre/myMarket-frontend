@@ -1,5 +1,5 @@
 import React from 'react';
-import { SettingsHeader } from '../../../../components/templates/settings/SettingsHeader';
+import { SettingsHeader } from '../shared/SettingsHeader';
 import { Photo } from './Photo';
 import { Name } from './Name';
 import { Bio } from './Bio';

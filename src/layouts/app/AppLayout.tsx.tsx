@@ -13,6 +13,7 @@ export const AppLayout = () => {
           <Header
             firstName={user.firstName}
             lastName={user.lastName}
+            url={user.photo.url}
           />
           <Sidebar id={user._id} />
           <Navbar id={user._id} />

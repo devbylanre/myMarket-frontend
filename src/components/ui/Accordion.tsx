@@ -65,36 +65,31 @@ export const AccordionItem = ({
 }: AccordionItemProps) => {
   return (
     <div
-      className={twMerge('space-y-2', className)}
+      className={twMerge('space-y-0.5', className)}
       data-value={value}
       {...rest}
     />
   );
 };
 
-interface AccordionTriggerProps {
+interface AccordionTriggerProps
+  extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> {
   value: string;
   className?: string;
   children: React.ReactNode | ((isActive: boolean) => React.ReactNode);
 }
 
-export const AccordionTrigger = ({
-  value,
-  className,
-  children,
-}: AccordionTriggerProps) => {
+export const AccordionTrigger = (props: AccordionTriggerProps) => {
+  const { value, className, children, ...rest } = props;
   const { handleToggle, openItems } = useContext(AccordionContext)!;
 
   const isActive = openItems.includes(value);
 
-  const handleClick = () => {
-    handleToggle(value);
-  };
-
   return (
     <div
       className={twMerge('cursor-pointer w-full', className)}
-      onClick={handleClick}
+      onClick={() => handleToggle(value)}
+      {...rest}
     >
       {typeof children === 'function' ? children(isActive) : children}
     </div>
@@ -112,10 +107,18 @@ export const AccordionContent = ({
 }: AccordionContentProps) => {
   const { openItems } = useContext(AccordionContext)!;
 
-  return openItems.includes(value) ? (
+  const isActive = openItems.includes(value);
+
+  return (
     <div
-      className={twMerge('w-full', className)}
+      className={twMerge(
+        'w-full transition-all duration-300 ease-in-out',
+        isActive
+          ? 'translate-y-0 visible h-fit opacity-100'
+          : 'translate-y-2 invisible h-0 opacity-0',
+        className
+      )}
       {...rest}
     />
-  ) : null;
+  );
 };
