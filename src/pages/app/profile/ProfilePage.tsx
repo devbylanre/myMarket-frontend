@@ -7,14 +7,10 @@ import { Bio } from './components/sidebar/Bio';
 import { ProfileTab } from './components/ProfileTab';
 import { Accounts } from './components/sidebar/Accounts';
 import { UserCard } from './components/sidebar/UserCard';
-import { User } from '../../../contexts/user.types';
-import { Product } from '../../../contexts/product.types';
 import { Spinner } from '../../../components/ui/Spinner';
 
 export const ProfilePage = () => {
-  const payload: any = useLoaderData();
-  const user = payload.user as User;
-  const products = payload.products as Product[];
+  const { user, products }: any = useLoaderData();
 
   return (
     <>

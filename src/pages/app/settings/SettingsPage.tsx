@@ -14,9 +14,9 @@ export const SettingsPage = () => {
   return (
     <Tab
       defaultTab='personal'
-      className='px-3 mt-8 sm:px-8'
+      className='w-full px-3 mx-auto mt-8 lg:w-11/12 lg:px-0'
     >
-      <TabList>
+      <TabList className='w-full mx-auto sm:w-96'>
         <TabTrigger value='personal'>Personal</TabTrigger>
         <TabTrigger value='accounts'>Accounts</TabTrigger>
         <TabTrigger value='store'>Store</TabTrigger>

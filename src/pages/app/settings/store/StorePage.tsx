@@ -17,24 +17,22 @@ export const StorePage = () => {
         <title>Store - {store.name}</title>
       </Helmet>
 
-      <div>
-        <SettingsHeader
-          title='Store'
-          highlight='Edit or customize your store settings'
-        />
+      {isSeller ? (
+        <>
+          <SettingsHeader
+            title='Store'
+            highlight='Edit or customize your store settings'
+          />
 
-        {isSeller ? (
           <>
             <StoreName />
             <StoreDescription />
             <StoreLocation />
           </>
-        ) : (
-          <div className='col-span-full'>
-            <SellerSetup />
-          </div>
-        )}
-      </div>
+        </>
+      ) : (
+        <SellerSetup />
+      )}
     </>
   );
 };

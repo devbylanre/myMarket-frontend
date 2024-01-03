@@ -1,11 +1,7 @@
 import React from 'react';
-import {
-  FormControl,
-  FormField,
-  FormMessage,
-} from '../../../../components/ui/Form';
-import { Input } from '../../../../components/ui/Input';
+import { FormField, FormMessage } from '../../../../components/ui/Form';
 import { Text } from '../../../../components/ui/Text';
+import { Number } from '../../../../components/ui/Number';
 
 export const Form = () => {
   return (
@@ -13,7 +9,7 @@ export const Form = () => {
       name='number'
       className='w-fit'
     >
-      <FormControl className='items-center'>
+      <Number>
         <Text
           as='p'
           size='sm'
@@ -22,8 +18,7 @@ export const Form = () => {
         >
           +234
         </Text>
-        <Input type='number' />
-      </FormControl>
+      </Number>
       <FormMessage />
     </FormField>
   );

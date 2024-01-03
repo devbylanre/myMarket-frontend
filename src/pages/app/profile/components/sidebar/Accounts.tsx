@@ -1,15 +1,15 @@
 import React from 'react';
 import { Text } from '../../../../../components/ui/Text';
 import { Separator } from '../../../../../components/ui/Separator';
-import {
-  RiFacebookBoxFill,
-  RiGoogleFill,
-  RiLink,
-  RiTwitterXFill,
-  RiWhatsappFill,
-} from 'react-icons/ri';
 import { Card, CardContent } from '../../../../../components/ui/Card';
-import { TbSquareRoundedPlus } from 'react-icons/tb';
+import {
+  TbBrandFacebook,
+  TbBrandGoogleFilled,
+  TbBrandTwitter,
+  TbBrandWhatsapp,
+  TbExternalLink,
+  TbPointerCancel,
+} from 'react-icons/tb';
 
 interface AccountsProps {
   accounts: Record<string, string>[];
@@ -20,17 +20,17 @@ const Icon = ({ platform }: { platform: string }) => {
     render: (platform: string) => {
       switch (platform) {
         case 'google':
-          return <RiGoogleFill />;
+          return <TbBrandGoogleFilled />;
         case 'whatsApp':
-          return <RiWhatsappFill />;
+          return <TbBrandWhatsapp />;
         case 'facebook':
-          return <RiFacebookBoxFill />;
+          return <TbBrandFacebook />;
         case 'twitter':
-          return <RiTwitterXFill />;
+          return <TbBrandTwitter />;
         case 'others':
-          return <RiLink />;
+          return <TbExternalLink />;
         default:
-          return <RiLink />;
+          return <TbExternalLink />;
       }
     },
   };
@@ -42,7 +42,7 @@ const EmptyState = () => {
   return (
     <Card className='p-0 ring-0'>
       <CardContent className='flex flex-col items-center gap-y-3'>
-        <TbSquareRoundedPlus className='w-8 h-8 stroke-zinc-400' />
+        <TbPointerCancel className='w-8 h-8 stroke-zinc-400' />
 
         <div className='space-y-1 text-center'>
           <Text
@@ -76,7 +76,6 @@ export const Accounts = ({ accounts }: AccountsProps) => {
         >
           Social accounts
         </Text>
-
         {accounts && accounts.length > 0 ? (
           accounts.map((account, i) => (
             <div

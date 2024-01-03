@@ -3,7 +3,7 @@ import { Text } from '../../../../components/ui/Text';
 
 export const Data = (props: Record<string, string>) => {
   return (
-    <div className='space-y-1'>
+    <div className='flex gap-x-1'>
       {Object.keys(props).map((key: string, i) => (
         <Text
           key={key}

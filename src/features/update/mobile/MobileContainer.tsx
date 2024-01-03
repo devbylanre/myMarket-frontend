@@ -46,7 +46,6 @@ export const MobileContainer = () => {
             <Text
               as='p'
               size='sm'
-              accent='medium'
             >
               {`+${mobile.code} ${mobile.number}`}
             </Text>

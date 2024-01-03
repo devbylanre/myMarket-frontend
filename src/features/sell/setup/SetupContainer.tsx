@@ -6,6 +6,8 @@ import { FormError } from '../../shared/FormError';
 import { useOutletContext } from 'react-router-dom';
 import { Text } from '../../../components/ui/Text';
 import { User } from '../../../contexts/user.types';
+import { Card, CardContent } from '../../../components/ui/Card';
+import { TbMoodNerd } from 'react-icons/tb';
 
 interface InitialValues {
   name: string;
@@ -46,7 +48,8 @@ const validationSchema = yup.object().shape({
 
 export const SetupContainer = () => {
   const { status, sellerSetup } = useSellerSetup();
-  const { isSeller } = useOutletContext() as User;
+  const { isSeller, store, _id } = useOutletContext() as User;
+  console.log(store, _id);
 
   const handleSubmit = async (values: InitialValues) => {
     await sellerSetup({
@@ -74,15 +77,35 @@ export const SetupContainer = () => {
         {!isSeller ? (
           <SetupForm isLoading={status.isLoading} />
         ) : (
-          <div>
-            <Text>
-              You are now a seller, you can edit your store information from the
-              settings page
-            </Text>
-          </div>
+          <EmptyState />
         )}
         {status.state === 'error' ? <FormError error={status.error} /> : null}
       </Form>
     </Formik>
+  );
+};
+
+const EmptyState = () => {
+  return (
+    <Card className='w-full p-0 ring-0 sm:w-96'>
+      <CardContent className='flex flex-col items-center gap-y-3'>
+        <TbMoodNerd className='w-8 h-8 stroke-zinc-400' />
+        <div className='space-y-1 text-center'>
+          <Text
+            as='h6'
+            weight={500}
+          >
+            You are now a seller
+          </Text>
+          <Text
+            as='p'
+            size='sm'
+          >
+            You no longer have access to this page, you can continue by creating
+            a new a product, view your profile and build your community.
+          </Text>
+        </div>
+      </CardContent>
+    </Card>
   );
 };
