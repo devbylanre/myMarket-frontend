@@ -10,7 +10,7 @@ import {
 import { useLoaderData } from 'react-router-dom';
 import { Product } from '../../../contexts/product.types';
 
-export const HomePage = () => {
+export const ShopPage = () => {
   const { data }: any = useLoaderData();
 
   return (
@@ -58,22 +58,4 @@ const ProductFilter = ({ products }: { products: Product[] }) => {
       </TabContent>
     </Tab>
   );
-};
-
-export const ProductsLoader = () => {
-  const helper = {
-    fetchProducts: async () => {
-      const response = await fetch(
-        `http://localhost:5000/api/v1/product/fetch/all`,
-        {
-          method: 'GET',
-          headers: { 'content-type': 'application/json' },
-        }
-      );
-
-      return await response.json();
-    },
-  };
-
-  return helper.fetchProducts();
 };

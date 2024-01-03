@@ -23,12 +23,13 @@ export const useUploadPhoto = () => {
       });
 
       const formData = new FormData();
-      formData.append('photo', data);
+      formData.append('photo', data.photo);
+      formData.append('email', data.email);
 
       const response = await fetch(
-        `http://localhost:5000/api/v1/user/upload/photo/${id}`,
+        `https://mymarket-tan.vercel.app/user/photo/upload`,
         {
-          method: 'PUT',
+          method: 'POST',
           body: formData,
         }
       );

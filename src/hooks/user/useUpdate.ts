@@ -21,7 +21,7 @@ export const useUpdate = () => {
       });
 
       const response = await fetch(
-        `http://localhost:5000/api/v1/user/${user?._id}`,
+        `https://mymarket-tan.vercel.app/user/${user?._id}`,
         {
           method: 'PUT',
           headers: {

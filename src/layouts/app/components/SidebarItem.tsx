@@ -9,7 +9,7 @@ export const SidebarItem = ({ item }: { item: Record<string, any> }) => {
       to={`/app/${item.url}`}
       className={({ isActive }) =>
         twMerge(
-          'flex gap-x-3 justify-between items-center h-9 px-3 rounded-lg',
+          'flex gap-x-3 items-center h-9 px-3 rounded-lg',
           isActive &&
             'text-primary lg:bg-white hover:bg-none shadow-sm ring-1 ring-zinc-950/5'
         )
@@ -17,6 +17,14 @@ export const SidebarItem = ({ item }: { item: Record<string, any> }) => {
     >
       {({ isActive }) => (
         <>
+          <span
+            className={twMerge(
+              'stroke-zinc-500',
+              isActive && 'stroke-primary-500'
+            )}
+          >
+            {item.icon}
+          </span>
           <Text
             as='p'
             size='sm'
@@ -25,14 +33,6 @@ export const SidebarItem = ({ item }: { item: Record<string, any> }) => {
           >
             {item.name}
           </Text>
-          <span
-            className={twMerge(
-              'fill-zinc-500',
-              isActive && 'fill-primary stroke-none'
-            )}
-          >
-            {item.icon}
-          </span>
         </>
       )}
     </NavLink>

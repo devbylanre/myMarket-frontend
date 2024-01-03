@@ -1,18 +1,20 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
-import { User } from '../../../contexts/user.types';
 import { twMerge } from 'tailwind-merge';
-import { Details } from './shared/Details';
+import { Details } from './components/sidebar/Details';
 import { Helmet } from 'react-helmet-async';
-import { Bio } from './shared/Bio';
-import { ProfileTab } from './shared/ProfileTab';
-import { Accounts } from './shared/Accounts';
-import { UserCard } from './shared/UserCard';
+import { Bio } from './components/sidebar/Bio';
+import { ProfileTab } from './components/ProfileTab';
+import { Accounts } from './components/sidebar/Accounts';
+import { UserCard } from './components/sidebar/UserCard';
+import { User } from '../../../contexts/user.types';
+import { Product } from '../../../contexts/product.types';
+import { Spinner } from '../../../components/ui/Spinner';
 
 export const ProfilePage = () => {
   const payload: any = useLoaderData();
-  const user = payload.user.data as User;
-  const products = payload.products.data;
+  const user = payload.user as User;
+  const products = payload.products as Product[];
 
   return (
     <>
@@ -30,11 +32,7 @@ export const ProfilePage = () => {
             />
           </Helmet>
 
-          <div
-            className={twMerge(
-              'border-t border-t-zinc-200 flex flex-col-reverse lg:flex-row w-full'
-            )}
-          >
+          <div className={twMerge('flex flex-col-reverse lg:flex-row w-full')}>
             <ProfileTab
               isSeller={user.isSeller}
               store={user.store}
@@ -58,32 +56,9 @@ export const ProfilePage = () => {
             </div>
           </div>
         </>
-      ) : null}
+      ) : (
+        <Spinner />
+      )}
     </>
   );
-};
-
-export const ProfilePageLoader = async ({ params }: { params: any }) => {
-  const helper = {
-    fetchData: async () => {
-      const response = await fetch(
-        `http://localhost:5000/api/v1/user/fetch/${params.id}`
-      );
-
-      return await response.json();
-    },
-
-    fetchProducts: async () => {
-      const response = await fetch(
-        `http://localhost:5000/api/v1/user/fetch/products/${params.id}`
-      );
-
-      return await response.json();
-    },
-  };
-
-  const user = await helper.fetchData();
-  const products = await helper.fetchProducts();
-
-  return { user, products };
 };

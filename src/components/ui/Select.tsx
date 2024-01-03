@@ -137,7 +137,7 @@ export const SelectContent = (props: SelectContentProps) => {
     <>
       <div
         className={twMerge(
-          'absolute w-full space-y-0.5 overflow-hidden z-10 bg-white ring-1 ring-zinc-950/10 max-h-64 overflow-y-scroll p-1 rounded-md mt-2  transition-all ease-in-out duration-500',
+          'absolute w-full space-y-0.5 overflow-hidden z-10 bg-white shadow-sm ring-1 ring-zinc-950/5 max-h-64 overflow-y-scroll p-1 rounded-md mt-2  transition-all ease-in-out duration-500',
           touched
             ? 'translate-y-0 scale-100 opacity-100 visible'
             : '-translate-y-2 scale-95 opacity-0 invisible',

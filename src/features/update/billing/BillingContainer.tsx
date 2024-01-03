@@ -11,7 +11,7 @@ import {
 import { User } from '../../../contexts/user.types';
 
 interface IForm {
-  country: 'nigeria' | '';
+  country: 'Nigeria' | '';
   state: string;
   city: string;
   address: string;
@@ -29,7 +29,7 @@ export const BillingContainer = () => {
   const { status, updateBilling } = useUpdateBilling();
 
   const initialValues: IForm = {
-    country: 'nigeria',
+    country: 'Nigeria',
     state: billing.state,
     city: billing.city,
     address: billing.address,

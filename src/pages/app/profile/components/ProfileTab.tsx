@@ -5,11 +5,11 @@ import {
   TabTrigger,
   TabContent,
 } from '../../../../components/ui/Tab';
-import { Store } from './Store';
+import { Store } from './tabs/store/Store';
 import { UserStore } from '../../../../contexts/user.types';
 import { SellerSetup } from '../../../../components/templates/SellerSetup';
-import { ProductCard } from './Product';
-import { ProductsEmptyState } from './ProductsEmptyState';
+import { ProductCard } from './tabs/products/Product';
+import { EmptyState } from './tabs/products/EmptyState';
 import { Product } from '../../../../contexts/product.types';
 
 interface ProfileTabProps {
@@ -53,7 +53,7 @@ export const ProfileTab = ({
             ))}
           </div>
         ) : (
-          <ProductsEmptyState />
+          <EmptyState />
         )}
       </TabContent>
     </Tab>

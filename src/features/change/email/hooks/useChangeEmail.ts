@@ -25,7 +25,7 @@ export const useChangeEmail = () => {
     });
 
     const response = await fetch(
-      `http://localhost:5000/api/v1/user/change/email/${id}`,
+      `https://mymarket-tan.vercel.app/user/email/change`,
       {
         method: 'PUT',
         headers: {

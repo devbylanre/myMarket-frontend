@@ -51,21 +51,23 @@ export const ProductContextProvider = ({
       fetchProducts: async (id: string | null) => {
         try {
           const response = await fetch(
-            `http://localhost:5000/api/v1/user/fetch/products/${id}`
+            `https://mymarket-tan.vercel.app/user/products/${id}`
           );
 
           const json = await response.json();
 
-          if (response.ok) {
-            dispatch({ type: 'SET', payload: json.data });
+          if (!response.ok) {
+            throw Error('Unable to fetch user products');
           }
+
+          dispatch({ type: 'SET', payload: json.data });
         } catch (error: any) {
           return console.error(error.message);
         }
       },
     };
 
-    user && helper.fetchProducts(user?._id);
+    user && user.isSeller && helper.fetchProducts(user?._id);
   }, [user]);
 
   return (

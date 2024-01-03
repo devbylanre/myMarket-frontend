@@ -1,12 +1,16 @@
 import { Link, useOutletContext } from 'react-router-dom';
-import { Card, CardContent, CardFooter } from '../../../../components/ui/Card';
-import { Text } from '../../../../components/ui/Text';
-import { Product } from '../../../../contexts/product.types';
+import {
+  Card,
+  CardContent,
+  CardFooter,
+} from '../../../../../../components/ui/Card';
+import { Text } from '../../../../../../components/ui/Text';
+import { Product } from '../../../../../../contexts/product.types';
 import { LuPenLine, LuTrash } from 'react-icons/lu';
-import { useDelete } from '../../../../hooks/product/useDelete';
-import { User } from '../../../../contexts/user.types';
-import { Toast, ToastContent } from '../../../../components/ui/Toast';
-import { Spinner } from '../../../../components/ui/Spinner';
+import { useDelete } from '../../../../../../hooks/product/useDelete';
+import { User } from '../../../../../../contexts/user.types';
+import { Toast, ToastContent } from '../../../../../../components/ui/Toast';
+import { Spinner } from '../../../../../../components/ui/Spinner';
 
 export const ProductCard = ({
   product,

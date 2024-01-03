@@ -61,7 +61,7 @@ export const DropdownContent = ({
   return (
     <div
       className={twMerge(
-        'absolute mt-1.5 bg-white z-10 ring-1 rounded-md p-1 ring-zinc-950/10 left-0 w-full transition-all ease-in-out duration-300',
+        'absolute mt-1.5 bg-white z-10 ring-1 rounded-md p-1 ring-zinc-950/5 shadow-lg left-0 w-full transition-all ease-in-out duration-300',
         isVisible
           ? 'translate-y-0 scale-100 opacity-100 visible'
           : '-translate-y-2 scale-95 opacity-0 invisible',

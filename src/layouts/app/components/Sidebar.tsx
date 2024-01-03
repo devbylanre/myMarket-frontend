@@ -1,11 +1,11 @@
 import React from 'react';
-import {
-  RiArrowLeftRightFill,
-  RiSettings2Fill,
-  RiShoppingCartFill,
-  RiUser6Fill,
-} from 'react-icons/ri';
 import { SidebarItem } from './SidebarItem';
+import {
+  TbArrowsDoubleSwNe,
+  TbSettingsCheck,
+  TbShoppingCart,
+  TbUser,
+} from 'react-icons/tb';
 
 interface Items {
   name: string;
@@ -13,29 +13,29 @@ interface Items {
   icon: React.ReactNode;
 }
 
-const iconClassName: string = 'w-5 h-5 fill-inherit stroke-inherit';
+const iconClassName: string = 'w-5 h-5 stroke-inherit stroke-inherit';
 
 export const Sidebar = ({ id }: { id: string }) => {
   const items: Items[] = [
     {
       name: 'Shop',
       url: 'shop',
-      icon: <RiShoppingCartFill className={iconClassName} />,
+      icon: <TbShoppingCart className={iconClassName} />,
     },
     {
       name: 'Sell',
       url: 'sell',
-      icon: <RiArrowLeftRightFill className={iconClassName} />,
+      icon: <TbArrowsDoubleSwNe className={iconClassName} />,
     },
     {
       name: 'Profile',
       url: `profile/${id}`,
-      icon: <RiUser6Fill className={iconClassName} />,
+      icon: <TbUser className={iconClassName} />,
     },
     {
       name: 'Settings',
       url: 'settings/',
-      icon: <RiSettings2Fill className={iconClassName} />,
+      icon: <TbSettingsCheck className={iconClassName} />,
     },
   ];
 

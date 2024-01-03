@@ -24,13 +24,16 @@ export const useAuth = () => {
         payload: null,
       });
 
-      const response = await fetch('http://localhost:5000/api/v1/user/auth', {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        'https://mymarket-tan.vercel.app/user/auth',
+        {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        }
+      );
 
       const json = await response.json();
 

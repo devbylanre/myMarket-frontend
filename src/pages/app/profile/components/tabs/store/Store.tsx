@@ -1,7 +1,7 @@
 import React from 'react';
-import { Text } from '../../../../components/ui/Text';
-import { UserStore } from '../../../../contexts/user.types';
-import { Separator } from '../../../../components/ui/Separator';
+import { Text } from '../../../../../../components/ui/Text';
+import { UserStore } from '../../../../../../contexts/user.types';
+import { Separator } from '../../../../../../components/ui/Separator';
 
 const Location = ({ location }: { location: Record<string, any> }) => {
   return (

@@ -29,14 +29,14 @@ const validationSchema = yup.object().shape({
 });
 
 export const PhotoContainer = () => {
-  const { _id, photo, firstName, lastName } = useOutletContext() as User;
+  const { _id, photo, firstName, lastName, email } = useOutletContext() as User;
   const [isSelected, setIsSelected] = useState<boolean>(false);
   const { status, uploadPhoto } = useUploadPhoto();
   const photoRef = useRef<HTMLInputElement | null>(null);
 
   const helper = {
     submit: async (values: IForm) => {
-      await uploadPhoto(_id, values.photo);
+      await uploadPhoto(_id, { photo: values.photo, email: email });
       setIsSelected(false);
     },
     change: (e: React.ChangeEvent<HTMLInputElement>, setValue: any) => {

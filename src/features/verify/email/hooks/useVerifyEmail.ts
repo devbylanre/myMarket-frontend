@@ -14,7 +14,7 @@ export const useVerifyEmail = () => {
       setStatus({ state: null, isLoading: true, error: null, payload: null });
 
       const response = await fetch(
-        `http://localhost:5000/api/v1/user/email/verify`,
+        `https://mymarket-tan.vercel.app/user/email/verify`,
         {
           method: 'POST',
           headers: {

@@ -1,5 +1,4 @@
 import React from 'react';
-import { LuBell, LuChevronDown, LuSearch } from 'react-icons/lu';
 import { Text } from '../../../components/ui/Text';
 import { Avatar, AvatarFallback } from '../../../components/ui/Avatar';
 import { Link } from 'react-router-dom';
@@ -9,16 +8,19 @@ import {
   DropdownItem,
   DropdownTrigger,
 } from '../../../components/ui/Dropdown';
-import {
-  RiChat1Fill,
-  RiLineChartFill,
-  RiLoopRightFill,
-  RiSettings2Fill,
-} from 'react-icons/ri';
 import { Button } from '../../../components/ui/Button';
 import { Separator } from '../../../components/ui/Separator';
 import { useUserContext } from '../../../hooks/useUserContext';
 import { User } from '../../../contexts/user.types';
+import {
+  TbBellRinging,
+  TbChartLine,
+  TbChevronDown,
+  TbMessage,
+  TbRoadOff,
+  TbSearch,
+  TbUser,
+} from 'react-icons/tb';
 
 interface HeaderProps {
   firstName: string;
@@ -26,24 +28,28 @@ interface HeaderProps {
   url: string;
 }
 
-const items: {
+interface Item {
   name: string;
   icon: React.ReactNode;
   url: string;
-}[] = [
+}
+
+const iconClassName = 'w-[18px] h-[18px] stroke-zinc-500';
+
+const items: Item[] = [
   {
     name: 'Edit Profile',
-    icon: <RiSettings2Fill />,
+    icon: <TbUser className={iconClassName} />,
     url: '/app/settings/',
   },
   {
     name: 'Analytics',
-    icon: <RiLineChartFill />,
+    icon: <TbChartLine className={iconClassName} />,
     url: '',
   },
   {
     name: 'Customer support',
-    icon: <RiChat1Fill />,
+    icon: <TbMessage className={iconClassName} />,
     url: '',
   },
 ];
@@ -61,7 +67,7 @@ const Options = ({ firstName, lastName, url }: HeaderProps) => {
         >
           <AvatarFallback className='font-medium capitalize'>{`${firstName[0]}${lastName[0]}`}</AvatarFallback>
         </Avatar>
-        <LuChevronDown className='stroke-zinc-500' />
+        <TbChevronDown className='stroke-zinc-500' />
       </DropdownTrigger>
       <DropdownContent className='w-64 mt-2 -left-48'>
         {items.map((item, i) => (
@@ -74,6 +80,7 @@ const Options = ({ firstName, lastName, url }: HeaderProps) => {
               <Text
                 as='p'
                 size='sm'
+                weight={500}
               >
                 {item.name}
               </Text>
@@ -84,10 +91,11 @@ const Options = ({ firstName, lastName, url }: HeaderProps) => {
         <Button
           variant='danger'
           type='button'
+          size='sm'
           onClick={() => dispatch({ type: 'SIGN_OUT', payload: {} as User })}
           className='w-full'
         >
-          <RiLoopRightFill />
+          <TbRoadOff className='w-[18px] h-[18px]' />
           Logout
         </Button>
       </DropdownContent>
@@ -110,8 +118,8 @@ export const Header = ({ firstName, lastName, url }: HeaderProps) => {
       </Text>
 
       <div className='flex items-center gap-x-5'>
-        <LuSearch className={iconClassName} />
-        <LuBell className={iconClassName} />
+        <TbSearch className={iconClassName} />
+        <TbBellRinging className={iconClassName} />
         <Options
           firstName={firstName}
           lastName={lastName}

@@ -26,7 +26,7 @@ export const useDelete = () => {
       });
 
       const response = await fetch(
-        `http://localhost:5000/api/v1/product/${id}`,
+        `hhttps://mymarket-tan.vercel.app/product/${id}`,
         {
           method: 'DELETE',
           headers: {

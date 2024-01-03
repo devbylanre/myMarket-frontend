@@ -2,9 +2,17 @@ import { createProxyMiddleware } from 'http-proxy-middleware';
 
 module.exports = function (app: any) {
   app.use(
-    '/api/',
+    '/user',
     createProxyMiddleware({
-      target: 'http://localhost:5000',
+      target: 'https://mymarket-tan.vercel.app',
+      changeOrigin: true,
+    })
+  );
+
+  app.use(
+    '/product',
+    createProxyMiddleware({
+      target: 'https://mymarket-tan.vercel.app',
       changeOrigin: true,
     })
   );

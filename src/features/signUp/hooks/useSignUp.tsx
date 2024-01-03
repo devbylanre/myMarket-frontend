@@ -17,7 +17,7 @@ export const useSignUp = () => {
     setStatus({ state: null, isLoading: true, error: null, payload: null });
 
     const response = await fetch(
-      'https://mymarket-sepia.vercel.app/user/create',
+      'https://mymarket-tan.vercel.app/user/create',
       {
         method: 'POST',
         headers: {

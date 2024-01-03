@@ -55,7 +55,7 @@ export const SellPageLoader = ({ params }: { params: any }) => {
 
     fetchProduct: async (token: string) => {
       const response = await fetch(
-        `http://localhost:5000/api/v1/product/fetch/single/${params.id}`,
+        `https://mymarket-tan.vercel.app/product/fetch/single/${params.id}`,
         {
           method: 'GET',
           headers: {

@@ -27,7 +27,7 @@ export const useUpdateProduct = () => {
       });
 
       const response = await fetch(
-        `http://localhost:5000/api/v1/product/update/${productId}`,
+        `https://mymarket-tan.vercel.app/product/update/${productId}`,
         {
           method: 'PUT',
           headers: {

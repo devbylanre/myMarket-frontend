@@ -2,11 +2,10 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 // layout imports
 import { RootLayout } from './layouts/root/RootLayout';
-
-// theme layout
 import { ThemeLayout } from './layouts/theme/ThemeLayout';
+import { AppLayout } from './layouts/app/AppLayout.tsx';
 
-// theme layout pages
+// components pages
 import { TypographyPage } from './pages/components/typography/TypographyPage';
 import { ButtonPage } from './pages/components/button/ButtonPage';
 import { BadgePage } from './pages/components/badge/BadgePage';
@@ -24,34 +23,33 @@ import { DropdownPage } from './pages/components/dropdown/DropdownPage';
 import { AccordionPage } from './pages/components/accordion/AccordionPage';
 import { SpinnerPage } from './pages/components/spinner/SpinnerPage';
 
-// app layout
-import { AppLayout } from './layouts/app/AppLayout.tsx';
-
-// app layout pages
-import { HomePage, ProductsLoader } from './pages/app/index/HomePage';
+// app pages
+import { ShopPage } from './pages/app/index/ShopPage';
 import { SavedPage } from './pages/app/SavedPage';
-import {
-  ProfilePage,
-  ProfilePageLoader,
-} from './pages/app/profile/ProfilePage';
+import { ProfilePage } from './pages/app/profile/ProfilePage';
 import { SellPage, SellPageLoader } from './pages/app/sell/SellPage';
 import { SetupPage } from './pages/app/sell/SetupPage';
+import { ProductPage } from './pages/app/product/ProductPage';
+import { SettingsPage } from './pages/app/settings/SettingsPage';
 
 // pages
 import { IndexPage } from './pages/IndexPage';
 import { AuthPage } from './pages/AuthPage';
 import { Session } from './pages/Session';
 import { VerifyEmailPage } from './pages/VerifyEmailPage';
-import {
-  ProductPage,
-  ProductPageLoader,
-} from './pages/app/product/ProductPage';
+
+// loaders
+import { ShopPageLoader } from './pages/app/index/ShopPageLoader';
+import { ProfilePageLoader } from './pages/app/profile/ProfilePageLoader';
+
+// routes error component
+import { ShopPageError } from './pages/app/index/ShopPageError';
+import { ProfilePageError } from './pages/app/profile/ProfilePageError';
 
 // contexts
 import { UserContextProvider } from './contexts/user';
 import { ProductContextProvider } from './contexts/product';
 import { HelmetProvider } from 'react-helmet-async';
-import { SettingsPage } from './pages/app/settings/SettingsPage';
 
 const router = createBrowserRouter([
   {
@@ -71,11 +69,15 @@ const router = createBrowserRouter([
           {
             path: 'shop',
             children: [
-              { index: true, element: <HomePage />, loader: ProductsLoader },
+              {
+                index: true,
+                element: <ShopPage />,
+                loader: ShopPageLoader,
+                errorElement: <ShopPageError />,
+              },
               {
                 path: 'product/:id',
                 element: <ProductPage />,
-                loader: ProductPageLoader,
               },
             ],
           },
@@ -83,6 +85,7 @@ const router = createBrowserRouter([
             path: 'profile/:id',
             element: <ProfilePage />,
             loader: ProfilePageLoader,
+            errorElement: <ProfilePageError />,
           },
           {
             path: 'sell',
