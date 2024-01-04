@@ -27,7 +27,7 @@ export const useUpdateProduct = () => {
       });
 
       const response = await fetch(
-        `https://mymarket-tan.vercel.app/product/update/${productId}`,
+        `https://mymarket-tan.vercel.app/product/${productId}`,
         {
           method: 'PUT',
           headers: {

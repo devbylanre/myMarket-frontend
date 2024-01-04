@@ -11,6 +11,7 @@ import { SellerSetup } from '../../../../components/templates/SellerSetup';
 import { ProductCard } from './tabs/products/Product';
 import { EmptyState } from './tabs/products/EmptyState';
 import { Product } from '../../../../contexts/product.types';
+import { Community } from './tabs/community/Community';
 
 interface ProfileTabProps {
   isSeller: boolean;
@@ -33,7 +34,7 @@ export const ProfileTab = ({
       <TabList className='mx-auto'>
         <TabTrigger value='store'>Store</TabTrigger>
         <TabTrigger value='products'>Products</TabTrigger>
-        <TabTrigger value='Community'>Community</TabTrigger>
+        <TabTrigger value='community'>Community</TabTrigger>
       </TabList>
       <TabContent value='store'>
         {isSeller ? <Store store={store} /> : <SellerSetup />}
@@ -55,6 +56,9 @@ export const ProfileTab = ({
         ) : (
           <EmptyState />
         )}
+      </TabContent>
+      <TabContent value='community'>
+        <Community />
       </TabContent>
     </Tab>
   );

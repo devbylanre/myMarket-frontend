@@ -34,12 +34,14 @@ export const Store = ({ store }: { store: UserStore }) => {
           as='h5'
           size='xl'
           weight={500}
+          className='capitalize'
         >
           {store.name}
         </Text>
         <Text
           as='p'
           size='sm'
+          className='first-letter:uppercase'
         >
           {store.description}
         </Text>

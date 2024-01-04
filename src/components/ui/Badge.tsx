@@ -10,7 +10,7 @@ import { cn } from '../../utils/util';
 import { twMerge } from 'tailwind-merge';
 
 const badgeVariants = cva(
-  'rounded-lg px-1.5 h-6 w-fit text-xs ring-1 inline-flex gap-x-1 items-center ring-inset',
+  'rounded-lg px-1.5 h-6 w-fit font-medium text-xs ring-1 inline-flex gap-x-1 items-center ring-inset',
   {
     variants: {
       variant: {

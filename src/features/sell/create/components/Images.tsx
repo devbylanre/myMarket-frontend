@@ -1,9 +1,9 @@
 import React, { useRef } from 'react';
-import { Card } from '../../../../components/ui/Card';
+import { Card, CardContent } from '../../../../components/ui/Card';
 import { Text } from '../../../../components/ui/Text';
 import { ImageCard } from './ImageCard';
 import { Button } from '../../../../components/ui/Button';
-import { LuFolderMinus } from 'react-icons/lu';
+import { TbPhotoCircle } from 'react-icons/tb';
 
 export const Images = ({ formik }: { formik: Record<string, any> }) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -62,24 +62,7 @@ export const Images = ({ formik }: { formik: Record<string, any> }) => {
         onChange={(e) => helper.change(e)}
       />
 
-      <Card className='flex items-center p-0 cursor-pointer ring-0 gap-x-3'>
-        <Text
-          as='h6'
-          size='sm'
-        >
-          Click to upload images
-        </Text>
-        <Button
-          variant='outline'
-          size='xs'
-          type='button'
-          onClick={() => inputRef.current?.click()}
-        >
-          Choose files
-        </Button>
-      </Card>
-
-      <div className='space-y-2'>
+      <div className='flex flex-col items-center gap-y-5'>
         {formik.values.images && formik.values.images.length > 0 ? (
           formik.values.images.map((image: any, i: number) => (
             <ImageCard
@@ -93,6 +76,14 @@ export const Images = ({ formik }: { formik: Record<string, any> }) => {
         ) : (
           <EmptyState />
         )}
+        <Button
+          size='sm'
+          variant='outline'
+          type='button'
+          onClick={() => inputRef.current?.click()}
+        >
+          Click to upload images
+        </Button>
       </div>
 
       {formik.touched.images ? <Error error={formik.errors.images} /> : null}
@@ -116,14 +107,25 @@ const Error = ({ error }: { error: string }) => {
 
 const EmptyState = () => {
   return (
-    <div className='flex flex-col items-center justify-center h-40 rounded-lg bg-zinc-100'>
-      <LuFolderMinus className='w-5 h-5 stroke-zinc-500' />
-      <Text
-        as='p'
-        size='sm'
-      >
-        No images uploaded yet
-      </Text>
-    </div>
+    <Card className='p-0 stroke-zinc-400 ring-0'>
+      <CardContent className='flex flex-col items-center gap-y-3'>
+        <TbPhotoCircle className='w-8 h-8 stroke-zinc-400' />
+
+        <div className='space-y-1 text-center'>
+          <Text
+            as='h6'
+            weight={500}
+          >
+            No image selected yet
+          </Text>
+          <Text
+            as='p'
+            size='sm'
+          >
+            Click on the button above to upload your product images
+          </Text>
+        </div>
+      </CardContent>
+    </Card>
   );
 };

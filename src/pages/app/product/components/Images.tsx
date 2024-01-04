@@ -7,7 +7,7 @@ export const Images = ({ images }: { images: Record<string, any>[] }) => {
   );
 
   return (
-    <div>
+    <div className='basis-full lg:basis-2/5'>
       <img
         src={selectedImage.url}
         alt={selectedImage.name}
@@ -21,7 +21,7 @@ export const Images = ({ images }: { images: Record<string, any>[] }) => {
             src={image.url}
             alt={image.name}
             className={twMerge(
-              'w-12 h-12 rounded-lg ring-zinc-950/10 ring-1 cursor-pointer hover:scale-110',
+              'w-12 h-12 rounded-lg ring-zinc-950/10 ring-1 cursor-pointer hover:scale-110 transition-all ease-in-out duration-300',
               selectedImage.name === image.name && 'ring-zinc-950 '
             )}
             onClick={() => setSelectedImage(image)}

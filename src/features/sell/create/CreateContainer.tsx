@@ -124,7 +124,7 @@ export const CreateContainer = ({ product }: { product: Product | null }) => {
           <Separator className='my-5' />
           <Buttons isLoading={status.isLoading} />
 
-          {status.state === 'error' ? <FormError error={status.error} /> : null}
+          <FormError error={status.state === 'error' ? status.error : null} />
         </Form>
       )}
     </Formik>

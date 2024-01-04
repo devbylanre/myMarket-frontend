@@ -23,11 +23,14 @@ export const SellPage = () => {
               <Text
                 as='h5'
                 weight={500}
-                size='2xl'
+                size='lg'
               >
                 Upload new product
               </Text>
-              <Text as='p'>
+              <Text
+                as='p'
+                size='sm'
+              >
                 Upload new product in a few easy steps, fill the form with your
                 new product details and then click on the button to upload it.
               </Text>
@@ -55,7 +58,7 @@ export const SellPageLoader = ({ params }: { params: any }) => {
 
     fetchProduct: async (token: string) => {
       const response = await fetch(
-        `https://mymarket-tan.vercel.app/product/fetch/single/${params.id}`,
+        `https://mymarket-tan.vercel.app/product/${params.id}`,
         {
           method: 'GET',
           headers: {

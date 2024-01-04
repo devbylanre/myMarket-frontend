@@ -40,7 +40,7 @@ export const useCreateProduct = () => {
       formData.append('model', data.model);
 
       const response = await fetch(
-        'http://localhost:5000/api/v1/product/create',
+        'https://mymarket-tan.vercel.app/product/create',
         {
           method: 'POST',
           headers: {

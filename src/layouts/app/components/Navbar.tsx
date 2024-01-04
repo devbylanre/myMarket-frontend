@@ -1,37 +1,32 @@
 import React from 'react';
 import {
-  RiArrowLeftRightFill,
-  RiPushpinFill,
-  RiSettings2Fill,
-  RiShoppingCartFill,
-  RiUser6Fill,
-} from 'react-icons/ri';
+  TbArrowsDoubleSwNe,
+  TbSettingsCheck,
+  TbShoppingCart,
+  TbUser,
+} from 'react-icons/tb';
 import { NavLink } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 
-const iconClassName = 'w-5 h-5 fill-inherit';
+const iconClassName = 'w-5 h-5 stroke-inherit';
 
 export const Navbar = ({ id }: { id: string }) => {
   const items = [
     {
       url: '/app/shop/',
-      icon: <RiShoppingCartFill className={iconClassName} />,
-    },
-    {
-      url: '/app/pinned/',
-      icon: <RiPushpinFill className={iconClassName} />,
+      icon: <TbShoppingCart className={iconClassName} />,
     },
     {
       url: '/app/sell/',
-      icon: <RiArrowLeftRightFill className={iconClassName} />,
+      icon: <TbArrowsDoubleSwNe className={iconClassName} />,
     },
     {
       url: `/app/profile/${id}`,
-      icon: <RiUser6Fill className={iconClassName} />,
+      icon: <TbUser className={iconClassName} />,
     },
     {
       url: '/app/settings/',
-      icon: <RiSettings2Fill className={iconClassName} />,
+      icon: <TbSettingsCheck className={iconClassName} />,
     },
   ];
 
@@ -43,8 +38,8 @@ export const Navbar = ({ id }: { id: string }) => {
           to={item.url}
           className={({ isActive }) =>
             twMerge(
-              'fill-zinc-500 cursor-pointer h-14 w-full flex items-center justify-center hover:fill-zinc-950',
-              isActive && 'fill-primary hover:fill-primary'
+              'stroke-zinc-500 cursor-pointer h-14 w-full flex items-center justify-center hover:stroke-zinc-950',
+              isActive && 'stroke-primary-500 hover:stroke-primary-700'
             )
           }
         >

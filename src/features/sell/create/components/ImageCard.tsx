@@ -15,35 +15,39 @@ interface ImageCardProps {
 
 export const ImageCard = ({ image, excerpt, toMb, pop }: ImageCardProps) => {
   return (
-    <Card className='flex object-cover p-0 overflow-visible rounded-none gap-x-3 ring-0 bg-none'>
-      <img
-        src={image.url}
-        alt={image.file.name}
-        className='object-cover w-12 h-12 rounded-lg ring-1 ring-zinc-950/5'
-      />
-      <CardContent className='flex-1 space-y-1'>
-        <Text
-          as='h6'
-          size='sm'
-          weight={500}
-          className='first-letter:uppercase'
+    <Card className='p-0 ring-0'>
+      <CardContent className='flex items-center justify-between w-full gap-x-3'>
+        <img
+          src={image.url}
+          alt={image.file.name}
+          className='object-cover w-10 h-10 rounded-lg ring-1 ring-zinc-950/5'
+        />
+
+        <div className='flex-1 space-y-0.5'>
+          <Text
+            as='h6'
+            size='sm'
+            weight={500}
+            className='first-letter:uppercase'
+          >
+            {excerpt(image.file.name, 32)}
+          </Text>
+          <Text
+            as='p'
+            size='xs'
+          >
+            {toMb(image.file.size).toFixed(2)} MB
+          </Text>
+        </div>
+
+        <Badge
+          variant='outline'
+          className='cursor-pointer'
+          onClick={() => pop(image.file.name)}
         >
-          {excerpt(image.file.name, 32)}
-        </Text>
-        <Text
-          as='p'
-          size='xs'
-        >
-          {toMb(image.file.size).toFixed(2)} MB
-        </Text>
+          Remove
+        </Badge>
       </CardContent>
-      <Badge
-        variant='outline'
-        className='cursor-pointer'
-        onClick={() => pop(image.file.name)}
-      >
-        Remove
-      </Badge>
     </Card>
   );
 };

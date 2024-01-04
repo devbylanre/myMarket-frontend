@@ -24,7 +24,7 @@ import { AccordionPage } from './pages/components/accordion/AccordionPage';
 import { SpinnerPage } from './pages/components/spinner/SpinnerPage';
 
 // app pages
-import { ShopPage } from './pages/app/index/ShopPage';
+import { ShopPage } from './pages/app/shop/ShopPage';
 import { SavedPage } from './pages/app/SavedPage';
 import { ProfilePage } from './pages/app/profile/ProfilePage';
 import { SellPage, SellPageLoader } from './pages/app/sell/SellPage';
@@ -39,12 +39,14 @@ import { Session } from './pages/Session';
 import { VerifyEmailPage } from './pages/VerifyEmailPage';
 
 // loaders
-import { ShopPageLoader } from './pages/app/index/ShopPageLoader';
+import { ShopPageLoader } from './pages/app/shop/Loader';
 import { ProfilePageLoader } from './pages/app/profile/ProfilePageLoader';
+import { ProductPageLoader } from './pages/app/product/Loader';
 
 // routes error component
-import { ShopPageError } from './pages/app/index/ShopPageError';
+import { ShopPageError } from './pages/app/shop/Error';
 import { ProfilePageError } from './pages/app/profile/ProfilePageError';
+import { ProductPageError } from './pages/app/product/Error';
 
 // contexts
 import { UserContextProvider } from './contexts/user';
@@ -78,6 +80,8 @@ const router = createBrowserRouter([
               {
                 path: 'product/:id',
                 element: <ProductPage />,
+                loader: ProductPageLoader,
+                errorElement: <ProductPageError />,
               },
             ],
           },
