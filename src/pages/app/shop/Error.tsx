@@ -9,9 +9,9 @@ export const ShopPageError = () => {
 
   return (
     <Card className='w-full p-0 mx-auto mt-16 ring-0 sm:w-96'>
-      <CardContent className='flex flex-col gap-y-3'>
+      <CardContent className='flex flex-col items-center gap-y-3'>
         <TbVersions className='w-7 h-7 stroke-zinc-400' />
-        <div className='space-y-1'>
+        <div className='space-y-1 text-center'>
           <Text
             as='h6'
             weight={500}
