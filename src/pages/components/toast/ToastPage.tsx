@@ -32,7 +32,7 @@ const Example = () => {
         Show toast
       </Button>
       {showToast && (
-        <Toast variant='default'>
+        <Toast>
           <ToastContent className='flex items-center gap-x-2'>
             <Text
               as='h6'

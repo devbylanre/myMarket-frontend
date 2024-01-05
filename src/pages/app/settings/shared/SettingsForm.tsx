@@ -115,10 +115,7 @@ export const SettingsFormMessage = () => {
         </div>
       ) : null}
       {status.state === 'success' ? (
-        <Toast
-          variant='success'
-          position='bottom-center'
-        >
+        <Toast position='bottom-center'>
           <ToastContent className='text-sm'>
             {status.payload.message}
           </ToastContent>

@@ -13,32 +13,22 @@ import { twMerge } from 'tailwind-merge';
 type VerticalPosition = 'top' | 'bottom';
 type HorizontalPosition = 'left' | 'center' | 'right';
 
-const toastVariants = cva(
-  'p-2 m-4 absolute w-full sm:w-[320px] rounded-md shadow shadow-zinc-100 z-50',
-  {
-    variants: {
-      variant: {
-        danger: 'bg-red-50',
-        success: 'bg-green-50',
-        default: 'bg-white ring-1 ring-zinc-950/10',
-        warning: 'bg-amber-50 ring-amber-200',
-      },
-      position: {
-        'top-left': 'top-0 start-0',
-        'top-center': 'top-0 start-1/2 -translate-x-1/2',
-        'top-right': 'top-0 right-0',
-        center: 'top-1/2 start-1/2 -translate-x-1/2 -translate-y-1/2',
-        'bottom-left': 'bottom-0 left-0',
-        'bottom-center': 'bottom-0 start-1/2 -translate-x-1/2',
-        'bottom-right': 'bottom-0 right-0',
-      },
+const toastVariants = cva('p-2 sm:p-5 absolute w-full sm:w-80  z-50', {
+  variants: {
+    position: {
+      'top-left': 'top-0 left-0',
+      'top-center': 'top-0 start-1/2 -translate-x-1/2',
+      'top-right': 'top-0 right-0',
+      center: 'top-1/2 start-1/2 -translate-x-1/2 -translate-y-1/2',
+      'bottom-left': 'bottom-0 left-0',
+      'bottom-center': 'bottom-0 start-1/2 -translate-x-1/2',
+      'bottom-right': 'bottom-0 right-0',
     },
-    defaultVariants: {
-      variant: 'default',
-      position: 'bottom-right',
-    },
-  }
-);
+  },
+  defaultVariants: {
+    position: 'top-left',
+  },
+});
 
 interface ToastContextProps {
   isVisible: boolean;
@@ -54,13 +44,7 @@ interface ToastProps extends MotionProps, VariantProps<typeof toastVariants> {
 }
 
 export const Toast = (props: ToastProps) => {
-  const {
-    className,
-    timeout,
-    position = 'top-right',
-    variant,
-    ...rest
-  } = props;
+  const { className, timeout, position, ...rest } = props;
 
   const [isVisible, setIsVisible] = useState<boolean>(true);
 
@@ -79,9 +63,9 @@ export const Toast = (props: ToastProps) => {
       <AnimatePresence initial={false}>
         {isVisible && (
           <motion.div
-            animate={{ opacity: [0, 1], y: [-200, 0] }}
-            exit={{ opacity: 0 }}
-            className={cn(toastVariants({ variant, position, className }))}
+            animate={{ opacity: [0, 1], x: [20, 0] }}
+            exit={{ opacity: [1, 0], x: [0, -20] }}
+            className={cn(toastVariants({ position, className }))}
             {...rest}
           />
         )}
@@ -94,7 +78,10 @@ interface ToastContentProps extends HTMLAttributes<HTMLDivElement> {}
 export const ToastContent = ({ className, ...rest }: ToastContentProps) => {
   return (
     <div
-      className={twMerge('w-full', className)}
+      className={twMerge(
+        'w-full bg-white p-2 ring-1 rounded-lg ring-zinc-950/10 shadow-lg',
+        className
+      )}
       {...rest}
     />
   );

@@ -28,7 +28,7 @@ const validationSchema = yup.object().shape({
 
 export const EmailContainer = () => {
   const { status, changeEmail } = useChangeEmail();
-  const { _id, email } = useOutletContext() as User;
+  const { email } = useOutletContext() as Pick<User, 'email'>;
   const initialValues: IForm = {
     email: '',
     password: '',
