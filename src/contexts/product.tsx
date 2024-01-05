@@ -62,7 +62,7 @@ export const ProductContextProvider = ({
 
           dispatch({ type: 'SET', payload: json.data });
         } catch (error: any) {
-          return console.error(error.message);
+          console.error(error.message);
         }
       },
     };

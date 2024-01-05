@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Callback, Status } from '../types';
 import { User } from '../../contexts/user.types';
 
-export const useFetch = () => {
+export const useGet = () => {
   const [status, setStatus] = useState<Status<User>>({
     state: null,
     error: null,
@@ -10,7 +10,7 @@ export const useFetch = () => {
     isLoading: null,
   });
 
-  const fetchData = async (id: string, callback?: Callback) => {
+  const getUser = async (id: string, callback?: Callback) => {
     try {
       setStatus({
         state: null,
@@ -53,5 +53,5 @@ export const useFetch = () => {
     }
   };
 
-  return { status, fetchData };
+  return { status, getUser };
 };

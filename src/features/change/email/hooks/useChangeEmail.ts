@@ -13,7 +13,6 @@ export const useChangeEmail = () => {
   const { dispatch } = useUserContext()!;
 
   const changeEmail = async <T extends { email: string }>(
-    id: string,
     data: T,
     callback?: Callback
   ) => {
@@ -27,7 +26,7 @@ export const useChangeEmail = () => {
     const response = await fetch(
       `https://mymarket-tan.vercel.app/user/email/change`,
       {
-        method: 'PUT',
+        method: 'POST',
         headers: {
           'content-type': 'application/json',
         },

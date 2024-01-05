@@ -4,7 +4,7 @@ import {
   TbArrowsDoubleSwNe,
   TbSettingsCheck,
   TbShoppingCart,
-  TbUser,
+  TbUserSquareRounded,
 } from 'react-icons/tb';
 
 interface Items {
@@ -13,7 +13,7 @@ interface Items {
   icon: React.ReactNode;
 }
 
-const iconClassName: string = 'w-5 h-5 stroke-inherit stroke-inherit';
+const iconClassName: string = 'w-5 h-5 stroke-inherit';
 
 export const Sidebar = ({ id }: { id: string }) => {
   const items: Items[] = [
@@ -30,7 +30,7 @@ export const Sidebar = ({ id }: { id: string }) => {
     {
       name: 'Profile',
       url: `profile/${id}`,
-      icon: <TbUser className={iconClassName} />,
+      icon: <TbUserSquareRounded className={iconClassName} />,
     },
     {
       name: 'Settings',
@@ -40,7 +40,7 @@ export const Sidebar = ({ id }: { id: string }) => {
   ];
 
   return (
-    <div className='fixed left-0 w-[17%] h-full p-3 space-y-1 bg-zinc-100 hidden lg:block'>
+    <div className='fixed left-0 w-[17%] h-full p-3 space-y-2 bg-primary-200/5 hidden lg:block'>
       {items.map((item, i) => (
         <SidebarItem
           key={i}

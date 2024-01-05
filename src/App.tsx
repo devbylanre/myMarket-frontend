@@ -80,15 +80,15 @@ const router = createBrowserRouter([
               {
                 path: 'product/:id',
                 element: <ProductPage />,
-                loader: ProductPageLoader,
                 errorElement: <ProductPageError />,
+                loader: ProductPageLoader,
               },
             ],
           },
           {
             path: 'profile/:id',
-            element: <ProfilePage />,
             loader: ProfilePageLoader,
+            element: <ProfilePage />,
             errorElement: <ProfilePageError />,
           },
           {

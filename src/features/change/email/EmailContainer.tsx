@@ -35,7 +35,7 @@ export const EmailContainer = () => {
   };
 
   const handleSubmit = async (values: IForm) => {
-    changeEmail(_id, { email: values.email, password: values.password });
+    changeEmail({ email: values.email, password: values.password });
   };
 
   return (

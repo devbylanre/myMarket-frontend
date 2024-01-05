@@ -52,7 +52,7 @@ export const SellPage = () => {
 export const SellPageLoader = ({ params }: { params: any }) => {
   const helper = {
     getUserToken: () => {
-      const user = JSON.parse(localStorage.getItem('user')!);
+      const user = JSON.parse(localStorage.getItem('user') as string);
       return user.token.id;
     },
 

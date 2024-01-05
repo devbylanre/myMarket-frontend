@@ -7,6 +7,7 @@ export const Data = ({ name }: { name: string }) => {
       as='p'
       size='sm'
       accent='medium'
+      className='capitalize'
     >
       {name}
     </Text>

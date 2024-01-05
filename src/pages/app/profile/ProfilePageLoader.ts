@@ -1,38 +1,31 @@
 export const ProfilePageLoader = async ({ params }: { params: any }) => {
-  const fetchUserData = async () => {
-    const response = await fetch(
-      `https://mymarket-tan.vercel.app/user/${params.id}`,
-      {
-        method: 'GET',
-        headers: {
-          'content-type': 'application/json',
-        },
-      }
-    );
-
-    if (!response.ok) {
-      throw Error('Unable to fetch user data');
+  const userResponse = await fetch(
+    `https://mymarket-tan.vercel.app/user/${params.id}`,
+    {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+      },
     }
+  );
 
-    return response.json();
-  };
+  if (!userResponse.ok) {
+    throw new Error('Unable to fetch user data');
+  }
 
-  const fetchUserProducts = async () => {
-    const response = await fetch(
-      `https://mymarket-tan.vercel.app/user/products/${params.id}`,
-      {
-        method: 'GET',
-        headers: {
-          'content-type': 'application/json',
-        },
-      }
-    );
+  const user = await userResponse.json();
 
-    return response.json();
-  };
+  const productsResponse = await fetch(
+    `https://mymarket-tan.vercel.app/user/products/${params.id}`,
+    {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+      },
+    }
+  );
 
-  const user = await fetchUserData();
-  const products = await fetchUserProducts();
+  const products = await productsResponse.json();
 
-  return { user: user.data, products: products.data || [] };
+  return { user: user.data, products: products.data };
 };
