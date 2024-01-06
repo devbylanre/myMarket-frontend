@@ -41,18 +41,16 @@ export const ProfileTab = ({
       </TabContent>
       <TabContent
         value='products'
-        className=''
+        className='space-y-5'
       >
         {products && products.length > 0 ? (
-          <div className='grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-4'>
-            {products.map((product, i) => (
-              <ProductCard
-                key={i}
-                product={product}
-                userId={userId}
-              />
-            ))}
-          </div>
+          products.map((product, i) => (
+            <ProductCard
+              key={i}
+              product={product}
+              userId={userId}
+            />
+          ))
         ) : (
           <EmptyState />
         )}

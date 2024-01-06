@@ -11,6 +11,10 @@ import { useDelete } from '../../../../../../hooks/product/useDelete';
 import { User } from '../../../../../../contexts/user.types';
 import { Toast, ToastContent } from '../../../../../../components/ui/Toast';
 import { Spinner } from '../../../../../../components/ui/Spinner';
+import { Badge } from '../../../../../../components/ui/Badge';
+import { TbPencil, TbTrash } from 'react-icons/tb';
+import { Separator } from '../../../../../../components/ui/Separator';
+import { Button } from '../../../../../../components/ui/Button';
 
 export const ProductCard = ({
   product,
@@ -30,32 +34,49 @@ export const ProductCard = ({
   };
 
   return (
-    <Card className='relative flex flex-col p-0 gap-y-3 ring-0'>
-      <Link to={`/app/shop/product/${product._id}`}>
+    <Card className='p-0 ring-0'>
+      <CardContent className='flex gap-4'>
         <img
           src={product.images[0].url}
-          alt={product.title}
-          className='object-cover w-full h-48 bg-white rounded-lg cursor-pointer ring-1 ring-zinc-950/10'
+          className='object-cover w-16 h-16 rounded-lg ring-1 ring-zinc-950/10'
         />
-      </Link>
-      <CardContent className='space-y-3'>
-        <Text
-          as='h5'
-          weight={500}
-          size='sm'
-        >
-          {helper.excerpt(product.title, 28)}
-        </Text>
-      </CardContent>
-      <CardFooter className='flex items-center justify-between gap-x-3'>
-        <Link to={`/app/sell/${product._id}`}>
-          {userId === product.user ? (
-            <LuPenLine className='w-4 h-4 cursor-pointer stroke-zinc-500 hover:stroke-primary' />
-          ) : null}
-        </Link>
 
-        {userId === product.user ? <TrashProduct id={product._id} /> : null}
-      </CardFooter>
+        <div className='basis-full'>
+          <Text
+            as='h6'
+            size='sm'
+            weight={500}
+          >
+            {product.title}
+          </Text>
+          <Text
+            as='p'
+            size='xs'
+            className='mt-1'
+          >
+            {helper.excerpt(product.description, 150)}
+          </Text>
+
+          {userId === product.user ? (
+            <>
+              <Separator />
+              <div className='flex justify-between'>
+                <Link to={`/sell/${product._id}`}>
+                  <Button
+                    size='xs'
+                    variant='ghost'
+                    className='text-xs cursor-pointer ring-0 hover:bg-zinc-50'
+                  >
+                    <TbPencil className='w-3.5 h-3.5' />
+                    Edit
+                  </Button>
+                </Link>
+                <TrashProduct id={product._id} />
+              </div>
+            </>
+          ) : null}
+        </div>
+      </CardContent>
     </Card>
   );
 };
@@ -65,35 +86,21 @@ const TrashProduct = ({ id }: { id: string }) => {
   const { token } = useOutletContext()! as User;
 
   return (
-    <>
-      <div
-        className='flex justify-end flex-1 cursor-pointer text-zinc-500 hover:text-red-500'
-        onClick={async () => await deleteProduct(token.id, id)}
-      >
-        {!status.isLoading ? (
-          <>
-            <LuTrash className='w-4 h-4' />
-
-            {status.state === 'success' && (
-              <Toast>
-                <ToastContent>
-                  <Text
-                    as='p'
-                    size='sm'
-                  >
-                    Product deleted successfully
-                  </Text>
-                </ToastContent>{' '}
-              </Toast>
-            )}
-          </>
-        ) : (
-          <Spinner
-            variant='default'
-            className='w-4 h-4'
-          />
-        )}
-      </div>
-    </>
+    <Button
+      variant='danger'
+      size='xs'
+      className='text-xs'
+      onClick={() => deleteProduct(token.id, id)}
+      disabled={status.isLoading ? status.isLoading : false}
+    >
+      {status.isLoading ? (
+        <Spinner variant='dark' />
+      ) : (
+        <>
+          Delete
+          <TbTrash className='w-3.5 h-3.5' />
+        </>
+      )}
+    </Button>
   );
 };

@@ -3,16 +3,17 @@ import { cn } from '../../utils/util';
 import { cva, VariantProps } from 'class-variance-authority';
 
 const buttonVariants = cva(
-  'px-2 rounded-lg inline-flex items-center justify-center gap-x-2 transition-all duration-200 ease-in-out ring-1',
+  'px-2 rounded-lg inline-flex items-center justify-center gap-x-1 transition-all duration-200 ease-in-out ring-1 font-medium',
   {
     variants: {
       variant: {
-        ghost: 'ring-0 bg-none shadow-none text-zinc-600 hover:text-zinc-950',
+        ghost:
+          'ring-0 bg-none text-zinc-600 hover:text-zinc-950 hover:bg-zinc-50',
         solid:
           'bg-primary-500 hover:bg-primary-400 text-white ring-primary-600',
         outline:
           'ring-zinc-950/10 bg-white text-zinc-600 hover:text-zinc-950 hover:bg-zinc-50',
-        danger: 'bg-red-600 text-white hover:bg-red-500 ring-red-950/10',
+        danger: 'bg-red-100 text-red-700 hover:bg-red-200 ring-red-500/10',
       },
       size: {
         xs: 'h-7 text-sm',

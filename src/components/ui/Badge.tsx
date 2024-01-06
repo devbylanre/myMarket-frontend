@@ -10,13 +10,13 @@ import { cn } from '../../utils/util';
 import { twMerge } from 'tailwind-merge';
 
 const badgeVariants = cva(
-  'rounded-lg px-1.5 h-6 w-fit font-medium text-xs ring-1 inline-flex gap-x-1 items-center',
+  'rounded-lg px-2 h-6 w-fit font-medium text-xs ring-1 inline-flex gap-x-1 items-center',
   {
     variants: {
       variant: {
         solid: 'bg-primary-500 text-white ring-primary-600',
         outline: 'ring-zinc-950/10 text-zinc-950 bg-white',
-        danger: 'bg-red-500 text-white ring-red-950/10 ring-inset',
+        danger: 'bg-red-100 text-red-800 ring-red-950/10',
         warning: 'bg-amber-500 text-white ring-amber-950/10',
         success: 'bg-green-500 text-white ring-green-950/10',
       },

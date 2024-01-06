@@ -45,7 +45,7 @@ const ProductFilter = ({ products }: { products: Product[] }) => {
       </TabList>
       <TabContent
         value='recent'
-        className='grid grid-cols-2 gap-5 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5'
+        className='grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5'
       >
         {products && products.length > 0
           ? products.map((product, i) => (
