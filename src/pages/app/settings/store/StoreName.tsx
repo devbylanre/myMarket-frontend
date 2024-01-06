@@ -17,7 +17,6 @@ export const StoreName = () => {
         <Text
           as='p'
           size='sm'
-          accent='medium'
         >
           The name displayed to users as your store name
         </Text>

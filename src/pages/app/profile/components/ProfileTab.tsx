@@ -29,7 +29,7 @@ export const ProfileTab = ({
   return (
     <Tab
       defaultTab='store'
-      className='py-5 lg:mr-[30%] w-full lg:w-9/12 px-3 lg:px-8'
+      className='lg:w-9/12 lg:mr-[30%] py-5'
     >
       <TabList className='mx-auto'>
         <TabTrigger value='store'>Store</TabTrigger>

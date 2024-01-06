@@ -17,7 +17,6 @@ export const Mobile = () => {
         <Text
           as='p'
           size='sm'
-          accent='medium'
         >
           A medium to which members of our platform can reach out to you
         </Text>

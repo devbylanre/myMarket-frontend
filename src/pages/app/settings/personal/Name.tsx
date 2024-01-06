@@ -17,7 +17,6 @@ export const Name = () => {
         <Text
           as='p'
           size='sm'
-          accent='medium'
         >
           Change your respective names shown on your profile
         </Text>

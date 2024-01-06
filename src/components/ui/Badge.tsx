@@ -16,8 +16,8 @@ const badgeVariants = cva(
       variant: {
         solid: 'bg-primary-500 text-white ring-primary-600',
         outline: 'ring-zinc-950/10 text-zinc-950 bg-white',
-        danger: 'bg-red-100 text-red-800 ring-red-950/10',
-        warning: 'bg-amber-500 text-white ring-amber-950/10',
+        danger: 'bg-red-500 text-white ring-red-500/20',
+        warning: 'bg-amber-500 text-white ring-amber-500/20',
         success: 'bg-green-500 text-white ring-green-950/10',
       },
     },

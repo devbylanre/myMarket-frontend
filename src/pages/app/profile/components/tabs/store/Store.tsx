@@ -1,39 +1,36 @@
 import React from 'react';
 import { Text } from '../../../../../../components/ui/Text';
-import { UserStore } from '../../../../../../contexts/user.types';
 import { Separator } from '../../../../../../components/ui/Separator';
+import { User, UserStore } from '../../../../../../contexts/user.types';
+import { Badge } from '../../../../../../components/ui/Badge';
+import { TbMapPinCheck } from 'react-icons/tb';
 
-const Location = ({ location }: { location: Record<string, any> }) => {
+const Location = ({ location }: Pick<UserStore, 'location'>) => {
   return (
-    <div className='w-full space-y-2'>
-      {Object.keys(location)
-        .sort((a, b) => {
-          return a.toLowerCase().localeCompare(b.toLowerCase());
-        })
-        .map((key, i) => (
-          <Text
-            key={i}
-            as='p'
-            size='sm'
-            className='first-letter:uppercase'
-          >
-            {key}: {location[key]}
-          </Text>
-        ))}
-    </div>
+    <Text
+      as='p'
+      size='sm'
+      className='capitalize'
+      weight={500}
+    >
+      {Object.values(location).every((v) => v !== '')
+        ? Object.values(location)
+            .reverse()
+            .map((value, i) => value)
+            .join(', ')
+        : null}
+    </Text>
   );
 };
 
-export const Store = ({ store }: { store: UserStore }) => {
+export const Store = ({ store }: Pick<User, 'store'>) => {
   return (
-    <div className=''>
-      {/* create tab components for store, products, and analytics */}
-
-      <div className='space-y-2'>
+    <>
+      <div className='px-3 mx-auto space-y-3 text-center lg:px-5 lg:w-96'>
         <Text
           as='h5'
           size='xl'
-          weight={500}
+          weight={600}
           className='capitalize'
         >
           {store.name}
@@ -45,11 +42,14 @@ export const Store = ({ store }: { store: UserStore }) => {
         >
           {store.description}
         </Text>
+
+        <Badge>
+          <TbMapPinCheck className='w-4 h-4' />
+          <Location location={store.location} />
+        </Badge>
       </div>
 
       <Separator className='my-5' />
-
-      <Location location={store.location} />
-    </div>
+    </>
   );
 };

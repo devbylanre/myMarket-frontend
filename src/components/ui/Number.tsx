@@ -7,13 +7,10 @@ interface INumber extends HTMLAttributes<HTMLDivElement> {
   placeholder?: string;
 }
 
-export const Number = ({
-  className,
-  placeholder,
-  children,
-  ...rest
-}: INumber) => {
-  const { name, helper } = useContext(FormContext)!;
+export const Number = (props: INumber) => {
+  const { className, placeholder, children, ...rest } = props;
+  const { field, helper } = useContext(FormContext)!;
+
   return (
     <div
       className={twMerge('flex gap-x-2 w-fit leading-tight', className)}
@@ -21,7 +18,7 @@ export const Number = ({
     >
       {children}
       <Field
-        name={name}
+        name={field.name}
         className={twMerge(
           'text-xl font-semibold text-inherit outline-none leading-none flex-auto w-48'
         )}

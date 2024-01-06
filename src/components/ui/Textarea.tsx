@@ -13,7 +13,10 @@ export const Textarea = forwardRef<HTMLDivElement, TextareaProps>(
   (props: TextareaProps, ref) => {
     const { disabled, className, ...rest } = props;
 
-    const { name, handleTouched } = useContext(FormContext)!;
+    const {
+      field: { name },
+      helper,
+    } = useContext(FormContext)!;
 
     return (
       <Field
@@ -25,8 +28,8 @@ export const Textarea = forwardRef<HTMLDivElement, TextareaProps>(
           disabled && 'cursor-not-allowed bg-zinc-50 bg-opacity-80',
           className
         )}
-        onFocus={() => handleTouched(true)}
-        onBlur={() => handleTouched(false)}
+        onFocus={() => helper.setTouched(true)}
+        onBlur={() => helper.setTouched(false)}
         disabled={disabled}
         {...rest}
       />
@@ -43,14 +46,15 @@ export const TextareaLimit = ({
   limit,
   ...rest
 }: TextareaLimitProps) => {
-  const { value } = useContext(FormContext)!;
+  const {
+    field: { value },
+  } = useContext(FormContext)!;
 
   return (
     <Text
       as='p'
       size='sm'
       className={twMerge('text-zinc-500', className)}
-      {...rest}
     >
       {limit && limit >= value?.length && limit - value?.length} remaining
     </Text>

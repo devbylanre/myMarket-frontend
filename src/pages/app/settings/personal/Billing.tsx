@@ -17,7 +17,6 @@ export const Billing = () => {
         <Text
           as='p'
           size='sm'
-          accent='medium'
         >
           Provide an address you would always like to trade with sellers
         </Text>

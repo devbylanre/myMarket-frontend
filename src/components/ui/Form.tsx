@@ -1,20 +1,19 @@
-import { useField } from 'formik';
+import {
+  FieldHelperProps,
+  FieldInputProps,
+  FieldMetaProps,
+  useField,
+} from 'formik';
 import React, { HTMLAttributes, createContext, useContext } from 'react';
 import { twMerge } from 'tailwind-merge';
-import { Text } from './Text';
 
-interface FormContextProps {
-  name: string;
-  touched: boolean;
-  handleTouched: (value: boolean) => void;
-  error: any;
-  value: any;
-  helper: Record<string, any>;
+export interface FormContextProps {
+  field: FieldInputProps<any>;
+  meta: FieldMetaProps<any>;
+  helper: FieldHelperProps<any>;
 }
 
-export const FormContext = createContext<FormContextProps | undefined>(
-  undefined
-);
+export const FormContext = createContext<FormContextProps | null>(null);
 
 interface FormFieldProps extends HTMLAttributes<HTMLDivElement> {
   name: string;
@@ -22,16 +21,11 @@ interface FormFieldProps extends HTMLAttributes<HTMLDivElement> {
 export const FormField = ({ name, className, ...rest }: FormFieldProps) => {
   const [field, meta, helper] = useField(name);
 
-  const handleTouched = (value: boolean) => helper.setTouched(value);
-
   return (
     <FormContext.Provider
       value={{
-        name,
-        touched: meta.touched,
-        handleTouched,
-        error: meta.error,
-        value: field.value,
+        field: field,
+        meta: meta,
         helper: helper,
       }}
     >
@@ -46,7 +40,9 @@ export const FormField = ({ name, className, ...rest }: FormFieldProps) => {
 interface FormControlProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const FormControl = ({ className, ...rest }: FormControlProps) => {
-  const { touched, error } = useContext(FormContext)!;
+  const { meta } = useContext(FormContext) as FormContextProps;
+  const { touched, error } = meta;
+
   return (
     <div
       className={twMerge(
@@ -60,29 +56,28 @@ export const FormControl = ({ className, ...rest }: FormControlProps) => {
   );
 };
 
-interface FormMessageProps extends HTMLAttributes<HTMLDivElement> {}
+interface FormMessageProps extends HTMLAttributes<HTMLParagraphElement> {}
 
 export const FormMessage = ({
   className,
   children,
   ...rest
 }: FormMessageProps) => {
-  const { error, touched } = useContext(FormContext)!;
+  const { meta } = useContext(FormContext)!;
+  const { error, touched } = meta;
 
   return (
     <>
       {(error && touched) || children ? (
-        <Text
-          as='p'
-          size='sm'
+        <p
           className={twMerge(
-            'text-zinc-500',
+            'text-zinc-500 text-[0.84rem]',
             error && touched && 'text-red-600',
             className
           )}
         >
           {error || children}
-        </Text>
+        </p>
       ) : null}
     </>
   );
@@ -91,14 +86,13 @@ export const FormMessage = ({
 interface FormLabelProps extends HTMLAttributes<HTMLLabelElement> {}
 
 export const FormLabel = ({ className, ...rest }: FormLabelProps) => {
-  const { name } = useContext(FormContext)!;
+  const { field } = useContext(FormContext)!;
+  const { name } = field;
 
   return (
-    <Text
-      as='label'
-      size='sm'
+    <label
       htmlFor={name}
-      className={twMerge('text-zinc-600', className)}
+      className={twMerge('text-zinc-600 text-[0.84rem]', className)}
       {...rest}
     />
   );

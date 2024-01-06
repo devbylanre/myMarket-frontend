@@ -44,7 +44,6 @@ export const BioContainer = () => {
             <Text
               as='p'
               size='sm'
-              accent='medium'
             >
               {bio}
             </Text>

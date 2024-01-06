@@ -17,7 +17,6 @@ export const StoreLocation = () => {
         <Text
           as='p'
           size='sm'
-          accent='medium'
         >
           Where is your store located
         </Text>

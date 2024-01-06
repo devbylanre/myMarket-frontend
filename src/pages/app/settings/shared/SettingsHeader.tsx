@@ -29,7 +29,6 @@ export const SettingsHeader = ({
       <Text
         as='p'
         size='sm'
-        accent='light'
       >
         {highlight}
       </Text>

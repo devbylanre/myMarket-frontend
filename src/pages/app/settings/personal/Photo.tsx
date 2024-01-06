@@ -19,7 +19,6 @@ export const Photo = () => {
         <Text
           as='p'
           size='sm'
-          accent='medium'
         >
           Upload a photo this helps improves your store credibility. min 5MB
         </Text>

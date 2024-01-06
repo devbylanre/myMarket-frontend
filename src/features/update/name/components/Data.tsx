@@ -9,7 +9,6 @@ export const Data = (props: Record<string, string>) => {
           key={key}
           as='p'
           size='sm'
-          accent='medium'
           className='capitalize'
         >
           {props[key]}

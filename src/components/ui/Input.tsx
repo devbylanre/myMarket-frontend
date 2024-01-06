@@ -10,7 +10,10 @@ interface IInput extends InputHTMLAttributes<HTMLInputElement> {
 
 export const Input = (props: IInput) => {
   const { className, disabled = false, ...rest } = props;
-  const { name, handleTouched, value } = useContext(FormContext)!;
+  const {
+    field: { name },
+    helper,
+  } = useContext(FormContext)!;
 
   return (
     <Field
@@ -21,10 +24,9 @@ export const Input = (props: IInput) => {
         disabled && 'bg-zinc-50 cursor-not-allowed text-zinc-500',
         className
       )}
-      onFocus={() => handleTouched(true)}
-      onBlur={() => handleTouched(false)}
+      onFocus={() => helper.setTouched(true)}
+      onBlur={() => helper.setTouched(false)}
       disabled={disabled}
-      value={value}
       {...rest}
     />
   );

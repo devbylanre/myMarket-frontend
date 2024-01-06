@@ -1,17 +1,10 @@
 import { Link, useOutletContext } from 'react-router-dom';
-import {
-  Card,
-  CardContent,
-  CardFooter,
-} from '../../../../../../components/ui/Card';
+import { Card, CardContent } from '../../../../../../components/ui/Card';
 import { Text } from '../../../../../../components/ui/Text';
 import { Product } from '../../../../../../contexts/product.types';
-import { LuPenLine, LuTrash } from 'react-icons/lu';
 import { useDelete } from '../../../../../../hooks/product/useDelete';
 import { User } from '../../../../../../contexts/user.types';
-import { Toast, ToastContent } from '../../../../../../components/ui/Toast';
 import { Spinner } from '../../../../../../components/ui/Spinner';
-import { Badge } from '../../../../../../components/ui/Badge';
 import { TbPencil, TbTrash } from 'react-icons/tb';
 import { Separator } from '../../../../../../components/ui/Separator';
 import { Button } from '../../../../../../components/ui/Button';
@@ -38,6 +31,7 @@ export const ProductCard = ({
       <CardContent className='flex gap-4'>
         <img
           src={product.images[0].url}
+          alt={product.images[0].name}
           className='object-cover w-16 h-16 rounded-lg ring-1 ring-zinc-950/10'
         />
 

@@ -10,10 +10,9 @@ import {
   TbExternalLink,
   TbPointerCancel,
 } from 'react-icons/tb';
-
-interface AccountsProps {
-  accounts: Record<string, string>[];
-}
+import { Badge } from '../../../../../components/ui/Badge';
+import { Link } from 'react-router-dom';
+import { User } from '../../../../../contexts/user.types';
 
 const Icon = ({ platform }: { platform: string }) => {
   const helper = {
@@ -63,37 +62,48 @@ const EmptyState = () => {
   );
 };
 
-export const Accounts = ({ accounts }: AccountsProps) => {
+const Account = (props: { platform: string; url: string }) => {
+  const { platform, url } = props;
+  return (
+    <Badge>
+      <Icon platform={platform} />
+      <Link
+        to={url}
+        target='_blank'
+        className='hover:text-primary-800'
+      >
+        {url}
+      </Link>
+    </Badge>
+  );
+};
+
+export const Accounts = ({ accounts }: Pick<User, 'accounts'>) => {
   return (
     <>
       <Separator className='my-5' />
 
-      <div className='space-y-3'>
+      <div className='px-3 space-y-3 lg:px-5'>
         <Text
           as='h6'
           size='sm'
-          weight={500}
+          weight={600}
         >
           Social accounts
         </Text>
-        {accounts && accounts.length > 0 ? (
-          accounts.map((account, i) => (
-            <div
-              key={i}
-              className='flex items-center gap-x-2 text-zinc-500'
-            >
-              <Icon platform={account.platform} />
-              <Text
-                as='p'
-                size='sm'
-              >
-                {account.url}
-              </Text>
-            </div>
-          ))
-        ) : (
-          <EmptyState />
-        )}
+        <div className='space-y-2'>
+          {accounts && accounts.length > 0 ? (
+            accounts.map((account, i) => (
+              <Account
+                key={i}
+                platform={account.platform}
+                url={account.url}
+              />
+            ))
+          ) : (
+            <EmptyState />
+          )}
+        </div>
       </div>
     </>
   );

@@ -40,7 +40,7 @@ interface CardFooterProps extends HTMLAttributes<HTMLDivElement> {}
 export const CardFooter = ({ className, ...rest }: CardFooterProps) => {
   return (
     <div
-      className={twMerge('flex w-full', className)}
+      className={twMerge('w-full', className)}
       {...rest}
     />
   );

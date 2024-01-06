@@ -6,8 +6,8 @@ const textVariants = cva('text-zinc-800', {
   variants: {
     size: {
       xs: 'text-xs',
-      sm: 'text-sm',
-      md: 'text-base',
+      sm: 'text-[0.84rem]',
+      md: 'text-[0.94rem]',
       lg: 'text-lg',
       xl: 'text-xl',
       '2xl': 'text-2xl',
@@ -26,18 +26,14 @@ const textVariants = cva('text-zinc-800', {
       600: 'font-semibold',
       700: 'font-bold',
     },
-    accent: {
-      bold: 'text-zinc-950',
-      danger: 'text-red-700',
-      medium: 'text-zinc-600',
-      light: 'text-zinc-500',
-      lighter: 'text-zinc-400',
+    color: {
+      black: 'text-black',
     },
   },
   defaultVariants: {
     size: 'md',
     weight: 400,
-    accent: 'bold',
+    color: 'black',
   },
 });
 
@@ -53,12 +49,12 @@ type TextProps<E extends React.ElementType> = TextOwnProps<E> &
 export const Text = <E extends React.ElementType = 'div'>(
   props: TextProps<E>
 ) => {
-  const { as, className, size, weight, accent, ...rest } = props;
+  const { as, className, size, weight, color, ...rest } = props;
   const Component = as || 'div';
 
   return (
     <Component
-      className={cn(textVariants({ size, weight, accent, className }))}
+      className={cn(textVariants({ size, weight, color, className }))}
       {...rest}
     />
   );

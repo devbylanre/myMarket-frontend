@@ -17,7 +17,6 @@ export const Email = () => {
         <Text
           as='p'
           size='sm'
-          accent='medium'
         >
           Lorem ipsum dolor sit amet consectetur adipisicing elit.
           Necessitatibus quia voluptatum non reiciendis corrupti voluptas

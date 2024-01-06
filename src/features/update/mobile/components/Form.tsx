@@ -14,7 +14,6 @@ export const Form = () => {
           as='p'
           size='sm'
           className='ml-2 italic'
-          accent='light'
         >
           +234
         </Text>

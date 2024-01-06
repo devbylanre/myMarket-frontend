@@ -17,7 +17,6 @@ export const StoreDescription = () => {
         <Text
           as='p'
           size='sm'
-          accent='medium'
         >
           Tell other users about your store and the products you offer
         </Text>

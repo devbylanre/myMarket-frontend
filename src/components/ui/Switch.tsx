@@ -6,7 +6,10 @@ import { FormContext } from './Form';
 interface SwitchProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export const Switch = ({ className, ...rest }: SwitchProps) => {
-  const { helper, value } = useContext(FormContext)!;
+  const {
+    helper,
+    field: { value },
+  } = useContext(FormContext)!;
 
   return (
     <div

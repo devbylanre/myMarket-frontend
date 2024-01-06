@@ -29,7 +29,6 @@ export const AccountsPage = () => {
         <Text
           as='p'
           size='sm'
-          accent='medium'
         ></Text>
 
         <SettingsSection>
@@ -44,7 +43,6 @@ export const AccountsPage = () => {
             <Text
               as='h6'
               size='sm'
-              accent='medium'
             >
               Add facebook, instagram, linkedIn, whatsapp url links to optimize
               your account
