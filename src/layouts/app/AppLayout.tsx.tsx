@@ -32,7 +32,7 @@ export const AppLayout = () => {
           />
           <Sidebar id={user._id} />
           <Navbar id={user._id} />
-          <div className='lg:w-[83%] lg:ml-[17%] bg-white mb-14 lg:mb-0'>
+          <div className='lg:w-[83%] lg:ml-[17%] bg-white mb-20 '>
             <Loader user={user} />
           </div>
         </div>

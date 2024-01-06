@@ -7,10 +7,12 @@ const reducer = <T extends User | null>(state: State, action: Action<T>) => {
   switch (action.type) {
     case 'SIGN_IN':
       localStorage.setItem('user', JSON.stringify({ ...action.payload }));
-      sessionStorage.setItem(
-        'session',
-        JSON.stringify({ ...action.payload!.token })
-      );
+      if (action.payload && action.payload.token) {
+        sessionStorage.setItem(
+          'session',
+          JSON.stringify({ ...action.payload.token })
+        );
+      }
       return {
         user: { ...action.payload },
       };

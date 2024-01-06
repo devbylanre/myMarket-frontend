@@ -44,7 +44,7 @@ export const useUpdate = () => {
         });
       }
 
-      dispatch({ type: 'UPDATE', payload: json.data });
+      dispatch({ type: 'UPDATE', payload: { ...json.data } });
 
       setStatus({
         state: 'success',

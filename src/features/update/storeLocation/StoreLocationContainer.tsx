@@ -38,7 +38,7 @@ export const StoreLocationContainer = () => {
 
   const handleSubmit = async (values: IForm) => {
     await updateStoreLocation({
-      store: { ...store, location: { ...values } },
+      store: { location: { ...values } },
     });
   };
 

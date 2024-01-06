@@ -33,7 +33,7 @@ export const EmailAuthContainer = () => {
 
   const handleSubmit = async (values: InitialValueTypes) => {
     await signIn(values, () => {
-      setTimeout(() => navigate('/app/'), 5000);
+      setTimeout(() => navigate('/app/shop'), 3000);
     });
   };
 

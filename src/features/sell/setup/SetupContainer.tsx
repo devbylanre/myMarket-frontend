@@ -48,8 +48,7 @@ const validationSchema = yup.object().shape({
 
 export const SetupContainer = () => {
   const { status, sellerSetup } = useSellerSetup();
-  const { isSeller, store, _id } = useOutletContext() as User;
-  console.log(store, _id);
+  const { isSeller } = useOutletContext() as Pick<User, 'isSeller'>;
 
   const handleSubmit = async (values: InitialValues) => {
     await sellerSetup({

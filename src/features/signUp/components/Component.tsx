@@ -4,6 +4,7 @@ import { Spinner } from '../../../components/ui/Spinner';
 import { Button } from '../../../components/ui/Button';
 import { Text } from '../../../components/ui/Text';
 import { Fields } from './Fields';
+import { Link } from 'react-router-dom';
 
 export const Component = ({ isLoading }: { isLoading: boolean | null }) => {
   return (
@@ -31,6 +32,22 @@ export const Component = ({ isLoading }: { isLoading: boolean | null }) => {
       >
         {isLoading ? <Spinner variant='light' /> : 'Join the marketplace'}
       </Button>
+
+      <Links />
     </>
+  );
+};
+
+const Links = () => {
+  return (
+    <Text size='sm'>
+      Already have an account
+      <Link
+        to='/auth'
+        className='ml-1 font-medium transition-all duration-300 ease-in-out text-primary-500 hover:text-primary-800'
+      >
+        Sign in
+      </Link>
+    </Text>
   );
 };

@@ -23,7 +23,7 @@ export const StoreNameContainer = () => {
   };
 
   const handleSubmit = async (values: IForm) => {
-    await updateStoreName({ store: { ...store, name: values.name } });
+    await updateStoreName({ store: { name: values.name } });
   };
 
   const validationSchema = yup.object().shape({

@@ -38,7 +38,7 @@ export const Navbar = ({ id }: { id: string }) => {
           to={item.url}
           className={({ isActive }) =>
             twMerge(
-              'stroke-zinc-500 cursor-pointer h-14 w-full flex items-center justify-center hover:stroke-zinc-950',
+              'stroke-zinc-500 cursor-pointer h-12 w-full flex items-center justify-center hover:stroke-zinc-950 w-full',
               isActive && 'stroke-primary-500 hover:stroke-primary-700'
             )
           }

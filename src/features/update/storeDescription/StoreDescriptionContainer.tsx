@@ -21,7 +21,7 @@ export const StoreDescriptionContainer = () => {
 
   const handleSubmit = async (values: { description: string }) => {
     await updateStoreDescription({
-      store: { ...store, description: values.description },
+      store: { description: values.description },
     });
   };
 

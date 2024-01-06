@@ -15,7 +15,7 @@ import { LuEye, LuEyeOff } from 'react-icons/lu';
 
 export const Fields = () => {
   return (
-    <div className='grid grid-cols-1 gap-3 lg:grid-cols-2'>
+    <div className='grid grid-cols-1 gap-5 lg:grid-cols-2'>
       <FormField name='firstName'>
         <FormLabel>First name</FormLabel>
         <FormControl>
@@ -62,7 +62,7 @@ export const Fields = () => {
       <Password />
       <FormField
         name='accept'
-        className='flex items-center space-y-0 col-span-full gap-x-2'
+        className='flex space-y-0 col-span-full gap-x-2'
       >
         <Checkbox />
         <FormMessage className='leading-tight'>

@@ -27,7 +27,7 @@ export const ShopPage = () => {
         />
       </Helmet>
 
-      <div className='p-8'>
+      <div className='mx-3 mt-8 sm:m-8'>
         <ProductFilter products={data} />
 
         <div className='grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-2 md:grid-cols-3 xl:grid-cols-5'></div>
@@ -39,13 +39,13 @@ export const ShopPage = () => {
 const ProductFilter = ({ products }: { products: Product[] }) => {
   return (
     <Tab defaultTab='recent'>
-      <TabList>
+      <TabList className='mx-auto'>
         <TabTrigger value='recent'>Recent</TabTrigger>
         <TabTrigger value='hot'>Hot</TabTrigger>
       </TabList>
       <TabContent
         value='recent'
-        className='grid grid-cols-5'
+        className='grid grid-cols-2 gap-5 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5'
       >
         {products && products.length > 0
           ? products.map((product, i) => (

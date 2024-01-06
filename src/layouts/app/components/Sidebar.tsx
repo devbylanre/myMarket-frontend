@@ -4,7 +4,7 @@ import {
   TbArrowsDoubleSwNe,
   TbSettingsCheck,
   TbShoppingCart,
-  TbUserSquareRounded,
+  TbSwitch,
 } from 'react-icons/tb';
 
 interface Items {
@@ -30,7 +30,7 @@ export const Sidebar = ({ id }: { id: string }) => {
     {
       name: 'Profile',
       url: `profile/${id}`,
-      icon: <TbUserSquareRounded className={iconClassName} />,
+      icon: <TbSwitch className={iconClassName} />,
     },
     {
       name: 'Settings',

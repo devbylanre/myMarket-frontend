@@ -1,8 +1,10 @@
-import React from 'react';
-import { Card, CardFooter } from '../../../components/ui/Card';
+import React, { useState } from 'react';
+import { Card, CardContent, CardHeader } from '../../../components/ui/Card';
 import { Text } from '../../../components/ui/Text';
 import { Product } from '../../../contexts/product.types';
 import { Link } from 'react-router-dom';
+import { Badge } from '../../../components/ui/Badge';
+import { twMerge } from 'tailwind-merge';
 
 export const ProductCard = ({ product }: { product: Product }) => {
   const helper = {
@@ -18,30 +20,53 @@ export const ProductCard = ({ product }: { product: Product }) => {
     },
   };
 
+  const [isHovered, setIsHovered] = useState<boolean>(false);
+
   return (
-    <Link to={`/app/shop/product/${product._id}`}>
-      <Card className='p-2 space-y-1 cursor-pointer'>
-        <img
-          src='/assets/images/product.jpg'
-          alt='product'
-          className='object-cover w-full h-48'
-        />
-        <CardFooter className='flex flex-col'>
-          <Text
-            as='h6'
-            weight={500}
-            size='sm'
+    <Link
+      to={`/app/shop/product/${product._id}`}
+      onMouseOver={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <Card className='p-0 space-y-5 ring-0'>
+        <CardHeader className='p-3 space-y-3 rounded-lg bg-primary-50/20'>
+          <Badge
+            variant='solid'
+            className='ring-0 text-primary-800 bg-primary-50/40'
           >
-            {helper.excerpt(product.title, 24)}
-          </Text>
+            {product.category}
+          </Badge>
+          <img
+            src={product.images[0].url}
+            alt={product.images[0].name}
+            className={twMerge(
+              'object-contain w-full h-56 rounded-lg scale-95 transition-transform duration-500 ease-in-out',
+              isHovered && 'scale-100'
+            )}
+          />
+        </CardHeader>
+
+        <CardContent className='space-y-3'>
+          <div className='space-y-1'>
+            <Text
+              size='xs'
+              className='text-green-800'
+            >
+              Save ₦
+              {((product.discount / 100) * product.price).toLocaleString(
+                'en-US'
+              )}
+            </Text>
+            <Text size='xs'>From ₦{product.price.toLocaleString('en-US')}</Text>
+          </div>
           <Text
             as='h6'
             weight={600}
-            size='sm'
+            size='xs'
           >
-            NGN {helper.getPrice(product.price, product.discount)}
+            {helper.excerpt(product.title, 28)}
           </Text>
-        </CardFooter>
+        </CardContent>
       </Card>
     </Link>
   );

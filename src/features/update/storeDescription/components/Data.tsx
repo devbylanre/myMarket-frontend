@@ -6,7 +6,7 @@ export const Data = ({ description }: { description: string }) => {
     <Text
       as='p'
       size='sm'
-      accent='medium'
+      className='first-letter:uppercase'
     >
       {description}
     </Text>

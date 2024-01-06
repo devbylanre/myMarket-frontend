@@ -11,13 +11,13 @@ export const Form = () => {
     <div className='flex flex-wrap gap-3'>
       <FormField name='firstName'>
         <FormControl>
-          <Input className='h-8' />
+          <Input />
         </FormControl>
         <FormMessage />
       </FormField>
       <FormField name='lastName'>
         <FormControl>
-          <Input className='h-8' />
+          <Input />
         </FormControl>
         <FormMessage />
       </FormField>
