@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik, Form, FormikHelpers } from 'formik';
 import { Details } from './components/Details';
-import { Separator } from '../../../components/ui/Separator';
+import { Separator } from '../../../components/Separator';
 import { Buttons } from './components/Buttons';
 import * as yup from 'yup';
 import { BrandAndCategory } from './components/BrandAndCategory';

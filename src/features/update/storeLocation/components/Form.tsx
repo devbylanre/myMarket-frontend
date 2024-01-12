@@ -3,8 +3,8 @@ import {
   FormControl,
   FormField,
   FormMessage,
-} from '../../../../components/ui/Form';
-import { Input } from '../../../../components/ui/Input';
+} from '../../../../components/Form';
+import { Input } from '../../../../components/Input';
 
 export const Form = () => {
   const fields: string[] = ['country', 'state', 'city', 'address'];

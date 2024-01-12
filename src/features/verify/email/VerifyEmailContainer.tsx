@@ -2,8 +2,8 @@ import { useSearchParams } from 'react-router-dom';
 import { useVerifyEmail } from './hooks/useVerifyEmail';
 import { Success } from './components/Success';
 import { FormError } from '../../shared/FormError';
-import { Button } from '../../../components/ui/Button';
-import { Spinner } from '../../../components/ui/Spinner';
+import { Button } from '../../../components/Button';
+import { Spinner } from '../../../components/Spinner';
 import { Card } from './components/Card';
 
 export const VerifyEmailContainer = () => {

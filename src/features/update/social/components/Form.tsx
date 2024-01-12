@@ -4,8 +4,8 @@ import {
   FormField,
   FormControl,
   FormMessage,
-} from '../../../../components/ui/Form';
-import { Input } from '../../../../components/ui/Input';
+} from '../../../../components/Form';
+import { Input } from '../../../../components/Input';
 import { LuLink2, LuX, LuPlus } from 'react-icons/lu';
 import { twMerge } from 'tailwind-merge';
 import {
@@ -14,8 +14,8 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '../../../../components/ui/Select';
-import { Text } from '../../../../components/ui/Text';
+} from '../../../../components/Select';
+import { Text } from '../../../../components/Text';
 
 export const Form = () => {
   const iconClassName =

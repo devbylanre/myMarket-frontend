@@ -4,9 +4,9 @@ import {
   TabList,
   TabTrigger,
   TabContent,
-} from '../../../../components/ui/Tab';
+} from '../../../../components/Tab';
 import { Description } from './Description';
-import { Separator } from '../../../../components/ui/Separator';
+import { Separator } from '../../../../components/Separator';
 import { Reviews } from './Reviews';
 
 interface ProductTabProps {

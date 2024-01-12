@@ -1,5 +1,5 @@
-import React, { forwardRef } from 'react';
-import { cn } from '../../utils/util';
+import React from 'react';
+import { cn } from '../utils/util';
 import { cva, VariantProps } from 'class-variance-authority';
 
 const textVariants = cva('text-zinc-800', {
@@ -8,14 +8,14 @@ const textVariants = cva('text-zinc-800', {
       xs: 'text-xs',
       sm: 'text-sm',
       md: 'text-base',
-      lg: 'text-base md:text-[1.125rem]', // 18px
-      xl: 'text-[1.125rem] md:text-[1.25rem]', // 20px
-      '2xl': 'text-[1.25rem] md:text-[1.75rem]', // 28px
-      '3xl': 'text-[2rem] md:text-[2.5rem]', //40px
-      '4xl': 'text-[2rem] md:text-[3rem]', //48px
-      '5xl': 'text-[2rem] md:text-[3.5rem]', // 56px
-      '6xl': 'text-[2.5rem] md:text-[4rem]', //64px
-      '7xl': 'text-[2.5rem] md:text-[4rem] lg:text-[5rem]', //80px
+      lg: 'text-base md:text-[1.125rem] leading-[1.45]', // 18px
+      xl: 'text-[1.125rem] md:text-[1.25rem] leading-[1.45]', // 20px
+      '2xl': 'text-[1.25rem] md:text-[1.75rem] leading-[1.35]', // 28px
+      '3xl': 'text-[2rem] md:text-[2.5rem] leading-[1.25]', //40px
+      '4xl': 'text-[2rem] md:text-[3rem] leading-[1.25]', //48px
+      '5xl': 'text-[2rem] md:text-[3.5rem] leading-[1.2]', // 56px
+      '6xl': 'text-[2.5rem] md:text-[4rem] leading-[1.15]', //64px
+      '7xl': 'text-[2.5rem] md:text-[4rem] lg:text-[5rem] leading-[1.1]', //80px
     },
     weight: {
       100: 'font-thin',
@@ -43,11 +43,14 @@ interface TextProps<E extends React.ElementType> {
 }
 
 type Props<E extends React.ElementType> = TextProps<E> &
-  Omit<React.ComponentProps<E>, keyof TextProps<E>> &
+  Omit<React.ComponentPropsWithoutRef<E>, keyof TextProps<E>> &
   VariantProps<typeof textVariants>;
 
-export const Text = forwardRef<React.ElementType, Props<React.ElementType>>(
-  (props, ref) => {
+export const Text = React.forwardRef(
+  <E extends React.ElementType = 'div'>(
+    props: Props<E>,
+    ref: React.ForwardedRef<HTMLDivElement>
+  ) => {
     const { as, className, size, weight, color, ...rest } = props;
     const Component = as || 'div';
 

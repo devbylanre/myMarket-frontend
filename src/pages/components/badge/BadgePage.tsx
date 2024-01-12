@@ -1,9 +1,9 @@
 import React from 'react';
-import { Badge, BadgeDismiss } from '../../../components/ui/Badge';
+import { Badge, BadgeDismiss } from '../../../components/Badge';
 import { LuX } from 'react-icons/lu';
 import { PageHeadline } from '../shared/PageHeadline';
 import { PageTab } from '../shared/PageTab';
-import { TabContent } from '../../../components/ui/Tab';
+import { TabContent } from '../../../components/Tab';
 
 export const BadgePage = () => {
   return (

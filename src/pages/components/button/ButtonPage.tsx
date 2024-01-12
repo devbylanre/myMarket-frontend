@@ -1,8 +1,8 @@
 import React from 'react';
-import { Button } from '../../../components/ui/Button';
+import { Button } from '../../../components/Button';
 import { PageHeadline } from '../shared/PageHeadline';
 import { PageTab } from '../shared/PageTab';
-import { TabContent } from '../../../components/ui/Tab';
+import { TabContent } from '../../../components/Tab';
 
 export const ButtonPage = () => {
   return (

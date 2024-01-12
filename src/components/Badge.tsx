@@ -6,7 +6,7 @@ import React, {
   useState,
 } from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
-import { cn } from '../../utils/util';
+import { cn } from '../utils/util';
 import { twMerge } from 'tailwind-merge';
 
 interface BadgeContextProps {

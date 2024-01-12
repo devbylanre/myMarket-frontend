@@ -1,8 +1,8 @@
 import React from 'react';
-import { Card, CardHeader } from '../../../components/ui/Card';
+import { Card, CardHeader } from '../../../components/Card';
 import { PageHeadline } from '../shared/PageHeadline';
 import { PageTab } from '../shared/PageTab';
-import { TabContent } from '../../../components/ui/Tab';
+import { TabContent } from '../../../components/Tab';
 
 export const CardPage = () => {
   return (

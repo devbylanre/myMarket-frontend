@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Text } from '../../../components/ui/Text';
-import { Toast, ToastContent } from '../../../components/ui/Toast';
-import { Button } from '../../../components/ui/Button';
+import { Text } from '../../../components/Text';
+import { Toast, ToastContent } from '../../../components/Toast';
+import { Button } from '../../../components/Button';
 import { PageHeadline } from '../shared/PageHeadline';
 import { PageTab } from '../shared/PageTab';
-import { TabContent } from '../../../components/ui/Tab';
+import { TabContent } from '../../../components/Tab';
 
 export const ToastPage = () => {
   return (

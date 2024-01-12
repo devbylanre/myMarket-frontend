@@ -1,9 +1,9 @@
 import React from 'react';
 import { CreateContainer } from '../../../features/sell/create/CreateContainer';
 import { useLoaderData, useOutletContext } from 'react-router-dom';
-import { SellerSetup } from '../../../components/templates/SellerSetup';
+import { SellerSetup } from '../../../templates/SellerSetup';
 import { User } from '../../../contexts/user.types';
-import { Text } from '../../../components/ui/Text';
+import { Text } from '../../../components/Text';
 import { Helmet } from 'react-helmet-async';
 
 export const SellPage = () => {

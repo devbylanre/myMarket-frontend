@@ -1,6 +1,6 @@
 import React from 'react';
-import { Text } from '../components/ui/Text';
-import { Avatar, AvatarFallback } from '../components/ui/Avatar';
+import { Text } from '../components/Text';
+import { Avatar, AvatarFallback } from '../components/Avatar';
 import { LuStar } from 'react-icons/lu';
 import { EmailAuthContainer } from '../features/auth/email/EmailAuthContainer';
 import { Helmet } from 'react-helmet-async';

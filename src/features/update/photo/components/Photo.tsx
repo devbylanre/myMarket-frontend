@@ -1,6 +1,6 @@
 import React from 'react';
-import { Avatar, AvatarFallback } from '../../../../components/ui/Avatar';
-import { Text } from '../../../../components/ui/Text';
+import { Avatar, AvatarFallback } from '../../../../components/Avatar';
+import { Text } from '../../../../components/Text';
 
 interface IPhoto {
   firstName: string;

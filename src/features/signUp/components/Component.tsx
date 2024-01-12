@@ -1,8 +1,8 @@
 import React from 'react';
 // components
-import { Spinner } from '../../../components/ui/Spinner';
-import { Button } from '../../../components/ui/Button';
-import { Text } from '../../../components/ui/Text';
+import { Spinner } from '../../../components/Spinner';
+import { Button } from '../../../components/Button';
+import { Text } from '../../../components/Text';
 import { Fields } from './Fields';
 import { Link } from 'react-router-dom';
 

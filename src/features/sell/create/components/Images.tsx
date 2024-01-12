@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
-import { Card, CardContent } from '../../../../components/ui/Card';
-import { Text } from '../../../../components/ui/Text';
+import { Card, CardContent } from '../../../../components/Card';
+import { Text } from '../../../../components/Text';
 import { ImageCard } from './ImageCard';
-import { Button } from '../../../../components/ui/Button';
+import { Button } from '../../../../components/Button';
 import { TbPhotoCircle } from 'react-icons/tb';
 
 export const Images = ({ formik }: { formik: Record<string, any> }) => {

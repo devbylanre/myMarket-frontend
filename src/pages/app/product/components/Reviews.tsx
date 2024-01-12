@@ -1,7 +1,7 @@
 import React from 'react';
-import { Card, CardContent } from '../../../../components/ui/Card';
+import { Card, CardContent } from '../../../../components/Card';
 import { TbMessage2 } from 'react-icons/tb';
-import { Text } from '../../../../components/ui/Text';
+import { Text } from '../../../../components/Text';
 
 export const Reviews = () => {
   return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import { SettingsHeader } from '../shared/SettingsHeader';
 import { useOutletContext } from 'react-router-dom';
-import { SellerSetup } from '../../../../components/templates/SellerSetup';
+import { SellerSetup } from '../../../../templates/SellerSetup';
 import { StoreName } from './StoreName';
 import { StoreDescription } from './StoreDescription';
 import { StoreLocation } from './StoreLocation';

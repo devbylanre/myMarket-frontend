@@ -1,11 +1,11 @@
 import React from 'react';
 import { Seller } from '../../../../contexts/product.types';
-import { Card, CardContent } from '../../../../components/ui/Card';
-import { Avatar, AvatarFallback } from '../../../../components/ui/Avatar';
-import { Text } from '../../../../components/ui/Text';
-import { Button } from '../../../../components/ui/Button';
+import { Card, CardContent } from '../../../../components/Card';
+import { Avatar, AvatarFallback } from '../../../../components/Avatar';
+import { Text } from '../../../../components/Text';
+import { Button } from '../../../../components/Button';
 import { Link } from 'react-router-dom';
-import { Separator } from '../../../../components/ui/Separator';
+import { Separator } from '../../../../components/Separator';
 
 export const SellerInformation = ({ seller }: { seller?: Seller }) => {
   return (

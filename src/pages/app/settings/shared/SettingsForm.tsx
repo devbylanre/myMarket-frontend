@@ -10,10 +10,10 @@ import React, {
 import { Status } from '../../../../hooks/types';
 
 import { LuPenLine } from 'react-icons/lu';
-import { Button } from '../../../../components/ui/Button';
-import { Spinner } from '../../../../components/ui/Spinner';
+import { Button } from '../../../../components/Button';
+import { Spinner } from '../../../../components/Spinner';
 import { FormError } from '../../../../features/shared/FormError';
-import { Toast, ToastContent } from '../../../../components/ui/Toast';
+import { Toast, ToastContent } from '../../../../components/Toast';
 
 type IAction = 'view' | 'edit';
 

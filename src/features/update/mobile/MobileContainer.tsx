@@ -7,7 +7,7 @@ import {
   SettingsFormButtons,
   SettingsFormMessage,
 } from '../../../pages/app/settings/shared/SettingsForm';
-import { Text } from '../../../components/ui/Text';
+import { Text } from '../../../components/Text';
 import { User } from '../../../contexts/user.types';
 
 interface Schema {

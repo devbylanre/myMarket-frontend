@@ -4,9 +4,9 @@ import { SetupForm } from './components/SetupForm';
 import { useSellerSetup } from './hooks/useSellerSetup';
 import { FormError } from '../../shared/FormError';
 import { useOutletContext } from 'react-router-dom';
-import { Text } from '../../../components/ui/Text';
+import { Text } from '../../../components/Text';
 import { User } from '../../../contexts/user.types';
-import { Card, CardContent } from '../../../components/ui/Card';
+import { Card, CardContent } from '../../../components/Card';
 import { TbMoodNerd } from 'react-icons/tb';
 
 interface InitialValues {

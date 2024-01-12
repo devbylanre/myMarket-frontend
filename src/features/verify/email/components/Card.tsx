@@ -1,6 +1,6 @@
 import React from 'react';
 import { LuVote } from 'react-icons/lu';
-import { Text } from '../../../../components/ui/Text';
+import { Text } from '../../../../components/Text';
 
 export const Card = () => {
   return (

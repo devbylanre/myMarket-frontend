@@ -1,10 +1,10 @@
 import React from 'react';
-import { Text } from '../../../components/ui/Text';
-import { Separator } from '../../../components/ui/Separator';
-import { Button } from '../../../components/ui/Button';
+import { Text } from '../../../components/Text';
+import { Separator } from '../../../components/Separator';
+import { Button } from '../../../components/Button';
 import { PageHeadline } from '../shared/PageHeadline';
 import { PageTab } from '../shared/PageTab';
-import { TabContent } from '../../../components/ui/Tab';
+import { TabContent } from '../../../components/Tab';
 
 export const SeparatorPage = () => {
   return (

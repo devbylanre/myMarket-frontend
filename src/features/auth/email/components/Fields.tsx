@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Input } from '../../../../components/ui/Input';
+import { Input } from '../../../../components/Input';
 import {
   FormControl,
   FormField,
   FormLabel,
   FormMessage,
-} from '../../../../components/ui/Form';
+} from '../../../../components/Form';
 import { LuEye, LuEyeOff } from 'react-icons/lu';
 
 export const Fields = () => {

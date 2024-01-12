@@ -1,6 +1,6 @@
 import React from 'react';
 import { SettingsSection } from '../shared/SettingsSection';
-import { Text } from '../../../../components/ui/Text';
+import { Text } from '../../../../components/Text';
 import { StoreNameContainer } from '../../../../features/update/storeName.tsx/StoreNameContainer';
 
 export const StoreName = () => {

@@ -1,7 +1,7 @@
 import React from 'react';
-import { FormField, FormMessage } from '../../../../components/ui/Form';
-import { Text } from '../../../../components/ui/Text';
-import { Number } from '../../../../components/ui/Number';
+import { FormField, FormMessage } from '../../../../components/Form';
+import { Text } from '../../../../components/Text';
+import { Number } from '../../../../components/Number';
 
 export const Form = () => {
   return (

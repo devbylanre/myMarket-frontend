@@ -1,7 +1,7 @@
 import React from 'react';
-import { Text } from '../components/ui/Text';
-import { Card, CardContent } from '../components/ui/Card';
-import { Button } from '../components/ui/Button';
+import { Text } from '../components/Text';
+import { Card, CardContent } from '../components/Card';
+import { Button } from '../components/Button';
 import { Link } from 'react-router-dom';
 import { TbRefreshOff } from 'react-icons/tb';
 

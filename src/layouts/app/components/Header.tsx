@@ -1,15 +1,15 @@
 import React from 'react';
-import { Text } from '../../../components/ui/Text';
-import { Avatar, AvatarFallback } from '../../../components/ui/Avatar';
+import { Text } from '../../../components/Text';
+import { Avatar, AvatarFallback } from '../../../components/Avatar';
 import { Link } from 'react-router-dom';
 import {
   Dropdown,
   DropdownContent,
   DropdownItem,
   DropdownTrigger,
-} from '../../../components/ui/Dropdown';
-import { Button } from '../../../components/ui/Button';
-import { Separator } from '../../../components/ui/Separator';
+} from '../../../components/Dropdown';
+import { Button } from '../../../components/Button';
+import { Separator } from '../../../components/Separator';
 import { useUserContext } from '../../../hooks/useUserContext';
 import { User } from '../../../contexts/user.types';
 import {

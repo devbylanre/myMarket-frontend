@@ -1,11 +1,11 @@
 import React from 'react';
-import { Text } from '../../../components/ui/Text';
-import { Alert, AlertDismiss } from '../../../components/ui/Alert';
+import { Text } from '../../../components/Text';
+import { Alert, AlertDismiss } from '../../../components/Alert';
 import { LuWifiOff, LuX } from 'react-icons/lu';
 import { PageHeadline } from '../shared/PageHeadline';
 import { PageTab } from '../shared/PageTab';
-import { TabContent } from '../../../components/ui/Tab';
-import { Separator } from '../../../components/ui/Separator';
+import { TabContent } from '../../../components/Tab';
+import { Separator } from '../../../components/Separator';
 
 export const AlertPage = () => {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import { SettingsSection } from '../shared/SettingsSection';
-import { Text } from '../../../../components/ui/Text';
+import { Text } from '../../../../components/Text';
 import { StoreDescriptionContainer } from '../../../../features/update/storeDescription/StoreDescriptionContainer';
 
 export const StoreDescription = () => {

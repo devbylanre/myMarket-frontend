@@ -1,6 +1,8 @@
 import React from 'react';
-import { Text } from '../../../components/ui/Text';
+import { Text } from '../../../components/Text';
 import { useLocation } from 'react-router-dom';
+import { Div } from '../../../components/Div';
+import { Helmet } from 'react-helmet-async';
 
 interface PageHeadlineProps {
   title?: string;
@@ -11,19 +13,47 @@ export const PageHeadline = ({ title, subHeading }: PageHeadlineProps) => {
   const location = useLocation();
 
   const helper = {
-    getLastUrl: () => location.pathname.split('/')[2],
+    getLastUrl: () => {
+      const name = location.pathname.split('/')[2];
+      const capitalize = name.replace(
+        name.charAt(0),
+        name.charAt(0).toUpperCase()
+      );
+
+      return capitalize;
+    },
   };
 
   return (
-    <div className='space-y-1'>
-      <Text
-        size='3xl'
-        weight={500}
-        className='capitalize'
-      >
-        {helper.getLastUrl() || title}
-      </Text>
-      <Text as='p'>{subHeading}</Text>
-    </div>
+    <>
+      <Helmet>
+        <title>{helper.getLastUrl()}</title>
+        <meta
+          name='keywords'
+          content={helper.getLastUrl()}
+        />
+        <meta
+          name='description'
+          content={subHeading}
+        />
+      </Helmet>
+
+      <Div className='space-y-0'>
+        <Text
+          size='4xl'
+          weight={500}
+          className='capitalize'
+        >
+          {helper.getLastUrl() || title}
+        </Text>
+        <Text
+          as='p'
+          size=''
+          className=''
+        >
+          {subHeading}
+        </Text>
+      </Div>
+    </>
   );
 };

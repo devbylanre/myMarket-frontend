@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Card, CardContent, CardHeader } from '../../../components/ui/Card';
-import { Text } from '../../../components/ui/Text';
+import { Card, CardContent, CardHeader } from '../../../components/Card';
+import { Text } from '../../../components/Text';
 import { Product } from '../../../contexts/product.types';
 import { Link } from 'react-router-dom';
-import { Badge } from '../../../components/ui/Badge';
+import { Badge } from '../../../components/Badge';
 import { twMerge } from 'tailwind-merge';
 
 export const ProductCard = ({ product }: { product: Product }) => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouteError } from 'react-router-dom';
-import { Card, CardContent } from '../../../components/ui/Card';
-import { Text } from '../../../components/ui/Text';
+import { Card, CardContent } from '../../../components/Card';
+import { Text } from '../../../components/Text';
 import { TbAccessPointOff } from 'react-icons/tb';
 
 export const ProfilePageError = () => {

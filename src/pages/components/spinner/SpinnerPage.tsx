@@ -1,8 +1,8 @@
 import React from 'react';
-import { Spinner } from '../../../components/ui/Spinner';
+import { Spinner } from '../../../components/Spinner';
 import { PageHeadline } from '../shared/PageHeadline';
 import { PageTab } from '../shared/PageTab';
-import { TabContent } from '../../../components/ui/Tab';
+import { TabContent } from '../../../components/Tab';
 
 export const SpinnerPage = () => {
   return (

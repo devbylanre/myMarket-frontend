@@ -1,6 +1,6 @@
 import React from 'react';
-import { Card } from '../../../components/ui/Card';
-import { Tab, TabList, TabTrigger } from '../../../components/ui/Tab';
+import { Card } from '../../../components/Card';
+import { Tab, TabList, TabTrigger } from '../../../components/Tab';
 
 interface PageTabProps {
   children: React.ReactNode;

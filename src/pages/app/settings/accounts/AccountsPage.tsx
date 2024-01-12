@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text } from '../../../../components/ui/Text';
+import { Text } from '../../../../components/Text';
 import { AccountsContainer } from '../../../../features/update/social/AccountsContainer';
 import { SettingsSection } from '../shared/SettingsSection';
 import { SettingsHeader } from '../shared/SettingsHeader';

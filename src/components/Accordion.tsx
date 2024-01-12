@@ -6,6 +6,7 @@ import React, {
   forwardRef,
 } from 'react';
 import { twMerge } from 'tailwind-merge';
+import { AnimatePresence, motion } from 'framer-motion';
 
 interface AccordionContextProps {
   multiple: boolean;
@@ -72,7 +73,10 @@ export const AccordionItem = forwardRef<HTMLDivElement, AccordionItemProps>(
     return (
       <div
         ref={ref}
-        className={twMerge('space-y-0.5', className)}
+        className={twMerge(
+          'border-b border-b-zinc-200 py-3 flex flex-col gap-y-3',
+          className
+        )}
         data-value={value}
         {...rest}
       />
@@ -121,16 +125,20 @@ export const AccordionContent = forwardRef<
   } = useContext(AccordionContext)!;
 
   return (
-    <div
-      ref={ref}
-      className={twMerge(
-        'w-full transition-all duration-300 ease-in-out',
-        isActive(value)
-          ? 'translate-y-0 visible h-fit'
-          : 'translate-y-2 invisible h-0',
-        className
+    <AnimatePresence>
+      {isActive(value) && (
+        <motion.div
+          animate={{ height: 'fit-content' }}
+          exit={{ height: '0px', overflowY: 'hidden' }}
+          transition={{ ease: 'easeInOut', duration: 0.25 }}
+        >
+          <div
+            ref={ref}
+            className={twMerge('w-full', className)}
+            {...rest}
+          />
+        </motion.div>
       )}
-      {...rest}
-    />
+    </AnimatePresence>
   );
 });

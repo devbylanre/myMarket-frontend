@@ -1,12 +1,7 @@
 import React from 'react';
 import { ProductCard } from './ProductCard';
 import { Helmet } from 'react-helmet-async';
-import {
-  Tab,
-  TabContent,
-  TabList,
-  TabTrigger,
-} from '../../../components/ui/Tab';
+import { Tab, TabContent, TabList, TabTrigger } from '../../../components/Tab';
 import { useLoaderData } from 'react-router-dom';
 import { Product } from '../../../contexts/product.types';
 

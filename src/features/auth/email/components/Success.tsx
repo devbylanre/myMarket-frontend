@@ -1,6 +1,6 @@
 import React from 'react';
-import { Text } from '../../../../components/ui/Text';
-import { Spinner } from '../../../../components/ui/Spinner';
+import { Text } from '../../../../components/Text';
+import { Spinner } from '../../../../components/Spinner';
 import { motion } from 'framer-motion';
 
 export const Success = () => {

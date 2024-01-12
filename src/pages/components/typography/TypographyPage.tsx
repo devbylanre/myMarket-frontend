@@ -1,8 +1,8 @@
 import React from 'react';
-import { Text } from '../../../components/ui/Text';
+import { Text } from '../../../components/Text';
 import { PageHeadline } from '../shared/PageHeadline';
 import { PageTab } from '../shared/PageTab';
-import { TabContent } from '../../../components/ui/Tab';
+import { TabContent } from '../../../components/Tab';
 
 export const TypographyPage = () => {
   return (

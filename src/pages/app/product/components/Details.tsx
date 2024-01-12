@@ -1,7 +1,7 @@
 import React from 'react';
-import { Card, CardContent } from '../../../../components/ui/Card';
-import { Text } from '../../../../components/ui/Text';
-import { Badge } from '../../../../components/ui/Badge';
+import { Card, CardContent } from '../../../../components/Card';
+import { Text } from '../../../../components/Text';
+import { Badge } from '../../../../components/Badge';
 import { TbStack } from 'react-icons/tb';
 
 interface DetailsProps {

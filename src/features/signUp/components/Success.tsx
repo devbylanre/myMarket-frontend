@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text } from '../../../components/ui/Text';
+import { Text } from '../../../components/Text';
 
 export const Success = ({ email }: { email: string }) => {
   return (

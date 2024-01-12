@@ -2,7 +2,7 @@ import React from 'react';
 import { LuCheck, LuPlus } from 'react-icons/lu';
 import { motion } from 'framer-motion';
 import { twMerge } from 'tailwind-merge';
-import { Spinner } from '../../../../components/ui/Spinner';
+import { Spinner } from '../../../../components/Spinner';
 
 interface UploadProps {
   click: () => void;

@@ -1,18 +1,18 @@
 import React from 'react';
-import { Text } from '../../../../components/ui/Text';
-import { Input } from '../../../../components/ui/Input';
-import { Button } from '../../../../components/ui/Button';
+import { Text } from '../../../../components/Text';
+import { Input } from '../../../../components/Input';
+import { Button } from '../../../../components/Button';
 import {
   FormControl,
   FormField,
   FormLabel,
   FormMessage,
-} from '../../../../components/ui/Form';
+} from '../../../../components/Form';
 import { LuWand2 } from 'react-icons/lu';
-import { Textarea } from '../../../../components/ui/Textarea';
-import { Checkbox } from '../../../../components/ui/Checkbox';
-import { Spinner } from '../../../../components/ui/Spinner';
-import { Separator } from '../../../../components/ui/Separator';
+import { Textarea } from '../../../../components/Textarea';
+import { Checkbox } from '../../../../components/Checkbox';
+import { Spinner } from '../../../../components/Spinner';
+import { Separator } from '../../../../components/Separator';
 
 export const SetupForm = ({ isLoading }: { isLoading: boolean | null }) => {
   return (

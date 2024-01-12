@@ -1,9 +1,9 @@
 import React from 'react';
-import { Card, CardContent } from '../../../../../components/ui/Card';
-import { Text } from '../../../../../components/ui/Text';
-import { Separator } from '../../../../../components/ui/Separator';
+import { Card, CardContent } from '../../../../../components/Card';
+import { Text } from '../../../../../components/Text';
+import { Separator } from '../../../../../components/Separator';
 import { TbSwipe } from 'react-icons/tb';
-import { Badge } from '../../../../../components/ui/Badge';
+import { Badge } from '../../../../../components/Badge';
 import { User } from '../../../../../contexts/user.types';
 
 interface ContactCardProps {

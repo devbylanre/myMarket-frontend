@@ -1,11 +1,7 @@
 import React from 'react';
-import { Avatar, AvatarFallback } from '../../../../../components/ui/Avatar';
-import { Text } from '../../../../../components/ui/Text';
-import {
-  Card,
-  CardContent,
-  CardFooter,
-} from '../../../../../components/ui/Card';
+import { Avatar, AvatarFallback } from '../../../../../components/Avatar';
+import { Text } from '../../../../../components/Text';
+import { Card, CardContent, CardFooter } from '../../../../../components/Card';
 import { User } from '../../../../../contexts/user.types';
 
 type CounterProps = {

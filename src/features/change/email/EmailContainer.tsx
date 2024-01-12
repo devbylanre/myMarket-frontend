@@ -7,7 +7,7 @@ import {
 } from '../../../pages/app/settings/shared/SettingsForm';
 import { useChangeEmail } from './hooks/useChangeEmail';
 import { useOutletContext } from 'react-router-dom';
-import { Text } from '../../../components/ui/Text';
+import { Text } from '../../../components/Text';
 import { User } from '../../../contexts/user.types';
 
 interface IForm {

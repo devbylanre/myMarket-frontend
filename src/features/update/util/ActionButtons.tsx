@@ -2,8 +2,8 @@ import React, { Dispatch, SetStateAction } from 'react';
 import { LuPenLine } from 'react-icons/lu';
 
 // components
-import { Button } from '../../../components/ui/Button';
-import { Spinner } from '../../../components/ui/Spinner';
+import { Button } from '../../../components/Button';
+import { Spinner } from '../../../components/Spinner';
 
 type Action = 'view' | 'edit';
 

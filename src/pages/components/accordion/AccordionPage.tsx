@@ -1,21 +1,27 @@
 import React from 'react';
-import { Text } from '../../../components/ui/Text';
+import { Text } from '../../../components/Text';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '../../../components/ui/Accordion';
+} from '../../../components/Accordion';
 import { LuChevronDown } from 'react-icons/lu';
-import { TabContent } from '../../../components/ui/Tab';
+import { TabContent } from '../../../components/Tab';
 import { PageHeadline } from '../shared/PageHeadline';
 import { PageTab } from '../shared/PageTab';
+import { Div } from '../../../components/Div';
+
+const accordions = [
+  { value: 'first', trigger: 'Is this an accordion?' },
+  { value: 'second', trigger: 'Is the accordion collapsible?' },
+  { value: 'third', trigger: 'Can I get the source code?' },
+];
 
 export const AccordionPage = () => {
   return (
     <div className='space-y-8'>
       <PageHeadline subHeading='lorem' />
-
       <PageTab>
         <TabContent value='preview'>
           <Example />
@@ -25,19 +31,10 @@ export const AccordionPage = () => {
   );
 };
 
-const accordions = [
-  { value: 'first', trigger: 'Is this an accordion?' },
-  { value: 'second', trigger: 'Is the accordion collapsible?' },
-  { value: 'third', trigger: 'Can I get the source code?' },
-];
-
 const Example = () => {
   return (
-    <div className='w-96'>
-      <Accordion
-        defaultValue={accordions[0].value}
-        className='space-y-3'
-      >
+    <Div className='w-96'>
+      <Accordion defaultValue={accordions[0].value}>
         {accordions.map((accordion, i) => (
           <AccordionItem
             key={i}
@@ -70,6 +67,6 @@ const Example = () => {
           </AccordionItem>
         ))}
       </Accordion>
-    </div>
+    </Div>
   );
 };

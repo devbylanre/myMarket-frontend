@@ -1,10 +1,10 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
-import { Switch } from '../../../components/ui/Switch';
-import { FormField, FormLabel } from '../../../components/ui/Form';
+import { Switch } from '../../../components/Switch';
+import { FormField, FormLabel } from '../../../components/Form';
 import { PageHeadline } from '../shared/PageHeadline';
 import { PageTab } from '../shared/PageTab';
-import { TabContent } from '../../../components/ui/Tab';
+import { TabContent } from '../../../components/Tab';
 
 export const SwitchPage = () => {
   return (

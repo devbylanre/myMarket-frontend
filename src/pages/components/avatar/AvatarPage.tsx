@@ -1,8 +1,8 @@
 import React from 'react';
-import { Avatar, AvatarFallback } from '../../../components/ui/Avatar';
+import { Avatar, AvatarFallback } from '../../../components/Avatar';
 import { PageHeadline } from '../shared/PageHeadline';
 import { PageTab } from '../shared/PageTab';
-import { TabContent } from '../../../components/ui/Tab';
+import { TabContent } from '../../../components/Tab';
 
 export const AvatarPage = () => {
   return (

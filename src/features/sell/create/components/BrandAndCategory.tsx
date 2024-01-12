@@ -4,15 +4,15 @@ import {
   FormField,
   FormLabel,
   FormMessage,
-} from '../../../../components/ui/Form';
-import { Input } from '../../../../components/ui/Input';
+} from '../../../../components/Form';
+import { Input } from '../../../../components/Input';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '../../../../components/ui/Select';
+} from '../../../../components/Select';
 import category from '../../../../json/category.json';
 import { twMerge } from 'tailwind-merge';
 

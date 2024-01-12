@@ -1,8 +1,8 @@
 import React from 'react';
-import { Text } from '../../../../../../components/ui/Text';
-import { Separator } from '../../../../../../components/ui/Separator';
+import { Text } from '../../../../../../components/Text';
+import { Separator } from '../../../../../../components/Separator';
 import { User, UserStore } from '../../../../../../contexts/user.types';
-import { Badge } from '../../../../../../components/ui/Badge';
+import { Badge } from '../../../../../../components/Badge';
 import { TbMapPinCheck } from 'react-icons/tb';
 
 const Location = ({ location }: Pick<UserStore, 'location'>) => {

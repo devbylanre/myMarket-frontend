@@ -1,13 +1,13 @@
 import { Link, useOutletContext } from 'react-router-dom';
-import { Card, CardContent } from '../../../../../../components/ui/Card';
-import { Text } from '../../../../../../components/ui/Text';
+import { Card, CardContent } from '../../../../../../components/Card';
+import { Text } from '../../../../../../components/Text';
 import { Product } from '../../../../../../contexts/product.types';
 import { useDelete } from '../../../../../../hooks/product/useDelete';
 import { User } from '../../../../../../contexts/user.types';
-import { Spinner } from '../../../../../../components/ui/Spinner';
+import { Spinner } from '../../../../../../components/Spinner';
 import { TbPencil, TbTrash } from 'react-icons/tb';
-import { Separator } from '../../../../../../components/ui/Separator';
-import { Button } from '../../../../../../components/ui/Button';
+import { Separator } from '../../../../../../components/Separator';
+import { Button } from '../../../../../../components/Button';
 
 export const ProductCard = ({
   product,

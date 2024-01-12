@@ -3,8 +3,8 @@ import {
   FormControl,
   FormField,
   FormMessage,
-} from '../../../../components/ui/Form';
-import { Textarea } from '../../../../components/ui/Textarea';
+} from '../../../../components/Form';
+import { Textarea } from '../../../../components/Textarea';
 
 export const Form = () => {
   return (

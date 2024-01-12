@@ -1,9 +1,9 @@
 import React from 'react';
-import { Text } from '../../../../../../components/ui/Text';
+import { Text } from '../../../../../../components/Text';
 import { Link } from 'react-router-dom';
-import { Button } from '../../../../../../components/ui/Button';
+import { Button } from '../../../../../../components/Button';
 import { TbVersions } from 'react-icons/tb';
-import { Card, CardContent } from '../../../../../../components/ui/Card';
+import { Card, CardContent } from '../../../../../../components/Card';
 
 export const EmptyState = () => {
   return (

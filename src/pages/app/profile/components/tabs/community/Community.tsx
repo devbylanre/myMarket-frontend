@@ -1,7 +1,7 @@
 import React from 'react';
-import { Card, CardContent } from '../../../../../../components/ui/Card';
-import { Avatar, AvatarFallback } from '../../../../../../components/ui/Avatar';
-import { Text } from '../../../../../../components/ui/Text';
+import { Card, CardContent } from '../../../../../../components/Card';
+import { Avatar, AvatarFallback } from '../../../../../../components/Avatar';
+import { Text } from '../../../../../../components/Text';
 
 export const Community = () => {
   return (

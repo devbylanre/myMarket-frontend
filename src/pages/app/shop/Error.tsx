@@ -1,7 +1,7 @@
 import React from 'react';
-import { Card, CardContent } from '../../../components/ui/Card';
+import { Card, CardContent } from '../../../components/Card';
 import { useRouteError } from 'react-router-dom';
-import { Text } from '../../../components/ui/Text';
+import { Text } from '../../../components/Text';
 import { TbVersions } from 'react-icons/tb';
 
 export const ShopPageError = () => {

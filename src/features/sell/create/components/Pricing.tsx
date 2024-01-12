@@ -1,11 +1,7 @@
 import React from 'react';
-import {
-  FormField,
-  FormLabel,
-  FormMessage,
-} from '../../../../components/ui/Form';
-import { Number } from '../../../../components/ui/Number';
-import { Text } from '../../../../components/ui/Text';
+import { FormField, FormLabel, FormMessage } from '../../../../components/Form';
+import { Number } from '../../../../components/Number';
+import { Text } from '../../../../components/Text';
 
 export const Pricing = ({ price }: { price: number }) => {
   return (

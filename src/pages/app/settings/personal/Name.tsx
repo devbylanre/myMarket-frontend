@@ -1,6 +1,6 @@
 import React from 'react';
 import { SettingsSection } from '../shared/SettingsSection';
-import { Text } from '../../../../components/ui/Text';
+import { Text } from '../../../../components/Text';
 import { NameContainer } from '../../../../features/update/name/NameContainer';
 
 export const Name = () => {

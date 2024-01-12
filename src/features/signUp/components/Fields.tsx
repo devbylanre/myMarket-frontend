@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // components
-import { Input } from '../../../components/ui/Input';
-import { Checkbox } from '../../../components/ui/Checkbox';
-import { Textarea } from '../../../components/ui/Textarea';
+import { Input } from '../../../components/Input';
+import { Checkbox } from '../../../components/Checkbox';
+import { Textarea } from '../../../components/Textarea';
 import {
   FormField,
   FormLabel,
   FormControl,
   FormMessage,
-} from '../../../components/ui/Form';
+} from '../../../components/Form';
 import { LuEye, LuEyeOff } from 'react-icons/lu';
 
 export const Fields = () => {

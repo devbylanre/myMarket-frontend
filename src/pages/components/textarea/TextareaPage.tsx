@@ -1,10 +1,10 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
-import { Textarea } from '../../../components/ui/Textarea';
-import { FormField, FormControl, FormLabel } from '../../../components/ui/Form';
+import { Textarea } from '../../../components/Textarea';
+import { FormField, FormControl, FormLabel } from '../../../components/Form';
 import { PageHeadline } from '../shared/PageHeadline';
 import { PageTab } from '../shared/PageTab';
-import { TabContent } from '../../../components/ui/Tab';
+import { TabContent } from '../../../components/Tab';
 
 export const TextareaPage = () => {
   return (

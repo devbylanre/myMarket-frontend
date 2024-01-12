@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Text } from '../ui/Text';
+import { Text } from '../components/Text';
 import { LuLock, LuUnlock } from 'react-icons/lu';
-import { Button } from '../ui/Button';
+import { Button } from '../components/Button';
 import { Link } from 'react-router-dom';
-import { Card, CardContent } from '../ui/Card';
+import { Card, CardContent } from '../components/Card';
 
 export const SellerSetup = () => {
   const [hover, setHover] = useState<boolean>(false);

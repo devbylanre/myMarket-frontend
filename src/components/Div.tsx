@@ -1,6 +1,6 @@
 import { VariantProps, cva } from 'class-variance-authority';
 import React, { HTMLAttributes, forwardRef } from 'react';
-import { cn } from '../../utils/util';
+import { cn } from '../utils/util';
 
 const divVariants = cva('', {
   variants: {

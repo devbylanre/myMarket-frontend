@@ -1,7 +1,7 @@
 import React from 'react';
 
 // components
-import { Text } from '../../../../components/ui/Text';
+import { Text } from '../../../../components/Text';
 import { SettingsSection } from '../shared/SettingsSection';
 import { PhotoContainer } from '../../../../features/update/photo/PhotoContainer';
 

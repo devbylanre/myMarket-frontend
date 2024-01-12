@@ -1,6 +1,6 @@
 import React from 'react';
-import { Text } from '../../../../../components/ui/Text';
-import { Separator } from '../../../../../components/ui/Separator';
+import { Text } from '../../../../../components/Text';
+import { Separator } from '../../../../../components/Separator';
 
 export const Bio = ({ bio }: { bio: string }) => {
   return (

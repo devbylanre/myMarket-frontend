@@ -4,9 +4,9 @@ import {
   FormField,
   FormLabel,
   FormMessage,
-} from '../../../../components/ui/Form';
-import { Input } from '../../../../components/ui/Input';
-import { Textarea } from '../../../../components/ui/Textarea';
+} from '../../../../components/Form';
+import { Input } from '../../../../components/Input';
+import { Textarea } from '../../../../components/Textarea';
 
 export const Details = () => {
   return (

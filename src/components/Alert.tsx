@@ -7,7 +7,7 @@ import React, {
   useState,
 } from 'react';
 import { twMerge } from 'tailwind-merge';
-import { cn } from '../../utils/util';
+import { cn } from '../utils/util';
 
 interface AlertContextProps {
   isVisible: boolean;

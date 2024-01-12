@@ -1,18 +1,18 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
-import { FormControl, FormField, FormLabel } from '../../../components/ui/Form';
+import { FormControl, FormField, FormLabel } from '../../../components/Form';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '../../../components/ui/Select';
+} from '../../../components/Select';
 import { twMerge } from 'tailwind-merge';
-import { Badge } from '../../../components/ui/Badge';
-import { Avatar, AvatarFallback } from '../../../components/ui/Avatar';
+import { Badge } from '../../../components/Badge';
+import { Avatar, AvatarFallback } from '../../../components/Avatar';
 import { PageTab } from '../shared/PageTab';
-import { TabContent } from '../../../components/ui/Tab';
+import { TabContent } from '../../../components/Tab';
 import { PageHeadline } from '../shared/PageHeadline';
 
 export const SelectPage = () => {

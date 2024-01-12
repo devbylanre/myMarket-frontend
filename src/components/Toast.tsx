@@ -7,7 +7,7 @@ import React, {
   forwardRef,
 } from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
-import { cn } from '../../utils/util';
+import { cn } from '../utils/util';
 import { AnimatePresence, motion } from 'framer-motion';
 import { twMerge } from 'tailwind-merge';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
-import { Text } from '../../../components/ui/Text';
+import { Text } from '../../../components/Text';
 
 export const SidebarItem = ({ item }: { item: Record<string, any> }) => {
   return (

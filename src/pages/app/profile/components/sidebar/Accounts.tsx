@@ -1,7 +1,7 @@
 import React from 'react';
-import { Text } from '../../../../../components/ui/Text';
-import { Separator } from '../../../../../components/ui/Separator';
-import { Card, CardContent } from '../../../../../components/ui/Card';
+import { Text } from '../../../../../components/Text';
+import { Separator } from '../../../../../components/Separator';
+import { Card, CardContent } from '../../../../../components/Card';
 import {
   TbBrandFacebook,
   TbBrandGoogleFilled,
@@ -10,7 +10,7 @@ import {
   TbExternalLink,
   TbPointerCancel,
 } from 'react-icons/tb';
-import { Badge } from '../../../../../components/ui/Badge';
+import { Badge } from '../../../../../components/Badge';
 import { Link } from 'react-router-dom';
 import { User } from '../../../../../contexts/user.types';
 

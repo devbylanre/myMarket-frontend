@@ -1,8 +1,8 @@
 import React from 'react';
-import { Alert, AlertDismiss } from '../../components/ui/Alert';
+import { Alert, AlertDismiss } from '../../components/Alert';
 import { LuBadgeAlert, LuX } from 'react-icons/lu';
 import { Error } from '../../hooks/types';
-import { Text } from '../../components/ui/Text';
+import { Text } from '../../components/Text';
 
 interface FormErrorProps {
   error: Error | null;

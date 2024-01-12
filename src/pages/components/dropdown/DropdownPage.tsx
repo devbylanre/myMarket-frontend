@@ -1,16 +1,16 @@
 import React from 'react';
-import { Text } from '../../../components/ui/Text';
+import { Text } from '../../../components/Text';
 import { LuCopyPlus, LuDownload, LuPenLine, LuSend } from 'react-icons/lu';
 import {
   Dropdown,
   DropdownContent,
   DropdownItem,
   DropdownTrigger,
-} from '../../../components/ui/Dropdown';
-import { Button } from '../../../components/ui/Button';
+} from '../../../components/Dropdown';
+import { Button } from '../../../components/Button';
 import { PageHeadline } from '../shared/PageHeadline';
 import { PageTab } from '../shared/PageTab';
-import { TabContent } from '../../../components/ui/Tab';
+import { TabContent } from '../../../components/Tab';
 
 export const DropdownPage = () => {
   return (

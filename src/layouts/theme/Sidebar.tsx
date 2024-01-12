@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
-import { Text } from '../../components/ui/Text';
+import { Text } from '../../components/Text';
 import {
   LuTextCursor,
   LuMousePointerClick,

@@ -4,7 +4,7 @@ import { Header } from './components/Header';
 import { Outlet, useNavigation } from 'react-router-dom';
 import { PrivateLayout } from '../private/PrivateLayout';
 import { Navbar } from './components/Navbar';
-import { Spinner } from '../../components/ui/Spinner';
+import { Spinner } from '../../components/Spinner';
 
 const Loader = ({ user }: { user: any }) => {
   const navigation = useNavigation();

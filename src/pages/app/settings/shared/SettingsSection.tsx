@@ -1,5 +1,5 @@
 import React, { HTMLAttributes } from 'react';
-import { Separator } from '../../../../components/ui/Separator';
+import { Separator } from '../../../../components/Separator';
 import { twMerge } from 'tailwind-merge';
 
 interface SettingsSectionProps extends HTMLAttributes<HTMLElement> {}

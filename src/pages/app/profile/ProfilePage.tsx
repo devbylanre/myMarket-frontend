@@ -7,7 +7,7 @@ import { Bio } from './components/sidebar/Bio';
 import { ProfileTab } from './components/ProfileTab';
 import { Accounts } from './components/sidebar/Accounts';
 import { Details } from './components/sidebar/Details';
-import { Spinner } from '../../../components/ui/Spinner';
+import { Spinner } from '../../../components/Spinner';
 import { User } from '../../../contexts/user.types';
 import { Product } from '../../../contexts/product.types';
 import { useProductContext } from '../../../hooks/useProductContext';

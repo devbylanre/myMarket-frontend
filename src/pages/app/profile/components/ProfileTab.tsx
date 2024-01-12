@@ -4,10 +4,10 @@ import {
   TabList,
   TabTrigger,
   TabContent,
-} from '../../../../components/ui/Tab';
+} from '../../../../components/Tab';
 import { Store } from './tabs/store/Store';
 import { UserStore } from '../../../../contexts/user.types';
-import { SellerSetup } from '../../../../components/templates/SellerSetup';
+import { SellerSetup } from '../../../../templates/SellerSetup';
 import { ProductCard } from './tabs/products/Product';
 import { EmptyState } from './tabs/products/EmptyState';
 import { Product } from '../../../../contexts/product.types';

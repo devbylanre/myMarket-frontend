@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  Tab,
-  TabContent,
-  TabList,
-  TabTrigger,
-} from '../../../components/ui/Tab';
+import { Tab, TabContent, TabList, TabTrigger } from '../../../components/Tab';
 import { PersonalPage } from './personal/PersonalPage';
 import { AccountsPage } from './accounts/AccountsPage';
 import { StorePage } from './store/StorePage';

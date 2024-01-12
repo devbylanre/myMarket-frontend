@@ -1,16 +1,16 @@
 import React from 'react';
 import * as yup from 'yup';
-import { Input } from '../../../components/ui/Input';
+import { Input } from '../../../components/Input';
 import { Formik, Form } from 'formik';
 import {
   FormField,
   FormControl,
   FormLabel,
   FormMessage,
-} from '../../../components/ui/Form';
+} from '../../../components/Form';
 import { PageHeadline } from '../shared/PageHeadline';
 import { PageTab } from '../shared/PageTab';
-import { TabContent } from '../../../components/ui/Tab';
+import { TabContent } from '../../../components/Tab';
 
 export const InputPage = () => {
   return (

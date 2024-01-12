@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Text } from '../../../../components/ui/Text';
+import { Text } from '../../../../components/Text';
 import { Fields } from './Fields';
-import { Button } from '../../../../components/ui/Button';
-import { Spinner } from '../../../../components/ui/Spinner';
+import { Button } from '../../../../components/Button';
+import { Spinner } from '../../../../components/Spinner';
 
 export const Component = ({ isLoading }: { isLoading: boolean | null }) => {
   return (

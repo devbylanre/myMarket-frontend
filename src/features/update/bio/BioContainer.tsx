@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 import { useOutletContext } from 'react-router-dom';
-import { Text } from '../../../components/ui/Text';
+import { Text } from '../../../components/Text';
 import { Form } from './components/Form';
 import { useUpdateBio } from './hooks/useUpdateBio';
 import {

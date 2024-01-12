@@ -1,10 +1,10 @@
 import React from 'react';
 import { Form, Formik } from 'formik';
-import { Checkbox } from '../../../components/ui/Checkbox';
-import { FormField, FormLabel } from '../../../components/ui/Form';
+import { Checkbox } from '../../../components/Checkbox';
+import { FormField, FormLabel } from '../../../components/Form';
 import { PageHeadline } from '../shared/PageHeadline';
 import { PageTab } from '../shared/PageTab';
-import { TabContent } from '../../../components/ui/Tab';
+import { TabContent } from '../../../components/Tab';
 
 export const CheckboxPage = () => {
   return (

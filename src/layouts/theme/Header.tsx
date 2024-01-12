@@ -1,5 +1,5 @@
-import { Badge } from '../../components/ui/Badge';
-import { Text } from '../../components/ui/Text';
+import { Badge } from '../../components/Badge';
+import { Text } from '../../components/Text';
 
 export const Header = () => {
   return (
