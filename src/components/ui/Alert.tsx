@@ -1,12 +1,20 @@
 import { VariantProps, cva } from 'class-variance-authority';
 import React, {
   createContext,
+  forwardRef,
   HTMLAttributes,
   useContext,
   useState,
 } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { cn } from '../../utils/util';
+
+interface AlertContextProps {
+  isVisible: boolean;
+  onDismiss: () => void;
+}
+
+const AlertContext = createContext<AlertContextProps | undefined>(undefined);
 
 const alertVariant = cva(
   'w-full sm:max-w-[320px] p-2 flex rounded-lg flex-wrap transition-all duration-300 ease-in-out',
@@ -25,34 +33,23 @@ const alertVariant = cva(
   }
 );
 
-interface AlertContextProps {
-  isVisible: boolean;
-  onDismiss: () => void;
-  variant: string | null | undefined;
-}
-
-const AlertContext = createContext<AlertContextProps | undefined>(undefined);
-
-interface IAlert
+interface AlertProps
   extends HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof alertVariant> {
-  className?: string;
-}
+    VariantProps<typeof alertVariant> {}
 
-export const Alert = (props: IAlert) => {
+export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
   const { variant, className, ...rest } = props;
-
   const [isVisible, setIsVisible] = useState<boolean>(true);
 
   return (
     <AlertContext.Provider
       value={{
-        variant,
         isVisible,
         onDismiss: () => setIsVisible(false),
       }}
     >
       <div
+        ref={ref}
         className={cn(
           alertVariant({ variant, className }),
           isVisible
@@ -63,18 +60,22 @@ export const Alert = (props: IAlert) => {
       />
     </AlertContext.Provider>
   );
-};
+});
 
 interface AlertDismissProps extends HTMLAttributes<HTMLDivElement> {}
 
-export const AlertDismiss = ({ className, ...rest }: AlertDismissProps) => {
-  const { onDismiss } = useContext(AlertContext)!;
+export const AlertDismiss = forwardRef<HTMLDivElement, AlertDismissProps>(
+  (props, ref) => {
+    const { className, ...rest } = props;
+    const { onDismiss } = useContext(AlertContext)!;
 
-  return (
-    <div
-      className={twMerge('cursor-pointer', className)}
-      onClick={onDismiss}
-      {...rest}
-    />
-  );
-};
+    return (
+      <div
+        ref={ref}
+        className={twMerge('cursor-pointer', className)}
+        onClick={onDismiss}
+        {...rest}
+      />
+    );
+  }
+);

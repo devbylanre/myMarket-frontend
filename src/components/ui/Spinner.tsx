@@ -1,39 +1,34 @@
-import React from 'react';
-import { MotionProps, motion } from 'framer-motion';
+import React, { HTMLAttributes, forwardRef } from 'react';
 import { VariantProps, cva } from 'class-variance-authority';
 import { cn } from '../../utils/util';
 
-const spinnerVariants = cva('w-5 h-5 border-2 rounded-full border-current', {
-  variants: {
-    variant: {
-      default: 'border-primary-500 border-t-transparent',
-      dark: 'border-zinc-950 border-t-transparent',
-      light: 'border-white border-t-transparent',
+const spinnerVariants = cva(
+  'w-5 h-5 border-2 rounded-full border-current animate-spin',
+  {
+    variants: {
+      variant: {
+        default: 'border-primary-500 border-t-transparent',
+        dark: 'border-zinc-950 border-t-transparent',
+        light: 'border-white border-t-transparent',
+      },
     },
-  },
-  defaultVariants: {
-    variant: 'default',
-  },
-});
+    defaultVariants: {
+      variant: 'default',
+    },
+  }
+);
 
-interface SpinnerProps
-  extends MotionProps,
-    VariantProps<typeof spinnerVariants> {
-  className?: string;
-}
+interface Props
+  extends HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof spinnerVariants> {}
 
-export const Spinner = ({
-  className,
-  variant = 'default',
-  ...rest
-}: SpinnerProps) => {
+export const Spinner = forwardRef<HTMLDivElement, Props>((props, ref) => {
+  const { className, variant = 'default', ...rest } = props;
   return (
-    <motion.div
-      initial={{ rotate: 0 }}
-      animate={{ rotate: 360 }}
-      transition={{ repeat: Infinity, ease: 'linear', duration: 0.3 }}
+    <div
+      ref={ref}
       className={cn(spinnerVariants({ variant, className }))}
       {...rest}
     />
   );
-};
+});

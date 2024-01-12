@@ -28,7 +28,7 @@ export const ProfileTab = ({
 }: ProfileTabProps) => {
   return (
     <Tab
-      defaultTab='store'
+      defaultValue='store'
       className='lg:w-9/12 lg:mr-[30%] py-5'
     >
       <TabList className='mx-auto'>

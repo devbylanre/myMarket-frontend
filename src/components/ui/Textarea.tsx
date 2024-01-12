@@ -1,16 +1,13 @@
 import React, { HTMLAttributes, forwardRef, useContext } from 'react';
 import { Field } from 'formik';
 import { twMerge } from 'tailwind-merge';
-import { Text } from './Text';
 import { FormContext } from './Form';
 
 interface TextareaProps
-  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
-  disabled?: boolean;
-}
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
 
-export const Textarea = forwardRef<HTMLDivElement, TextareaProps>(
-  (props: TextareaProps, ref) => {
+export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
+  (props, ref) => {
     const { disabled, className, ...rest } = props;
 
     const {
@@ -38,25 +35,25 @@ export const Textarea = forwardRef<HTMLDivElement, TextareaProps>(
 );
 
 interface TextareaLimitProps extends HTMLAttributes<HTMLParagraphElement> {
-  limit?: number;
+  limit: number;
 }
 
-export const TextareaLimit = ({
-  className,
-  limit,
-  ...rest
-}: TextareaLimitProps) => {
+export const TextareaLimit = forwardRef<
+  HTMLParagraphElement,
+  TextareaLimitProps
+>((props, ref) => {
+  const { className, limit, ...rest } = props;
   const {
     field: { value },
   } = useContext(FormContext)!;
 
   return (
-    <Text
-      as='p'
-      size='sm'
-      className={twMerge('text-zinc-500', className)}
+    <p
+      ref={ref}
+      className={twMerge('text-zinc-500 text-sm', className)}
+      {...rest}
     >
-      {limit && limit >= value?.length && limit - value?.length} remaining
-    </Text>
+      {limit >= value?.length && `${limit} - ${value?.length}`} remaining
+    </p>
   );
-};
+});

@@ -1,22 +1,20 @@
 import { Field } from 'formik';
-import React, { InputHTMLAttributes, useContext } from 'react';
+import React, { InputHTMLAttributes, forwardRef, useContext } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { FormContext } from './Form';
 
-interface IInput extends InputHTMLAttributes<HTMLInputElement> {
-  className?: string;
-  disabled?: boolean;
-}
+interface Props extends InputHTMLAttributes<HTMLInputElement> {}
 
-export const Input = (props: IInput) => {
+export const Input = forwardRef<HTMLInputElement, Props>((props, ref) => {
   const { className, disabled = false, ...rest } = props;
   const {
     field: { name },
-    helper,
+    helper: { setTouched },
   } = useContext(FormContext)!;
 
   return (
     <Field
+      ref={ref}
       as='input'
       name={name}
       className={twMerge(
@@ -24,10 +22,10 @@ export const Input = (props: IInput) => {
         disabled && 'bg-zinc-50 cursor-not-allowed text-zinc-500',
         className
       )}
-      onFocus={() => helper.setTouched(true)}
-      onBlur={() => helper.setTouched(false)}
+      onFocus={() => setTouched(true)}
+      onBlur={() => setTouched(false)}
       disabled={disabled}
       {...rest}
     />
   );
-};
+});

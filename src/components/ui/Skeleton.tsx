@@ -1,16 +1,15 @@
-import { motion, MotionProps } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { HTMLAttributes } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-interface ISkeleton extends MotionProps {
-  className?: string;
-}
+interface Props extends HTMLAttributes<HTMLDivElement> {}
 
-export const Skeleton = ({ className, ...rest }: ISkeleton) => {
+export const Skeleton = (props: Props) => {
+  const { className, ...rest } = props;
+
   return (
-    <motion.div
-      animate={{ backgroundColor: ['#FCFCFC', '#F8F8F8', '#F1F1F1'] }}
-      transition={{ duration: 1, repeat: Infinity }}
-      className={twMerge('w-full h-full', className)}
+    <div
+      className={twMerge('w-full h-full animate-pulse', className)}
       {...rest}
     />
   );

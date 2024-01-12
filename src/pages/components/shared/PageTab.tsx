@@ -8,7 +8,7 @@ interface PageTabProps {
 
 export const PageTab = ({ children }: PageTabProps) => {
   return (
-    <Tab defaultTab='preview'>
+    <Tab defaultValue='preview'>
       <TabList>
         <TabTrigger value='preview'>Preview</TabTrigger>
         <TabTrigger value='code'>Code</TabTrigger>

@@ -35,8 +35,7 @@ const Example = () => {
   return (
     <div className='w-96'>
       <Accordion
-        collapsible
-        type='single'
+        defaultValue={accordions[0].value}
         className='space-y-3'
       >
         {accordions.map((accordion, i) => (

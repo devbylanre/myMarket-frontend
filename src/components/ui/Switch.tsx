@@ -1,11 +1,12 @@
-import React, { useContext } from 'react';
+import React, { forwardRef, useContext } from 'react';
 import { motion } from 'framer-motion';
 import { twMerge } from 'tailwind-merge';
 import { FormContext } from './Form';
 
-interface SwitchProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface Props extends React.HTMLAttributes<HTMLDivElement> {}
 
-export const Switch = ({ className, ...rest }: SwitchProps) => {
+export const Switch = forwardRef<HTMLDivElement, Props>((props, ref) => {
+  const { className, ...rest } = props;
   const {
     helper,
     field: { value },
@@ -13,6 +14,7 @@ export const Switch = ({ className, ...rest }: SwitchProps) => {
 
   return (
     <div
+      ref={ref}
       className={twMerge(
         'w-9 h-5 bg-zinc-100 rounded-full ring-1 ring-zinc-950/10 flex flex-col justify-center',
         value && 'bg-green-600 ring-green-200',
@@ -31,4 +33,4 @@ export const Switch = ({ className, ...rest }: SwitchProps) => {
       ></motion.div>
     </div>
   );
-};
+});

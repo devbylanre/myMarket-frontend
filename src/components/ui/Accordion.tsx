@@ -3,122 +3,134 @@ import React, {
   useContext,
   useState,
   HTMLAttributes,
+  forwardRef,
 } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 interface AccordionContextProps {
-  type: 'single' | 'multiple';
-  openItems: string[];
-  handleToggle: (value: string) => void;
+  multiple: boolean;
+  items: string[];
+  helper: {
+    isActive: (value: string) => boolean;
+    toggle: (item: string) => void;
+  };
 }
 
-const AccordionContext = createContext<AccordionContextProps | undefined>(
-  undefined
-);
+const AccordionContext = createContext<AccordionContextProps | null>(null);
 
 interface AccordionProps extends HTMLAttributes<HTMLDivElement> {
-  type: 'single' | 'multiple';
-  collapsible: boolean;
+  multiple?: boolean;
+  defaultValue?: string;
 }
 
-export const Accordion = ({
-  type,
-  collapsible = true,
-  className,
-  ...rest
-}: AccordionProps) => {
-  const [openItems, setOpenItems] = useState<string[]>([]);
+export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
+  (props, ref) => {
+    const { multiple = false, className, defaultValue, ...rest } = props;
+    const [items, setItems] = useState<string[]>([defaultValue || '']);
 
-  const handleToggle = (value: string) => {
-    if (collapsible) {
-      if (type === 'multiple') {
-        setOpenItems((prevItems) =>
-          prevItems.includes(value)
-            ? prevItems.filter((item) => item !== value)
-            : [...prevItems, value]
-        );
-        return;
-      }
+    const helper = {
+      isActive: (value: string) => items.includes(value),
+      toggle: (value: string) => {
+        const itemExists = items.includes(value);
+        if (multiple) {
+          if (itemExists) {
+            const filter = items.filter((item) => item !== value);
+            return setItems(filter);
+          }
 
-      setOpenItems((prevItems) => (prevItems.includes(value) ? [] : [value]));
-    }
-  };
+          return setItems((prevItems) => [...prevItems, value]);
+        }
 
-  return (
-    <AccordionContext.Provider value={{ type, openItems, handleToggle }}>
-      <div
-        className={twMerge('w-full', className)}
-        {...rest}
-      />
-    </AccordionContext.Provider>
-  );
-};
+        if (itemExists) {
+          return setItems((prevItem) => prevItem);
+        }
+
+        return setItems([value]);
+      },
+    };
+
+    return (
+      <AccordionContext.Provider value={{ multiple, items, helper }}>
+        <div
+          ref={ref}
+          className={twMerge('w-full', className)}
+          {...rest}
+        />
+      </AccordionContext.Provider>
+    );
+  }
+);
 
 interface AccordionItemProps extends HTMLAttributes<HTMLDivElement> {
   value: string;
 }
 
-export const AccordionItem = ({
-  value,
-  className,
-  ...rest
-}: AccordionItemProps) => {
-  return (
-    <div
-      className={twMerge('space-y-0.5', className)}
-      data-value={value}
-      {...rest}
-    />
-  );
-};
+export const AccordionItem = forwardRef<HTMLDivElement, AccordionItemProps>(
+  (props, ref) => {
+    const { value, className, ...rest } = props;
+
+    return (
+      <div
+        ref={ref}
+        className={twMerge('space-y-0.5', className)}
+        data-value={value}
+        {...rest}
+      />
+    );
+  }
+);
 
 interface AccordionTriggerProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> {
   value: string;
-  className?: string;
   children: React.ReactNode | ((isActive: boolean) => React.ReactNode);
 }
 
-export const AccordionTrigger = (props: AccordionTriggerProps) => {
+export const AccordionTrigger = forwardRef<
+  HTMLDivElement,
+  AccordionTriggerProps
+>((props, ref) => {
   const { value, className, children, ...rest } = props;
-  const { handleToggle, openItems } = useContext(AccordionContext)!;
-
-  const isActive = openItems.includes(value);
+  const {
+    helper: { toggle, isActive },
+  } = useContext(AccordionContext)!;
 
   return (
     <div
+      ref={ref}
       className={twMerge('cursor-pointer w-full', className)}
-      onClick={() => handleToggle(value)}
+      onClick={() => toggle(value)}
       {...rest}
     >
-      {typeof children === 'function' ? children(isActive) : children}
+      {typeof children === 'function' ? children(isActive(value)) : children}
     </div>
   );
-};
+});
 
 interface AccordionContentProps extends HTMLAttributes<HTMLDivElement> {
   value: string;
 }
 
-export const AccordionContent = ({
-  value,
-  className,
-  ...rest
-}: AccordionContentProps) => {
-  const { openItems } = useContext(AccordionContext)!;
-
-  const isActive = openItems.includes(value);
+export const AccordionContent = forwardRef<
+  HTMLDivElement,
+  AccordionContentProps
+>((props, ref) => {
+  const { value, className, ...rest } = props;
+  const {
+    helper: { isActive },
+  } = useContext(AccordionContext)!;
 
   return (
     <div
+      ref={ref}
       className={twMerge(
         'w-full transition-all duration-300 ease-in-out',
-        isActive
-          ? 'translate-y-0 visible h-fit opacity-100'
-          : 'translate-y-2 invisible h-0 opacity-0',
+        isActive(value)
+          ? 'translate-y-0 visible h-fit'
+          : 'translate-y-2 invisible h-0',
         className
       )}
       {...rest}
     />
   );
-};
+});

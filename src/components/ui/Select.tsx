@@ -1,68 +1,71 @@
 import React, {
   HTMLAttributes,
   createContext,
+  forwardRef,
   useContext,
   useState,
 } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { LuChevronDown } from 'react-icons/lu';
-import { Text } from './Text';
 import { FormContext } from './Form';
 
 interface SelectContextProps {
   multiple: boolean;
-  showOptions: boolean;
   value: string;
+  reveal: boolean;
   select: {
+    isActive: (option: string) => boolean;
     toggle: () => void;
     set: (option: string) => void;
-    isActive: (option: string) => boolean;
   };
 }
 
 const SelectContext = createContext<SelectContextProps | null>(null);
 
-interface SelectProps extends HTMLAttributes<HTMLDivElement> {
+interface Props extends HTMLAttributes<HTMLDivElement> {}
+
+interface SelectProps extends Props {
   multiple?: boolean;
-  className?: string;
 }
 
-export const Select = (props: SelectProps) => {
+export const Select = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   const { className, multiple = false, ...rest } = props;
   const {
     field: { value },
     meta,
-    helper,
+    helper: { setValue, setTouched },
   } = useContext(FormContext)!;
-  const [showOptions, setShowOptions] = useState<boolean>(false);
+
+  const [reveal, setReveal] = useState<boolean>(false);
 
   const select = {
     toggle: () => {
-      if (!meta.touched) {
-        helper.setTouched(true);
-      }
-      setShowOptions(!showOptions);
+      !meta.touched && setTouched(true);
+      setReveal(!reveal);
     },
 
     set: (option: string) => {
       if (multiple) {
-        const array: any[] = value;
-        helper.setValue(
-          array.includes(option)
-            ? array.filter((v) => v !== option)
-            : [...array, option]
-        );
+        const array: (typeof value)[] = value;
+        const valueExits = array.includes(option);
 
+        if (valueExits) {
+          const filter = array.filter((value) => value !== option);
+          setValue(filter);
+        }
+
+        setValue([...array, option]);
         return;
       }
 
-      helper.setValue(option);
+      setValue(option);
     },
 
     isActive: (option: string) => {
       if (multiple) {
-        const array: any[] = value;
-        return array.includes(option);
+        const array: (typeof value)[] = value;
+        const check = array.includes(option);
+        return check;
       }
       return value === option;
     },
@@ -71,28 +74,28 @@ export const Select = (props: SelectProps) => {
   return (
     <SelectContext.Provider
       value={{
-        value: value,
         multiple,
-        showOptions,
+        value,
+        reveal,
         select,
       }}
     >
       <div
+        ref={ref}
         className={twMerge('relative w-full', className)}
         {...rest}
       />
     </SelectContext.Provider>
   );
-};
+});
 
-interface SelectTriggerProps extends HTMLAttributes<HTMLDivElement> {}
-
-export const SelectTrigger = (props: SelectTriggerProps) => {
+export const SelectTrigger = forwardRef<HTMLDivElement, Props>((props, ref) => {
   const { className, children, ...rest } = props;
-  const { select, showOptions } = useContext(SelectContext)!;
+  const { select, reveal } = useContext(SelectContext)!;
 
   return (
     <div
+      ref={ref}
       className={twMerge(
         'min-h-[36px] w-full inline-flex gap-x-4 justify-between items-center cursor-pointer bg-white rounded-md transition-all duration-200 ease-in-out px-2',
         className
@@ -104,58 +107,56 @@ export const SelectTrigger = (props: SelectTriggerProps) => {
       <span
         className={twMerge(
           ' transition-transform ease-in-out duration-300',
-          showOptions ? 'rotate-180' : 'rotate-0'
+          reveal ? 'rotate-180' : 'rotate-0'
         )}
       >
         <LuChevronDown className='w-4 h-4' />
       </span>
     </div>
   );
-};
+});
 
-interface SelectValueProps {
+interface SelectValueProps extends Omit<Props, 'children'> {
   placeholder: string;
-  className?: string;
   children?: (value: any) => React.ReactNode | (string | number);
 }
 
-export const SelectValue = (props: SelectValueProps) => {
-  const { placeholder, className, children, ...rest } = props;
-  const { value } = useContext(SelectContext)!;
+export const SelectValue = forwardRef<HTMLDivElement, SelectValueProps>(
+  (props, ref) => {
+    const { placeholder, className, children, ...rest } = props;
+    const { value } = useContext(SelectContext)!;
 
-  return (
-    <Text
-      className={twMerge(
-        'flex-1 text-zinc-800 font-medium',
-        (!value || value.length <= 0) && 'text-zinc-500 font-normal',
-        className
-      )}
-      size='sm'
-      {...rest}
-    >
-      {value && value?.length > 0
-        ? typeof children === 'function'
-          ? children(value)
-          : value
-        : placeholder}
-    </Text>
-  );
-};
+    return (
+      <div
+        ref={ref}
+        className={twMerge(
+          'flex-1 text-zinc-800 font-medium text-sm',
+          (!value || value.length <= 0) && 'text-zinc-500 font-normal',
+          className
+        )}
+        {...rest}
+      >
+        {value && value?.length > 0
+          ? typeof children === 'function'
+            ? children(value)
+            : value
+          : placeholder}
+      </div>
+    );
+  }
+);
 
-interface SelectContentProps extends HTMLAttributes<HTMLDivElement> {
-  className?: string;
-}
-
-export const SelectContent = (props: SelectContentProps) => {
+export const SelectContent = forwardRef<HTMLDivElement, Props>((props, ref) => {
   const { className, ...rest } = props;
-  const { showOptions } = useContext(SelectContext)!;
+  const { reveal } = useContext(SelectContext)!;
 
   return (
     <>
       <div
+        ref={ref}
         className={twMerge(
           'absolute w-full space-y-0.5 overflow-hidden z-10 bg-white shadow-sm ring-1 ring-zinc-950/5 max-h-64 overflow-y-scroll p-1 rounded-md mt-2  transition-all ease-in-out duration-500',
-          showOptions
+          reveal
             ? 'translate-y-0 scale-100 opacity-100 visible'
             : '-translate-y-2 scale-95 opacity-0 invisible',
           className
@@ -164,33 +165,35 @@ export const SelectContent = (props: SelectContentProps) => {
       />
     </>
   );
-};
+});
 
-interface SelectItemProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'className'> {
+interface SelectItemProps extends Omit<Props, 'children' | 'className'> {
   value: string;
   className?: string | ((isActive: boolean) => string);
   children: React.ReactNode | ((isActive: boolean) => React.ReactNode);
 }
 
-export const SelectItem = (props: SelectItemProps) => {
-  const { className, children, value, ...rest } = props;
-  const { select } = useContext(SelectContext)!;
+export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
+  (props, ref) => {
+    const { className, children, value, ...rest } = props;
+    const {
+      select: { isActive, set },
+    } = useContext(SelectContext)!;
 
-  return (
-    <div
-      className={twMerge(
-        'cursor-pointer',
-        typeof className === 'function'
-          ? className(select.isActive(value))
-          : className
-      )}
-      onClick={() => select.set(value)}
-      {...rest}
-    >
-      {typeof children === 'function'
-        ? children(select.isActive(value))
-        : children}
-    </div>
-  );
-};
+    return (
+      <div
+        ref={ref}
+        className={twMerge(
+          'cursor-pointer',
+          typeof className === 'function'
+            ? className(isActive(value))
+            : className
+        )}
+        onClick={() => set(value)}
+        {...rest}
+      >
+        {typeof children === 'function' ? children(isActive(value)) : children}
+      </div>
+    );
+  }
+);

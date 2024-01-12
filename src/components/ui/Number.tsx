@@ -1,15 +1,18 @@
-import React, { HTMLAttributes, useContext } from 'react';
+import React, { HTMLAttributes, forwardRef, useContext } from 'react';
 import { FormContext } from './Form';
 import { Field } from 'formik';
 import { twMerge } from 'tailwind-merge';
 
-interface INumber extends HTMLAttributes<HTMLDivElement> {
+interface Props extends HTMLAttributes<HTMLDivElement> {
   placeholder?: string;
 }
 
-export const Number = (props: INumber) => {
+export const Number = forwardRef<HTMLDivElement, Props>((props: Props) => {
   const { className, placeholder, children, ...rest } = props;
-  const { field, helper } = useContext(FormContext)!;
+  const {
+    field: { name },
+    helper: { setTouched },
+  } = useContext(FormContext)!;
 
   return (
     <div
@@ -18,14 +21,14 @@ export const Number = (props: INumber) => {
     >
       {children}
       <Field
-        name={field.name}
+        name={name}
         className={twMerge(
           'text-xl font-semibold text-inherit outline-none leading-none flex-auto w-48'
         )}
-        onFocus={() => helper.setTouched(true)}
-        onBlur={() => helper.setTouched(false)}
+        onFocus={() => setTouched(true)}
+        onBlur={() => setTouched(false)}
         placeholder={placeholder}
       />
     </div>
   );
-};
+});

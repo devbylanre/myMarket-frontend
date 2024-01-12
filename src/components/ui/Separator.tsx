@@ -1,4 +1,4 @@
-import React, { HTMLAttributes } from 'react';
+import React, { forwardRef, HTMLAttributes } from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
 import { cn } from '../../utils/util';
 
@@ -14,10 +14,18 @@ const separatorVariants = cva('', {
   },
 });
 
-interface SeparatorProps
+interface Props
   extends HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof separatorVariants> {}
 
-export const Separator = ({ className, orientation }: SeparatorProps) => {
-  return <div className={cn(separatorVariants({ orientation, className }))} />;
-};
+export const Separator = forwardRef<HTMLDivElement, Props>((props, ref) => {
+  const { className, orientation, ...rest } = props;
+
+  return (
+    <div
+      ref={ref}
+      className={cn(separatorVariants({ orientation, className }))}
+      {...rest}
+    />
+  );
+});

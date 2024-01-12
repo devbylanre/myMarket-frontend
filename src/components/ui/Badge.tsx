@@ -9,6 +9,13 @@ import { cva, VariantProps } from 'class-variance-authority';
 import { cn } from '../../utils/util';
 import { twMerge } from 'tailwind-merge';
 
+interface BadgeContextProps {
+  isVisible: boolean;
+  hideBadge: () => void;
+}
+
+const BadgeContext = createContext<BadgeContextProps | undefined>(undefined);
+
 const badgeVariants = cva(
   'rounded-lg px-2 h-6 w-fit font-medium text-xs ring-1 inline-flex gap-x-1 items-center',
   {
@@ -31,13 +38,6 @@ const badgeVariants = cva(
 interface BadgeProps
   extends HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof badgeVariants> {}
-
-interface BadgeContextProps {
-  isVisible: boolean;
-  hideBadge: () => void;
-}
-
-const BadgeContext = createContext<BadgeContextProps | undefined>(undefined);
 
 export const Badge = forwardRef<HTMLDivElement, BadgeProps>(
   (props: BadgeProps, ref) => {
@@ -62,14 +62,17 @@ export const Badge = forwardRef<HTMLDivElement, BadgeProps>(
 
 interface BadgeDismissProps extends HTMLAttributes<HTMLSpanElement> {}
 
-export const BadgeDismiss = ({ className, ...rest }: BadgeDismissProps) => {
-  const { hideBadge } = useContext(BadgeContext)!;
+export const BadgeDismiss = forwardRef<HTMLDivElement, BadgeDismissProps>(
+  (props: BadgeDismissProps) => {
+    const { className, ...rest } = props;
+    const { hideBadge } = useContext(BadgeContext)!;
 
-  return (
-    <span
-      className={twMerge('cursor-pointer', className)}
-      onClick={hideBadge}
-      {...rest}
-    />
-  );
-};
+    return (
+      <span
+        className={twMerge('cursor-pointer', className)}
+        onClick={hideBadge}
+        {...rest}
+      />
+    );
+  }
+);

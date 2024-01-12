@@ -1,94 +1,116 @@
 import React, {
   HTMLAttributes,
   createContext,
+  forwardRef,
   useContext,
   useState,
 } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-interface TabProps extends HTMLAttributes<HTMLDivElement> {
-  defaultTab: string | number;
-}
-
 interface TabContextProps {
   tab: string | number;
-  isActive: (currentTab: string | number) => boolean;
-  toggleTab: (tab: string | number) => void;
+  helper: {
+    isActive: (value: string) => boolean;
+    toggle: (value: string) => void;
+  };
 }
 
 const TabContext = createContext<TabContextProps | null>(null);
 
-export const Tab = ({ className, defaultTab, ...rest }: TabProps) => {
-  const [tab, setTab] = useState<string | number>(defaultTab);
+interface Props<E> extends HTMLAttributes<E> {}
 
-  const toggleTab = (tab: string | number) => {
-    setTab(tab);
+interface TabProps extends Props<HTMLDivElement> {
+  defaultValue: string;
+}
+
+export const Tab = forwardRef<HTMLDivElement, TabProps>((props, ref) => {
+  const { className, defaultValue, ...rest } = props;
+  const [tab, setTab] = useState<string>(defaultValue);
+
+  const helper = {
+    isActive: (value: string) => tab === value,
+    toggle: (value: string) => setTab(value),
   };
 
-  const isActive = (currentTab: string | number) => currentTab === tab;
-
   return (
-    <TabContext.Provider value={{ tab, isActive, toggleTab }}>
+    <TabContext.Provider value={{ tab, helper }}>
       <div
+        ref={ref}
         className={twMerge('flex flex-col gap-y-8', className)}
         {...rest}
       />
     </TabContext.Provider>
   );
-};
+});
 
-interface ITabList extends HTMLAttributes<HTMLDivElement> {}
+export const TabList = forwardRef<HTMLDivElement, Props<HTMLDivElement>>(
+  (props, ref) => {
+    const { className, ...rest } = props;
+    return (
+      <div
+        ref={ref}
+        className={twMerge(
+          'flex w-full md:w-fit overflow-clip bg-zinc-100 p-1 rounded-lg gap-x-1',
+          className
+        )}
+        {...rest}
+      />
+    );
+  }
+);
 
-export const TabList = ({ className, ...rest }: ITabList) => {
-  return (
-    <div
-      className={twMerge(
-        'flex w-full md:w-fit overflow-clip bg-zinc-100 p-1 rounded-lg gap-x-1',
-        className
-      )}
-      {...rest}
-    />
-  );
-};
-
-interface ITabTrigger
-  extends Omit<HTMLAttributes<HTMLDivElement>, 'className'> {
+interface TabTriggerProps
+  extends Omit<Props<HTMLDivElement>, 'className' | 'children'> {
   className?: string | ((isActive: boolean) => string);
   value: string;
-  children?: React.ReactNode;
+  children?: React.ReactNode | ((isActive: boolean) => React.ReactNode);
 }
 
-export const TabTrigger = ({ className, value, ...rest }: ITabTrigger) => {
-  const { toggleTab, isActive } = useContext(TabContext)!;
+export const TabTrigger = forwardRef<HTMLDivElement, TabTriggerProps>(
+  (props, ref) => {
+    const { children, className, value, ...rest } = props;
+    const {
+      helper: { toggle, isActive },
+    } = useContext(TabContext)!;
 
-  return (
-    <div
-      className={twMerge(
-        'w-full text-sm py-1 px-3 hover:bg-white rounded-md text-center cursor-pointer',
-        isActive(value) && 'bg-white ring-1 ring-zinc-950/5 shadow-sm',
-        typeof className === 'function' ? className(isActive(value)) : className
-      )}
-      onClick={() => toggleTab(value)}
-      {...rest}
-    />
-  );
-};
+    return (
+      <div
+        ref={ref}
+        className={twMerge(
+          'w-full text-sm py-1 px-3 hover:bg-white rounded-md text-center cursor-pointer',
+          isActive(value) && 'bg-white ring-1 ring-zinc-950/5 shadow-sm',
+          typeof className === 'function'
+            ? className(isActive(value))
+            : className
+        )}
+        onClick={() => toggle(value)}
+        {...rest}
+      >
+        {typeof children === 'function' ? children(isActive(value)) : children}
+      </div>
+    );
+  }
+);
 
-interface ITabContent extends HTMLAttributes<HTMLDivElement> {
+interface TabContentProps extends Props<HTMLDivElement> {
   value: string;
 }
 
-export const TabContent = ({ className, value, ...rest }: ITabContent) => {
-  const { isActive } = useContext(TabContext)!;
+export const TabContent = forwardRef<HTMLDivElement, TabContentProps>(
+  (props, ref) => {
+    const { className, value, ...rest } = props;
+    const {
+      helper: { isActive },
+    } = useContext(TabContext)!;
 
-  return (
-    <>
-      {isActive(value) ? (
-        <div
-          className={className}
-          {...rest}
-        />
-      ) : null}
-    </>
-  );
-};
+    if (!isActive(value)) return null;
+
+    return (
+      <div
+        ref={ref}
+        className={className}
+        {...rest}
+      />
+    );
+  }
+);

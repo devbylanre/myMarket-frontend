@@ -13,7 +13,7 @@ import { AuthenticationPage } from './authentication/AuthenticationPage';
 export const SettingsPage = () => {
   return (
     <Tab
-      defaultTab='personal'
+      defaultValue='personal'
       className='w-full px-3 mx-auto mt-8 lg:w-11/12 lg:px-0'
     >
       <TabList className='w-full mx-auto sm:w-96'>

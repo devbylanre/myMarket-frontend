@@ -38,7 +38,7 @@ export const ShopPage = () => {
 
 const ProductFilter = ({ products }: { products: Product[] }) => {
   return (
-    <Tab defaultTab='recent'>
+    <Tab defaultValue='recent'>
       <TabList className='mx-auto'>
         <TabTrigger value='recent'>Recent</TabTrigger>
         <TabTrigger value='hot'>Hot</TabTrigger>

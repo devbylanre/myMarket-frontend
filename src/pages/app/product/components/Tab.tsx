@@ -18,7 +18,7 @@ export const ProductTab = ({ description }: ProductTabProps) => {
     <>
       <Separator className='my-8' />
 
-      <Tab defaultTab='description'>
+      <Tab defaultValue='description'>
         <TabList className='w-full mx-auto sm:w-96'>
           <TabTrigger
             value='description'
