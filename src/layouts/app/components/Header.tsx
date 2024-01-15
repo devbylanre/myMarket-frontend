@@ -1,6 +1,10 @@
 import React from 'react';
 import { Text } from '../../../components/Text';
-import { Avatar, AvatarFallback } from '../../../components/Avatar';
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from '../../../components/Avatar';
 import { Link } from 'react-router-dom';
 import {
   Dropdown,
@@ -60,11 +64,11 @@ const Options = ({ firstName, lastName, url }: HeaderProps) => {
   return (
     <Dropdown>
       <DropdownTrigger className='flex items-center pr-2 rounded-full gap-x-2 bg-zinc-200'>
-        <Avatar
-          src={url}
-          alt='user-logo'
-          className='w-8 h-8'
-        >
+        <Avatar className='w-8 h-8'>
+          <AvatarImage
+            src={url}
+            alt='user-logo'
+          />
           <AvatarFallback className='font-medium capitalize'>{`${firstName[0]}${lastName[0]}`}</AvatarFallback>
         </Avatar>
         <TbChevronDown className='stroke-zinc-500' />

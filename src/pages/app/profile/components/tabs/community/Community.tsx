@@ -1,6 +1,10 @@
 import React from 'react';
 import { Card, CardContent } from '../../../../../../components/Card';
-import { Avatar, AvatarFallback } from '../../../../../../components/Avatar';
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from '../../../../../../components/Avatar';
 import { Text } from '../../../../../../components/Text';
 
 export const Community = () => {
@@ -11,10 +15,12 @@ export const Community = () => {
           {Array.from('abcdef').map((_, i) => (
             <Avatar
               key={i}
-              src={`/assets/images/memoji-0${i + 1}.png`}
-              alt='community'
               className='w-10 h-10'
             >
+              <AvatarImage
+                src={`/assets/images/memoji-0${i + 1}.png`}
+                alt='community'
+              />
               <AvatarFallback>{i}</AvatarFallback>
             </Avatar>
           ))}

@@ -13,13 +13,15 @@ interface AccordionContextProps {
   items: string[];
   helper: {
     isActive: (value: string) => boolean;
-    toggle: (item: string) => void;
+    toggle: (value: string) => void;
   };
 }
 
 const AccordionContext = createContext<AccordionContextProps | null>(null);
 
-interface AccordionProps extends HTMLAttributes<HTMLDivElement> {
+interface Props extends HTMLAttributes<HTMLDivElement> {}
+
+interface AccordionProps extends Props {
   multiple?: boolean;
   defaultValue?: string;
 }
@@ -62,7 +64,7 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
   }
 );
 
-interface AccordionItemProps extends HTMLAttributes<HTMLDivElement> {
+interface AccordionItemProps extends Props {
   value: string;
 }
 
@@ -84,9 +86,9 @@ export const AccordionItem = forwardRef<HTMLDivElement, AccordionItemProps>(
   }
 );
 
-interface AccordionTriggerProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> {
+interface AccordionTriggerProps extends Omit<Props, 'children' | 'className'> {
   value: string;
+  className: string | ((isActive: boolean) => string);
   children: React.ReactNode | ((isActive: boolean) => React.ReactNode);
 }
 
@@ -102,7 +104,10 @@ export const AccordionTrigger = forwardRef<
   return (
     <div
       ref={ref}
-      className={twMerge('cursor-pointer w-full', className)}
+      className={twMerge(
+        'cursor-pointer w-full',
+        typeof className === 'function' ? className(isActive(value)) : className
+      )}
       onClick={() => toggle(value)}
       {...rest}
     >
@@ -130,7 +135,7 @@ export const AccordionContent = forwardRef<
         <motion.div
           animate={{ height: 'fit-content' }}
           exit={{ height: '0px', overflowY: 'hidden' }}
-          transition={{ ease: 'easeInOut', duration: 0.25 }}
+          transition={{ duration: 0.3 }}
         >
           <div
             ref={ref}

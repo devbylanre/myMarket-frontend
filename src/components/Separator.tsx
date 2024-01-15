@@ -1,6 +1,6 @@
 import React, { forwardRef, HTMLAttributes } from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
-import { cn } from '../utils/util';
+import { cn } from '../lib/cn';
 
 const separatorVariants = cva('', {
   variants: {

@@ -3,29 +3,19 @@ import { Badge, BadgeDismiss } from '../../../components/Badge';
 import { LuX } from 'react-icons/lu';
 import { PageHeadline } from '../shared/PageHeadline';
 import { PageTab } from '../shared/PageTab';
-import { TabContent } from '../../../components/Tab';
+import { Div } from '../../../components/Div';
 
 export const BadgePage = () => {
   return (
     <div className='flex flex-col gap-y-12'>
-      <PageHeadline subHeading='Badge components' />
+      <PageHeadline subHeading='Present information in the form of a badge-like design, adding a decorative or informative element to the display.' />
 
       <PageTab>
-        <TabContent
-          value='preview'
-          className='flex flex-wrap w-full gap-2 lg:w-96'
-        >
-          <Example />
-        </TabContent>
+        <Example />
       </PageTab>
 
       <PageTab>
-        <TabContent
-          value='preview'
-          className='flex flex-wrap w-full gap-2 lg:w-96'
-        >
-          <ExampleWithDismiss />
-        </TabContent>
+        <ExampleWithDismiss />
       </PageTab>
     </div>
   );
@@ -33,7 +23,10 @@ export const BadgePage = () => {
 
 const Example = () => {
   return (
-    <>
+    <Div
+      layout='flex'
+      className='flex flex-wrap gap-3'
+    >
       {Array.from(['solid', 'outline', 'success', 'danger', 'warning']).map(
         (variant, i) => (
           <Badge
@@ -44,13 +37,16 @@ const Example = () => {
           </Badge>
         )
       )}
-    </>
+    </Div>
   );
 };
 
 const ExampleWithDismiss = () => {
   return (
-    <>
+    <Div
+      layout='flex'
+      className='flex flex-wrap gap-3'
+    >
       {Array.from(['solid', 'outline', 'success', 'danger', 'warning']).map(
         (variant, i) => (
           <Badge
@@ -64,6 +60,6 @@ const ExampleWithDismiss = () => {
           </Badge>
         )
       )}
-    </>
+    </Div>
   );
 };

@@ -7,7 +7,7 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
   placeholder?: string;
 }
 
-export const Number = forwardRef<HTMLDivElement, Props>((props: Props) => {
+export const Number = forwardRef<HTMLDivElement, Props>((props, ref) => {
   const { className, placeholder, children, ...rest } = props;
   const {
     field: { name },
@@ -16,6 +16,7 @@ export const Number = forwardRef<HTMLDivElement, Props>((props: Props) => {
 
   return (
     <div
+      ref={ref}
       className={twMerge('flex gap-x-2 w-fit leading-tight', className)}
       {...rest}
     >

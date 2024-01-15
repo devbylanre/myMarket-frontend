@@ -1,6 +1,5 @@
 import React from 'react';
 import { Text } from '../../../components/Text';
-import { LuCopyPlus, LuDownload, LuPenLine, LuSend } from 'react-icons/lu';
 import {
   Dropdown,
   DropdownContent,
@@ -10,19 +9,18 @@ import {
 import { Button } from '../../../components/Button';
 import { PageHeadline } from '../shared/PageHeadline';
 import { PageTab } from '../shared/PageTab';
-import { TabContent } from '../../../components/Tab';
+import { Div } from '../../../components/Div';
+import { TbCopy, TbPencil, TbShare2, TbUpload } from 'react-icons/tb';
 
 export const DropdownPage = () => {
   return (
-    <div className='space-y-8'>
+    <Div className='space-y-8'>
       <PageHeadline subHeading='Dropdown component' />
 
       <PageTab>
-        <TabContent value='preview'>
-          <Example />
-        </TabContent>
+        <Example />
       </PageTab>
-    </div>
+    </Div>
   );
 };
 
@@ -31,22 +29,24 @@ interface OptionProps {
   icon: React.ReactNode;
 }
 
+const iconClassName = 'w-4 h-4';
+
 const options: OptionProps[] = [
   {
     title: 'edit',
-    icon: <LuPenLine />,
+    icon: <TbPencil className={iconClassName} />,
   },
   {
     title: 'copy',
-    icon: <LuCopyPlus />,
+    icon: <TbCopy className={iconClassName} />,
   },
   {
     title: 'share',
-    icon: <LuSend />,
+    icon: <TbShare2 className={iconClassName} />,
   },
   {
     title: 'download',
-    icon: <LuDownload />,
+    icon: <TbUpload className={iconClassName} />,
   },
 ];
 
@@ -63,7 +63,7 @@ const Example = () => {
               key={i}
               className='inline-flex items-center w-full h-8 rounded-md gap-x-2 px-1.5 hover:bg-zinc-100 cursor-pointer text-zinc-500'
             >
-              <span>{option.icon}</span>
+              {option.icon}
               <Text
                 as='h6'
                 size='sm'

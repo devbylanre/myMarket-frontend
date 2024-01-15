@@ -1,53 +1,52 @@
 import React from 'react';
-import { Text } from '../../../components/Text';
-import { Alert, AlertDismiss } from '../../../components/Alert';
-import { LuWifiOff, LuX } from 'react-icons/lu';
+import { Alert, AlertContent } from '../../../components/Alert';
 import { PageHeadline } from '../shared/PageHeadline';
 import { PageTab } from '../shared/PageTab';
-import { TabContent } from '../../../components/Tab';
-import { Separator } from '../../../components/Separator';
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from '../../../components/Avatar';
+import { Text } from '../../../components/Text';
+import { Div } from '../../../components/Div';
 
 export const AlertPage = () => {
   return (
-    <div className='flex flex-col space-y-8'>
+    <Div
+      layout='flex'
+      className='flex-col space-y-8'
+    >
       <PageHeadline subHeading='Alert components' />
       <PageTab>
-        <TabContent value='preview'>
-          <Example />
-        </TabContent>
+        <Example />
       </PageTab>
-    </div>
+    </Div>
   );
 };
 
 const Example = () => {
   return (
-    <div>
-      <Alert className='p-3'>
-        <div className='inline-flex items-center w-full gap-x-3'>
-          <LuWifiOff className='w-5 h-5 stroke-zinc-950' />
-          <Text
-            as='h6'
-            size='sm'
-            weight={500}
-            className='flex-1'
-          >
-            No internet connection
-          </Text>
-          <AlertDismiss>
-            <LuX className='w-4 h-4' />
-          </AlertDismiss>
-        </div>
-        <Separator />
+    <Alert className='space-y-3 rounded-xl bg-zinc-100'>
+      <AlertContent className='flex items-center gap-x-3'>
+        <Avatar className='w-10 h-10'>
+          <AvatarImage
+            src='/assets/images/memoji-05.png'
+            alt='john doe'
+          />
+          <AvatarFallback>JD</AvatarFallback>
+        </Avatar>
+
         <Text
-          as='p'
-          size='sm'
+          weight={500}
+          size='xs'
+          className='flex-1'
         >
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur
-          obcaecati sunt officiis placeat impedit illo soluta ratione
-          reprehenderit
+          John doe liked your post -{' '}
+          <span className='font-semibold'>
+            Know more about the author of Rich Dad, Poor Dad
+          </span>
         </Text>
-      </Alert>
-    </div>
+      </AlertContent>
+    </Alert>
   );
 };

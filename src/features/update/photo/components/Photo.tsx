@@ -1,5 +1,9 @@
 import React from 'react';
-import { Avatar, AvatarFallback } from '../../../../components/Avatar';
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from '../../../../components/Avatar';
 import { Text } from '../../../../components/Text';
 
 interface IPhoto {
@@ -10,11 +14,11 @@ interface IPhoto {
 
 export const Photo = ({ firstName, lastName, url }: IPhoto) => {
   return (
-    <Avatar
-      src={url}
-      alt='user'
-      className='w-12 h-12'
-    >
+    <Avatar className='w-12 h-12'>
+      <AvatarImage
+        src={url}
+        alt='user'
+      />
       <AvatarFallback>
         <Text
           as='h6'

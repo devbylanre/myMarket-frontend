@@ -1,43 +1,42 @@
 import React from 'react';
 import { Text } from '../../../components/Text';
 import { Separator } from '../../../components/Separator';
-import { Button } from '../../../components/Button';
 import { PageHeadline } from '../shared/PageHeadline';
 import { PageTab } from '../shared/PageTab';
-import { TabContent } from '../../../components/Tab';
+import { Div } from '../../../components/Div';
 
 export const SeparatorPage = () => {
   return (
-    <div className='space-y-8'>
+    <Div className='space-y-8'>
       <PageHeadline subHeading='Separator components' />
 
       <PageTab>
-        <TabContent value='preview'>
-          <Example />
-        </TabContent>
+        <Example />
       </PageTab>
-    </div>
+    </Div>
   );
 };
 
 const Example = () => {
   return (
-    <div>
-      <div>
-        <Text
-          as='h5'
-          size='xl'
-          weight={500}
-        >
-          Wait can i separate items?
-        </Text>
-      </div>
+    <Div>
+      <Text
+        as='h5'
+        size='lg'
+        weight={500}
+      >
+        Hey have you tried out separator?
+      </Text>
       <Separator />
-      <div className='inline-flex'>
-        <Button>Create account</Button>
-        <Separator orientation='vertical' />
-        <Button>Connect with others</Button>
-      </div>
-    </div>
+      <Text
+        as='h5'
+        size='sm'
+      >
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi optio
+        error earum facilis, aliquam culpa asperiores consequuntur consectetur
+        commodi! Veritatis animi nulla quo sit, ipsum culpa pariatur officia nam
+        praesentium!
+      </Text>
+    </Div>
   );
 };

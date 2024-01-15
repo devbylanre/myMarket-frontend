@@ -7,7 +7,7 @@ import React, {
   useState,
 } from 'react';
 import { twMerge } from 'tailwind-merge';
-import { cn } from '../utils/util';
+import { cn } from '../lib/cn';
 
 interface AlertContextProps {
   isVisible: boolean;
@@ -33,9 +33,9 @@ const alertVariant = cva(
   }
 );
 
-interface AlertProps
-  extends HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof alertVariant> {}
+interface Props extends HTMLAttributes<HTMLDivElement> {}
+
+interface AlertProps extends Props, VariantProps<typeof alertVariant> {}
 
 export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
   const { variant, className, ...rest } = props;
@@ -59,6 +59,17 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
         {...rest}
       />
     </AlertContext.Provider>
+  );
+});
+
+export const AlertContent = forwardRef<HTMLDivElement, Props>((props, ref) => {
+  const { className, ...rest } = props;
+  return (
+    <div
+      ref={ref}
+      className={twMerge('w-full', className)}
+      {...rest}
+    />
   );
 });
 

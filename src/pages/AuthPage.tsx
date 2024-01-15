@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text } from '../components/Text';
-import { Avatar, AvatarFallback } from '../components/Avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '../components/Avatar';
 import { LuStar } from 'react-icons/lu';
 import { EmailAuthContainer } from '../features/auth/email/EmailAuthContainer';
 import { Helmet } from 'react-helmet-async';
@@ -49,11 +49,11 @@ const SideBar = () => {
               key={i}
               className='inline-flex gap-x-3 w-fit'
             >
-              <Avatar
-                src={`/assets/images/memoji-0${i + 1}.png`}
-                alt={user.name}
-                className='bg-white shadow-xl shadow-zinc-200 h-11 w-11'
-              >
+              <Avatar className='bg-white shadow-xl shadow-zinc-200 h-11 w-11'>
+                <AvatarImage
+                  src={`/assets/images/memoji-0${i + 1}.png`}
+                  alt={user.name}
+                />
                 <AvatarFallback>{user.name[0]}</AvatarFallback>
               </Avatar>
               <div className='flex-1'>

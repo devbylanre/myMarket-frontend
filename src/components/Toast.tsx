@@ -7,8 +7,7 @@ import React, {
   forwardRef,
 } from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
-import { cn } from '../utils/util';
-import { AnimatePresence, motion } from 'framer-motion';
+import { cn } from '../lib/cn';
 import { twMerge } from 'tailwind-merge';
 
 type VerticalPosition = 'top' | 'bottom';
@@ -61,20 +60,13 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
     <ToastContext.Provider
       value={{ isVisible, onDismiss: () => setIsVisible(false) }}
     >
-      <AnimatePresence initial={false}>
-        {isVisible && (
-          <motion.div
-            animate={{ opacity: [0, 1], x: [20, 0] }}
-            exit={{ opacity: [1, 0], x: [0, -20] }}
-          >
-            <div
-              ref={ref}
-              className={cn(toastVariants({ position, className }))}
-              {...rest}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {isVisible ? (
+        <div
+          ref={ref}
+          className={cn(toastVariants({ position, className }))}
+          {...rest}
+        />
+      ) : null}
     </ToastContext.Provider>
   );
 });
@@ -93,12 +85,13 @@ export const ToastContent = forwardRef<HTMLDivElement, Props>((props, ref) => {
   );
 });
 
-export const ToastDismiss = forwardRef<HTMLDivElement, Props>((props) => {
+export const ToastDismiss = forwardRef<HTMLDivElement, Props>((props, ref) => {
   const { className, ...rest } = props;
   const { onDismiss } = useContext(ToastContext)!;
 
   return (
     <div
+      ref={ref}
       onClick={() => onDismiss()}
       className={cn(className)}
       {...rest}

@@ -4,7 +4,6 @@ import { Textarea } from '../../../components/Textarea';
 import { FormField, FormControl, FormLabel } from '../../../components/Form';
 import { PageHeadline } from '../shared/PageHeadline';
 import { PageTab } from '../shared/PageTab';
-import { TabContent } from '../../../components/Tab';
 
 export const TextareaPage = () => {
   return (
@@ -12,16 +11,14 @@ export const TextareaPage = () => {
       <PageHeadline subHeading='Textarea component' />
 
       <PageTab>
-        <TabContent value='preview'>
-          <Formik
-            initialValues={{ bio: '' }}
-            onSubmit={(values) => alert(`Your inputs are ${values.bio}`)}
-          >
-            <Form>
-              <Example />
-            </Form>
-          </Formik>
-        </TabContent>
+        <Formik
+          initialValues={{ bio: '' }}
+          onSubmit={(values) => alert(`Your inputs are ${values.bio}`)}
+        >
+          <Form>
+            <Example />
+          </Form>
+        </Formik>
       </PageTab>
     </div>
   );
@@ -29,19 +26,17 @@ export const TextareaPage = () => {
 
 const Example = () => {
   return (
-    <div>
-      <FormField
-        name='bio'
-        className='w-96'
-      >
-        <FormLabel>Bio</FormLabel>
-        <FormControl>
-          <Textarea
-            name='bio'
-            placeholder='Write a bio'
-          />
-        </FormControl>
-      </FormField>
-    </div>
+    <FormField
+      name='bio'
+      className='w-96'
+    >
+      <FormLabel>Bio</FormLabel>
+      <FormControl>
+        <Textarea
+          name='bio'
+          placeholder='Write a bio'
+        />
+      </FormControl>
+    </FormField>
   );
 };

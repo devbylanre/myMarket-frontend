@@ -1,7 +1,11 @@
 import React from 'react';
 import { Seller } from '../../../../contexts/product.types';
 import { Card, CardContent } from '../../../../components/Card';
-import { Avatar, AvatarFallback } from '../../../../components/Avatar';
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from '../../../../components/Avatar';
 import { Text } from '../../../../components/Text';
 import { Button } from '../../../../components/Button';
 import { Link } from 'react-router-dom';
@@ -15,11 +19,11 @@ export const SellerInformation = ({ seller }: { seller?: Seller }) => {
           <Separator className='my-5' />
           <Card className='p-0 ring-0'>
             <CardContent className='flex items-center gap-x-3'>
-              <Avatar
-                src={seller.photo.url}
-                alt={seller.photo.name}
-                className='w-12 h-12'
-              >
+              <Avatar className='w-12 h-12'>
+                <AvatarImage
+                  src={seller.photo.url}
+                  alt={seller.photo.name}
+                />
                 <AvatarFallback className='text-lg font-medium'>
                   {seller.firstName[0]}
                   {seller.lastName[0]}

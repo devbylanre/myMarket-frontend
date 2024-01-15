@@ -10,7 +10,6 @@ import {
 } from '../../../components/Form';
 import { PageHeadline } from '../shared/PageHeadline';
 import { PageTab } from '../shared/PageTab';
-import { TabContent } from '../../../components/Tab';
 
 export const InputPage = () => {
   return (
@@ -18,19 +17,17 @@ export const InputPage = () => {
       <PageHeadline subHeading='Input component' />
 
       <PageTab>
-        <TabContent value='preview'>
-          <Formik
-            initialValues={{ firstName: '', username: '', address: '' }}
-            validationSchema={yup.object().shape({
-              address: yup.string().required('Provide your address'),
-            })}
-            onSubmit={() => {}}
-          >
-            <Form className='space-y-3'>
-              <Example />
-            </Form>
-          </Formik>
-        </TabContent>
+        <Formik
+          initialValues={{ firstName: '', username: '', address: '' }}
+          validationSchema={yup.object().shape({
+            address: yup.string().required('Provide your address'),
+          })}
+          onSubmit={() => {}}
+        >
+          <Form className='space-y-3'>
+            <Example />
+          </Form>
+        </Formik>
       </PageTab>
     </div>
   );

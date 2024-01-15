@@ -4,7 +4,6 @@ import { Checkbox } from '../../../components/Checkbox';
 import { FormField, FormLabel } from '../../../components/Form';
 import { PageHeadline } from '../shared/PageHeadline';
 import { PageTab } from '../shared/PageTab';
-import { TabContent } from '../../../components/Tab';
 
 export const CheckboxPage = () => {
   return (
@@ -12,16 +11,14 @@ export const CheckboxPage = () => {
       <PageHeadline subHeading='Checkbox field' />
 
       <PageTab>
-        <TabContent value='preview'>
-          <Formik
-            initialValues={{ agree: false }}
-            onSubmit={() => {}}
-          >
-            <Form>
-              <Example />
-            </Form>
-          </Formik>
-        </TabContent>
+        <Formik
+          initialValues={{ agree: false }}
+          onSubmit={() => {}}
+        >
+          <Form>
+            <Example />
+          </Form>
+        </Formik>
       </PageTab>
     </div>
   );
@@ -29,14 +26,12 @@ export const CheckboxPage = () => {
 
 const Example = () => {
   return (
-    <div>
-      <FormField
-        name='agree'
-        className='inline-flex items-center justify-between space-y-0 w-96'
-      >
-        <FormLabel>Do you accept our Policy and Terms of service?</FormLabel>
-        <Checkbox />
-      </FormField>
-    </div>
+    <FormField
+      name='agree'
+      className='inline-flex items-center justify-between space-y-0 w-96'
+    >
+      <FormLabel>Do you accept our Policy and Terms of service?</FormLabel>
+      <Checkbox />
+    </FormField>
   );
 };

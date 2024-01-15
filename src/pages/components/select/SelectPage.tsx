@@ -10,9 +10,12 @@ import {
 } from '../../../components/Select';
 import { twMerge } from 'tailwind-merge';
 import { Badge } from '../../../components/Badge';
-import { Avatar, AvatarFallback } from '../../../components/Avatar';
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from '../../../components/Avatar';
 import { PageTab } from '../shared/PageTab';
-import { TabContent } from '../../../components/Tab';
 import { PageHeadline } from '../shared/PageHeadline';
 
 export const SelectPage = () => {
@@ -26,14 +29,10 @@ export const SelectPage = () => {
       >
         <Form className='flex flex-col gap-y-8'>
           <PageTab>
-            <TabContent value='preview'>
-              <Example />
-            </TabContent>
+            <Example />
           </PageTab>
           <PageTab>
-            <TabContent value='preview'>
-              <ExampleWithMultipleOptions />
-            </TabContent>
+            <ExampleWithMultipleOptions />
           </PageTab>
         </Form>
       </Formik>
@@ -70,16 +69,17 @@ const Example = () => {
                 value={team}
                 className={(isActive) =>
                   twMerge(
-                    'h-9 inline-flex items-center w-full px-1.5 hover:bg-zinc-100 rounded-md gap-x-2 text-sm',
+                    'h-9 inline-flex items-center w-full px-1.5 hover:bg-zinc-200 rounded-lg gap-x-2 text-sm',
                     isActive &&
                       'bg-primary/10 text-primary hover:bg-primary/10 font-medium'
                   )
                 }
               >
-                <Avatar
-                  src={`/assets/images/memoji-0${i + 1}.png`}
-                  alt={`user${i}`}
-                >
+                <Avatar size='xs'>
+                  <AvatarImage
+                    src={`/assets/images/memoji-0${i + 1}.png`}
+                    alt={`user${i}`}
+                  />
                   <AvatarFallback>{team[0]}</AvatarFallback>
                 </Avatar>
                 {team}
@@ -111,13 +111,16 @@ const ExampleWithMultipleOptions = () => {
         <Select multiple>
           <FormControl>
             <SelectTrigger>
-              <SelectValue placeholder='Select a sport'>
+              <SelectValue
+                placeholder='Select a sport'
+                className='flex gap-x-2'
+              >
                 {(value) =>
                   value.map((v: string, i: number) => (
                     <Badge
                       key={i}
                       variant='outline'
-                      className='my-1 ml-0 mr-1 text-sm capitalize h-7'
+                      className='text-sm capitalize h-7'
                     >
                       {v}
                     </Badge>

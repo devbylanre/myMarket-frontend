@@ -7,7 +7,6 @@ import {
   AccordionTrigger,
 } from '../../../components/Accordion';
 import { LuChevronDown } from 'react-icons/lu';
-import { TabContent } from '../../../components/Tab';
 import { PageHeadline } from '../shared/PageHeadline';
 import { PageTab } from '../shared/PageTab';
 import { Div } from '../../../components/Div';
@@ -20,20 +19,18 @@ const accordions = [
 
 export const AccordionPage = () => {
   return (
-    <div className='space-y-8'>
-      <PageHeadline subHeading='lorem' />
+    <Div className='space-y-8'>
+      <PageHeadline subHeading='An arrangement of interactive headings, stacked in a vertical orientation, wherein each heading, when interacted with, discloses a corresponding section of content.' />
       <PageTab>
-        <TabContent value='preview'>
-          <Example />
-        </TabContent>
+        <Example />
       </PageTab>
-    </div>
+    </Div>
   );
 };
 
 const Example = () => {
   return (
-    <Div className='w-96'>
+    <Div className='w-full lg:w-96'>
       <Accordion defaultValue={accordions[0].value}>
         {accordions.map((accordion, i) => (
           <AccordionItem

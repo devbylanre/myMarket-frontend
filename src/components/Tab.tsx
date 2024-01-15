@@ -36,7 +36,7 @@ export const Tab = forwardRef<HTMLDivElement, TabProps>((props, ref) => {
     <TabContext.Provider value={{ tab, helper }}>
       <div
         ref={ref}
-        className={twMerge('flex flex-col gap-y-8', className)}
+        className={twMerge('space-y-8', className)}
         {...rest}
       />
     </TabContext.Provider>

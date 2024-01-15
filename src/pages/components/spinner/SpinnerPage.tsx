@@ -2,7 +2,7 @@ import React from 'react';
 import { Spinner } from '../../../components/Spinner';
 import { PageHeadline } from '../shared/PageHeadline';
 import { PageTab } from '../shared/PageTab';
-import { TabContent } from '../../../components/Tab';
+import { Div } from '../../../components/Div';
 
 export const SpinnerPage = () => {
   return (
@@ -10,12 +10,7 @@ export const SpinnerPage = () => {
       <PageHeadline subHeading='Hey there' />
 
       <PageTab>
-        <TabContent
-          value='preview'
-          className='flex p-3 rounded-lg gap-x-5 bg-primary-50'
-        >
-          <Example />
-        </TabContent>
+        <Example />
       </PageTab>
     </div>
   );
@@ -23,13 +18,16 @@ export const SpinnerPage = () => {
 
 const Example = () => {
   return (
-    <>
+    <Div
+      layout='flex'
+      className='p-4 rounded-lg gap-x-4 bg-zinc-300'
+    >
       {Array.from(['light', 'default', 'dark']).map((variant, i) => (
         <Spinner
           key={i}
           variant={variant as 'default'}
         />
       ))}
-    </>
+    </Div>
   );
 };

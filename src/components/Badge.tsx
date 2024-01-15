@@ -6,7 +6,7 @@ import React, {
   useState,
 } from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
-import { cn } from '../utils/util';
+import { cn } from '../lib/cn';
 import { twMerge } from 'tailwind-merge';
 
 interface BadgeContextProps {
@@ -25,7 +25,7 @@ const badgeVariants = cva(
         outline: 'ring-zinc-950/10 text-zinc-950 bg-white',
         danger: 'bg-red-500 text-white ring-red-500/20',
         warning: 'bg-amber-500 text-white ring-amber-500/20',
-        success: 'bg-green-500 text-white ring-green-950/10',
+        success: 'bg-green-500 text-white ring-green-500/20',
       },
     },
 
@@ -35,9 +35,9 @@ const badgeVariants = cva(
   }
 );
 
-interface BadgeProps
-  extends HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof badgeVariants> {}
+interface Props extends HTMLAttributes<HTMLDivElement> {}
+
+interface BadgeProps extends Props, VariantProps<typeof badgeVariants> {}
 
 export const Badge = forwardRef<HTMLDivElement, BadgeProps>(
   (props: BadgeProps, ref) => {
@@ -60,19 +60,16 @@ export const Badge = forwardRef<HTMLDivElement, BadgeProps>(
   }
 );
 
-interface BadgeDismissProps extends HTMLAttributes<HTMLSpanElement> {}
+export const BadgeDismiss = forwardRef<HTMLDivElement, Props>((props, ref) => {
+  const { className, ...rest } = props;
+  const { hideBadge } = useContext(BadgeContext)!;
 
-export const BadgeDismiss = forwardRef<HTMLDivElement, BadgeDismissProps>(
-  (props: BadgeDismissProps) => {
-    const { className, ...rest } = props;
-    const { hideBadge } = useContext(BadgeContext)!;
-
-    return (
-      <span
-        className={twMerge('cursor-pointer', className)}
-        onClick={hideBadge}
-        {...rest}
-      />
-    );
-  }
-);
+  return (
+    <div
+      ref={ref}
+      className={twMerge('cursor-pointer', className)}
+      onClick={hideBadge}
+      {...rest}
+    />
+  );
+});

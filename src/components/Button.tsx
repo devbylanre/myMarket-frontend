@@ -1,5 +1,5 @@
 import React, { ButtonHTMLAttributes, forwardRef } from 'react';
-import { cn } from '../utils/util';
+import { cn } from '../lib/cn';
 import { cva, VariantProps } from 'class-variance-authority';
 
 const buttonVariants = cva(
@@ -8,12 +8,12 @@ const buttonVariants = cva(
     variants: {
       variant: {
         ghost:
-          'ring-0 bg-none text-zinc-600 hover:text-zinc-950 hover:bg-zinc-50',
+          'ring-0 bg-none text-zinc-600 hover:text-zinc-950 hover:bg-zinc-100',
         solid:
           'bg-primary-500 hover:bg-primary-400 text-white ring-primary-600',
         outline:
           'ring-zinc-950/10 bg-white text-zinc-600 hover:text-zinc-950 hover:bg-zinc-50',
-        danger: 'bg-red-100 text-red-700 hover:bg-red-200 ring-red-500/10',
+        danger: 'bg-red-500 text-white hover:bg-red-600 ring-red-500/20',
       },
       size: {
         xs: 'h-7 text-sm',
@@ -21,9 +21,7 @@ const buttonVariants = cva(
         md: 'h-9 text-sm',
         lg: 'h-10 text-base',
         xl: 'h-11 text-base',
-        icon: 'w-6 h-6 p-1',
-        'icon-lg': 'w-8 h-8 p-1',
-        'icon-xl': 'w-10 h-10 p-1',
+        icon: 'w-fit h-fit p-1',
       },
     },
     defaultVariants: {

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Card } from '../../../components/Card';
-import { Tab, TabList, TabTrigger } from '../../../components/Tab';
+import { Card, CardContent } from '../../../components/Card';
+import { Tab, TabContent, TabList, TabTrigger } from '../../../components/Tab';
 
 interface PageTabProps {
   children: React.ReactNode;
@@ -8,14 +8,21 @@ interface PageTabProps {
 
 export const PageTab = ({ children }: PageTabProps) => {
   return (
-    <Tab defaultValue='preview'>
-      <TabList>
+    <Tab
+      defaultValue='preview'
+      className='space-y-4'
+    >
+      <TabList className='mx-auto sm:w-96'>
         <TabTrigger value='preview'>Preview</TabTrigger>
         <TabTrigger value='code'>Code</TabTrigger>
       </TabList>
-      <Card className='flex ring-0 bg-zinc-100 min-h-[320px] items-center justify-center p-5'>
-        {children}
-      </Card>
+      <TabContent value='preview'>
+        <Card className='flex ring-zinc-950/10 min-h-[400px] items-center justify-center p-5 ring-1'>
+          <CardContent className='flex flex-col items-center w-full mx-auto md:w-96'>
+            {children}
+          </CardContent>
+        </Card>
+      </TabContent>
     </Tab>
   );
 };

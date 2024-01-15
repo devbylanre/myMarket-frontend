@@ -4,7 +4,6 @@ import { Switch } from '../../../components/Switch';
 import { FormField, FormLabel } from '../../../components/Form';
 import { PageHeadline } from '../shared/PageHeadline';
 import { PageTab } from '../shared/PageTab';
-import { TabContent } from '../../../components/Tab';
 
 export const SwitchPage = () => {
   return (
@@ -12,16 +11,14 @@ export const SwitchPage = () => {
       <PageHeadline subHeading='Switch components' />
 
       <PageTab>
-        <TabContent value='preview'>
-          <Formik
-            initialValues={{ comments: false }}
-            onSubmit={() => {}}
-          >
-            <Form>
-              <Example />
-            </Form>
-          </Formik>
-        </TabContent>
+        <Formik
+          initialValues={{ comments: false }}
+          onSubmit={() => {}}
+        >
+          <Form>
+            <Example />
+          </Form>
+        </Formik>
       </PageTab>
     </div>
   );
@@ -29,14 +26,12 @@ export const SwitchPage = () => {
 
 const Example = () => {
   return (
-    <div>
-      <FormField
-        name='comment'
-        className='inline-flex justify-between w-full space-y-0 sm:w-96'
-      >
-        <FormLabel>Allow others to comment on your Posts</FormLabel>
-        <Switch />
-      </FormField>
-    </div>
+    <FormField
+      name='comment'
+      className='inline-flex justify-between w-full space-y-0 sm:w-96'
+    >
+      <FormLabel>Allow others to comment on your Posts</FormLabel>
+      <Switch />
+    </FormField>
   );
 };

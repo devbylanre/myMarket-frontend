@@ -2,20 +2,20 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { Sidebar } from './Sidebar';
 import { Header } from './Header';
+import { Div } from '../../components/Div';
 
 export const ThemeLayout = () => {
   return (
-    <div className='flex flex-row min-h-screen'>
-      {/* sidebar */}
-      <Sidebar />
-      {/* content */}
-      <div className='ml-0 md:ml-[33.33%] xl:ml-[16.66%] w-full'>
-        <Header />
-        {/* outlet */}
-        <div className='px-3 my-5 lg:my-8 md:px-8 lg:px-12'>
-          <Outlet />
-        </div>
-      </div>
-    </div>
+    <Div>
+      <Header />
+      <Div layout='flex'>
+        <Sidebar />
+        <Div className='ml-0 lg:ml-[25%] xl:ml-[16.67%] my-8 lg:my-5 w-full'>
+          <Div className='w-full px-3 mx-auto lg:px-0 lg:w-5/6 xl:w-4/6'>
+            <Outlet />
+          </Div>
+        </Div>
+      </Div>
+    </Div>
   );
 };

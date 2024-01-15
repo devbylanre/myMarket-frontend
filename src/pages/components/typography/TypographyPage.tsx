@@ -2,7 +2,6 @@ import React from 'react';
 import { Text } from '../../../components/Text';
 import { PageHeadline } from '../shared/PageHeadline';
 import { PageTab } from '../shared/PageTab';
-import { TabContent } from '../../../components/Tab';
 
 export const TypographyPage = () => {
   return (
@@ -10,15 +9,11 @@ export const TypographyPage = () => {
       <PageHeadline subHeading='Typography components' />
 
       <PageTab>
-        <TabContent value='preview'>
-          <Weight />
-        </TabContent>
+        <Weight />
       </PageTab>
 
       <PageTab>
-        <TabContent value='preview'>
-          <Size />
-        </TabContent>
+        <Size />
       </PageTab>
     </div>
   );
@@ -27,14 +22,15 @@ export const TypographyPage = () => {
 const Weight = () => {
   return (
     <>
-      {Array.from([100, 200, 300, 400, 500, 600, 700]).map((value, i) => (
+      {Array.from([300, 400, 500, 600, 700]).map((value, i) => (
         <Text
           key={i}
           as='h5'
-          size='2xl'
+          size='lg'
           weight={value as 300}
+          className='w-full text-left'
         >
-          Hello world weight {value}
+          The brown fox jumped over the blue wall
         </Text>
       ))}
     </>
@@ -44,19 +40,17 @@ const Weight = () => {
 const Size = () => {
   return (
     <>
-      {Array.from(['xs', 'sm', 'lg', 'xl', '2xl', '3xl', '4xl']).map(
-        (value, i) => (
-          <Text
-            key={i}
-            as='h5'
-            size={value as 'sm'}
-            weight={500}
-            className='w-full'
-          >
-            Use a font size of {value}
-          </Text>
-        )
-      )}
+      {Array.from(['xs', 'sm', 'lg', 'xl']).map((value, i) => (
+        <Text
+          key={i}
+          as='h5'
+          size={value as 'sm'}
+          weight={500}
+          className='w-full text-left'
+        >
+          The brown fox jumped over the blue wall
+        </Text>
+      ))}
     </>
   );
 };

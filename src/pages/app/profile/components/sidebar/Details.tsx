@@ -1,5 +1,9 @@
 import React from 'react';
-import { Avatar, AvatarFallback } from '../../../../../components/Avatar';
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from '../../../../../components/Avatar';
 import { Text } from '../../../../../components/Text';
 import { Card, CardContent, CardFooter } from '../../../../../components/Card';
 import { User } from '../../../../../contexts/user.types';
@@ -44,11 +48,11 @@ export const Details = ({ firstName, lastName, email, photo }: Props) => {
   return (
     <Card className='p-0 px-3 space-y-5 ring-0 lg:px-5'>
       <CardContent className='flex flex-col items-center gap-3 lg:flex-row'>
-        <Avatar
-          src={photo.url}
-          alt={photo.name}
-          className='w-12 h-12 bg-primary-100 ring-primary-500/10'
-        >
+        <Avatar className='w-12 h-12 bg-primary-100 ring-primary-500/10'>
+          <AvatarImage
+            src={photo.url}
+            alt={photo.name}
+          />
           <AvatarFallback className='font-medium uppercase'>
             {firstName[0]}
           </AvatarFallback>

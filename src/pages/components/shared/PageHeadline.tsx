@@ -27,7 +27,7 @@ export const PageHeadline = ({ title, subHeading }: PageHeadlineProps) => {
   return (
     <>
       <Helmet>
-        <title>{helper.getLastUrl()}</title>
+        <title>{helper.getLastUrl()} - myMarket UI</title>
         <meta
           name='keywords'
           content={helper.getLastUrl()}
@@ -38,9 +38,9 @@ export const PageHeadline = ({ title, subHeading }: PageHeadlineProps) => {
         />
       </Helmet>
 
-      <Div className='space-y-0'>
+      <Div className='space-y-2'>
         <Text
-          size='4xl'
+          size='3xl'
           weight={500}
           className='capitalize'
         >
@@ -48,7 +48,6 @@ export const PageHeadline = ({ title, subHeading }: PageHeadlineProps) => {
         </Text>
         <Text
           as='p'
-          size=''
           className=''
         >
           {subHeading}
