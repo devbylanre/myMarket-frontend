@@ -6,7 +6,7 @@ const textVariants = cva('text-zinc-800', {
   variants: {
     size: {
       xs: 'text-xs',
-      sm: 'text-sm',
+      sm: 'text-sm leading-[1.4rem]',
       md: 'text-base',
       lg: 'text-base md:text-[1.125rem] leading-[1.45]', // 18px
       xl: 'text-[1.125rem] md:text-[1.25rem] leading-[1.30]', // 20px

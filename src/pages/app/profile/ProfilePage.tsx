@@ -11,6 +11,9 @@ import { Spinner } from '../../../components/Spinner';
 import { User } from '../../../contexts/user.types';
 import { Product } from '../../../contexts/product.types';
 import { useProductContext } from '../../../hooks/useProductContext';
+import { Div } from '../../../components/Div';
+import { Store } from './components/Store';
+import { SellerSetup } from '../../../templates/SellerSetup';
 
 export const ProfilePage = () => {
   const data: any = useLoaderData();
@@ -50,15 +53,19 @@ export const ProfilePage = () => {
             />
           </Helmet>
 
-          <div className={twMerge('flex flex-col-reverse lg:flex-row w-full')}>
-            <ProfileTab
-              isSeller={user.isSeller}
-              store={user.store}
-              products={userProducts}
-              userId={user._id}
-            />
+          <Div
+            layout='flex'
+            className={twMerge('flex-col-reverse lg:flex-row w-full')}
+          >
+            <Div className='lg:mr-[30%] lg:w-9/12'>
+              {user.isSeller ? <Store store={user.store} /> : <SellerSetup />}
+              <ProfileTab
+                products={userProducts}
+                userId={user._id}
+              />
+            </Div>
 
-            <div className='py-5 bg-white lg:border-l lg:fixed lg:right-0 lg:w-3/12 border-l-zinc-200 lg:h-screen'>
+            <Div className='py-5 bg-white lg:border-l lg:fixed lg:right-0 lg:w-3/12 border-l-zinc-200 lg:h-screen'>
               <Details
                 email={user.email}
                 firstName={user.firstName}
@@ -72,8 +79,8 @@ export const ProfilePage = () => {
                 billing={user.billing}
               />
               <Accounts accounts={user.accounts} />
-            </div>
-          </div>
+            </Div>
+          </Div>
         </>
       ) : (
         <Spinner />

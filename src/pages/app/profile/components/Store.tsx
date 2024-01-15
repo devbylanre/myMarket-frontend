@@ -1,9 +1,10 @@
 import React from 'react';
-import { Text } from '../../../../../../components/Text';
-import { Separator } from '../../../../../../components/Separator';
-import { User, UserStore } from '../../../../../../contexts/user.types';
-import { Badge } from '../../../../../../components/Badge';
+import { Text } from '../../../../components/Text';
+import { Separator } from '../../../../components/Separator';
+import { User, UserStore } from '../../../../contexts/user.types';
 import { TbMapPinCheck } from 'react-icons/tb';
+import { Div } from '../../../../components/Div';
+import { Icon } from '../../../../components/Icon';
 
 const Location = ({ location }: Pick<UserStore, 'location'>) => {
   return (
@@ -16,9 +17,9 @@ const Location = ({ location }: Pick<UserStore, 'location'>) => {
       {Object.values(location).every((v) => v !== '')
         ? Object.values(location)
             .reverse()
-            .map((value, i) => value)
+            .map((value) => value)
             .join(', ')
-        : null}
+        : 'Store location is not available'}
     </Text>
   );
 };
@@ -26,7 +27,10 @@ const Location = ({ location }: Pick<UserStore, 'location'>) => {
 export const Store = ({ store }: Pick<User, 'store'>) => {
   return (
     <>
-      <div className='px-3 mx-auto space-y-3 text-center lg:px-5 lg:w-96'>
+      <Div
+        layout='flex'
+        className='flex-col items-center px-3 mx-auto mt-5 text-center gap-y-2 sm:w-96'
+      >
         <Text
           as='h5'
           size='xl'
@@ -43,13 +47,19 @@ export const Store = ({ store }: Pick<User, 'store'>) => {
           {store.description}
         </Text>
 
-        <Badge>
-          <TbMapPinCheck className='w-4 h-4' />
+        <Div
+          layout='flex'
+          className='items-center gap-x-2'
+        >
+          <Icon
+            icon={TbMapPinCheck}
+            className='w-4 h-4'
+          />
           <Location location={store.location} />
-        </Badge>
-      </div>
+        </Div>
+      </Div>
 
-      <Separator className='my-5' />
+      <Separator className='my-8' />
     </>
   );
 };
