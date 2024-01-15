@@ -4,23 +4,24 @@ import { Textarea } from '../../../components/Textarea';
 import { FormField, FormControl, FormLabel } from '../../../components/Form';
 import { PageHeadline } from '../shared/PageHeadline';
 import { PageTab } from '../shared/PageTab';
+import { Div } from '../../../components/Div';
 
 export const TextareaPage = () => {
   return (
-    <div className='space-y-8'>
+    <Div className='space-y-8'>
       <PageHeadline subHeading='Textarea component' />
 
-      <PageTab>
-        <Formik
-          initialValues={{ bio: '' }}
-          onSubmit={(values) => alert(`Your inputs are ${values.bio}`)}
-        >
-          <Form>
+      <Formik
+        initialValues={{ bio: '' }}
+        onSubmit={(values) => alert(`Your inputs are ${values.bio}`)}
+      >
+        <Form>
+          <PageTab>
             <Example />
-          </Form>
-        </Formik>
-      </PageTab>
-    </div>
+          </PageTab>
+        </Form>
+      </Formik>
+    </Div>
   );
 };
 
@@ -28,7 +29,7 @@ const Example = () => {
   return (
     <FormField
       name='bio'
-      className='w-96'
+      className='w-full sm:w-96'
     >
       <FormLabel>Bio</FormLabel>
       <FormControl>

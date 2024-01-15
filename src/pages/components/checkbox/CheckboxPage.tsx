@@ -28,7 +28,7 @@ const Example = () => {
   return (
     <FormField
       name='agree'
-      className='inline-flex items-center justify-between space-y-0 w-96'
+      className='flex items-center space-y-0 gap-x-4 w-96'
     >
       <FormLabel>Do you accept our Policy and Terms of service?</FormLabel>
       <Checkbox />

@@ -20,9 +20,9 @@ const Example = () => {
   return (
     <Div
       layout='flex'
-      className='p-4 rounded-lg gap-x-4 bg-zinc-300'
+      className='p-4 rounded-lg gap-x-4'
     >
-      {Array.from(['light', 'default', 'dark']).map((variant, i) => (
+      {Array.from(['default', 'dark']).map((variant, i) => (
         <Spinner
           key={i}
           variant={variant as 'default'}

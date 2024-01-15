@@ -10,6 +10,7 @@ const divVariants = cva('', {
       block: 'block',
       'inline-flex': 'inline-flex',
       'inline-block': 'inline-block',
+      hidden: 'hidden',
     },
   },
 

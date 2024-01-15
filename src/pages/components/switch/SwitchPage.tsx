@@ -28,7 +28,7 @@ const Example = () => {
   return (
     <FormField
       name='comment'
-      className='inline-flex justify-between w-full space-y-0 sm:w-96'
+      className='flex w-full space-y-0 sm:w-96 gap-x-4'
     >
       <FormLabel>Allow others to comment on your Posts</FormLabel>
       <Switch />

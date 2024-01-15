@@ -10,10 +10,10 @@ const buttonVariants = cva(
         ghost:
           'ring-0 bg-none text-zinc-600 hover:text-zinc-950 hover:bg-zinc-100',
         solid:
-          'bg-primary-500 hover:bg-primary-400 text-white ring-primary-600',
+          'bg-primary-300 hover:bg-primary-400 text-zinc-950 ring-primary-300',
         outline:
           'ring-zinc-950/10 bg-white text-zinc-600 hover:text-zinc-950 hover:bg-zinc-50',
-        danger: 'bg-red-500 text-white hover:bg-red-600 ring-red-500/20',
+        danger: 'bg-red-500 text-white hover:bg-red-600 ring-red-500',
       },
       size: {
         xs: 'h-7 text-sm',

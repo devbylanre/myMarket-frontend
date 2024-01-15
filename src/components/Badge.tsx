@@ -21,7 +21,7 @@ const badgeVariants = cva(
   {
     variants: {
       variant: {
-        solid: 'bg-primary-500 text-white ring-primary-600',
+        solid: 'bg-primary-300 text-zinc-950 ring-primary-300',
         outline: 'ring-zinc-950/10 text-zinc-950 bg-white',
         danger: 'bg-red-500 text-white ring-red-500/20',
         warning: 'bg-amber-500 text-white ring-amber-500/20',

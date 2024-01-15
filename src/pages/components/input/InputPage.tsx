@@ -10,26 +10,25 @@ import {
 } from '../../../components/Form';
 import { PageHeadline } from '../shared/PageHeadline';
 import { PageTab } from '../shared/PageTab';
+import { Div } from '../../../components/Div';
 
 export const InputPage = () => {
   return (
-    <div className='space-y-12'>
+    <Div className='space-y-12'>
       <PageHeadline subHeading='Input component' />
 
-      <PageTab>
-        <Formik
-          initialValues={{ firstName: '', username: '', address: '' }}
-          validationSchema={yup.object().shape({
-            address: yup.string().required('Provide your address'),
-          })}
-          onSubmit={() => {}}
-        >
-          <Form className='space-y-3'>
-            <Example />
-          </Form>
-        </Formik>
-      </PageTab>
-    </div>
+      <Formik
+        initialValues={{ firstName: '', username: '', address: '' }}
+        validationSchema={yup.object().shape({
+          address: yup.string().required('Provide your address'),
+        })}
+        onSubmit={() => {}}
+      >
+        <Form className='space-y-3'>
+          <Examples />
+        </Form>
+      </Formik>
+    </Div>
   );
 };
 
@@ -57,11 +56,11 @@ const fields: FieldProps[] = [
   },
 ];
 
-const Example = () => {
+const Examples = () => {
   return (
     <>
       {fields.map((field, i) => (
-        <div key={i}>
+        <PageTab key={i}>
           <FormField
             name={field.name}
             className='w-full sm:w-80'
@@ -76,7 +75,7 @@ const Example = () => {
             </FormControl>
             {i > 1 && <FormMessage />}
           </FormField>
-        </div>
+        </PageTab>
       ))}
     </>
   );
