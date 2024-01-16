@@ -14,7 +14,7 @@ import { Button } from '../../../../../../components/Button';
 import {
   getDiscountedPrice,
   truncateString,
-} from '../../../../../../lib/string';
+} from '../../../../../../utils/string';
 import { Icon } from '../../../../../../components/Icon';
 import { Div } from '../../../../../../components/Div';
 import {

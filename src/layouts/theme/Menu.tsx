@@ -23,7 +23,7 @@ import {
   LuMinimize2,
   LuLoader,
 } from 'react-icons/lu';
-import { sortByAlphabet } from '../../lib/sort';
+import { sortByAlphabet } from '../../utils/sort';
 
 interface LinkProps {
   name: string;

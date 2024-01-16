@@ -13,7 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../../../../components/Select';
-import category from '../../../../json/category.json';
+import category from '../../../../data/category.json';
 import { twMerge } from 'tailwind-merge';
 
 export const BrandAndCategory = () => {
