@@ -52,6 +52,7 @@ import { ProductPageError } from './pages/app/product/Error';
 import { UserContextProvider } from './contexts/user';
 import { ProductContextProvider } from './contexts/product';
 import { HelmetProvider } from 'react-helmet-async';
+import { SellPageError } from './pages/app/sell/SellPageError';
 
 const router = createBrowserRouter([
   {
@@ -99,6 +100,7 @@ const router = createBrowserRouter([
                 path: ':id',
                 element: <SellPage />,
                 loader: SellPageLoader,
+                errorElement: <SellPageError />,
               },
               { path: 'setup', element: <SetupPage /> },
             ],

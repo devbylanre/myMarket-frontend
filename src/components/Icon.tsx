@@ -1,3 +1,4 @@
+import { VariantProps, cva } from 'class-variance-authority';
 import React from 'react';
 import { IconType, IconBaseProps } from 'react-icons/lib';
 
