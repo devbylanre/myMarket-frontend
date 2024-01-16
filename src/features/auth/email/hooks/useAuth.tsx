@@ -3,26 +3,20 @@ import { Status, Callback } from '../../../../hooks/types';
 import { useUserContext } from '../../../../hooks/useUserContext';
 import { User } from '../../../../contexts/user.types';
 
+const initialState: Status<User> = {
+  state: null,
+  isLoading: null,
+  error: null,
+  payload: null,
+};
+
 export const useAuth = () => {
   const { dispatch } = useUserContext()!;
-  const [status, setStatus] = useState<Status<User>>({
-    state: null,
-    isLoading: null,
-    error: null,
-    payload: null,
-  });
+  const [status, setStatus] = useState<Status<User>>(initialState);
 
-  const signIn = async <T extends { email: string }>(
-    data: T,
-    callback?: Callback
-  ) => {
+  const signIn = async <T extends {}>(payload: T, callback?: Callback) => {
     try {
-      setStatus({
-        state: null,
-        isLoading: true,
-        error: null,
-        payload: null,
-      });
+      setStatus({ ...initialState, isLoading: true });
 
       const response = await fetch(
         'https://mymarket-tan.vercel.app/user/auth',
@@ -31,12 +25,13 @@ export const useAuth = () => {
           headers: {
             'content-type': 'application/json',
           },
-          body: JSON.stringify(data),
+          body: JSON.stringify(payload),
         }
       );
 
       const json = await response.json();
 
+      // check if response is not OK
       if (!response.ok) {
         return setStatus({
           state: 'error',
@@ -48,6 +43,7 @@ export const useAuth = () => {
         });
       }
 
+      // dispatch a new state
       dispatch({ type: 'SIGN_IN', payload: json.data });
 
       setStatus({

@@ -17,7 +17,7 @@ interface AlertContextProps {
 const AlertContext = createContext<AlertContextProps | undefined>(undefined);
 
 const alertVariant = cva(
-  'w-full sm:max-w-[320px] p-2 flex rounded-lg flex-wrap transition-all duration-300 ease-in-out',
+  'w-full p-2 flex rounded-lg flex-wrap transition-all duration-300 ease-in-out',
   {
     variants: {
       variant: {

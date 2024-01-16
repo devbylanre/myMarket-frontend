@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '../../../../components/Button';
 import { Text } from '../../../../components/Text';
 
-export const Success = () => {
+export const Message = () => {
   return (
     <>
       <div className='space-y-1 text-center'>

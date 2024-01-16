@@ -34,9 +34,9 @@ import { SettingsPage } from './pages/app/settings/SettingsPage';
 
 // pages
 import { IndexPage } from './pages/IndexPage';
-import { AuthPage } from './pages/AuthPage';
+import { AuthPage } from './pages/auth/Index';
 import { Session } from './pages/Session';
-import { VerifyEmailPage } from './pages/VerifyEmailPage';
+import { VerifyPage } from './pages/verify/Index';
 
 // loaders
 import { ShopPageLoader } from './pages/app/shop/Loader';
@@ -62,7 +62,7 @@ const router = createBrowserRouter([
       { index: true, element: <IndexPage /> },
       { path: 'auth', element: <AuthPage /> },
       { path: 'session', element: <Session /> },
-      { path: 'email/verify', element: <VerifyEmailPage /> },
+      { path: 'verify', element: <VerifyPage /> },
       {
         path: 'app',
         element: <AppLayout />,
