@@ -3,7 +3,6 @@ import { Sidebar } from './components/Sidebar';
 import { Header } from './components/Header';
 import { Outlet, useNavigation } from 'react-router-dom';
 import { PrivateLayout } from '../private/PrivateLayout';
-import { Navbar } from './components/Navbar';
 import { Spinner } from '../../components/Spinner';
 
 const Loader = ({ user }: { user: any }) => {
@@ -31,8 +30,7 @@ export const AppLayout = () => {
             url={user.photo.url}
           />
           <Sidebar id={user._id} />
-          <Navbar id={user._id} />
-          <div className='lg:w-[83%] lg:ml-[17%] bg-white mb-20 '>
+          <div className='lg:w-[83%] lg:ml-[17%] bg-white mb-20'>
             <Loader user={user} />
           </div>
         </div>
