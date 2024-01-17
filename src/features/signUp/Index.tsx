@@ -1,9 +1,9 @@
 import { Form, Formik } from 'formik';
 import * as yup from 'yup';
-import { Component } from './components/Component';
 import { useSignUp } from './hooks/useSignUp';
 import { Success } from './components/Success';
 import { FormError } from '../shared/FormError';
+import { FormGroup } from './components/FormGroup';
 
 interface InitialValuesTypes {
   firstName: string;
@@ -11,7 +11,7 @@ interface InitialValuesTypes {
   email: string;
   bio: string;
   password: string;
-  accept: boolean;
+  agree: boolean;
 }
 
 const initialValues: InitialValuesTypes = {
@@ -20,7 +20,7 @@ const initialValues: InitialValuesTypes = {
   email: '',
   bio: '',
   password: '',
-  accept: false,
+  agree: false,
 };
 
 const validationSchema = yup.object().shape({
@@ -39,18 +39,23 @@ const validationSchema = yup.object().shape({
     .string()
     .required('Provide your password')
     .min(8, 'At least 8 characters long'),
-  accept: yup
+  agree: yup
     .boolean()
     .required('Accept our terms')
     .oneOf([true], 'To sign up, you must agree to our Terms of service.'),
 });
 
-export const SignUpContainer = () => {
+export const SignUp = () => {
   const { status, signUp } = useSignUp();
 
   const handleSubmit = async (values: InitialValuesTypes) => {
-    await signUp({ isSeller: false, ...values });
+    const { agree, ...payload } = values;
+    await signUp(payload);
   };
+
+  if (status.state === 'success') {
+    return <Success />;
+  }
 
   return (
     <Formik
@@ -58,16 +63,10 @@ export const SignUpContainer = () => {
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      {(formik) => (
-        <Form className='space-y-8'>
-          {status.state === 'success' ? (
-            <Success email={formik.values.email} />
-          ) : (
-            <Component isLoading={status.isLoading} />
-          )}
-          {status.state === 'error' ? <FormError error={status.error} /> : null}
-        </Form>
-      )}
+      <Form className='space-y-5'>
+        <FormGroup isLoading={status.isLoading} />
+        <FormError error={status.error} />
+      </Form>
     </Formik>
   );
 };

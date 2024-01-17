@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useUserContext } from '../../hooks/useUserContext';
 import { useNavigate } from 'react-router-dom';
 import { User } from '../../contexts/user.types';
+import { Time } from '../../utils/date';
+import { SessionStorage } from '../../utils/storage';
 
 interface PrivateLayoutProps {
   children: (user: User) => React.ReactNode;
@@ -10,19 +12,18 @@ interface PrivateLayoutProps {
 export const PrivateLayout = ({ children }: PrivateLayoutProps) => {
   const navigate = useNavigate();
   const { user } = useUserContext()!;
-  const session = JSON.parse(sessionStorage.getItem('session')!);
-  const dateTime = new Date().getTime();
+  const session = SessionStorage.get('session');
 
   useEffect(() => {
-    if (!session || (session && session.exp < Math.floor(dateTime / 1000))) {
-      if (!user) {
-        return navigate('/auth/');
-      }
-      sessionStorage.removeItem('session');
+    const isSessionExpired = !session || session.exp < Time.milliSeconds();
+
+    if (isSessionExpired) {
       localStorage.removeItem('user');
+      sessionStorage.removeItem('session');
+
       return navigate('/session/');
     }
-  }, [session, user, dateTime, navigate]);
+  }, [session, navigate]);
 
   return <>{user && session ? children(user) : null}</>;
 };

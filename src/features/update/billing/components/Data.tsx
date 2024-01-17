@@ -1,7 +1,8 @@
 import React from 'react';
 import { Text } from '../../../../components/Text';
+import { UserBilling } from '../../../../contexts/user.types';
 
-export const Data = ({ billing }: { billing: Record<string, string> }) => {
+export const Data = ({ billing }: { billing: UserBilling }) => {
   return (
     <div className='flex gap-x-1'>
       {Object.values(billing).every((v) => v !== '') ? (
@@ -15,8 +16,8 @@ export const Data = ({ billing }: { billing: Record<string, string> }) => {
               className='capitalize'
             >
               {i + 1 < Object.keys(billing).length
-                ? `${billing[key]},`
-                : billing[key]}
+                ? `${billing[key as keyof UserBilling]},`
+                : billing[key as keyof UserBilling]}
             </Text>
           ))
       ) : (

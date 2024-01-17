@@ -7,31 +7,34 @@ import {
   RiTwitterXFill,
   RiWhatsappFill,
 } from 'react-icons/ri';
+import { UserAccount } from '../../../../contexts/user.types';
+import { Icon } from '../../../../components/Icon';
 
 const Platform = ({ platform }: { platform: string }) => {
-  const helper = {
-    showIcon: (platform: string) => {
-      switch (platform) {
-        case 'google':
-          return <RiGoogleFill />;
-        case 'whatsApp':
-          return <RiWhatsappFill />;
-        case 'twitter':
-          return <RiTwitterXFill />;
-        case 'facebook':
-          return <RiFacebookFill />;
-        case 'others':
-          return <RiLink />;
-        default:
-          return null;
-      }
-    },
+  const icon = () => {
+    switch (platform) {
+      case 'google':
+        return RiGoogleFill;
+      case 'whatsApp':
+        return RiWhatsappFill;
+      case 'twitter':
+        return RiTwitterXFill;
+      case 'facebook':
+        return RiFacebookFill;
+      default:
+        return RiLink;
+    }
   };
 
-  return <>{helper.showIcon(platform)}</>;
+  return (
+    <Icon
+      icon={icon()}
+      size={20}
+    />
+  );
 };
 
-export const Data = ({ accounts }: { accounts: Record<string, string>[] }) => {
+export const Data = ({ accounts }: { accounts: UserAccount[] }) => {
   return (
     <div className='space-y-2'>
       {accounts && accounts.length > 0 ? (

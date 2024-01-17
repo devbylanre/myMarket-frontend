@@ -10,6 +10,40 @@ export interface UserStore {
     address: string;
   };
 }
+
+export interface UserBilling {
+  country: string;
+  state: string;
+  city: string;
+  address: string;
+}
+
+export interface UserPhoto {
+  url: string;
+  name: string;
+}
+
+export interface UserMobile {
+  country: string;
+  code: number;
+  number: number;
+}
+
+export interface UserOTP {
+  code: number;
+  expiresAt: number;
+}
+
+export interface UserAccount {
+  platform: string;
+  url: string;
+}
+
+export interface UserToken {
+  id: string;
+  exp: number;
+}
+
 export interface User {
   _id: string;
   isSeller: boolean;
@@ -17,27 +51,13 @@ export interface User {
   firstName: string;
   lastName: string;
   bio: string;
-  mobile: { country: string; code: number; number: number };
-  billing: {
-    country: string;
-    state: string;
-    city: string;
-    address: string;
-  };
-  otp: {
-    code: number;
-    expiresAt: number;
-  };
-  accounts: { platform: string; url: string }[];
-  token: {
-    id: string;
-    exp: number;
-  };
-  photo: {
-    url: string;
-    name: string;
-  };
+  mobile: UserMobile;
+  otp: UserOTP;
+  accounts: UserAccount[];
+  token: UserToken;
+  photo: UserPhoto;
   store: UserStore;
+  billing: UserBilling;
 }
 
 export interface Action<T> {

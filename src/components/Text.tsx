@@ -12,8 +12,8 @@ const textVariants = cva('text-zinc-800', {
       xl: 'text-[1.125rem] md:text-[1.25rem] leading-[1.30]', // 20px
       '2xl': 'text-[1.25rem] md:text-[1.75rem] leading-[1.30]', // 28px
       '3xl': 'text-[2rem] md:text-[2.5rem] leading-[1.20]', //40px
-      '4xl': 'text-[2rem] md:text-[3rem] leading-[1.20]', //48px
-      '5xl': 'text-[2rem] md:text-[3.5rem] leading-[1.20]', // 56px
+      '4xl': 'text-[2rem] md:text-[3rem] leading-[1.1]', //48px
+      '5xl': 'text-[2rem] md:text-[3.5rem] leading-[1.1]', // 56px
       '6xl': 'text-[2.5rem] md:text-[4rem] leading-[1.15]', //64px
       '7xl': 'text-[2.5rem] md:text-[4rem] lg:text-[5rem] leading-[1.1]', //80px
     },

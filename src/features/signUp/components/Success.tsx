@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text } from '../../../components/Text';
 
-export const Success = ({ email }: { email: string }) => {
+export const Success = () => {
   return (
     <div className='space-y-2'>
       <Text
@@ -15,9 +15,8 @@ export const Success = ({ email }: { email: string }) => {
         as='p'
         size='sm'
       >
-        An email was sent to your email{' '}
-        <span className='font-medium'>{email}</span> along with an account
-        activation link. Click on the link to verify your account
+        An email was sent to your email along with an account activation link.
+        Click on the link to verify your account
       </Text>
     </div>
   );

@@ -29,11 +29,11 @@ import { SavedPage } from './pages/app/SavedPage';
 import { ProfilePage } from './pages/app/profile/ProfilePage';
 import { SellPage, SellPageLoader } from './pages/app/sell/SellPage';
 import { SetupPage } from './pages/app/sell/SetupPage';
-import { ProductPage } from './pages/app/product/ProductPage';
+import { ProductPage } from './pages/app/product/Index';
 import { SettingsPage } from './pages/app/settings/SettingsPage';
 
 // pages
-import { IndexPage } from './pages/IndexPage';
+import { HomePage } from './pages/home/Index';
 import { AuthPage } from './pages/auth/Index';
 import { Session } from './pages/Session';
 import { VerifyPage } from './pages/verify/Index';
@@ -54,12 +54,15 @@ import { ProductContextProvider } from './contexts/product';
 import { HelmetProvider } from 'react-helmet-async';
 import { SellPageError } from './pages/app/sell/SellPageError';
 
+// components
+import { Div } from './components/Div';
+
 const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
     children: [
-      { index: true, element: <IndexPage /> },
+      { index: true, element: <HomePage /> },
       { path: 'auth', element: <AuthPage /> },
       { path: 'session', element: <Session /> },
       { path: 'verify', element: <VerifyPage /> },
@@ -136,7 +139,7 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <div className='App font-inter'>
+    <Div className='App font-inter'>
       <HelmetProvider>
         <UserContextProvider>
           <ProductContextProvider>
@@ -144,7 +147,7 @@ function App() {
           </ProductContextProvider>
         </UserContextProvider>
       </HelmetProvider>
-    </div>
+    </Div>
   );
 }
 
